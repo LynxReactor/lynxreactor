@@ -134,53 +134,6 @@ class PrettyJSONWidget(forms.Textarea):
             return value
 
 
-class ImagePreviewWidget(forms.ClearableFileInput):
-    """
-    Виджет для отображения превью изображения в админке
-    """
-
-    def __init__(self, attrs=None, template_name=None, preview_width=200):
-        self.preview_width = preview_width
-        super().__init__(attrs, template_name)
-
-    def get_context(self, name, value, attrs):
-        context = super().get_context(name, value, attrs)
-
-        if value and hasattr(value, 'url'):
-            context['widget']['preview'] = {
-                'url': value.url,
-                'width': self.preview_width,
-            }
-
-        return context
-
-    class Media:
-        css = {
-            'all': ('admin/css/image-preview.css',)
-        }
-
-
-class ColorPickerWidget(forms.TextInput):
-    """
-    Виджет для выбора цвета
-    """
-
-    def __init__(self, attrs=None):
-        default_attrs = {
-            'type': 'color',
-            'style': 'width: 60px; height: 40px; padding: 2px; cursor: pointer;',
-            'class': 'color-picker'
-        }
-        if attrs:
-            default_attrs.update(attrs)
-        super().__init__(default_attrs)
-
-    class Media:
-        css = {
-            'all': ('admin/css/color-picker.css',)
-        }
-
-
 class MultiLangJSONWidget(forms.Textarea):
     """Виджет для мультиязычного JSON поля"""
 
