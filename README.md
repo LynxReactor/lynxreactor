@@ -130,8 +130,7 @@ python manage_project.py test_fast     # только упавшие
 python manage_project.py coverage      # с покрытием
 ```
 
-<<<<<<< Updated upstream
-**80 тестов** — покрывают:
+
 =======
 **96 тестов** — покрывают:
 >>>>>>> Stashed changes
@@ -256,8 +255,5 @@ python manage.py compilemessages
 
 ---
 
-<<<<<<< Updated upstream
-**Made with ❤️ by LynxReactor Studio**
-=======
 **Made with ❤️ by LynxReactor Studio**
 >>>>>>> Stashed changes
