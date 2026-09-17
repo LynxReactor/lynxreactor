@@ -142,8 +142,6 @@ python manage_project.py coverage      # с покрытием
 - Scheduled posts (публикация в будущем)
 - Subscribe + unsubscribe
 - Базовые вьюхи (home, contact, blog)
-<<<<<<< Updated upstream
-=======
 - Admin smoke tests
 - Contact notifications / Celery / transaction.on_commit
 - PDF validation
