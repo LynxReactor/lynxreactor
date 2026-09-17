@@ -1,0 +1,28 @@
+/* static/css/core/variables.css */
+
+/* ============================================================
+   ПЕРЕМЕННЫЕ — LYNXREACTOR
+   ============================================================ */
+
+:root {
+    /* Шрифты */
+    --font-serif: 'Cormorant Garamond', serif;
+    --font-sans: 'Manrope', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+
+    /* Размеры */
+    --container-width: 1280px;
+    --header-height: 80px;
+    --section-padding: 100px 0;
+    --section-padding-mobile: 60px 0;
+
+    /* Радиусы */
+    --radius-btn: 6px;
+    --radius-card: 16px;
+    --radius-image: 24px;
+    --radius-input: 8px;
+
+    /* Переходы */
+    --transition-smooth: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --transition-slow: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --transition-bounce: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+}

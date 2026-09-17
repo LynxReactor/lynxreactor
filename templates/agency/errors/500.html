@@ -1,0 +1,20 @@
+<!-- templates/agency/500.html -->
+
+{% extends 'agency/errors/error.html' %}
+{% load i18n %}
+
+{% block title %}500 — {% trans "Ошибка сервера" %} | LYNXREACTOR{% endblock %}
+
+{% block status %}500 — {% trans "Внутренняя ошибка сервера" %}{% endblock %}
+
+{% block error_code %}500{% endblock %}
+
+{% block error_title %}{% trans "Что-то пошло не так" %}{% endblock %}
+
+{% block error_description %}
+    {% trans "На сервере произошла ошибка. Мы уже работаем над её устранением. Пожалуйста, попробуйте позже." %}
+{% endblock %}
+
+{% block extra_head %}
+    <meta name="robots" content="noindex, nofollow">
+{% endblock %}

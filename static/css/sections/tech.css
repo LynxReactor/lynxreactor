@@ -1,0 +1,715 @@
+/* static/css/sections/tech.css */
+
+/* ============================================================
+   ТЕХНОЛОГИИ — LYNXREACTOR
+   ============================================================ */
+
+.tech-section {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    padding: 100px 0;
+    background: var(--color-primary-dark);
+    overflow-x: hidden;
+}
+
+.tech-container {
+    max-width: 100%;
+    padding: 0 40px;
+    margin: 0 auto;
+}
+
+.tech-header {
+    max-width: 700px;
+    margin: 0 auto 60px;
+    text-align: center;
+}
+
+.tech-header .section-title {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+/* ============================================================
+   СЕТКА ТЕХНОЛОГИЙ — ПО УМОЛЧАНИЮ 4 КОЛОНКИ
+   ============================================================ */
+
+.tech-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+/* ============================================================
+   КАРТОЧКА ТЕХНОЛОГИИ — ВЕРТИКАЛЬНОЕ РАСПОЛОЖЕНИЕ
+   ============================================================ */
+
+.tech-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 40px 24px 32px;
+    background: var(--color-card-bg);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    transition: var(--transition-smooth);
+    position: relative;
+    height: 100%;
+    min-width: 0;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    cursor: pointer;
+}
+
+.tech-item:hover {
+    transform: translateY(-6px);
+    border-color: var(--color-gold-rgba);
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.3);
+}
+
+/* ---------- ИКОНКА ---------- */
+
+.tech-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+    background: rgba(200, 154, 91, 0.06);
+    transition: var(--transition-smooth);
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.tech-item:hover .tech-icon {
+    background: rgba(200, 154, 91, 0.12);
+}
+
+.tech-icon img {
+    width: 52px;
+    height: 52px;
+    object-fit: contain;
+}
+
+.tech-icon-placeholder {
+    font-family: var(--font-serif);
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--color-gold);
+}
+
+/* ---------- ИНФОРМАЦИЯ ---------- */
+
+.tech-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
+.tech-name {
+    font-family: var(--font-serif);
+    font-size: 20px;
+    color: var(--color-text-primary);
+    margin-bottom: 2px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    line-height: 1.2;
+}
+
+.tech-category {
+    font-size: 11px;
+    color: var(--color-text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+/* ---------- ОПИСАНИЕ ---------- */
+
+.tech-description {
+    font-size: 14px;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    margin-top: 8px;
+    text-align: center;
+    flex: 1;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    max-width: 100%;
+}
+
+/* ---------- БЕЙДЖ ---------- */
+
+.tech-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-text-dark);
+    background: var(--color-gold);
+    padding: 2px 14px;
+    border-radius: 4px;
+    font-weight: 600;
+    z-index: 2;
+}
+
+/* ---------- КНОПКА ---------- */
+
+.tech-more-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 16px;
+    padding: 8px 16px;
+    background: transparent;
+    border: none;
+    color: var(--color-gold);
+    font-family: var(--font-sans);
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    letter-spacing: 0.02em;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.tech-more-btn:hover {
+    color: var(--color-gold-light);
+    gap: 12px;
+}
+
+.tech-more-btn .arrow {
+    transition: transform 0.3s ease;
+    font-size: 14px;
+}
+
+.tech-more-btn:hover .arrow {
+    transform: translateX(4px);
+}
+
+/* ============================================================
+   ТЁМНАЯ ТЕМА
+   ============================================================ */
+
+[data-theme="dark"] .tech-item {
+    border-color: rgba(255, 255, 255, 0.06);
+}
+
+[data-theme="dark"] .tech-item:hover {
+    border-color: var(--color-gold, #C89A5B);
+}
+
+[data-theme="dark"] .tech-icon {
+    background: rgba(200, 154, 91, 0.08);
+}
+
+[data-theme="dark"] .tech-item:hover .tech-icon {
+    background: rgba(200, 154, 91, 0.15);
+}
+
+[data-theme="dark"] .tech-more-btn {
+    color: var(--color-gold, #C89A5B);
+}
+
+[data-theme="dark"] .tech-more-btn:hover {
+    color: var(--color-gold-light, #D8B477);
+}
+
+[data-theme="dark"] .tech-badge {
+    background: var(--color-gold, #C89A5B);
+    color: var(--color-text-dark);
+}
+
+/* ============================================================
+   СВЕТЛАЯ ТЕМА
+   ============================================================ */
+
+[data-theme="light"] .tech-item {
+    border-color: var(--color-border, #E4DED5);
+}
+
+[data-theme="light"] .tech-item:hover {
+    border-color: var(--color-gold, #B8734F);
+}
+
+[data-theme="light"] .tech-icon {
+    background: rgba(184, 115, 79, 0.06);
+}
+
+[data-theme="light"] .tech-item:hover .tech-icon {
+    background: rgba(184, 115, 79, 0.12);
+}
+
+[data-theme="light"] .tech-more-btn {
+    color: var(--color-gold, #B8734F);
+}
+
+[data-theme="light"] .tech-more-btn:hover {
+    color: var(--color-gold-dark, #965A3D);
+}
+
+[data-theme="light"] .tech-badge {
+    background: var(--color-gold, #B8734F);
+    color: var(--color-text-light);
+}
+
+/* ============================================================
+   АДАПТИВНОСТЬ
+   ============================================================ */
+
+/* ----- 1400px-1920px ----- */
+@media (min-width: 1400px) and (max-width: 1920px) {
+    .tech-container { padding: 0 30px; }
+    .tech-grid { gap: 16px; max-width: 1400px; }
+    .tech-item { padding: 32px 18px 24px; border-radius: 14px; }
+    .tech-icon { width: 64px; height: 64px; }
+    .tech-icon img { width: 40px; height: 40px; }
+    .tech-icon-placeholder { font-size: 22px; }
+    .tech-name { font-size: 17px; }
+    .tech-description { font-size: 13px; -webkit-line-clamp: 3; overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; }
+    .tech-category { font-size: 10px; }
+    .tech-more-btn { font-size: 12px; padding: 6px 12px; }
+}
+
+/* ----- 1200px-1400px ----- */
+@media (min-width: 1200px) and (max-width: 1400px) {
+    .tech-container { padding: 0 20px; }
+    .tech-grid { gap: 14px; }
+    .tech-item { padding: 28px 14px 20px; border-radius: 12px; }
+    .tech-icon { width: 56px; height: 56px; }
+    .tech-icon img { width: 36px; height: 36px; }
+    .tech-icon-placeholder { font-size: 20px; }
+    .tech-name { font-size: 15px; }
+    .tech-description { font-size: 12px; -webkit-line-clamp: 3; overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; }
+    .tech-category { font-size: 10px; }
+    .tech-more-btn { font-size: 11px; padding: 4px 10px; }
+}
+
+/* ----- 992px-1200px ----- */
+@media (max-width: 1200px) {
+    .tech-container { padding: 0 30px; }
+    .tech-grid { gap: 20px; }
+}
+
+/* ----- 768px-992px ----- */
+@media (max-width: 992px) {
+    .tech-section { padding: 70px 0; }
+    .tech-grid { grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .tech-item { padding: 32px 20px 24px; }
+    .tech-icon { width: 68px; height: 68px; }
+    .tech-icon img { width: 44px; height: 44px; }
+    .tech-description { font-size: 13px; }
+}
+
+/* ----- 576px-768px ----- */
+@media (max-width: 768px) {
+    .tech-section { padding: 50px 0; }
+    .tech-container { padding: 0 20px; }
+    .tech-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+    .tech-item { padding: 28px 16px 20px; }
+    .tech-icon { width: 60px; height: 60px; margin-bottom: 14px; }
+    .tech-icon img { width: 36px; height: 36px; }
+    .tech-icon-placeholder { font-size: 22px; }
+    .tech-name { font-size: 17px; }
+    .tech-description { font-size: 13px; -webkit-line-clamp: 3; overflow: hidden; display: -webkit-box; -webkit-box-orient: vertical; }
+    .tech-badge { font-size: 8px; padding: 2px 10px; top: 8px; right: 8px; }
+    .tech-more-btn { font-size: 12px; padding: 6px 12px; }
+}
+
+/* ============================================================
+   📱 МОБИЛЬНЫЕ — 480px и меньше (ОДНА КОЛОНКА)
+   ============================================================ */
+
+@media (max-width: 480px) {
+    .tech-section {
+        padding: 40px 0;
+    }
+
+    .tech-container {
+        padding: 0 12px;
+    }
+
+    .tech-grid {
+        grid-template-columns: 1fr !important;
+        gap: 14px !important;
+        max-width: 100% !important;
+    }
+
+    .tech-item {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center !important;
+        padding: 22px 16px 18px !important;
+        min-height: auto !important;
+        border-radius: 14px !important;
+        gap: 0 !important;
+    }
+
+    .tech-icon {
+        width: 56px !important;
+        height: 56px !important;
+        min-width: 56px !important;
+        margin: 0 auto 12px auto !important;
+    }
+
+    .tech-icon img {
+        width: 34px !important;
+        height: 34px !important;
+    }
+
+    .tech-icon-placeholder {
+        font-size: 20px !important;
+    }
+
+    .tech-name {
+        font-size: 16px !important;
+        margin-bottom: 3px !important;
+    }
+
+    .tech-category {
+        font-size: 10px !important;
+        margin-bottom: 5px !important;
+    }
+
+    .tech-badge {
+        position: static !important;
+        display: inline-block !important;
+        font-size: 8px !important;
+        padding: 2px 10px !important;
+        margin: 0 auto !important;
+        width: auto !important;
+        max-width: fit-content !important;
+        border-radius: 4px !important;
+    }
+
+    .tech-description {
+        font-size: 12px !important;
+        line-height: 1.5 !important;
+        margin: 6px 0 10px 0 !important;
+        -webkit-line-clamp: 3 !important;
+        display: -webkit-box !important;
+        -webkit-box-orient: vertical !important;
+        overflow: hidden !important;
+    }
+
+    .tech-more-btn {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 4px auto 0 auto !important;
+        padding: 9px 14px !important;
+        font-size: 12px !important;
+        justify-content: center !important;
+    }
+
+    .tech-more-btn .arrow {
+        font-size: 12px !important;
+    }
+}
+
+/* ----- 360px-480px (маленький телефон) ----- */
+@media (max-width: 380px) {
+    .tech-item {
+        padding: 18px 14px 16px !important;
+    }
+
+    .tech-icon {
+        width: 48px !important;
+        height: 48px !important;
+        min-width: 48px !important;
+        margin-bottom: 10px !important;
+    }
+
+    .tech-icon img {
+        width: 30px !important;
+        height: 30px !important;
+    }
+
+    .tech-name {
+        font-size: 15px !important;
+    }
+
+    .tech-category {
+        font-size: 9px !important;
+    }
+
+    .tech-description {
+        font-size: 11px !important;
+        -webkit-line-clamp: 2 !important;
+    }
+
+    .tech-more-btn {
+        font-size: 11px !important;
+        padding: 8px 12px !important;
+    }
+}
+
+/* ============================================================
+   ЛАНДШАФТНАЯ ОРИЕНТАЦИЯ
+   ============================================================ */
+
+@media (max-height: 500px) and (orientation: landscape) {
+    .tech-grid { grid-template-columns: repeat(4, 1fr) !important; gap: 10px !important; }
+    .tech-item { padding: 14px 10px 12px !important; min-height: 150px !important; border-radius: 10px !important; }
+    .tech-icon { width: 40px !important; height: 40px !important; margin-bottom: 8px !important; }
+    .tech-icon img { width: 24px !important; height: 24px !important; }
+    .tech-icon-placeholder { font-size: 16px !important; }
+    .tech-name { font-size: 12px !important; }
+    .tech-description { font-size: 10px !important; -webkit-line-clamp: 1 !important; margin-top: 4px !important; }
+    .tech-category { font-size: 9px !important; }
+    .tech-badge { font-size: 6px !important; padding: 1px 6px !important; top: 4px !important; right: 4px !important; }
+    .tech-more-btn { font-size: 9px !important; padding: 2px 8px !important; margin-top: 6px !important; }
+    .tech-more-btn .arrow { font-size: 10px !important; }
+}
+
+/* ============================================================
+   TECH MODAL — ИСПРАВЛЕНИЕ
+   ============================================================ */
+
+.tech-modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 99999 !important;  /* ✅ Повышен z-index */
+    background: rgba(11, 11, 12, 0.92);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    display: none !important;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+}
+
+/* ✅ Активное состояние — показываем */
+.tech-modal-overlay.active {
+    display: flex !important;
+}
+
+/* ---------- КОНТЕЙНЕР МОДАЛКИ ---------- */
+
+.tech-modal-container {
+    max-width: 580px;
+    width: 100%;
+    background: var(--color-card-bg);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    animation: modalSlideUp 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    z-index: 100000 !important;
+}
+
+/* ---------- СКРОЛЛ ---------- */
+
+.tech-modal-container::-webkit-scrollbar {
+    width: 4px;
+}
+.tech-modal-container::-webkit-scrollbar-track {
+    background: transparent;
+}
+.tech-modal-container::-webkit-scrollbar-thumb {
+    background: var(--color-gold-dark);
+    border-radius: 2px;
+}
+
+/* ---------- ХЕДЕР ---------- */
+
+.tech-modal-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 32px 36px 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    position: relative;
+}
+
+.tech-modal-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(200, 154, 91, 0.08);
+    flex-shrink: 0;
+}
+
+.tech-modal-icon .tech-icon-placeholder {
+    font-family: var(--font-serif);
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--color-gold);
+}
+
+.tech-modal-icon img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+}
+
+.tech-modal-title-wrapper {
+    flex: 1;
+    min-width: 0;
+}
+
+.tech-modal-title {
+    font-family: var(--font-serif);
+    font-size: 24px;
+    color: var(--color-text-primary);
+    margin-bottom: 2px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    line-height: 1.2;
+}
+
+.tech-modal-category {
+    font-size: 12px;
+    color: var(--color-text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+/* ---------- КНОПКА ЗАКРЫТИЯ ---------- */
+
+.tech-modal-close {
+    background: transparent;
+    border: none;
+    color: var(--color-text-secondary);
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 8px;
+    transition: var(--transition-smooth);
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    z-index: 10;
+}
+
+.tech-modal-close:hover {
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--color-text-primary);
+    transform: rotate(90deg);
+}
+
+.tech-modal-close svg {
+    width: 24px;
+    height: 24px;
+    stroke: currentColor;
+}
+
+/* ---------- ТЕЛО ---------- */
+
+.tech-modal-body {
+    padding: 24px 36px 32px;
+}
+
+.tech-modal-description {
+    font-size: 16px;
+    color: var(--color-text-secondary);
+    line-height: 1.8;
+    margin-bottom: 20px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+/* ---------- ФУТЕР ---------- */
+
+.tech-modal-footer {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.04);
+    flex-wrap: wrap;
+}
+
+.tech-modal-badge {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-text-dark);
+    background: var(--color-gold);
+    padding: 4px 16px;
+    border-radius: 4px;
+    font-weight: 600;
+}
+
+/* ---------- АНИМАЦИИ ---------- */
+
+@keyframes modalFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes modalSlideUp {
+    from { opacity: 0; transform: translateY(30px) scale(0.95); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* ============================================================
+   TECH MODAL — АДАПТИВНОСТЬ
+   ============================================================ */
+
+@media (max-width: 768px) {
+    .tech-modal-overlay { padding: 16px; }
+    .tech-modal-container { max-width: 100%; margin: 0 12px; border-radius: 16px; max-height: 95vh; }
+    .tech-modal-header { padding: 24px 20px 16px; gap: 16px; }
+    .tech-modal-body { padding: 16px 20px 24px; }
+    .tech-modal-icon { width: 52px; height: 52px; min-width: 52px; }
+    .tech-modal-icon .tech-icon-placeholder { font-size: 20px; }
+    .tech-modal-title { font-size: 20px; }
+    .tech-modal-description { font-size: 15px; }
+    .tech-modal-close { top: 12px; right: 12px; width: 36px; height: 36px; }
+    .tech-modal-close svg { width: 20px; height: 20px; }
+}
+
+@media (max-width: 480px) {
+    .tech-modal-overlay { padding: 12px; }
+    .tech-modal-container { margin: 0 8px; border-radius: 12px; max-height: 98vh; }
+    .tech-modal-header { padding: 18px 14px 12px; gap: 12px; flex-wrap: wrap; }
+    .tech-modal-body { padding: 12px 14px 18px; }
+    .tech-modal-icon { width: 44px; height: 44px; min-width: 44px; }
+    .tech-modal-icon .tech-icon-placeholder { font-size: 18px; }
+    .tech-modal-title { font-size: 18px; }
+    .tech-modal-description { font-size: 14px; line-height: 1.6; }
+    .tech-modal-category { font-size: 10px; }
+    .tech-modal-close { top: 10px; right: 10px; width: 32px; height: 32px; }
+    .tech-modal-close svg { width: 18px; height: 18px; }
+    .tech-modal-footer { padding-top: 12px; gap: 8px; }
+    .tech-modal-badge { font-size: 9px; padding: 3px 12px; }
+}
+
+@media (max-width: 360px) {
+    .tech-modal-overlay { padding: 8px; }
+    .tech-modal-container { margin: 0 4px; border-radius: 10px; }
+    .tech-modal-header { padding: 14px 10px 10px; gap: 10px; }
+    .tech-modal-body { padding: 10px 10px 14px; }
+    .tech-modal-icon { width: 36px; height: 36px; min-width: 36px; }
+    .tech-modal-icon .tech-icon-placeholder { font-size: 16px; }
+    .tech-modal-title { font-size: 16px; }
+    .tech-modal-description { font-size: 13px; }
+    .tech-modal-close { top: 8px; right: 8px; width: 28px; height: 28px; }
+    .tech-modal-close svg { width: 16px; height: 16px; }
+}

@@ -1,0 +1,20 @@
+<!-- templates/agency/400.html -->
+
+{% extends 'agency/errors/error.html' %}
+{% load i18n %}
+
+{% block title %}400 — {% trans "Некорректный запрос" %} | LYNXREACTOR{% endblock %}
+
+{% block status %}400 — {% trans "Некорректный запрос" %}{% endblock %}
+
+{% block error_code %}400{% endblock %}
+
+{% block error_title %}{% trans "Некорректный запрос" %}{% endblock %}
+
+{% block error_description %}
+    {% trans "Сервер не может обработать ваш запрос из-за синтаксической ошибки. Пожалуйста, проверьте введённые данные." %}
+{% endblock %}
+
+{% block extra_head %}
+    <meta name="robots" content="noindex, nofollow">
+{% endblock %}

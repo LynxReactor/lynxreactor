@@ -1,0 +1,101 @@
+<!-- templates/agency/emails/admin_notification.html -->
+
+{% extends 'agency/emails/base_email.html' %}
+{% load static i18n %}
+
+{% block content %}
+
+<h1 class="email-title">🔔 <span class="gold-accent">Новая заявка</span> с сайта</h1>
+<p class="email-subtitle">Поступила новая заявка от {{ contact.name }}. Требуется ваше внимание.</p>
+
+<div class="email-divider"></div>
+
+<div class="info-block">
+    <span class="info-label">👤 Информация о клиенте</span>
+
+    <div class="info-row">
+        <span class="label">Имя</span>
+        <span class="value">{{ contact.name }}</span>
+    </div>
+    <div class="info-row">
+        <span class="label">Email</span>
+        <span class="value">{{ contact.email }}</span>
+    </div>
+    {% if contact.phone %}
+    <div class="info-row">
+        <span class="label">Телефон</span>
+        <span class="value">{{ contact.phone }}</span>
+    </div>
+    {% endif %}
+</div>
+
+<div class="info-block">
+    <span class="info-label">📱 Способ связи</span>
+
+    <div class="info-row">
+        <span class="label">Метод</span>
+        <span class="value">{{ contact.get_contact_method_display|default:contact.contact_method }}</span>
+    </div>
+    <div class="info-row">
+        <span class="label">Контакт</span>
+        <span class="value">{{ contact.contact_value|default:"Не указан" }}</span>
+    </div>
+</div>
+
+{% if contact.tariff %}
+<div class="info-block">
+    <span class="info-label">💰 Тариф</span>
+    <div class="info-row">
+        <span class="label">Название</span>
+        <span class="value">{{ contact.tariff.name }}</span>
+    </div>
+    <div class="info-row">
+        <span class="label">Формат</span>
+        <span class="value">{{ contact.tariff.site_format|default:"Индивидуальный" }}</span>
+    </div>
+    {% if contact.tariff.price_byn %}
+    <div class="info-row">
+        <span class="label">Цена (BYN)</span>
+        <span class="value">от {{ contact.tariff.price_byn|floatformat:0 }} Br</span>
+    </div>
+    {% endif %}
+</div>
+{% endif %}
+
+<div class="info-block">
+    <span class="info-label">📝 Описание проекта</span>
+    <p class="info-value" style="margin-top:4px; font-size:14px; line-height:1.6; color:#D4D0C8;">
+        {{ contact.message|linebreaks }}
+    </p>
+</div>
+
+<div class="info-block" style="border-color:rgba(200,154,91,0.1); background:rgba(200,154,91,0.02);">
+    <span class="info-label">🕐 Системная информация</span>
+    <div class="info-row">
+        <span class="label">Дата</span>
+        <span class="value">{{ contact.created_at|date:"d.m.Y H:i" }}</span>
+    </div>
+    <div class="info-row">
+        <span class="label">IP адрес</span>
+        <span class="value">{{ contact.ip_address|default:"Не определен" }}</span>
+    </div>
+    <div class="info-row">
+        <span class="label">User Agent</span>
+        <span class="value" style="font-size:12px; word-break:break-all;">{{ contact.user_agent|default:"Не определен" }}</span>
+    </div>
+</div>
+
+<div class="email-divider"></div>
+
+<div class="email-btn-wrapper">
+    <a href="{{ admin_url|default:'https://lynxreactor.by/admin/agency/contactrequest/' }}" class="email-btn">
+        Перейти в админку
+        <span class="arrow">→</span>
+    </a>
+</div>
+
+<p class="email-text" style="font-size:14px; color:#A6A3A0; text-align:center;">
+    Это автоматическое уведомление. Для управления заявками используйте админ-панель.
+</p>
+
+{% endblock %}

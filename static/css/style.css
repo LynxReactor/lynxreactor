@@ -1,0 +1,81 @@
+/* static/css/style.css */
+
+/* ============================================================
+   LYNXREACTOR — ГЛОБАЛЬНЫЕ СТИЛИ
+
+   Все компоненты и секции подключаются через <link> в base.html.
+   Этот файл — только глобальные правила.
+   ============================================================ */
+
+/* ============================================================
+   ПЛАВНЫЙ ПЕРЕХОД ДЛЯ ТЕМЫ (только key-элементы)
+   ============================================================ */
+
+body,
+.site-header,
+.site-footer,
+.section,
+.card,
+.service-card,
+.portfolio-card,
+.tech-item,
+.tariff-card,
+.faq-item,
+.btn,
+.form-control,
+.modal-container {
+    transition: background-color 0.3s ease,
+                color 0.3s ease,
+                border-color 0.3s ease,
+                box-shadow 0.3s ease;
+}
+
+.no-transition,
+.no-transition * {
+    transition: none !important;
+}
+
+/* ============================================================
+   ЧАСТИЦЫ — CANVAS
+   ============================================================ */
+
+canvas.particles-canvas {
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    pointer-events: none !important;
+    z-index: 1 !important;
+    background: transparent !important;
+}
+
+/* ============================================================
+   СЕКЦИИ — ПОЛУПРОЗРАЧНЫЙ ФОН ДЛЯ ВИДИМОСТИ ЧАСТИЦ
+   ============================================================ */
+
+.hero-section,
+.services-section,
+.tech-section,
+.landing-section,
+.business-section,
+.refactor-section,
+.portfolio-section,
+.tariffs-section,
+.faq-section,
+.cta-section {
+    background: rgba(11, 11, 12, 0.92) !important;
+}
+
+[data-theme="light"] .hero-section,
+[data-theme="light"] .services-section,
+[data-theme="light"] .tech-section,
+[data-theme="light"] .landing-section,
+[data-theme="light"] .business-section,
+[data-theme="light"] .refactor-section,
+[data-theme="light"] .portfolio-section,
+[data-theme="light"] .tariffs-section,
+[data-theme="light"] .faq-section,
+[data-theme="light"] .cta-section {
+    background: rgba(248, 250, 252, 0.95) !important;
+}

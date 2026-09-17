@@ -1,0 +1,1258 @@
+<!-- templates/agency/contact.html -->
+
+{% extends 'agency/base.html' %}
+{% load static i18n %}
+
+{% block extra_css %}
+<style>
+    /* ============================================================
+       HERO СЕКЦИЯ — 100vh
+       ============================================================ */
+
+    .contact-hero-section {
+        min-height: 100vh;
+        height: 100vh;
+        position: relative;
+        overflow: hidden;
+        width: 100vw;
+        left: 50%;
+        right: 50%;
+        margin-left: -50vw;
+        margin-right: -50vw;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .contact-hero-background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        overflow: hidden;
+    }
+
+    .contact-hero-background::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+            90deg,
+            rgba(11, 11, 12, 0.92) 0%,
+            rgba(11, 11, 12, 0.75) 40%,
+            rgba(11, 11, 12, 0.4) 70%,
+            rgba(11, 11, 12, 0.15) 100%
+        );
+        z-index: 1;
+    }
+
+    [data-theme="light"] .contact-hero-background::after {
+        background: linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 0.75) 0%,
+            rgba(255, 255, 255, 0.55) 40%,
+            rgba(255, 255, 255, 0.25) 70%,
+            rgba(255, 255, 255, 0.05) 100%
+        );
+    }
+
+    .contact-hero-content {
+        position: relative;
+        z-index: 2;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 100px 60px 20px;
+        max-width: 780px;
+        width: 100%;
+        text-align: left;
+        align-items: flex-start;
+    }
+
+    /* ---- HERO BADGE (логотип) ---- */
+    .contact-hero-content .hero-badge {
+        display: block;
+        margin-bottom: 24px;
+    }
+
+    .contact-hero-content .hero-badge img {
+        max-width: 180px;
+        height: auto;
+        display: block;
+    }
+
+    .contact-hero-content .section-label {
+        font-family: var(--font-sans);
+        font-size: 13px;
+        text-transform: uppercase;
+        letter-spacing: 0.16em;
+        color: var(--color-accent-text);
+        font-weight: 500;
+        display: block;
+        margin-bottom: 16px;
+    }
+
+    .contact-hero-content .section-title {
+        font-family: var(--font-serif);
+        font-size: clamp(42px, 6vw, 64px);
+        line-height: 1.05;
+        color: var(--color-text-primary);
+        margin-bottom: 16px;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+    }
+
+    .contact-hero-content .section-title .gold-accent {
+        color: var(--color-gold);
+    }
+
+    .contact-hero-content .section-description {
+        max-width: 560px;
+        font-size: 17px;
+        color: var(--color-text-secondary);
+        font-weight: 500;
+        margin-bottom: 32px;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        line-height: 1.7;
+        text-align: left;
+    }
+
+    .contact-hero-content .hero-buttons {
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+        margin-top: 8px;
+    }
+
+    /* Scroll Indicator */
+    .contact-hero-scroll-indicator {
+        position: absolute;
+        left: 30px;
+        bottom: 30px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        z-index: 100;
+        opacity: 0.9;
+        transition: opacity 0.4s ease;
+        filter: drop-shadow(0 0 20px rgba(200, 154, 91, 0.2));
+    }
+
+    .contact-hero-scroll-indicator .scroll-label {
+        font-family: var(--font-sans);
+        font-size: 10px;
+        font-weight: 400;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--color-gold);
+        writing-mode: vertical-rl;
+        text-orientation: mixed;
+        opacity: 0.8;
+        text-shadow: 0 0 20px rgba(200, 154, 91, 0.3);
+    }
+
+    .contact-hero-scroll-indicator .scroll-line {
+        width: 2px;
+        height: 40px;
+        background: linear-gradient(to bottom, var(--color-gold) 0%, rgba(200, 154, 91, 0.3) 100%);
+        position: relative;
+        border-radius: 4px;
+        box-shadow: 0 0 20px rgba(200, 154, 91, 0.2);
+    }
+
+    .contact-hero-scroll-indicator .scroll-ball {
+        width: 10px;
+        height: 10px;
+        background: var(--color-gold);
+        border-radius: 50%;
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        animation: scrollBall 2s ease-in-out infinite;
+        box-shadow: 0 0 30px rgba(200, 154, 91, 0.6);
+    }
+
+    .contact-hero-scroll-indicator .scroll-arrow {
+        width: 24px;
+        height: 24px;
+        stroke: var(--color-gold);
+        animation: scrollArrow 2s ease-in-out infinite;
+        stroke-width: 2.5;
+        opacity: 0.5;
+        filter: drop-shadow(0 0 10px rgba(200, 154, 91, 0.3));
+    }
+
+    @keyframes scrollBall {
+        0%, 100% { bottom: 0; opacity: 1; }
+        50% { bottom: 25px; opacity: 0.3; }
+    }
+
+    @keyframes scrollArrow {
+        0%, 100% { transform: translateY(0); opacity: 0.8; }
+        50% { transform: translateY(6px); opacity: 0.3; }
+    }
+
+    /* ============================================================
+       О НАС — картинка-фон + текст справа
+       ============================================================ */
+
+    .contact-about-section {
+        position: relative;
+        width: 100vw;
+        left: 50%;
+        right: 50%;
+        margin-left: -50vw;
+        margin-right: -50vw;
+        min-height: 700px;
+        padding: 0;
+        overflow: hidden;
+        background: var(--color-secondary-dark);
+    }
+
+    .contact-about-background {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        overflow: hidden;
+    }
+
+    .contact-about-background .themed-img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: left center;
+        display: block;
+        opacity: 0;
+        transition: opacity 0.4s ease;
+    }
+
+    html[data-theme="light"] .contact-about-background .themed-img.ti-light { opacity: 1; }
+    html[data-theme="dark"]  .contact-about-background .themed-img.ti-dark  { opacity: 1; }
+    .contact-about-background .themed-img.ti-fallback { opacity: 1; }
+
+    .contact-about-container {
+        position: relative;
+        z-index: 2;
+        width: 100%;
+        max-width: 1600px;
+        margin: 0 auto;
+        padding: 100px 80px;
+        min-height: 700px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+    }
+
+    .contact-about-content {
+        max-width: 720px;
+        width: 40%;
+    }
+
+    .contact-about-content .section-label {
+        font-family: var(--font-sans);
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.16em;
+        color: var(--color-accent-text);
+        font-weight: 500;
+        display: block;
+        margin-bottom: 16px;
+    }
+
+    .contact-about-content h2 {
+        font-family: var(--font-serif);
+        font-size: clamp(30px, 3.6vw, 48px);
+        line-height: 1.15;
+        color: var(--color-text-primary);
+        margin-bottom: 20px;
+    }
+
+    .contact-about-content .about-text {
+        font-size: 16px;
+        color: var(--color-text-secondary);
+        line-height: 1.8;
+        margin-bottom: 40px;
+    }
+
+    .contact-about-content .about-text p {
+        margin-bottom: 14px;
+    }
+
+    .contact-about-benefits {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 24px;
+        padding-top: 32px;
+        border-top: 1px solid rgba(200, 154, 91, 0.2);
+        margin-bottom: 32px;
+    }
+
+    [data-theme="light"] .contact-about-benefits {
+        border-top-color: rgba(184, 115, 79, 0.2);
+    }
+
+    .about-benefit {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 4px;
+    }
+
+    .about-benefit-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 52px;
+        height: 52px;
+        margin-bottom: 12px;
+        color: var(--color-gold);
+        font-size: 32px;
+        line-height: 1;
+        transition: transform 0.3s ease;
+    }
+
+    .about-benefit:hover .about-benefit-icon {
+        transform: translateY(-4px);
+    }
+
+    .about-benefit-title {
+        font-family: var(--font-sans);
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--color-text-primary);
+        margin-bottom: 6px;
+    }
+
+    .about-benefit-text {
+        font-size: 12px;
+        color: var(--color-text-secondary);
+        line-height: 1.5;
+        margin: 0;
+    }
+
+    .contact-about-footer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 16px;
+    }
+
+    .contact-about-footer .about-footer-line {
+        flex: 1;
+        max-width: 120px;
+        height: 1px;
+        background: linear-gradient(
+            90deg,
+            transparent,
+            var(--color-gold) 50%,
+            transparent
+        );
+        opacity: 0.5;
+    }
+
+    .contact-about-footer .about-footer-text {
+        font-family: var(--font-sans);
+        font-size: 11px;
+        font-weight: 500;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--color-text-secondary);
+        white-space: nowrap;
+        opacity: 0.8;
+    }
+
+    /* ============================================================
+       КОНТАКТЫ + ФОРМА
+       ============================================================ */
+
+    .contact-page {
+        padding: 80px 0;
+        background: var(--color-primary-dark);
+    }
+
+    .contact-grid {
+        display: grid;
+        grid-template-columns: 1fr 1.5fr;
+        gap: 40px;
+    }
+
+    .contact-info {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .contact-info-card {
+        background: var(--color-card-bg);
+        border: 1px solid var(--color-border);
+        border-radius: 16px;
+        padding: 16px 20px;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        flex-wrap: wrap;
+    }
+
+    .contact-info-card:hover {
+        border-color: var(--color-gold);
+        transform: translateY(-3px);
+        box-shadow: var(--shadow-md);
+    }
+
+    .contact-info-card .icon {
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        background: var(--color-gold-rgba);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 18px;
+        color: var(--color-gold);
+        margin-bottom: 0;
+        flex-shrink: 0;
+    }
+
+    .contact-info-card h4 {
+        font-size: 16px;
+        color: var(--color-text-primary);
+        margin-bottom: 0;
+        font-family: var(--font-serif);
+        flex-shrink: 0;
+        min-width: 110px;
+    }
+
+    .contact-info-card p,
+    .contact-info-card > a {
+        font-size: 15px;
+        color: var(--color-text-secondary);
+        line-height: 1.6;
+        text-decoration: none;
+        transition: color 0.3s ease;
+        flex: 1;
+        min-width: 0;
+        word-break: break-word;
+    }
+
+    .contact-info-card > a:hover {
+        color: var(--color-gold);
+    }
+
+    .contact-info-card .social-links {
+        display: flex;
+        gap: 10px;
+        margin-top: 0;
+        flex-wrap: wrap;
+        flex: 1;
+    }
+
+    .contact-info-card .social-links a {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        border: 1px solid var(--color-border);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 16px;
+        color: var(--color-text-secondary);
+        transition: all 0.3s ease;
+    }
+
+    .contact-info-card .social-links a:hover {
+        background: var(--color-gold-rgba);
+        border-color: var(--color-gold);
+        color: var(--color-gold);
+        transform: translateY(-2px);
+    }
+
+    /* Карта внутри карточки контактов */
+    .contact-info-card.contact-info-map {
+        display: block;
+        padding: 0;
+        overflow: hidden;
+        min-height: 300px;
+        border-radius: 16px;
+    }
+
+    .contact-info-card.contact-info-map iframe {
+        width: 100%;
+        height: 100%;
+        min-height: 300px;
+        border: none;
+        display: block;
+    }
+
+    /* ============================================================
+       ФОРМА
+       ============================================================ */
+
+    .contact-form-wrapper {
+        background: var(--color-card-bg);
+        border: 1px solid var(--color-border);
+        border-radius: 20px;
+        padding: 40px;
+    }
+
+    .contact-form-wrapper h3 {
+        font-family: var(--font-serif);
+        font-size: 24px;
+        color: var(--color-text-primary);
+        margin-bottom: 8px;
+    }
+
+    .contact-form-wrapper .form-subtitle {
+        color: var(--color-text-secondary);
+        font-size: 15px;
+        margin-bottom: 28px;
+    }
+
+    .contact-form .form-group {
+        margin-bottom: 20px;
+    }
+
+    .contact-form .form-label {
+        display: block;
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--color-text-secondary);
+        margin-bottom: 6px;
+    }
+
+    .contact-form .form-label .required {
+        color: #e74c3c;
+    }
+
+    .contact-form .form-control {
+        width: 100%;
+        padding: 12px 16px;
+        background: var(--color-bg-input);
+        border: 1px solid var(--color-border);
+        border-radius: 8px;
+        color: var(--color-text-primary);
+        font-size: 15px;
+        font-family: var(--font-sans);
+        transition: all 0.3s ease;
+    }
+
+    .contact-form .form-control:focus {
+        outline: none;
+        border-color: var(--color-gold);
+        box-shadow: 0 0 0 3px var(--color-gold-rgba);
+    }
+
+    .contact-form .form-control::placeholder {
+        color: var(--color-text-muted);
+        opacity: 0.6;
+    }
+
+    .contact-form .form-control.error {
+        border-color: #e74c3c;
+        box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.15);
+    }
+
+    .contact-form .form-hint {
+        font-size: 12px;
+        color: var(--color-text-muted);
+        margin-top: 4px;
+    }
+
+    .contact-form .form-error {
+        font-size: 12px;
+        color: #e74c3c;
+        margin-top: 4px;
+        display: none;
+    }
+
+    .contact-form .form-error.show { display: block; }
+
+    .contact-form .turnstile-wrapper {
+        display: flex;
+        justify-content: center;
+        margin: 20px 0;
+    }
+
+    .contact-form .btn-submit {
+        width: 100%;
+        padding: 14px 28px;
+        font-size: 15px;
+        justify-content: center;
+    }
+
+    .contact-form .form-note {
+        text-align: center;
+        font-size: 13px;
+        color: var(--color-text-muted);
+        margin-top: 16px;
+    }
+
+    /* ============================================================
+       АДАПТИВНОСТЬ
+       ============================================================ */
+
+    @media (max-width: 1200px) {
+        .contact-about-container {
+            padding: 80px 60px;
+        }
+
+        .contact-about-content {
+            max-width: 600px;
+            width: 55%;
+        }
+
+        .contact-about-content h2 {
+            font-size: 34px;
+        }
+
+        .about-benefit-icon {
+            font-size: 26px;
+            width: 44px;
+            height: 44px;
+        }
+
+        .about-benefit-title {
+            font-size: 11px;
+        }
+
+        .about-benefit-text {
+            font-size: 11px;
+        }
+    }
+
+    @media (max-width: 1024px) {
+        .contact-hero-content {
+            padding: 80px 40px 20px;
+            max-width: 100%;
+            text-align: center;
+            align-items: center;
+        }
+
+        .contact-hero-content .hero-badge {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+
+        .contact-hero-content .hero-badge img {
+            max-width: 220px;
+            margin: 0 auto;
+        }
+
+        .contact-hero-content .section-description {
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .contact-hero-scroll-indicator { display: none; }
+
+        .contact-hero-background::after {
+            background: rgba(11, 11, 12, 0.5);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+        [data-theme="light"] .contact-hero-background::after {
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+
+        .contact-about-section {
+            min-height: 600px;
+        }
+
+        .contact-about-container {
+            padding: 60px 40px;
+            min-height: 600px;
+        }
+
+        .contact-about-content {
+            max-width: 520px;
+            width: 60%;
+        }
+
+        .contact-about-benefits {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+    }
+
+    @media (max-width: 992px) {
+        .contact-grid {
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .contact-hero-content {
+            padding: 70px 24px 16px;
+            justify-content: center;
+        }
+
+        .contact-hero-content .hero-badge img {
+            max-width: 250px;
+        }
+
+        .contact-hero-content .section-title { font-size: clamp(28px, 6vw, 36px); }
+        .contact-hero-content .section-description { font-size: 15px; }
+
+        .contact-hero-content .hero-buttons {
+            flex-direction: column;
+            width: 100%;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .contact-hero-content .hero-buttons .btn {
+            width: 100%;
+            justify-content: center;
+        }
+
+        .contact-hero-background::after {
+            background: rgba(11, 11, 12, 0.55);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        [data-theme="light"] .contact-hero-background::after {
+            background: rgba(255, 255, 255, 0.55);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        /* О НАС — на мобильных картинка размывается, текст по центру */
+        .contact-about-section {
+            min-height: auto;
+            background: var(--color-secondary-dark);
+        }
+
+        .contact-about-background::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: rgba(11, 11, 12, 0.85);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: 1;
+        }
+
+        [data-theme="light"] .contact-about-background::after {
+            background: rgba(255, 255, 255, 0.88);
+        }
+
+        .contact-about-container {
+            padding: 60px 24px;
+            min-height: auto;
+            justify-content: center;
+        }
+
+        .contact-about-content {
+            max-width: 100%;
+            width: 100%;
+        }
+
+        .contact-about-content h2 {
+            font-size: 26px;
+        }
+
+        .contact-about-content .about-text {
+            font-size: 15px;
+            margin-bottom: 32px;
+        }
+
+        .contact-about-benefits {
+            gap: 20px;
+            padding-top: 28px;
+            margin-bottom: 28px;
+        }
+
+        .about-benefit-icon {
+            font-size: 24px;
+            width: 40px;
+            height: 40px;
+            margin-bottom: 10px;
+        }
+
+        .about-benefit-title {
+            font-size: 11px;
+        }
+
+        .about-benefit-text {
+            font-size: 11px;
+        }
+
+        .contact-about-footer .about-footer-line {
+            max-width: 40px;
+        }
+
+        .contact-about-footer .about-footer-text {
+            font-size: 10px;
+            letter-spacing: 0.12em;
+            white-space: normal;
+            text-align: center;
+        }
+
+        /* Контакты */
+        .contact-about-section,
+        .contact-page { padding: 50px 0; }
+        .contact-form-wrapper { padding: 28px 20px; }
+        .contact-form-wrapper h3 { font-size: 22px; }
+        .contact-info-card { padding: 14px 16px; }
+        .contact-info-card h4 { min-width: 0; }
+        .mission-section { padding: 60px 0; min-height: 400px; }
+        .mission-content {
+            padding: 0 24px;
+            text-align: left;
+            max-width: 100%;
+        }
+        .mission-content .mission-title { font-size: 28px; }
+        .mission-content .mission-description { font-size: 15px; }
+    }
+
+    @media (max-width: 480px) {
+        .contact-info-card { padding: 12px 14px; }
+        .contact-info-card .icon { width: 40px; height: 40px; font-size: 16px; }
+        .contact-info-card h4 { font-size: 15px; }
+        .contact-info-card p,
+        .contact-info-card > a { font-size: 14px; }
+        .contact-info-card .social-links a { width: 36px; height: 36px; font-size: 14px; }
+        .contact-form-wrapper { padding: 20px 16px; }
+        .contact-form .form-control { font-size: 14px; padding: 10px 14px; }
+        .contact-form .btn-submit { font-size: 14px; padding: 12px 20px; }
+
+        .contact-about-container {
+            padding: 50px 16px;
+        }
+
+        .contact-about-content h2 {
+            font-size: 22px;
+        }
+
+        .contact-about-content .about-text {
+            font-size: 14px;
+        }
+
+        .contact-about-benefits {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+
+        .about-benefit-icon {
+            font-size: 22px;
+            width: 36px;
+            height: 36px;
+        }
+
+        .about-benefit-title {
+            font-size: 10px;
+            letter-spacing: 0.08em;
+        }
+
+        .about-benefit-text {
+            font-size: 10px;
+        }
+
+        .contact-about-footer .about-footer-line {
+            max-width: 24px;
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .contact-info-card:hover { transform: none !important; }
+        .contact-hero-scroll-indicator .scroll-ball,
+        .contact-hero-scroll-indicator .scroll-arrow { animation: none !important; }
+        .about-benefit:hover .about-benefit-icon { transform: none !important; }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+
+<!-- ============================================================
+     HERO СЕКЦИЯ — 100vh
+     ============================================================ -->
+
+<section class="contact-hero-section" id="contact-hero">
+    <div class="contact-hero-background themed-image">
+        {% if hero %}
+            {% if current_language == 'en' %}
+                {% if hero.hero_image_light_en %}
+                    <img class="themed-img ti-light"
+                         src="{{ hero.hero_image_light_en.url }}"
+                         alt="{{ hero.title|default:_('Контакты') }}"
+                         loading="eager" fetchpriority="high" decoding="async">
+                {% endif %}
+                {% if hero.hero_image_dark_en %}
+                    <img class="themed-img ti-dark"
+                         src="{{ hero.hero_image_dark_en.url }}"
+                         alt="{{ hero.title|default:_('Контакты') }}"
+                         loading="lazy" decoding="async">
+                {% endif %}
+                {% if not hero.hero_image_light_en and not hero.hero_image_dark_en %}
+                    <img class="themed-img ti-fallback"
+                         src="{% static 'images/contact/contact-hero.jpg' %}"
+                         alt="{% trans 'Контакты' %}"
+                         loading="eager" fetchpriority="high" decoding="async">
+                {% endif %}
+            {% else %}
+                {% if hero.hero_image_light_ru %}
+                    <img class="themed-img ti-light"
+                         src="{{ hero.hero_image_light_ru.url }}"
+                         alt="{{ hero.title|default:_('Контакты') }}"
+                         loading="eager" fetchpriority="high" decoding="async">
+                {% endif %}
+                {% if hero.hero_image_dark_ru %}
+                    <img class="themed-img ti-dark"
+                         src="{{ hero.hero_image_dark_ru.url }}"
+                         alt="{{ hero.title|default:_('Контакты') }}"
+                         loading="lazy" decoding="async">
+                {% endif %}
+                {% if not hero.hero_image_light_ru and not hero.hero_image_dark_ru %}
+                    <img class="themed-img ti-fallback"
+                         src="{% static 'images/contact/contact-hero.jpg' %}"
+                         alt="{% trans 'Контакты' %}"
+                         loading="eager" fetchpriority="high" decoding="async">
+                {% endif %}
+            {% endif %}
+        {% else %}
+            <img class="themed-img ti-fallback"
+                 src="{% static 'images/contact/contact-hero.jpg' %}"
+                 alt="{% trans 'Контакты' %}"
+                 loading="eager" fetchpriority="high" decoding="async">
+        {% endif %}
+    </div>
+
+    <div class="contact-hero-content">
+        <div class="hero-badge">
+            <img src="{% static 'images/linxreactor.png' %}"
+                 alt="LYNXREACTOR"
+                 loading="eager" decoding="async">
+        </div>
+
+        <span class="section-label">{{ hero.subtitle|default:_("СВЯЖИТЕСЬ С НАМИ") }}</span>
+        <h1 class="section-title">
+            {{ hero.title|default:_("Мы всегда на связи") }}
+        </h1>
+        <p class="section-description">
+            {{ hero.description|default:_("Оставьте заявку или свяжитесь с нами удобным способом — мы ответим на все вопросы и поможем реализовать ваш проект.") }}
+        </p>
+
+        <div class="hero-buttons">
+            <a href="{{ hero.cta_url|default:'/' }}" class="btn btn-primary">
+                {{ hero.cta_text|default:_("На главную") }}
+                <span class="arrow">→</span>
+            </a>
+            <a href="{{ hero.secondary_cta_url|default:'/blog/' }}" class="btn btn-secondary">
+                {{ hero.secondary_cta_text|default:_("Читать блог") }}
+                <span class="arrow">→</span>
+            </a>
+        </div>
+    </div>
+
+    <div class="contact-hero-scroll-indicator">
+        <span class="scroll-label">SCROLL</span>
+        <div class="scroll-line">
+            <div class="scroll-ball"></div>
+        </div>
+        <svg class="scroll-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 5v14M5 12l7 7 7-7"/>
+        </svg>
+    </div>
+</section>
+
+<!-- ============================================================
+     О НАС — картинка-фон + текст справа
+     ============================================================ -->
+
+{% if contact_page.about_title or contact_page.about_text or contact_page.about_image or contact_page.about_image_light_ru %}
+<section class="contact-about-section" id="about">
+    <div class="contact-about-background themed-image">
+        {% if current_language == 'en' %}
+            {% if contact_page.about_image_light_en %}
+                <img class="themed-img ti-light"
+                     src="{{ contact_page.about_image_light_en.url }}"
+                     alt="{{ contact_page.about_title }}"
+                     loading="lazy" decoding="async">
+            {% endif %}
+            {% if contact_page.about_image_dark_en %}
+                <img class="themed-img ti-dark"
+                     src="{{ contact_page.about_image_dark_en.url }}"
+                     alt="{{ contact_page.about_title }}"
+                     loading="lazy" decoding="async">
+            {% endif %}
+            {% if not contact_page.about_image_light_en and not contact_page.about_image_dark_en %}
+                {% if contact_page.about_image %}
+                    <img class="themed-img ti-fallback"
+                         src="{{ contact_page.about_image.url }}"
+                         alt="{{ contact_page.about_title }}"
+                         loading="lazy" decoding="async">
+                {% else %}
+                    <img class="themed-img ti-fallback"
+                         src="{% static 'images/contact/about.jpg' %}"
+                         alt="{% trans 'О нас' %}"
+                         loading="lazy" decoding="async">
+                {% endif %}
+            {% endif %}
+        {% else %}
+            {% if contact_page.about_image_light_ru %}
+                <img class="themed-img ti-light"
+                     src="{{ contact_page.about_image_light_ru.url }}"
+                     alt="{{ contact_page.about_title }}"
+                     loading="lazy" decoding="async">
+            {% endif %}
+            {% if contact_page.about_image_dark_ru %}
+                <img class="themed-img ti-dark"
+                     src="{{ contact_page.about_image_dark_ru.url }}"
+                     alt="{{ contact_page.about_title }}"
+                     loading="lazy" decoding="async">
+            {% endif %}
+            {% if not contact_page.about_image_light_ru and not contact_page.about_image_dark_ru %}
+                {% if contact_page.about_image %}
+                    <img class="themed-img ti-fallback"
+                         src="{{ contact_page.about_image.url }}"
+                         alt="{{ contact_page.about_title }}"
+                         loading="lazy" decoding="async">
+                {% else %}
+                    <img class="themed-img ti-fallback"
+                         src="{% static 'images/contact/about.jpg' %}"
+                         alt="{% trans 'О нас' %}"
+                         loading="lazy" decoding="async">
+                {% endif %}
+            {% endif %}
+        {% endif %}
+    </div>
+
+    <div class="contact-about-container">
+        <div class="contact-about-content">
+            <span class="section-label">{{ contact_page.get_about_label }}</span>
+            <h2>
+                {% if contact_page.about_title %}
+                    {{ contact_page.about_title }}
+                {% else %}
+                    {% trans "О студии LYNXREACTOR" %}
+                {% endif %}
+            </h2>
+            <div class="about-text">
+                {% if contact_page.about_text %}
+                    {{ contact_page.about_text|safe }}
+                {% else %}
+                    <p>{% trans "Мы — команда разработчиков, которая создаёт современные сайты на Python и Django." %}</p>
+                {% endif %}
+            </div>
+
+            <!-- Преимущества 4 в строку -->
+            <div class="contact-about-benefits">
+                <div class="about-benefit">
+                    <div class="about-benefit-icon"><i class="fas fa-gem"></i></div>
+                    <h4 class="about-benefit-title">{% trans "КАЧЕСТВО" %}</h4>
+                    <p class="about-benefit-text">{% trans "Стремимся к совершенству" %}</p>
+                </div>
+
+                <div class="about-benefit">
+                    <div class="about-benefit-icon"><i class="fas fa-users"></i></div>
+                    <h4 class="about-benefit-title">{% trans "КОМАНДА" %}</h4>
+                    <p class="about-benefit-text">{% trans "Профессионалы, которым можно доверять" %}</p>
+                </div>
+
+                <div class="about-benefit">
+                    <div class="about-benefit-icon"><i class="fas fa-cog"></i></div>
+                    <h4 class="about-benefit-title">{% trans "ТЕХНОЛОГИИ" %}</h4>
+                    <p class="about-benefit-text">{% trans "Используем современные инструменты" %}</p>
+                </div>
+
+                <div class="about-benefit">
+                    <div class="about-benefit-icon"><i class="fas fa-chart-line"></i></div>
+                    <h4 class="about-benefit-title">{% trans "РЕЗУЛЬТАТ" %}</h4>
+                    <p class="about-benefit-text">{% trans "Решения, которые приносят реальную пользу" %}</p>
+                </div>
+            </div>
+
+            <!-- Subtitle внизу справа -->
+            <div class="contact-about-footer">
+                <span class="about-footer-line"></span>
+                <span class="about-footer-text">
+                    {% if contact_page.about_subtitle %}
+                        {{ contact_page.about_subtitle }}
+                    {% else %}
+                        {% trans "БОЛЬШЕ, ЧЕМ ПРОСТО РАЗРАБОТКА" %}
+                    {% endif %}
+                </span>
+            </div>
+        </div>
+    </div>
+</section>
+{% endif %}
+
+<!-- ============================================================
+     КОНТАКТЫ + ФОРМА
+     ============================================================ -->
+
+<section class="contact-page">
+    <div class="container">
+        <div class="contact-grid">
+
+            <!-- ЛЕВАЯ КОЛОНКА — КОНТАКТЫ -->
+            <div class="contact-info">
+
+                <div class="contact-info-card">
+                    <div class="icon"><i class="fas fa-envelope"></i></div>
+                    <h4>{% trans "Email" %}</h4>
+                    <a href="mailto:{{ contact_page.email|default:'hello@lynxreactor.dev' }}">
+                        {{ contact_page.email|default:'hello@lynxreactor.dev' }}
+                    </a>
+                </div>
+
+                <div class="contact-info-card">
+                    <div class="icon"><i class="fas fa-share-alt"></i></div>
+                    <h4>{% trans "Социальные сети" %}</h4>
+                    <div class="social-links">
+                        {% if contact_page.telegram %}
+                        <a href="{{ contact_page.telegram }}" target="_blank" rel="noopener noreferrer" aria-label="Telegram"><i class="fab fa-telegram-plane"></i></a>
+                        {% endif %}
+                        {% if contact_page.whatsapp %}
+                        <a href="{{ contact_page.whatsapp }}" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        {% endif %}
+                        {% if contact_page.instagram %}
+                        <a href="{{ contact_page.instagram }}" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        {% endif %}
+                        {% if contact_page.youtube %}
+                        <a href="{{ contact_page.youtube }}" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        {% endif %}
+                        {% if contact_page.github %}
+                        <a href="{{ contact_page.github }}" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        {% endif %}
+                        {% if contact_page.max_messenger %}
+                        <a href="{{ contact_page.max_messenger }}" target="_blank" rel="noopener noreferrer" aria-label="MAX"><i class="fas fa-comment-dots"></i></a>
+                        {% endif %}
+                        {% if contact_page.linkedin %}
+                        <a href="{{ contact_page.linkedin }}" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        {% endif %}
+                        {% if contact_page.pinterest %}
+                        <a href="{{ contact_page.pinterest }}" target="_blank" rel="noopener noreferrer" aria-label="Pinterest"><i class="fab fa-pinterest-p"></i></a>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <!-- Адрес — последний в списке -->
+                <div class="contact-info-card">
+                    <div class="icon"><i class="fas fa-map-marker-alt"></i></div>
+                    <h4>{% trans "Адрес" %}</h4>
+                    <p>{{ contact_page.address|default:'Минск, Беларусь' }}</p>
+                </div>
+
+                <!-- Карта — под адресом -->
+                {% if contact_page.address %}
+                <div class="contact-info-card contact-info-map">
+                    <iframe
+                        src="https://www.google.com/maps?q={{ contact_page.address|urlencode }}&output=embed&hl={% if current_language == 'en' %}en{% else %}ru{% endif %}"
+                        allowfullscreen=""
+                        loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"
+                        title="{% trans 'Карта расположения' %}"
+                    ></iframe>
+                </div>
+                {% endif %}
+
+            </div>
+
+            <!-- ПРАВАЯ КОЛОНКА — ФОРМА -->
+            <div class="contact-form-wrapper">
+                <h3>{% trans "Отправить сообщение" %}</h3>
+                <p class="form-subtitle">{% trans "Заполните форму и мы свяжемся с вами в ближайшее время" %}</p>
+
+                <form class="contact-form" id="contactForm" method="post" action="{% url 'agency:ajax_contact' %}">
+                    {% csrf_token %}
+
+                    <div class="form-group">
+                        <label for="userName" class="form-label">{% trans "Ваше имя" %} <span class="required">*</span></label>
+                        <input type="text" name="name" id="userName" class="form-control" placeholder="{% trans 'Введите ваше имя' %}" required>
+                        <div class="form-error" id="nameError"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="userEmail" class="form-label">Email <span class="required">*</span></label>
+                        <input type="email" name="email" id="userEmail" class="form-control" placeholder="example@mail.com" required>
+                        <div class="form-hint">{% trans "На случай, если выбранный способ связи будет недоступен" %}</div>
+                        <div class="form-error" id="emailError"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="contactMethod" class="form-label">{% trans "Выберите основной способ связи" %} <span class="required">*</span></label>
+                        <select name="contact_method" id="contactMethod" class="form-control" required>
+                            <option value="">{% trans "Выберите способ связи" %}</option>
+                            <option value="phone">📱 {% trans "Телефон" %}</option>
+                            <option value="telegram">✈️ Telegram</option>
+                            <option value="whatsapp">💚 WhatsApp</option>
+                            <option value="viber">💜 Viber</option>
+                            <option value="email">📧 Email</option>
+                        </select>
+                        <div class="form-error" id="methodError"></div>
+                    </div>
+
+                    <div class="form-group dynamic-field" id="contactValueGroup" style="display: none;">
+                        <label for="contactValue" class="form-label" id="contactValueLabel">{% trans "Контактные данные" %} <span class="required">*</span></label>
+                        <input type="text" name="contact_value" id="contactValue" class="form-control" placeholder="{% trans 'Введите контактные данные' %}">
+                        <div class="form-hint" id="contactValueHint"></div>
+                        <div class="form-error" id="contactValueError"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tariffSelect" class="form-label">{% trans "Интересующий тариф" %}</label>
+                        <select name="tariff" id="tariffSelect" class="form-control">
+                            <option value="">{% trans "Выберите тариф" %}</option>
+                            {% for tariff in tariffs %}
+                            <option value="{{ tariff.id }}">{{ tariff.name }} — {{ tariff.site_format|default:_("Индивидуальный") }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="projectDescription" class="form-label">{% trans "Опишите ваш проект" %} <span class="required">*</span></label>
+                        <textarea name="message" id="projectDescription" class="form-control" rows="5" placeholder="{% trans 'Расскажите о вашем проекте...' %}" required></textarea>
+                        <div class="form-error" id="messageError"></div>
+                    </div>
+
+                    <div class="form-group turnstile-wrapper">
+                        <div class="cf-turnstile" data-sitekey="{{ cf_turnstile_site_key }}" data-theme="{{ current_theme|default:'light' }}"
+                             data-language="{% if current_language == 'en' %}en{% else %}ru{% endif %}"></div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-submit" id="submitBtn">
+                        {% trans "Отправить сообщение" %}
+                        <span class="arrow">→</span>
+                    </button>
+
+                    <p class="form-note">{% trans "Мы ответим в течение рабочего дня" %}</p>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     МИССИЯ
+     ============================================================ -->
+
+{% include 'agency/includes/mission.html' %}
+
+{% endblock %}

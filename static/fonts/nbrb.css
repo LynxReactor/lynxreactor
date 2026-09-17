@@ -1,0 +1,96 @@
+/* ============================================================
+   ШРИФТ ДЛЯ БЕЛОРУССКОГО РУБЛЯ (BYN)
+   ============================================================ */
+
+@font-face {
+    font-family: "nbrb";
+    src: url("/static/fonts/nbrb.woff2") format("woff2"),
+         url("/static/fonts/nbrb.woff") format("woff"),
+         url("/static/fonts/nbrb.ttf") format("truetype");
+    unicode-range: U+E901, U+42, U+59, U+4E;
+    font-display: swap;
+}
+
+.nbrb-icon {
+    font-family: "nbrb" !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1 !important;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    letter-spacing: normal;
+    font-feature-settings: "liga";
+    -webkit-font-variant-ligatures: discretionary-ligatures;
+    font-variant-ligatures: discretionary-ligatures;
+    display: inline-block;
+}
+
+.nbrb-icon-byn::before {
+    content: "\e901";
+}
+
+/* ============================================================
+   РАЗМЕРЫ ИКОНКИ BYN
+   ============================================================ */
+
+.currency-btn .nbrb-icon-byn {
+    font-size: 13px !important;
+    line-height: 1 !important;
+    width: 16px;
+    height: 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.currency-btn .nbrb-icon-byn::before {
+    font-size: 13px !important;
+}
+
+.price-symbol.nbrb-icon-byn {
+    font-size: 16px !important;
+    line-height: 1 !important;
+    display: inline-block;
+    margin-left: 2px;
+}
+
+.price-symbol.nbrb-icon-byn::before {
+    font-size: 16px !important;
+}
+
+@media (max-width: 768px) {
+    .currency-btn .nbrb-icon-byn {
+        font-size: 11px !important;
+        width: 14px;
+        height: 14px;
+    }
+    .currency-btn .nbrb-icon-byn::before {
+        font-size: 11px !important;
+    }
+    .price-symbol.nbrb-icon-byn {
+        font-size: 14px !important;
+    }
+    .price-symbol.nbrb-icon-byn::before {
+        font-size: 14px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .currency-btn .nbrb-icon-byn {
+        font-size: 10px !important;
+        width: 12px;
+        height: 12px;
+    }
+    .currency-btn .nbrb-icon-byn::before {
+        font-size: 10px !important;
+    }
+    .price-symbol.nbrb-icon-byn {
+        font-size: 12px !important;
+    }
+    .price-symbol.nbrb-icon-byn::before {
+        font-size: 12px !important;
+    }
+}

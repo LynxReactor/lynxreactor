@@ -1,0 +1,162 @@
+<!-- templates/agency/unsubscribe.html -->
+
+{% extends 'agency/base.html' %}
+{% load static i18n %}
+
+{% block robots %}
+<meta name="robots" content="noindex, nofollow">
+{% endblock %}
+
+{% block content %}
+
+<section class="unsubscribe-section">
+    <div class="unsubscribe-container">
+        <div class="unsubscribe-card">
+
+            {% if status == 'unsubscribed' %}
+                <div class="unsubscribe-icon success">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h1 class="unsubscribe-title">{% trans "Вы отписаны" %}</h1>
+                <p class="unsubscribe-text">
+                    {% trans "Адрес" %} <strong>{{ subscriber.email }}</strong> {% trans "больше не будет получать наши рассылки." %}
+                </p>
+                <p class="unsubscribe-note">
+                    {% trans "Если это произошло по ошибке — просто подпишитесь заново на странице блога." %}
+                </p>
+
+            {% elif status == 'already_unsubscribed' %}
+                <div class="unsubscribe-icon info">
+                    <i class="fas fa-info-circle"></i>
+                </div>
+                <h1 class="unsubscribe-title">{% trans "Вы уже отписаны" %}</h1>
+                <p class="unsubscribe-text">
+                    {% trans "Адрес" %} <strong>{{ subscriber.email }}</strong> {% trans "уже не получает наши рассылки." %}
+                </p>
+
+            {% else %}
+                <div class="unsubscribe-icon error">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <h1 class="unsubscribe-title">{% trans "Ссылка недействительна" %}</h1>
+                <p class="unsubscribe-text">
+                    {% trans "Эта ссылка для отписки недействительна или устарела. Возможно, вы уже отписаны." %}
+                </p>
+            {% endif %}
+
+            <div class="unsubscribe-actions">
+                <a href="{% url 'agency:blog' %}" class="btn btn-primary">
+                    {% trans "Читать блог" %}
+                    <span class="arrow">→</span>
+                </a>
+                <a href="{% url 'agency:home' %}" class="btn btn-secondary">
+                    {% trans "На главную" %}
+                    <span class="arrow">→</span>
+                </a>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<style>
+    .unsubscribe-section {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 120px 24px 60px;
+        background: var(--color-primary-dark);
+    }
+
+    .unsubscribe-container {
+        max-width: 560px;
+        width: 100%;
+    }
+
+    .unsubscribe-card {
+        background: var(--color-card-bg);
+        border: 1px solid var(--color-border);
+        border-radius: 20px;
+        padding: 48px 40px;
+        text-align: center;
+        box-shadow: var(--shadow-md);
+    }
+
+    .unsubscribe-icon {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 36px;
+        margin: 0 auto 24px;
+    }
+
+    .unsubscribe-icon.success {
+        background: rgba(46, 204, 113, 0.12);
+        color: #2ecc71;
+    }
+
+    .unsubscribe-icon.info {
+        background: rgba(52, 152, 219, 0.12);
+        color: #3498db;
+    }
+
+    .unsubscribe-icon.error {
+        background: rgba(231, 76, 60, 0.12);
+        color: #e74c3c;
+    }
+
+    .unsubscribe-title {
+        font-family: var(--font-serif);
+        font-size: clamp(26px, 4vw, 34px);
+        color: var(--color-text-primary);
+        margin-bottom: 16px;
+        line-height: 1.15;
+    }
+
+    .unsubscribe-text {
+        font-size: 16px;
+        color: var(--color-text-secondary);
+        line-height: 1.7;
+        margin-bottom: 12px;
+    }
+
+    .unsubscribe-text strong {
+        color: var(--color-text-primary);
+    }
+
+    .unsubscribe-note {
+        font-size: 14px;
+        color: var(--color-text-muted);
+        margin-bottom: 24px;
+        opacity: 0.8;
+    }
+
+    .unsubscribe-actions {
+        display: flex;
+        gap: 12px;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-top: 24px;
+        padding-top: 24px;
+        border-top: 1px solid var(--color-border);
+    }
+
+    @media (max-width: 576px) {
+        .unsubscribe-card { padding: 32px 20px; }
+        .unsubscribe-icon { width: 64px; height: 64px; font-size: 28px; }
+        .unsubscribe-actions {
+            flex-direction: column;
+            width: 100%;
+        }
+        .unsubscribe-actions .btn {
+            width: 100%;
+            justify-content: center;
+        }
+    }
+</style>
+
+{% endblock %}

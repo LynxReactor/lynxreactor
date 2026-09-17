@@ -1,0 +1,75 @@
+{% load i18n %}
+<script>
+window.I18N = {
+    /* ============================================================ */
+    /* forms.js — methodConfig                                      */
+    /* ============================================================ */
+    "phone_label": "{% trans 'Номер телефона' %}",
+    "phone_placeholder": "+375 (29) 123-45-67",
+    "phone_hint": "{% trans 'Введите номер телефона с кодом страны' %}",
+
+    "telegram_label": "Telegram",
+    "telegram_placeholder": "{% trans '@username или номер телефона' %}",
+    "telegram_hint": "{% trans 'Введите ваш Telegram (@username или номер)' %}",
+
+    "whatsapp_label": "WhatsApp",
+    "whatsapp_placeholder": "{% trans 'Номер телефона' %}",
+    "whatsapp_hint": "{% trans 'Введите номер телефона для WhatsApp' %}",
+
+    "viber_label": "Viber",
+    "viber_placeholder": "{% trans 'Номер телефона' %}",
+    "viber_hint": "{% trans 'Введите номер телефона для Viber' %}",
+
+    "email_label": "Email",
+    "email_placeholder": "example@mail.com",
+    "email_hint": "{% trans 'Введите ваш email' %}",
+
+    /* ============================================================ */
+    /* forms.js — labels (для ошибок валидации)                     */
+    /* ============================================================ */
+    "label_name": "{% trans 'Имя' %}",
+    "label_email": "Email",
+    "label_contact_method": "{% trans 'Способ связи' %}",
+    "label_contact_value": "{% trans 'Контактные данные' %}",
+    "label_message": "{% trans 'Описание проекта' %}",
+
+    /* ============================================================ */
+    /* forms.js — submitForm                                        */
+    /* ============================================================ */
+    "form_fill_fields": "{% trans 'Заполните поля' %}",
+    "form_sending": "{% trans 'Отправка...' %}",
+    "form_send_button": "{% trans 'Отправить' %}",
+    "form_error": "{% trans 'Ошибка отправки' %}",
+    "form_unexpected_error": "{% trans 'Произошла ошибка. Попробуйте позже.' %}",
+    "form_success": "{% trans 'Заявка успешно отправлена!' %}",
+    "form_errors_in_form": "{% trans 'Ошибки в форме' %}",
+
+    /* ============================================================ */
+    /* blog.js — vote                                               */
+    /* ============================================================ */
+    "vote_error": "{% trans 'Ошибка голосования. Попробуйте позже.' %}",
+    "vote_added": "{% trans 'Спасибо за голос!' %}",
+    "vote_removed": "{% trans 'Голос отменён' %}",
+    "vote_changed": "{% trans 'Голос изменён' %}",
+    "vote_done": "{% trans 'Готово' %}",
+
+    /* ============================================================ */
+    /* blog.js — subscribe (detail)                                 */
+    /* ============================================================ */
+    "subscribe_empty_email": "{% trans 'Пожалуйста, введите email' %}",
+    "subscribe_invalid_email": "{% trans 'Введите корректный email' %}",
+    "subscribe_success": "{% trans 'Спасибо за подписку!' %}",
+    "subscribe_error": "{% trans 'Ошибка подписки' %}",
+    "subscribe_network_error": "{% trans 'Ошибка соединения. Попробуйте позже.' %}",
+
+    /* ============================================================ */
+    /* blog.js — sidebar                                            */
+    /* ============================================================ */
+    "sidebar_network_error": "{% trans 'Ошибка соединения' %}",
+
+    /* ============================================================ */
+    /* theme.js                                                     */
+    /* ============================================================ */
+    "change_theme": "{% trans 'Сменить тему' %}",
+};
+</script>

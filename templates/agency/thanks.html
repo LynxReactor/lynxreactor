@@ -1,0 +1,23 @@
+<!-- templates/agency/thanks.html -->
+
+{% extends 'agency/errors/error.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Спасибо!" %} | LYNXREACTOR{% endblock %}
+
+{% block status %}✅ {% trans "Успешно отправлено" %}{% endblock %}
+
+{% block error_code %}{% trans "СПАСИБО" %}{% endblock %}
+
+{% block error_title %}{% trans "Ваша заявка получена" %}{% endblock %}
+
+{% block error_description %}
+    {% trans "Спасибо, что обратились к нам! Мы свяжемся с вами в ближайшее время для обсуждения проекта." %}
+{% endblock %}
+
+{% block actions %}
+    <a href="{% url 'agency:home' %}" class="btn">
+        {% trans "Вернуться на главную" %}
+        <span class="arrow">→</span>
+    </a>
+{% endblock %}

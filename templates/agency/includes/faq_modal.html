@@ -1,0 +1,74 @@
+<!-- templates/agency/includes/faq_modal.html -->
+
+{% load static i18n %}
+
+<div class="modal-overlay" id="faqModal">
+    <div class="modal-container faq-modal-container">
+        <div class="modal-header">
+            <div class="modal-title-wrapper">
+                <span class="modal-label">{% trans "ЗАДАТЬ ВОПРОС" %}</span>
+                <h2 class="modal-title">{% trans "Остались" %} <span class="gold-accent">{% trans "вопросы?" %}</span></h2>
+                <p class="modal-subtitle">{% trans "Свяжитесь с нами удобным способом, и мы ответим на все ваши вопросы" %}</p>
+            </div>
+            <button class="modal-close" id="faqModalClose">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"/>
+                    <line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+            </button>
+        </div>
+
+        <div class="modal-body">
+            <div class="faq-contact-grid">
+                <a href="mailto:{% if contact_info.email %}{{ contact_info.email }}{% else %}hello@lynxreactor.dev{% endif %}?subject=Вопрос%20по%20FAQ&body=Здравствуйте!%20У%20меня%20есть%20вопрос..."
+                   class="faq-contact-item email-item" target="_blank" rel="noopener noreferrer">
+                    <div class="faq-contact-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                            <polyline points="22,6 12,13 2,6"/>
+                        </svg>
+                    </div>
+                    <div class="faq-contact-content">
+                        <h4>{% trans "Написать письмо" %}</h4>
+                        <p>{% trans "Задайте вопрос по email, и мы ответим в течение рабочего дня" %}</p>
+                        <span class="faq-contact-email">
+                            {% if contact_info.email %}{{ contact_info.email }}{% else %}hello@lynxreactor.dev{% endif %}
+                        </span>
+                    </div>
+                    <span class="faq-contact-arrow">→</span>
+                </a>
+
+                <a href="{% if contact_info.telegram %}{{ contact_info.telegram }}{% else %}https://t.me/lynxreactor_bot{% endif %}"
+                   class="faq-contact-item telegram-item" target="_blank" rel="noopener noreferrer">
+                    <div class="faq-contact-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21.5 4.5L2.5 10.5L9.5 14.5L13.5 21.5L21.5 4.5Z"/>
+                            <path d="M9.5 14.5L15.5 8.5"/>
+                            <path d="M9.5 14.5L12.5 21.5"/>
+                        </svg>
+                    </div>
+                    <div class="faq-contact-content">
+                        <h4>{% trans "Написать в Telegram" %}</h4>
+                        <p>{% trans "Быстрый ответ в мессенджере. Мы на связи 24/7" %}</p>
+                        <span class="faq-contact-telegram">
+                            {% if contact_info.telegram %}
+                                {% if 't.me' in contact_info.telegram %}
+                                    {{ contact_info.telegram|cut:'https://t.me/' }}
+                                {% else %}
+                                    {{ contact_info.telegram }}
+                                {% endif %}
+                            {% else %}
+                                @lynxreactor_bot
+                            {% endif %}
+                        </span>
+                    </div>
+                    <span class="faq-contact-arrow">→</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <p class="modal-note">{% trans "Мы ответим на все ваши вопросы в ближайшее время" %}</p>
+        </div>
+    </div>
+</div>

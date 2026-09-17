@@ -1,0 +1,77 @@
+<!-- templates/agency/emails/client_confirmation.html -->
+
+{% extends 'agency/emails/base_email.html' %}
+{% load static i18n %}
+
+{% block content %}
+
+<h1 class="email-title">{% trans "Здравствуйте" %}, <span class="gold-accent">{{ contact.name }}</span>!</h1>
+<p class="email-subtitle">{% trans "Благодарим за вашу заявку. Мы получили её и уже начали обработку." %}</p>
+
+<div class="email-divider"></div>
+
+<p class="email-text">
+    {% trans "Мы свяжемся с вами в ближайшее время для обсуждения всех деталей проекта. Наш менеджер подготовит для вас индивидуальное предложение." %}
+</p>
+
+<div class="info-block">
+    <span class="info-label">📋 {% trans "Детали вашей заявки" %}</span>
+
+    <div class="info-row">
+        <span class="label">{% trans "Имя" %}</span>
+        <span class="value">{{ contact.name }}</span>
+    </div>
+    <div class="info-row">
+        <span class="label">Email</span>
+        <span class="value">{{ contact.email }}</span>
+    </div>
+    {% if contact.phone %}
+    <div class="info-row">
+        <span class="label">{% trans "Телефон" %}</span>
+        <span class="value">{{ contact.phone }}</span>
+    </div>
+    {% endif %}
+    {% if contact.contact_method %}
+    <div class="info-row">
+        <span class="label">{% trans "Способ связи" %}</span>
+        <span class="value">{{ contact.get_contact_method_display|default:contact.contact_method }}</span>
+    </div>
+    <div class="info-row">
+        <span class="label">{% trans "Контактные данные" %}</span>
+        <span class="value">{{ contact.contact_value|default:"—" }}</span>
+    </div>
+    {% endif %}
+    {% if contact.tariff %}
+    <div class="info-row">
+        <span class="label">{% trans "Выбранный тариф" %}</span>
+        <span class="value">{{ contact.tariff.name }}</span>
+    </div>
+    {% endif %}
+</div>
+
+<div class="info-block" style="margin-top:8px;">
+    <span class="info-label">📝 {% trans "Описание проекта" %}</span>
+    <p class="info-value" style="margin-top:4px; font-size:14px; line-height:1.6; color:#D4D0C8;">
+        {{ contact.message|linebreaks }}
+    </p>
+</div>
+
+<div class="email-divider"></div>
+
+<p class="email-text" style="font-size:14px;">
+    {% trans "Если у вас возникнут вопросы, вы всегда можете связаться с нами:" %}
+</p>
+
+<div class="email-btn-wrapper">
+    <a href="mailto:{% if contact_info and contact_info.email %}{{ contact_info.email }}{% else %}lynxreacto@gmail.com{% endif %}" class="email-btn">
+        {% trans "Ответить на письмо" %}
+        <span class="arrow">→</span>
+    </a>
+</div>
+
+<p class="email-text" style="font-size:14px; color:#A6A3A0; text-align:center;">
+    {% trans "С уважением" %},<br>
+    <strong style="color:#C89A5B;">{% trans "Команда LYNXREACTOR" %}</strong>
+</p>
+
+{% endblock %}

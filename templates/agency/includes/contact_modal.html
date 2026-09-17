@@ -1,0 +1,125 @@
+<!-- templates/agency/includes/contact_modal.html -->
+
+{% load static i18n %}
+
+<div class="modal-overlay" id="contactModal">
+    <div class="modal-container">
+        <div class="modal-header">
+            <div class="modal-title-wrapper">
+                <span class="modal-label">{% trans "ОСТАВЬТЕ ЗАЯВКУ" %}</span>
+                <h2 class="modal-title">{% trans "Обсудите ваш проект" %} <span class="gold-accent">{% trans "с нами" %}</span></h2>
+                <p class="modal-subtitle" id="modalSubtitle">{% trans "Заполните форму и мы свяжемся с вами в ближайшее время" %}</p>
+            </div>
+            <button class="modal-close" id="contactModalClose">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"/>
+                    <line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+            </button>
+        </div>
+
+        <div class="modal-body">
+            <form class="modal-form" id="modalContactForm" method="post" action="{% url 'agency:ajax_contact' %}">
+                {% csrf_token %}
+
+                <div class="form-group">
+                    <label for="modalUserName" class="form-label">{% trans "Ваше имя" %} <span class="required">*</span></label>
+                    <input type="text" name="name" id="modalUserName" class="form-control" placeholder="{% trans 'Введите ваше имя' %}" required>
+                    <div class="form-error" id="modalNameError"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="modalUserEmail" class="form-label">Email <span class="required">*</span></label>
+                    <input type="email" name="email" id="modalUserEmail" class="form-control" placeholder="example@mail.com" required>
+                    <div class="form-hint">{% trans "На случай, если выбранный способ связи будет недоступен" %}</div>
+                    <div class="form-error" id="modalEmailError"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="modalContactMethod" class="form-label">{% trans "Выберите основной способ связи" %} <span class="required">*</span></label>
+                    <select name="contact_method" id="modalContactMethod" class="form-control" required>
+                        <option value="">{% trans "Выберите способ связи" %}</option>
+                        <option value="phone">📱 {% trans "Телефон" %}</option>
+                        <option value="telegram">✈️ Telegram</option>
+                        <option value="whatsapp">💚 WhatsApp</option>
+                        <option value="viber">💜 Viber</option>
+                        <option value="email">📧 Email</option>
+                    </select>
+                    <div class="form-error" id="modalMethodError"></div>
+                </div>
+
+                <div class="form-group dynamic-field" id="modalContactValueGroup" style="display: none;">
+                    <label for="modalContactValue" class="form-label" id="modalContactValueLabel">{% trans "Контактные данные" %} <span class="required">*</span></label>
+                    <input type="text" name="contact_value" id="modalContactValue" class="form-control" placeholder="{% trans 'Введите контактные данные' %}">
+                    <div class="form-hint" id="modalContactValueHint"></div>
+                    <div class="form-error" id="modalContactValueError"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="modalTariffSelect" class="form-label">{% trans "Интересующий тариф" %}</label>
+                    <select name="tariff" id="modalTariffSelect" class="form-control">
+                        <option value="">{% trans "Выберите тариф" %}</option>
+                        {% for tariff in tariffs %}
+                        <option value="{{ tariff.id }}">{{ tariff.name }} — {{ tariff.site_format|default:_("Индивидуальный") }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="modalProjectDescription" class="form-label">{% trans "Опишите ваш проект" %} <span class="required">*</span></label>
+                    <textarea name="message" id="modalProjectDescription" class="form-control" rows="4" placeholder="{% trans 'Расскажите о вашем проекте...' %}" required></textarea>
+                    <div class="form-error" id="modalMessageError"></div>
+                </div>
+
+                <!-- Cloudflare Turnstile -->
+                <div class="form-group turnstile-wrapper">
+                    <div class="cf-turnstile" data-sitekey="{{ cf_turnstile_site_key }}" data-theme="{{ current_theme|default:'light' }}"
+                         data-language="{% if current_language == 'en' %}en{% else %}ru{% endif %}"></div>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block" id="modalSubmitBtn">
+                    {% trans "Отправить заявку" %}
+                    <span class="arrow">→</span>
+                </button>
+            </form>
+
+            <div class="modal-divider">
+                <span class="divider-text">{% trans "или свяжитесь с нами напрямую" %}</span>
+            </div>
+
+            <div class="alternative-grid">
+                <a href="mailto:{% if contact_info.email %}{{ contact_info.email }}{% else %}hello@lynxreactor.dev{% endif %}?subject=Заявка%20на%20проект&body=Здравствуйте!%20Я%20хочу%20обсудить%20проект."
+                   class="alternative-item email-item" target="_blank" rel="noopener noreferrer">
+                    <div class="alternative-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                            <polyline points="22,6 12,13 2,6"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <span class="alternative-label">{% trans "Написать письмо" %}</span><br>
+                        <span class="alternative-desc">{% trans "Ответим в течение дня" %}</span>
+                    </div>
+                </a>
+
+                <a href="{% if contact_info.telegram %}{{ contact_info.telegram }}{% else %}https://t.me/lynxreactor_bot{% endif %}"
+                   class="alternative-item telegram-item" target="_blank" rel="noopener noreferrer">
+                    <div class="alternative-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21.5 4.5L2.5 10.5L9.5 14.5L13.5 21.5L21.5 4.5Z"/>
+                            <path d="M9.5 14.5L15.5 8.5"/>
+                            <path d="M9.5 14.5L12.5 21.5"/>
+                        </svg>
+                    </div>
+                    <div>
+                        <span class="alternative-label">{% trans "Написать в Telegram" %}</span><br>
+                        <span class="alternative-desc">{% trans "Быстрый ответ 24/7" %}</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <p class="modal-note">{% trans "Мы свяжемся с вами в ближайшее время и обсудим все детали проекта" %}</p>
+        </div>
+    </div>
+</div>

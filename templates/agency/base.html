@@ -1,0 +1,231 @@
+<!-- templates/agency/base.html -->
+
+{% load static i18n %}
+<!DOCTYPE html>
+<html lang="{% get_current_language as LANGUAGE_CODE %}{{ LANGUAGE_CODE|default:'ru' }}"
+      data-theme="{{ current_theme|default:'light' }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {# ============================================================ #}
+    {# SEO: ROBOTS — переопределяемый блок                              #}
+    {# ============================================================ #}
+    {% block robots %}
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    {% endblock %}
+
+    <meta name="theme-color" content="#0B0B0C">
+
+    {# ============================================================ #}
+    {# PRIMARY SEO                                                   #}
+    {# ============================================================ #}
+
+    <title>{% block title %}{{ seo.get_title }}{% endblock %}</title>
+    <meta name="description" content="{% block description %}{{ seo.get_description }}{% endblock %}">
+    <meta name="keywords" content="{% block keywords %}{{ seo.get_keywords }}{% endblock %}">
+
+    <link rel="canonical" href="{% block canonical %}{{ canonical_url }}{% endblock %}">
+
+    {# ============================================================ #}
+    {# OPEN GRAPH                                                    #}
+    {# ============================================================ #}
+
+    <meta property="og:locale" content="{% if current_language == 'en' %}en_US{% else %}ru_RU{% endif %}">
+    <meta property="og:locale:alternate" content="{% if current_language == 'en' %}ru_RU{% else %}en_US{% endif %}">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ canonical_url }}">
+    <meta property="og:title" content="{% block og_title %}{{ seo.get_og_title }}{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}{{ seo.get_og_description }}{% endblock %}">
+    <meta property="og:site_name" content="{{ site_config.site_name|default:'LYNXREACTOR' }}">
+
+    {% block og_image_block %}
+        {% if site_config.og_image %}
+            <meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}{{ site_config.og_image.url }}">
+        {% else %}
+            <meta property="og:image" content="{% static 'images/og/og-image.png' %}">
+        {% endif %}
+    {% endblock %}
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="{{ seo.get_og_title }}">
+
+    {# ============================================================ #}
+    {# TWITTER / X                                                   #}
+    {# ============================================================ #}
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{% block twitter_title %}{{ seo.get_og_title }}{% endblock %}">
+    <meta name="twitter:description" content="{% block twitter_description %}{{ seo.get_og_description }}{% endblock %}">
+    {% block twitter_image_block %}
+        {% if site_config.og_image %}
+            <meta name="twitter:image" content="{{ request.scheme }}://{{ request.get_host }}{{ site_config.og_image.url }}">
+        {% else %}
+            <meta name="twitter:image" content="{% static 'images/og/og-image.png' %}">
+        {% endif %}
+    {% endblock %}
+
+    {# ============================================================ #}
+    {# STRUCTURED DATA (JSON-LD)                                     #}
+    {# ============================================================ #}
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "@id": "{{ request.scheme }}://{{ request.get_host }}/#website",
+          "url": "{{ request.scheme }}://{{ request.get_host }}/",
+          "name": "{{ site_config.site_name|default:'LYNXREACTOR' }}",
+          "description": "{{ seo.get_description|escapejs }}",
+          "inLanguage": "{{ current_language|default:'ru' }}"
+        },
+        {
+          "@type": "Organization",
+          "@id": "{{ request.scheme }}://{{ request.get_host }}/#organization",
+          "name": "{{ site_config.site_name|default:'LYNXREACTOR' }}",
+          "url": "{{ request.scheme }}://{{ request.get_host }}/",
+          "logo": {
+            "@type": "ImageObject",
+            "url": "{% if site_config.og_image %}{{ request.scheme }}://{{ request.get_host }}{{ site_config.og_image.url }}{% elif site_config.logo_light %}{{ request.scheme }}://{{ request.get_host }}{{ site_config.logo_light.url }}{% else %}{{ request.scheme }}://{{ request.get_host }}{% static 'images/linxreactor.png' %}{% endif %}"
+          }
+        }
+      ]
+    }
+    </script>
+
+    {# Favicons #}
+    {% if site_config.favicon %}
+        <link rel="icon" href="{{ site_config.favicon.url }}" sizes="any">
+    {% else %}
+        <link rel="icon" href="{% static 'images/favicons/favicon.ico' %}" sizes="48x48">
+        <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicons/favicon-16x16.png' %}">
+        <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicons/favicon-32x32.png' %}">
+        <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/favicons/apple-touch-icon.png' %}">
+        <link rel="icon" type="image/png" sizes="192x192" href="{% static 'images/favicons/android-chrome-192x192.png' %}">
+        <link rel="icon" type="image/png" sizes="512x512" href="{% static 'images/favicons/android-chrome-512x512.png' %}">
+        <link rel="manifest" href="{% static 'site.webmanifest' %}">
+    {% endif %}
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+    {# Connection hints #}
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+
+    {# ============================================================ #}
+    {# CSS — параллельная загрузка через <link>                      #}
+    {# ============================================================ #}
+
+    {# Core — порядок важен: variables → theme → typography → utilities #}
+    <link rel="stylesheet" href="{% static 'css/core/variables.css' %}">
+    <link rel="stylesheet" href="{% static 'css/core/theme.css' %}">
+    <link rel="stylesheet" href="{% static 'css/core/typography.css' %}">
+    <link rel="stylesheet" href="{% static 'css/core/utilities.css' %}">
+
+    {# Layout #}
+    <link rel="stylesheet" href="{% static 'css/layout/header.css' %}">
+    <link rel="stylesheet" href="{% static 'css/layout/footer.css' %}">
+
+    {# Components #}
+    <link rel="stylesheet" href="{% static 'css/components/buttons.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components/forms.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components/modal.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components/cards.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components/back-to-top.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components/coin-stats.css' %}">
+    <link rel="stylesheet" href="{% static 'css/components/themed-image.css' %}">
+
+    {# Sections #}
+    <link rel="stylesheet" href="{% static 'css/sections/hero.css' %}">
+    <link rel="stylesheet" href="{% static 'css/sections/services.css' %}">
+    <link rel="stylesheet" href="{% static 'css/sections/tech.css' %}">
+    <link rel="stylesheet" href="{% static 'css/sections/features.css' %}">
+    <link rel="stylesheet" href="{% static 'css/sections/portfolio.css' %}">
+    <link rel="stylesheet" href="{% static 'css/sections/tariffs.css' %}">
+    <link rel="stylesheet" href="{% static 'css/sections/faq.css' %}">
+    <link rel="stylesheet" href="{% static 'css/sections/cta.css' %}">
+    <link rel="stylesheet" href="{% static 'css/sections/mission.css' %}">
+
+    {# Responsive #}
+    <link rel="stylesheet" href="{% static 'css/responsive/responsive.css' %}">
+    <link rel="stylesheet" href="{% static 'css/responsive/language-adaptation.css' %}">
+
+    {# Globals — последним #}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    {# Third party #}
+    <link rel="stylesheet" href="{% static 'fonts/nbrb.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+	<!-- Yandex.Metrika counter -->
+	<script type="text/javascript">
+		(function(m,e,t,r,i,k,a){
+			m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+			m[i].l=1*new Date();
+			for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+			k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+		})(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=111857203', 'ym');
+
+		ym(111857203, 'init', {ssr:true, clickmap:true, referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+	</script>
+	<noscript><div><img src="https://mc.yandex.ru/watch/111857203" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+	<!-- /Yandex.Metrika counter -->
+
+    {% block extra_css %}{% endblock %}
+</head>
+<body data-theme="{{ current_theme|default:'light' }}" data-particles-count="20">
+    {# CSRF-token для AJAX-запросов (голосование, форма) #}
+    {% csrf_token %}
+
+    {% include 'agency/includes/header.html' %}
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    {% include 'agency/includes/footer.html' %}
+
+    {# Модалки #}
+    {% include 'agency/includes/contact_modal.html' %}
+    {% include 'agency/includes/faq_modal.html' %}
+    {% include 'agency/includes/service_modal.html' %}
+    {% include 'agency/includes/tech_modal.html' %}
+    {% include 'agency/includes/back_to_top.html' %}
+
+    {# Cloudflare Turnstile #}
+    {% if cf_turnstile_site_key %}
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+    {% endif %}
+
+    {# ============================================================ #}
+    {# Scripts — все с defer, кроме theme.js (применяется мгновенно) #}
+    {# ============================================================ #}
+
+    {# I18N strings — должны быть до остальных скриптов #}
+    {% include 'agency/includes/i18n_strings.html' %}
+
+    {# 1. Утилиты (без зависимостей) #}
+    <script src="{% static 'js/utils.js' %}" defer></script>
+
+    {# 2. Тема — defer ок: data-theme выставлен сервером, мигания не будет #}
+    <script src="{% static 'js/theme.js' %}" defer></script>
+
+    {# 3. Остальные модули #}
+    <script src="{% static 'js/header.js' %}" defer></script>
+    <script src="{% static 'js/particles.js' %}" defer></script>
+    <script src="{% static 'js/main.js' %}" defer></script>
+    <script src="{% static 'js/modal.js' %}" defer></script>
+    <script src="{% static 'js/forms.js' %}" defer></script>
+    <script src="{% static 'js/faq.js' %}" defer></script>
+    <script src="{% static 'js/tech-modal.js' %}" defer></script>
+    <script src="{% static 'js/pricing.js' %}" defer></script>
+    <script src="{% static 'js/animations.js' %}" defer></script>
+    <script src="{% static 'js/blog.js' %}" defer></script>
+
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

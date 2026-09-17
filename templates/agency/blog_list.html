@@ -1,0 +1,1285 @@
+<!-- templates/agency/blog_list.html -->
+
+{% extends 'agency/base.html' %}
+{% load static i18n pagination %}
+
+{% block extra_css %}
+<style>
+    /* ============================================================
+       БЛОГ — HERO 100vh
+       ============================================================ */
+
+    .blog-hero-section {
+        min-height: 100vh;
+        height: 100vh;
+        position: relative;
+        overflow: hidden;
+        width: 100vw;
+        left: 50%;
+        right: 50%;
+        margin-left: -50vw;
+        margin-right: -50vw;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .blog-hero-background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 0;
+        overflow: hidden;
+    }
+
+    .blog-hero-background::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+            90deg,
+            rgba(11, 11, 12, 0.92) 0%,
+            rgba(11, 11, 12, 0.75) 40%,
+            rgba(11, 11, 12, 0.4) 70%,
+            rgba(11, 11, 12, 0.15) 100%
+        );
+        z-index: 1;
+    }
+
+    [data-theme="light"] .blog-hero-background::after {
+        background: linear-gradient(
+            90deg,
+            rgba(255, 255, 255, 0.75) 0%,
+            rgba(255, 255, 255, 0.55) 40%,
+            rgba(255, 255, 255, 0.25) 70%,
+            rgba(255, 255, 255, 0.05) 100%
+        );
+    }
+
+    .blog-hero-content {
+        position: relative;
+        z-index: 2;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding: 100px 60px 20px;
+        max-width: 780px;
+        width: 100%;
+        text-align: left;
+        align-items: flex-start;
+    }
+
+    /* ---- HERO BADGE (логотип) ---- */
+    .blog-hero-content .hero-badge {
+        display: block;
+        margin-bottom: 24px;
+    }
+
+    .blog-hero-content .hero-badge img {
+        max-width: 180px;
+        height: auto;
+        display: block;
+    }
+
+    .blog-hero-content .section-label {
+        font-family: var(--font-sans);
+        font-size: 13px;
+        text-transform: uppercase;
+        letter-spacing: 0.16em;
+        color: var(--color-accent-text);
+        font-weight: 500;
+        display: block;
+        margin-bottom: 16px;
+    }
+
+    .blog-hero-content .section-title {
+        font-family: var(--font-serif);
+        font-size: clamp(42px, 6vw, 64px);
+        line-height: 1.05;
+        color: var(--color-text-primary);
+        margin-bottom: 16px;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+    }
+
+    .blog-hero-content .section-title .gold-accent {
+        color: var(--color-gold);
+    }
+
+    .blog-hero-content .section-description {
+        max-width: 560px;
+        font-size: 17px;
+        color: var(--color-text-secondary);
+        font-weight: 500;
+        margin-bottom: 32px;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
+        line-height: 1.7;
+        text-align: left;
+    }
+
+    .blog-hero-content .hero-buttons {
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+    }
+
+    .blog-hero-content .btn .arrow {
+        transition: transform 0.3s ease;
+        font-size: 14px;
+    }
+
+    .blog-hero-content .btn:hover .arrow {
+        transform: translateX(4px);
+    }
+
+    /* Scroll Indicator */
+    .blog-hero-scroll-indicator {
+        position: absolute;
+        left: 30px;
+        bottom: 30px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        z-index: 100;
+        opacity: 0.9;
+        transition: opacity 0.4s ease;
+        filter: drop-shadow(0 0 20px rgba(200, 154, 91, 0.2));
+    }
+
+    .blog-hero-scroll-indicator .scroll-label {
+        font-family: var(--font-sans);
+        font-size: 10px;
+        font-weight: 400;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--color-gold);
+        writing-mode: vertical-rl;
+        text-orientation: mixed;
+        opacity: 0.8;
+        text-shadow: 0 0 20px rgba(200, 154, 91, 0.3);
+    }
+
+    .blog-hero-scroll-indicator .scroll-line {
+        width: 2px;
+        height: 40px;
+        background: linear-gradient(to bottom, var(--color-gold) 0%, rgba(200, 154, 91, 0.3) 100%);
+        position: relative;
+        border-radius: 4px;
+        box-shadow: 0 0 20px rgba(200, 154, 91, 0.2);
+    }
+
+    .blog-hero-scroll-indicator .scroll-ball {
+        width: 10px;
+        height: 10px;
+        background: var(--color-gold);
+        border-radius: 50%;
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        animation: scrollBall 2s ease-in-out infinite;
+        box-shadow: 0 0 30px rgba(200, 154, 91, 0.6);
+    }
+
+    .blog-hero-scroll-indicator .scroll-arrow {
+        width: 24px;
+        height: 24px;
+        stroke: var(--color-gold);
+        animation: scrollArrow 2s ease-in-out infinite;
+        stroke-width: 2.5;
+        opacity: 0.5;
+        filter: drop-shadow(0 0 10px rgba(200, 154, 91, 0.3));
+    }
+
+    @keyframes scrollBall {
+        0%, 100% { bottom: 0; opacity: 1; }
+        50% { bottom: 25px; opacity: 0.3; }
+    }
+
+    @keyframes scrollArrow {
+        0%, 100% { transform: translateY(0); opacity: 0.8; }
+        50% { transform: translateY(6px); opacity: 0.3; }
+    }
+
+    /* ============================================================
+       БЛОГ — КОНТЕНТ
+       ============================================================ */
+
+    .blog-content-section {
+        padding: 60px 0 80px;
+        background: var(--color-primary-dark);
+        width: 100vw;
+        position: relative;
+        left: 50%;
+        right: 50%;
+        margin-left: -50vw;
+        margin-right: -50vw;
+    }
+
+    .blog-container {
+        max-width: 1600px;
+        margin: 0 auto;
+        padding: 0 40px;
+    }
+
+    /* ============================================================
+       КАТЕГОРИИ
+       ============================================================ */
+
+    .blog-categories-bar {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        flex-wrap: wrap;
+        padding: 16px 0;
+        margin-bottom: 32px;
+        border-bottom: 1px solid var(--color-border);
+    }
+
+    .blog-categories-bar .categories-label {
+        font-size: 12px;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--color-text-muted);
+        margin-right: 8px;
+        font-weight: 600;
+    }
+
+    .blog-categories-bar .category-chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 6px 16px;
+        border-radius: 20px;
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--color-text-secondary);
+        background: var(--color-bg-input);
+        border: 1px solid var(--color-border);
+        text-decoration: none;
+        transition: all 0.3s ease;
+        white-space: nowrap;
+    }
+
+    .blog-categories-bar .category-chip:hover {
+        background: var(--color-gold-rgba);
+        border-color: var(--color-gold);
+        color: var(--color-gold);
+    }
+
+    .blog-categories-bar .category-chip.active {
+        background: var(--color-gold);
+        border-color: var(--color-gold);
+        color: var(--color-text-dark);
+    }
+
+    .blog-categories-bar .category-chip .chip-icon {
+        font-size: 12px;
+        display: inline-flex;
+        align-items: center;
+    }
+
+    .blog-categories-bar .category-chip .chip-icon img {
+        width: 16px;
+        height: 16px;
+        object-fit: contain;
+        border-radius: 3px;
+    }
+
+    .blog-categories-bar .category-chip .chip-count {
+        font-size: 10px;
+        opacity: 0.6;
+        margin-left: 2px;
+    }
+
+    /* ============================================================
+       ОСНОВНАЯ СЕТКА — 70% / 30%
+       ============================================================ */
+
+    .blog-main-grid {
+        display: grid;
+        grid-template-columns: 70% 30%;
+        gap: 40px;
+        align-items: start;
+    }
+
+    .blog-posts-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 24px;
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    .blog-posts-count {
+        font-size: 14px;
+        color: var(--color-text-secondary);
+    }
+
+    /* ============================================================
+       КАРТОЧКА ПОСТА
+       ============================================================ */
+
+    .blog-post-item {
+        display: flex;
+        gap: 20px;
+        padding: 20px;
+        margin-bottom: 16px;
+        border: 1px solid var(--color-border);
+        border-radius: 16px;
+        background: var(--color-card-bg);
+        transition: all 0.3s ease;
+        width: 100%;
+    }
+
+    .blog-post-item:hover {
+        border-color: var(--color-gold);
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-md);
+    }
+
+    .blog-post-item .post-image {
+        flex-shrink: 0;
+        width: 220px;
+        height: 150px;
+        border-radius: 12px;
+        overflow: hidden;
+        background: var(--color-secondary-dark);
+    }
+
+    .blog-post-item .post-image.themed-image {
+        position: relative;
+    }
+
+    .blog-post-item .post-image .themed-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .blog-post-item .post-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        min-width: 0;
+    }
+
+    .blog-post-item .post-category {
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--color-gold);
+        font-weight: 600;
+        margin-bottom: 4px;
+    }
+
+    .blog-post-item .post-title {
+        font-family: var(--font-serif);
+        font-size: 20px;
+        color: var(--color-text-primary);
+        margin-bottom: 8px;
+        line-height: 1.2;
+        transition: color 0.3s ease;
+    }
+
+    .blog-post-item .post-title a {
+        color: var(--color-text-primary);
+        text-decoration: none;
+    }
+
+    .blog-post-item .post-title a:hover {
+        color: var(--color-gold);
+    }
+
+    .blog-post-item .post-excerpt {
+        font-size: 14px;
+        color: var(--color-text-secondary);
+        line-height: 1.6;
+        margin-bottom: 10px;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .blog-post-item .post-meta {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        font-size: 13px;
+        color: var(--color-text-muted);
+        margin-top: auto;
+        flex-wrap: wrap;
+    }
+
+    .blog-post-item .post-meta .date,
+    .blog-post-item .post-meta .read-time,
+    .blog-post-item .post-meta .views {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+    }
+
+    /* ============================================================
+       ПРАВАЯ КОЛОНКА — ПОПУЛЯРНЫЕ СТАТЬИ
+       ============================================================ */
+
+    .blog-sidebar {
+        position: sticky;
+        top: 100px;
+    }
+
+    .sidebar-title {
+        font-family: var(--font-serif);
+        font-size: 18px;
+        color: var(--color-text-primary);
+        margin-bottom: 16px;
+        padding-bottom: 12px;
+        border-bottom: 1px solid var(--color-border);
+    }
+
+    .popular-posts-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .popular-posts-list li {
+        padding: 12px 0;
+        border-bottom: 1px solid var(--color-border);
+        display: flex;
+        gap: 12px;
+        align-items: center;
+    }
+
+    .popular-posts-list li:last-child {
+        border-bottom: none;
+    }
+
+    .popular-posts-list .popular-image {
+        flex-shrink: 0;
+        width: 64px;
+        height: 64px;
+        border-radius: 10px;
+        overflow: hidden;
+        background: var(--color-secondary-dark);
+    }
+
+    .popular-posts-list .popular-image.themed-image {
+        position: relative;
+    }
+
+    .popular-posts-list .popular-image .themed-img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .popular-posts-list .rank {
+        font-family: var(--font-serif);
+        font-size: 18px;
+        font-weight: 600;
+        color: var(--color-gold);
+        opacity: 0.4;
+        min-width: 24px;
+        text-align: center;
+        flex-shrink: 0;
+    }
+
+    .popular-posts-list .popular-content {
+        flex: 1;
+        min-width: 0;
+    }
+
+    .popular-posts-list .popular-content a {
+        color: var(--color-text-primary);
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 500;
+        line-height: 1.3;
+        transition: color 0.3s ease;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .popular-posts-list .popular-content a:hover {
+        color: var(--color-gold);
+    }
+
+    .popular-posts-list .popular-content .popular-meta {
+        font-size: 11px;
+        color: var(--color-text-muted);
+        display: block;
+        margin-top: 3px;
+    }
+
+    .popular-posts-list .popular-content .popular-meta .views-count {
+        color: var(--color-gold);
+        font-weight: 500;
+    }
+
+    /* ============================================================
+       ПОДПИСКА В САЙДБАРЕ
+       ============================================================ */
+
+    .sidebar-subscribe {
+        margin-top: 32px;
+        padding: 24px 20px;
+        background: var(--color-card-bg);
+        border: 1px solid var(--color-border);
+        border-radius: 12px;
+        transition: all 0.3s ease;
+    }
+
+    .sidebar-subscribe:hover {
+        border-color: var(--color-gold-rgba);
+    }
+
+    .sidebar-subscribe-title {
+        font-family: var(--font-serif);
+        font-size: 18px;
+        color: var(--color-text-primary);
+        margin-bottom: 8px;
+        line-height: 1.2;
+    }
+
+    .sidebar-subscribe-text {
+        font-size: 13px;
+        color: var(--color-text-secondary);
+        line-height: 1.5;
+        margin: 0 0 16px;
+    }
+
+    .sidebar-subscribe-input-group {
+        display: flex;
+        gap: 8px;
+    }
+
+    .sidebar-subscribe-input {
+        flex: 1;
+        min-width: 0;
+        padding: 10px 14px;
+        background: var(--color-bg-input);
+        border: 1px solid var(--color-border);
+        border-radius: 8px;
+        color: var(--color-text-primary);
+        font-family: var(--font-sans);
+        font-size: 13px;
+        transition: all 0.3s ease;
+    }
+
+    [data-theme="light"] .sidebar-subscribe-input {
+        background: #F7F4EE;
+        border-color: #E4DED5;
+        color: #202321;
+    }
+
+    .sidebar-subscribe-input:focus {
+        outline: none;
+        border-color: var(--color-gold);
+        box-shadow: 0 0 0 3px var(--color-gold-rgba);
+    }
+
+    .sidebar-subscribe-input::placeholder {
+        color: var(--color-text-muted);
+        opacity: 0.7;
+    }
+
+    [data-theme="light"] .sidebar-subscribe-input::placeholder {
+        color: #9A9B98;
+        opacity: 1;
+    }
+
+    .sidebar-subscribe-input.error {
+        border-color: #e74c3c;
+        box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.15);
+    }
+
+    .sidebar-subscribe-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        padding: 0;
+        background: var(--color-cta-primary, #B8734F);
+        color: var(--color-text-light, #FCFBF8);
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        flex-shrink: 0;
+    }
+
+    .sidebar-subscribe-btn:hover {
+        background: var(--color-cta-primary-hover, #965A3D);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 24px rgba(184, 115, 79, 0.3);
+    }
+
+    .sidebar-subscribe-btn:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+        transform: none;
+    }
+
+    .sidebar-subscribe-btn .arrow {
+        transition: transform 0.3s ease;
+        font-size: 14px;
+        line-height: 1;
+    }
+
+    .sidebar-subscribe-btn:hover .arrow {
+        transform: translateX(3px);
+    }
+
+    .sidebar-subscribe-message {
+        font-size: 12px;
+        margin-top: 8px;
+        display: none;
+    }
+
+    .sidebar-subscribe-message.success {
+        display: block;
+        color: #27AE60;
+    }
+
+    .sidebar-subscribe-message.error {
+        display: block;
+        color: #E74C3C;
+    }
+
+    /* ============================================================
+       ПАГИНАЦИЯ
+       ============================================================ */
+
+    .pagination-wrapper {
+        display: flex;
+        justify-content: center;
+        padding: 40px 0 0;
+        margin-top: 20px;
+        border-top: 1px solid var(--color-border);
+    }
+
+    .pagination {
+        display: flex;
+        gap: 6px;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    .pagination .page-item .page-link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 40px;
+        height: 40px;
+        padding: 0 12px;
+        border: 1px solid var(--color-border);
+        border-radius: 8px;
+        color: var(--color-text-secondary);
+        text-decoration: none;
+        font-size: 14px;
+        transition: all 0.3s ease;
+    }
+
+    .pagination .page-item .page-link:hover {
+        border-color: var(--color-gold);
+        color: var(--color-gold);
+    }
+
+    .pagination .page-item.active .page-link {
+        background: var(--color-gold);
+        border-color: var(--color-gold);
+        color: var(--color-text-dark);
+    }
+
+    .pagination .page-item.disabled .page-link {
+        opacity: 0.4;
+        cursor: not-allowed;
+    }
+
+    /* ============================================================
+       ГОЛОСОВАНИЕ В КАРТОЧКЕ ПОСТА
+       ============================================================ */
+
+    .post-vote-block {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-top: 10px;
+        padding-top: 10px;
+        border-top: 1px solid var(--color-border);
+        flex-wrap: wrap;
+    }
+
+    .post-vote-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 6px 12px;
+        background: var(--color-bg-input);
+        border: 1px solid var(--color-border);
+        border-radius: 8px;
+        color: var(--color-text-secondary);
+        font-size: 13px;
+        font-family: var(--font-sans);
+        cursor: pointer;
+        transition: all 0.3s ease;
+        line-height: 1;
+    }
+
+    .post-vote-btn:hover {
+        border-color: var(--color-gold);
+        color: var(--color-gold);
+    }
+
+    .post-vote-btn.post-vote-like.active {
+        background: rgba(46, 204, 113, 0.1);
+        border-color: #2ecc71;
+        color: #2ecc71;
+    }
+
+    .post-vote-btn.post-vote-dislike.active {
+        background: rgba(231, 76, 60, 0.1);
+        border-color: #e74c3c;
+        color: #e74c3c;
+    }
+
+    .post-vote-btn .vote-count {
+        font-weight: 600;
+        font-size: 12px;
+        min-width: 14px;
+        text-align: center;
+    }
+
+    .post-vote-btn:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+
+    .post-vote-block .post-read-more {
+        margin-left: auto;
+        color: var(--color-gold);
+        font-weight: 500;
+        font-size: 13px;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        transition: gap 0.3s ease;
+    }
+
+    .post-vote-block .post-read-more:hover {
+        gap: 8px;
+    }
+
+    /* ============================================================
+       АДАПТИВНОСТЬ
+       ============================================================ */
+
+    @media (max-width: 1200px) {
+        .blog-container { padding: 0 30px; }
+        .blog-main-grid {
+            grid-template-columns: 65% 35%;
+            gap: 30px;
+        }
+    }
+
+    @media (max-width: 1024px) {
+        .blog-hero-content .hero-badge {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+
+        .blog-hero-content .hero-badge img {
+            margin: 0 auto;
+        }
+
+        .blog-hero-content .section-description {
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .blog-hero-scroll-indicator { display: none; }
+
+        .blog-hero-background::after {
+            background: rgba(11, 11, 12, 0.5);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+        [data-theme="light"] .blog-hero-background::after {
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+    }
+
+    @media (max-width: 992px) {
+        .blog-main-grid {
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
+        .blog-sidebar { position: static; }
+        .blog-post-item .post-image {
+            width: 180px;
+            height: 130px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .blog-content-section { padding: 40px 0 60px; }
+        .blog-container { padding: 0 16px; }
+
+        .blog-hero-content {
+            padding: 80px 24px 20px;
+        }
+
+        .blog-hero-content .hero-badge img {
+            max-width: 250px;
+        }
+
+        .blog-hero-content .section-title { font-size: clamp(28px, 6vw, 36px); }
+
+        .blog-hero-background::after {
+            background: rgba(11, 11, 12, 0.55);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        [data-theme="light"] .blog-hero-background::after {
+            background: rgba(255, 255, 255, 0.55);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .blog-post-item {
+            flex-direction: column;
+            padding: 16px;
+        }
+        .blog-post-item .post-image {
+            width: 100%;
+            height: 200px;
+        }
+        .blog-post-item .post-title { font-size: 18px; }
+        .blog-posts-header { flex-direction: column; align-items: flex-start; }
+
+        .blog-categories-bar {
+            overflow-x: auto;
+            flex-wrap: nowrap;
+            padding: 12px 0;
+            margin-bottom: 24px;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+        .blog-categories-bar::-webkit-scrollbar { display: none; }
+        .blog-categories-bar .categories-label { flex-shrink: 0; }
+        .blog-categories-bar .category-chip {
+            flex-shrink: 0;
+            font-size: 12px;
+            padding: 4px 12px;
+        }
+
+        .sidebar-subscribe {
+            margin-top: 24px;
+            padding: 20px 16px;
+        }
+
+        .sidebar-subscribe-title {
+            font-size: 16px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .blog-post-item { padding: 14px; }
+        .blog-post-item .post-image { height: 160px; }
+        .blog-post-item .post-title { font-size: 16px; }
+        .pagination .page-item .page-link {
+            min-width: 34px;
+            height: 34px;
+            font-size: 12px;
+            padding: 0 8px;
+        }
+        .blog-categories-bar .category-chip {
+            font-size: 11px;
+            padding: 3px 10px;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .post-vote-block { gap: 6px; }
+        .post-vote-btn {
+            padding: 5px 10px;
+            font-size: 12px;
+        }
+        .post-vote-block .post-read-more {
+            width: 100%;
+            justify-content: flex-end;
+            margin-left: 0;
+            margin-top: 4px;
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .blog-post-item:hover .post-image img,
+        .popular-posts-list li:hover .popular-image img { transform: none !important; }
+        .blog-hero-scroll-indicator .scroll-ball,
+        .blog-hero-scroll-indicator .scroll-arrow { animation: none !important; }
+        .blog-post-item:hover { transform: none !important; }
+    }
+
+</style>
+{% endblock %}
+
+{% block content %}
+
+<!-- ============================================================
+     HERO СЕКЦИЯ
+     ============================================================ -->
+
+<section class="blog-hero-section" id="blog-hero">
+    <div class="blog-hero-background themed-image">
+        {% if hero %}
+            {% if current_language == 'en' %}
+                {% if hero.hero_image_light_en %}
+                    <img class="themed-img ti-light"
+                         src="{{ hero.hero_image_light_en.url }}"
+                         alt="{{ hero.title|default:_('Блог о веб-разработке') }}"
+                         loading="eager" fetchpriority="high" decoding="async">
+                {% endif %}
+                {% if hero.hero_image_dark_en %}
+                    <img class="themed-img ti-dark"
+                         src="{{ hero.hero_image_dark_en.url }}"
+                         alt="{{ hero.title|default:_('Блог о веб-разработке') }}"
+                         loading="lazy" decoding="async">
+                {% endif %}
+                {% if not hero.hero_image_light_en and not hero.hero_image_dark_en %}
+                    <img class="themed-img ti-fallback"
+                         src="{% static 'images/blog/blog-hero.jpg' %}"
+                         alt="{% trans 'Блог о веб-разработке' %}"
+                         loading="eager" fetchpriority="high" decoding="async">
+                {% endif %}
+            {% else %}
+                {% if hero.hero_image_light_ru %}
+                    <img class="themed-img ti-light"
+                         src="{{ hero.hero_image_light_ru.url }}"
+                         alt="{{ hero.title|default:_('Блог о веб-разработке') }}"
+                         loading="eager" fetchpriority="high" decoding="async">
+                {% endif %}
+                {% if hero.hero_image_dark_ru %}
+                    <img class="themed-img ti-dark"
+                         src="{{ hero.hero_image_dark_ru.url }}"
+                         alt="{{ hero.title|default:_('Блог о веб-разработке') }}"
+                         loading="lazy" decoding="async">
+                {% endif %}
+                {% if not hero.hero_image_light_ru and not hero.hero_image_dark_ru %}
+                    <img class="themed-img ti-fallback"
+                         src="{% static 'images/blog/blog-hero.jpg' %}"
+                         alt="{% trans 'Блог о веб-разработке' %}"
+                         loading="eager" fetchpriority="high" decoding="async">
+                {% endif %}
+            {% endif %}
+        {% else %}
+            <img class="themed-img ti-fallback"
+                 src="{% static 'images/blog/blog-hero.jpg' %}"
+                 alt="{% trans 'Блог о веб-разработке' %}"
+                 loading="eager" fetchpriority="high" decoding="async">
+        {% endif %}
+    </div>
+
+    <div class="blog-hero-content">
+        <div class="hero-badge">
+            <img src="{% static 'images/linxreactor.png' %}"
+                 alt="LYNXREACTOR"
+                 loading="eager" decoding="async">
+        </div>
+
+        <span class="section-label">{{ hero.subtitle|default:_("ПОЛЕЗНЫЕ МАТЕРИАЛЫ") }}</span>
+        <h1 class="section-title">
+            {{ hero.title|default:_("Блог о веб-разработке, сайтах и") }}
+        </h1>
+        <p class="section-description">
+            {{ hero.description|default:_("Статьи о разработке сайтов, веб-приложениях, SEO, аналитике, производительности, безопасности и современных технологиях веб-разработки.") }}
+        </p>
+        <div class="hero-buttons">
+            <a href="#blog-content" class="btn btn-primary">
+                {{ hero.cta_text|default:_("Читать статьи") }}
+                <span class="arrow">→</span>
+            </a>
+        </div>
+    </div>
+
+    <div class="blog-hero-scroll-indicator">
+        <span class="scroll-label">SCROLL</span>
+        <div class="scroll-line">
+            <div class="scroll-ball"></div>
+        </div>
+        <svg class="scroll-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 5v14M5 12l7 7 7-7"/>
+        </svg>
+    </div>
+</section>
+
+<!-- ============================================================
+     БЛОГ — КОНТЕНТ
+     ============================================================ -->
+
+<section class="blog-content-section" id="blog-content">
+    <div class="blog-container">
+
+        <!-- КАТЕГОРИИ -->
+        <div class="blog-categories-bar">
+            <span class="categories-label">{% trans "Категории" %}:</span>
+            <a href="{% url 'agency:blog' %}" class="category-chip {% if not request.GET.category %}active{% endif %}">
+                <span class="chip-icon"><i class="fas fa-th-list"></i></span>
+                {% trans "Все" %}
+                <span class="chip-count">{{ paginator.count }}</span>
+            </a>
+            {% for cat in categories %}
+            <a href="{% url 'agency:blog_category' cat.slug %}" class="category-chip {% if request.GET.category == cat.slug %}active{% endif %}">
+                <span class="chip-icon">
+                    {% if cat.icon_png %}
+                        <img src="{{ cat.icon_png.url }}" alt="{{ cat.name }}">
+                    {% elif cat.icon %}
+                        <i class="fas {{ cat.icon }}"></i>
+                    {% endif %}
+                </span>
+                {{ cat.name }}
+                <span class="chip-count">{{ cat.post_count }}</span>
+            </a>
+            {% endfor %}
+        </div>
+
+        <!-- ОСНОВНАЯ СЕТКА -->
+        <div class="blog-main-grid">
+
+            <!-- ЛЕВАЯ КОЛОНКА — ПОСТЫ -->
+            <main class="blog-main">
+
+                <div class="blog-posts-header">
+                    <span class="blog-posts-count">{% trans "Всего" %} {{ paginator.count }} {% trans "статей" %}</span>
+                </div>
+
+                {% if posts %}
+                {% for post in posts %}
+                <article class="blog-post-item" data-post-id="{{ post.id }}">
+                    <div class="post-image themed-image">
+                        {% if post.image_light %}
+                            <img class="themed-img ti-light"
+                                 src="{{ post.image_light.url }}"
+                                 alt="{{ post.title }}"
+                                 loading="lazy" decoding="async">
+                        {% endif %}
+                        {% if post.image_dark %}
+                            <img class="themed-img ti-dark"
+                                 src="{{ post.image_dark.url }}"
+                                 alt="{{ post.title }}"
+                                 loading="lazy" decoding="async">
+                        {% endif %}
+                        {% if not post.image_light and not post.image_dark %}
+                            <img class="themed-img ti-fallback"
+                                 src="{% static 'images/blog/default.jpg' %}"
+                                 alt="{{ post.title }}"
+                                 loading="lazy" decoding="async">
+                        {% endif %}
+                    </div>
+                    <div class="post-content">
+                        {% if post.category %}
+                        <span class="post-category">{{ post.category.name }}</span>
+                        {% endif %}
+                        <h3 class="post-title">
+                            <a href="{% url 'agency:blog_detail' post.slug %}">{{ post.title }}</a>
+                        </h3>
+                        <div class="post-excerpt">{{ post.excerpt|striptags|truncatewords:25 }}</div>
+                        <div class="post-meta">
+                            <span class="date">
+                                <i class="far fa-calendar-alt"></i>
+                                {{ post.published_at|date:"d.m.Y" }}
+                            </span>
+                            <span class="read-time">
+                                <i class="far fa-clock"></i>
+                                {{ post.reading_time }} {% trans "мин чтения" %}
+                            </span>
+                            <span class="views">
+                                <i class="far fa-eye"></i>
+                                {{ post.views }}
+                            </span>
+                        </div>
+
+                        <div class="post-vote-block">
+                            <button class="post-vote-btn post-vote-like"
+                                    data-post-id="{{ post.id }}"
+                                    data-vote="like"
+                                    aria-label="{% trans 'Нравится' %}">
+                                <i class="fas fa-thumbs-up"></i>
+                                <span class="vote-count" id="postLikeCount-{{ post.id }}">{{ post.likes }}</span>
+                            </button>
+
+                            <button class="post-vote-btn post-vote-dislike"
+                                    data-post-id="{{ post.id }}"
+                                    data-vote="dislike"
+                                    aria-label="{% trans 'Не нравится' %}">
+                                <i class="fas fa-thumbs-down"></i>
+                                <span class="vote-count" id="postDislikeCount-{{ post.id }}">{{ post.dislikes }}</span>
+                            </button>
+
+                            <a href="{% url 'agency:blog_detail' post.slug %}" class="post-read-more">
+                                {% trans "Читать статью" %}
+                                <span class="arrow">→</span>
+                            </a>
+                        </div>
+                    </div>
+                </article>
+                {% endfor %}
+                {% else %}
+                    <div class="blog-empty" style="text-align:center;padding:60px 0;">
+                        <i class="fas fa-newspaper" style="font-size:48px;color:var(--color-text-muted);opacity:0.3;"></i>
+                        <h3 style="margin-top:20px;color:var(--color-text-primary);">{% trans "Статей пока нет" %}</h3>
+                        <p style="color:var(--color-text-secondary);">{% trans "Скоро здесь появятся полезные материалы." %}</p>
+                    </div>
+                {% endif %}
+
+                <!-- Pagination -->
+                {% if is_paginated %}
+                <div class="pagination-wrapper">
+                    <ul class="pagination">
+                        {% if page_obj.has_previous %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ page_obj.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q|urlencode }}{% endif %}{% if request.GET.category %}&category={{ request.GET.category|urlencode }}{% endif %}">
+                                <i class="fas fa-chevron-left"></i>
+                            </a>
+                        </li>
+                        {% else %}
+                        <li class="page-item disabled">
+                            <span class="page-link"><i class="fas fa-chevron-left"></i></span>
+                        </li>
+                        {% endif %}
+
+                        {% page_range page_obj.number paginator.num_pages 2 as pages %}
+                        {% for num in pages %}
+                            {% if page_obj.number == num %}
+                            <li class="page-item active">
+                                <span class="page-link">{{ num }}</span>
+                            </li>
+                            {% else %}
+                            <li class="page-item">
+                                <a class="page-link" href="?page={{ num }}{% if request.GET.q %}&q={{ request.GET.q|urlencode }}{% endif %}{% if request.GET.category %}&category={{ request.GET.category|urlencode }}{% endif %}">{{ num }}</a>
+                            </li>
+                            {% endif %}
+                        {% endfor %}
+
+                        {% if page_obj.has_next %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ page_obj.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q|urlencode }}{% endif %}{% if request.GET.category %}&category={{ request.GET.category|urlencode }}{% endif %}">
+                                <i class="fas fa-chevron-right"></i>
+                            </a>
+                        </li>
+                        {% else %}
+                        <li class="page-item disabled">
+                            <span class="page-link"><i class="fas fa-chevron-right"></i></span>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </div>
+                {% endif %}
+
+            </main>
+
+            <!-- ПРАВАЯ КОЛОНКА — ПОПУЛЯРНЫЕ СТАТЬИ + ПОДПИСКА -->
+            <aside class="blog-sidebar">
+                <h4 class="sidebar-title">{% trans "Популярные статьи" %}</h4>
+                <ul class="popular-posts-list">
+                    {% for post in popular_posts %}
+                    <li>
+                        <div class="popular-image themed-image">
+                            {% if post.image_light %}
+                                <img class="themed-img ti-light"
+                                     src="{{ post.image_light.url }}"
+                                     alt="{{ post.title }}"
+                                     loading="lazy" decoding="async">
+                            {% endif %}
+                            {% if post.image_dark %}
+                                <img class="themed-img ti-dark"
+                                     src="{{ post.image_dark.url }}"
+                                     alt="{{ post.title }}"
+                                     loading="lazy" decoding="async">
+                            {% endif %}
+                            {% if not post.image_light and not post.image_dark %}
+                                <img class="themed-img ti-fallback"
+                                     src="{% static 'images/blog/default.jpg' %}"
+                                     alt="{{ post.title }}"
+                                     loading="lazy" decoding="async">
+                            {% endif %}
+                        </div>
+                        <span class="rank">{{ forloop.counter|stringformat:"02d" }}</span>
+                        <div class="popular-content">
+                            <a href="{% url 'agency:blog_detail' post.slug %}">{{ post.title }}</a>
+                            <span class="popular-meta">
+                                {{ post.published_at|date:"d.m.Y" }} •
+                                <span class="views-count">{{ post.views }} {% trans "просмотров" %}</span>
+                            </span>
+                        </div>
+                    </li>
+                    {% empty %}
+                    <li><span style="color:var(--color-text-muted);font-size:14px;">{% trans "Нет популярных статей" %}</span></li>
+                    {% endfor %}
+                </ul>
+
+                <!-- ============================================ -->
+                <!-- ПОДПИСКА НА ОБНОВЛЕНИЯ                        -->
+                <!-- ============================================ -->
+                <div class="sidebar-subscribe">
+                    <h4 class="sidebar-subscribe-title">{% trans "Подпишитесь на обновления" %}</h4>
+                    <p class="sidebar-subscribe-text">
+                        {% trans "Получайте новые статьи на почту. Никакого спама." %}
+                    </p>
+
+                    <form class="sidebar-subscribe-form" id="sidebarSubscribeForm"
+                          method="post" action="{% url 'agency:ajax_subscribe' %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="source" value="blog_list_sidebar">
+
+                        <div class="sidebar-subscribe-input-group">
+                            <input type="email"
+                                   name="email"
+                                   id="sidebarSubscribeEmail"
+                                   class="sidebar-subscribe-input"
+                                   placeholder="{% trans 'Ваш email' %}"
+                                   autocomplete="email"
+                                   required>
+                            <button type="submit" class="sidebar-subscribe-btn"
+                                    aria-label="{% trans 'Подписаться' %}">
+                                <span class="arrow">→</span>
+                            </button>
+                        </div>
+
+                        <div class="sidebar-subscribe-message" id="sidebarSubscribeMessage"></div>
+                    </form>
+                </div>
+            </aside>
+        </div>
+    </div>
+</section>
+<!-- ============================================================
+     МИССИЯ — в конце страницы
+     ============================================================ -->
+
+{% include 'agency/includes/mission.html' %}
+
+{% endblock %}

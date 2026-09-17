@@ -1,0 +1,35 @@
+<!-- templates/agency/emails/test_email.html -->
+
+{% extends 'agency/emails/base_email.html' %}
+
+{% load static i18n %}
+
+<h1 class="email-title">🧪 <span class="gold-accent">Тестовое письмо</span></h1>
+<p class="email-subtitle">Это тестовое письмо для проверки работы почтовой системы.</p>
+
+<div class="email-divider"></div>
+
+<p class="email-text">
+    Если вы получили это письмо, значит почта работает правильно! ✅
+</p>
+
+<div class="info-block">
+    <span class="info-label">📋 Информация</span>
+    <div class="info-row">
+        <span class="label">Дата</span>
+        <span class="value">{{ now|date:"d.m.Y H:i" }}</span>
+    </div>
+    <div class="info-row">
+        <span class="label">Сайт</span>
+        <span class="value"><a href="{{ site_url }}" style="color:#C89A5B;">{{ site_url }}</a></span>
+    </div>
+</div>
+
+<div class="email-divider"></div>
+
+<p class="email-text" style="font-size:14px; color:#A6A3A0; text-align:center;">
+    С уважением,<br>
+    <strong style="color:#C89A5B;">Команда LYNXREACTOR</strong>
+</p>
+
+{% endblock %}

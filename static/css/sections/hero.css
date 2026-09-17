@@ -1,0 +1,844 @@
+/* static/css/sections/hero.css */
+
+/* ============================================================
+   HERO СЕКЦИЯ — ПОЛНОЭКРАННЫЙ ФОН
+   ============================================================ */
+
+.hero-section {
+    min-height: 100vh;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+    width: 100vw;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ============================================================
+   ФОН-ИЗОБРАЖЕНИЕ НА ВСЮ ШИРИНУ И ВЫСОТУ
+   ============================================================ */
+
+.hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.hero-background img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+}
+
+/* ============================================================
+   КОНТЕНТ ПОВЕРХ ИЗОБРАЖЕНИЯ
+   ============================================================ */
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 100px 60px 20px;
+    max-width: 900px;
+    width: 100%;
+}
+
+.hero-badge {
+    display: block;
+    margin-bottom: 24px;
+}
+
+.hero-badge img {
+    max-width: 180px;
+    height: auto;
+    display: block;
+}
+
+.hero-subtitle {
+    font-family: var(--font-sans);
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: rgba(255, 255, 255, 0.6);
+    font-weight: 600;
+    display: block;
+    margin-bottom: 16px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+[data-theme="light"] .hero-subtitle {
+    color: var(--color-text-secondary, #64748B);
+}
+
+.hero-main {
+    display: block;
+    font-family: var(--font-serif);
+    font-size: clamp(42px, 6vw, 68px);
+    line-height: 1.05;
+    color: var(--color-text-primary);
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.hero-description {
+    max-width: 580px;
+    font-size: 17px;
+    color: rgba(255, 255, 255, 0.7);
+    font-weight: 600;
+    margin: 24px 0 40px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    line-height: 1.6;
+}
+
+[data-theme="light"] .hero-description {
+    color: var(--color-text-secondary, #64748B);
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+/* ============================================================
+   SCROLL INDICATOR — ЗОЛОТОЙ С ТЕНЬЮ (НОВЫЙ ЦВЕТ)
+   ============================================================ */
+
+.hero-scroll-indicator {
+    position: absolute;
+    left: 30px;
+    bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    z-index: 100;
+    opacity: 0.9;
+    transition: opacity 0.4s ease;
+    filter: drop-shadow(0 0 20px rgba(242, 201, 76, 0.2));
+}
+
+.hero-scroll-indicator:hover {
+    filter: drop-shadow(0 0 30px rgba(242, 201, 76, 0.4));
+}
+
+.scroll-label {
+    font-family: var(--font-sans);
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-gold, #F2C94C);
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    opacity: 0.8;
+    transition: opacity 0.3s ease;
+    text-shadow: 0 0 20px rgba(242, 201, 76, 0.3);
+}
+
+.hero-scroll-indicator:hover .scroll-label {
+    opacity: 1;
+    text-shadow: 0 0 30px rgba(242, 201, 76, 0.5);
+}
+
+.scroll-line {
+    width: 2px;
+    height: 40px;
+    background: linear-gradient(
+        to bottom,
+        var(--color-gold, #F2C94C) 0%,
+        rgba(242, 201, 76, 0.3) 100%
+    );
+    position: relative;
+    border-radius: 4px;
+    box-shadow: 0 0 20px rgba(242, 201, 76, 0.2);
+}
+
+.scroll-ball {
+    width: 10px;
+    height: 10px;
+    background: var(--color-gold, #F2C94C);
+    border-radius: 50%;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: scrollBall 2s ease-in-out infinite;
+    box-shadow: 0 0 30px rgba(242, 201, 76, 0.6);
+}
+
+.scroll-arrow {
+    width: 24px;
+    height: 24px;
+    stroke: var(--color-gold, #F2C94C);
+    animation: scrollArrow 2s ease-in-out infinite;
+    stroke-width: 2.5;
+    opacity: 0.5;
+    transition: opacity 0.3s ease;
+    filter: drop-shadow(0 0 10px rgba(242, 201, 76, 0.3));
+}
+
+.hero-scroll-indicator:hover .scroll-arrow {
+    opacity: 1;
+    filter: drop-shadow(0 0 20px rgba(242, 201, 76, 0.5));
+}
+
+@keyframes scrollBall {
+    0%, 100% {
+        bottom: 0;
+        opacity: 1;
+    }
+    50% {
+        bottom: 25px;
+        opacity: 0.3;
+    }
+}
+
+@keyframes scrollArrow {
+    0%, 100% {
+        transform: translateY(0);
+        opacity: 0.8;
+    }
+    50% {
+        transform: translateY(6px);
+        opacity: 0.3;
+    }
+}
+
+/* ============================================================
+   HERO STATS (НОВАЯ ЦВЕТОВАЯ СХЕМА)
+   ============================================================ */
+
+.hero-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    padding: 16px 0;
+    margin-top: 40px;
+    max-width: 580px;
+    width: 100%;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="light"] .hero-stats {
+    border-top: 1px solid var(--color-border, #E2E8F0);
+}
+
+.stat-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    padding: 8px 12px;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+[data-theme="light"] .stat-item {
+    background: rgba(255, 255, 255, 0.85);
+    border: 1px solid var(--color-border, #E2E8F0);
+}
+
+.stat-icon {
+    font-size: 24px;
+    color: var(--color-gold);
+    flex-shrink: 0;
+    width: 36px;
+    text-align: center;
+}
+
+.stat-text {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.stat-value {
+    font-family: var(--font-serif);
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--color-gold);
+    line-height: 1.2;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.stat-label {
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: rgba(255, 255, 255, 0.6);
+    line-height: 1.3;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+[data-theme="light"] .stat-label {
+    color: var(--color-text-secondary, #64748B);
+}
+
+/* ============================================================
+   АДАПТИВНОСТЬ
+   ============================================================ */
+
+/* -------- 1400px -------- */
+@media (max-width: 1400px) {
+    .hero-content {
+        padding: 60px 40px 20px;
+        max-width: 780px;
+    }
+    .hero-description {
+        max-width: 520px;
+    }
+    .hero-scroll-indicator {
+        right: 25px;
+        bottom: 25px;
+    }
+}
+
+/* -------- 1200px -------- */
+@media (max-width: 1200px) {
+    .hero-content {
+        padding: 50px 40px 20px;
+        max-width: 700px;
+    }
+    .hero-badge img {
+        max-width: 150px;
+    }
+    .hero-description {
+        max-width: 480px;
+    }
+    .hero-stats {
+        gap: 10px;
+        margin-top: 30px;
+        max-width: 500px;
+    }
+    .stat-item {
+        padding: 8px 10px;
+        gap: 10px;
+    }
+    .stat-icon {
+        font-size: 20px;
+        width: 32px;
+    }
+    .stat-value {
+        font-size: 18px;
+    }
+    .hero-scroll-indicator {
+        right: 20px;
+        bottom: 20px;
+    }
+    .scroll-label {
+        font-size: 9px;
+    }
+    .scroll-line {
+        height: 30px;
+    }
+    .scroll-ball {
+        width: 8px;
+        height: 8px;
+    }
+    .scroll-arrow {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+/* -------- 1024px -------- */
+@media (max-width: 1024px) {
+    .hero-content {
+        padding: 80px 30px 20px;
+        max-width: 100%;
+        text-align: center;
+        align-items: center;
+    }
+    .hero-description {
+        max-width: 100%;
+        margin: 16px 0 24px;
+        font-size: 16px;
+        text-align: center;
+    }
+    .hero-buttons {
+        justify-content: center;
+    }
+    .hero-badge img {
+        max-width: 130px;
+        margin: 0 auto;
+    }
+    .hero-stats {
+        max-width: 100%;
+        margin-top: 30px;
+        justify-items: center;
+    }
+    .stat-item {
+        width: 100%;
+        max-width: 280px;
+        justify-content: center;
+    }
+    .hero-scroll-indicator {
+        display: none;
+    }
+    .hero-subtitle {
+        text-align: center;
+    }
+    .hero-main {
+        text-align: center;
+    }
+    .stat-text {
+        text-align: center;
+    }
+}
+
+/* -------- 768px -------- */
+@media (max-width: 768px) {
+    .hero-section {
+        min-height: 100vh;
+        height: 100vh;
+        overflow: visible !important;
+    }
+    .hero-content {
+        padding: 80px 16px 16px;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        max-width: 100%;
+        width: 100%;
+    }
+    .hero-main {
+        font-size: clamp(28px, 6vw, 36px);
+        text-align: center;
+    }
+    .hero-subtitle {
+        font-size: 12px;
+        text-align: center;
+        margin-bottom: 12px;
+    }
+    .hero-description {
+        font-size: 15px;
+        margin: 12px 0 20px;
+        max-width: 100%;
+        text-align: center;
+    }
+    .hero-buttons {
+        flex-direction: column;
+        width: 100%;
+        gap: 10px;
+        align-items: center;
+    }
+    .hero-buttons .btn {
+        width: 100%;
+        justify-content: center;
+    }
+    .hero-badge img {
+        max-width: 250px !important;
+        margin: 0 auto;
+    }
+    .hero-stats {
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+        padding: 14px 0;
+        margin-top: 20px;
+        max-width: 100%;
+        width: 100%;
+        border-top: 1px solid rgba(255, 255, 255, 0.06);
+    }
+    .stat-item {
+        padding: 12px 10px;
+        gap: 10px;
+        width: 100%;
+        background: rgba(0, 0, 0, 0.3);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        border-radius: 10px;
+        justify-content: center;
+    }
+    .stat-icon {
+        font-size: 24px !important;
+        width: 36px !important;
+    }
+    .stat-value {
+        font-size: 18px !important;
+        text-align: center;
+    }
+    .stat-label {
+        font-size: 9px !important;
+        text-align: center;
+        letter-spacing: 0.04em;
+    }
+    .stat-text {
+        text-align: center;
+        gap: 2px;
+    }
+    .hero-scroll-indicator {
+        display: none;
+    }
+}
+
+/* -------- 576px -------- */
+@media (max-width: 576px) {
+    .hero-content {
+        padding: 70px 12px 12px;
+        width: 100%;
+        max-width: 100%;
+    }
+    .hero-main {
+        font-size: clamp(24px, 5vw, 30px);
+    }
+    .hero-subtitle {
+        font-size: 11px;
+    }
+    .hero-description {
+        font-size: 14px;
+        margin: 10px 0 16px;
+    }
+    .hero-badge img {
+        max-width: 200px !important;
+        margin: 0 auto;
+    }
+    .hero-stats {
+        grid-template-columns: 1fr 1fr;
+        gap: 6px;
+        padding: 12px 0;
+        margin-top: 16px;
+        max-width: 100%;
+        width: 100%;
+    }
+    .stat-item {
+        padding: 10px 8px;
+        gap: 8px;
+        border-radius: 8px;
+    }
+    .stat-icon {
+        font-size: 20px !important;
+        width: 30px !important;
+    }
+    .stat-value {
+        font-size: 16px !important;
+    }
+    .stat-label {
+        font-size: 8px !important;
+    }
+    .hero-scroll-indicator {
+        display: none;
+    }
+}
+
+/* -------- 480px -------- */
+@media (max-width: 480px) {
+    .hero-content {
+        padding: 60px 10px 12px;
+        width: 100%;
+        max-width: 100%;
+    }
+    .hero-main {
+        font-size: clamp(20px, 4vw, 26px);
+    }
+    .hero-subtitle {
+        font-size: 10px;
+        letter-spacing: 0.08em;
+    }
+    .hero-description {
+        font-size: 13px;
+        margin: 8px 0 14px;
+    }
+    .hero-badge img {
+        max-width: 180px !important;
+        margin: 0 auto;
+    }
+    .hero-stats {
+        grid-template-columns: 1fr 1fr;
+        gap: 5px;
+        padding: 10px 0;
+        margin-top: 14px;
+        max-width: 100%;
+        width: 100%;
+    }
+    .stat-item {
+        padding: 8px 6px;
+        gap: 6px;
+        border-radius: 6px;
+    }
+    .stat-icon {
+        font-size: 16px !important;
+        width: 24px !important;
+    }
+    .stat-value {
+        font-size: 14px !important;
+    }
+    .stat-label {
+        font-size: 7px !important;
+        letter-spacing: 0.03em;
+    }
+    .stat-text {
+        gap: 1px;
+    }
+    .hero-scroll-indicator {
+        display: none;
+    }
+}
+
+/* -------- 360px -------- */
+@media (max-width: 360px) {
+    .hero-content {
+        padding: 50px 8px 8px;
+        width: 100%;
+        max-width: 100%;
+    }
+    .hero-main {
+        font-size: clamp(16px, 3.5vw, 20px);
+    }
+    .hero-subtitle {
+        font-size: 9px;
+        letter-spacing: 0.06em;
+    }
+    .hero-description {
+        font-size: 12px;
+        margin: 6px 0 12px;
+    }
+    .hero-badge img {
+        max-width: 160px !important;
+        margin: 0 auto;
+    }
+    .hero-stats {
+        grid-template-columns: 1fr 1fr;
+        gap: 4px;
+        padding: 8px 0;
+        margin-top: 12px;
+        max-width: 100%;
+        width: 100%;
+    }
+    .stat-item {
+        padding: 6px 4px;
+        gap: 4px;
+        border-radius: 4px;
+    }
+    .stat-icon {
+        font-size: 14px !important;
+        width: 20px !important;
+    }
+    .stat-value {
+        font-size: 12px !important;
+    }
+    .stat-label {
+        font-size: 6px !important;
+        letter-spacing: 0.02em;
+    }
+    .stat-text {
+        gap: 1px;
+    }
+    .hero-scroll-indicator {
+        display: none;
+    }
+}
+
+/* ============================================================
+   МОБИЛЬНАЯ ВЕРСИЯ — ЭФФЕКТ СТЕКЛА
+   ============================================================ */
+
+@media (max-width: 1024px) {
+    .hero-background::after {
+        display: block !important;
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        pointer-events: none;
+        background: rgba(11, 11, 12, 0.4) !important;
+        backdrop-filter: blur(6px) !important;
+        -webkit-backdrop-filter: blur(6px) !important;
+    }
+
+    [data-theme="light"] .hero-background::after {
+        background: rgba(255, 255, 255, 0.45) !important;
+        backdrop-filter: blur(6px) !important;
+        -webkit-backdrop-filter: blur(6px) !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-background::after {
+        background: rgba(11, 11, 12, 0.45) !important;
+        backdrop-filter: blur(8px) !important;
+        -webkit-backdrop-filter: blur(8px) !important;
+    }
+
+    [data-theme="light"] .hero-background::after {
+        background: rgba(255, 255, 255, 0.5) !important;
+        backdrop-filter: blur(8px) !important;
+        -webkit-backdrop-filter: blur(8px) !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-background::after {
+        background: rgba(11, 11, 12, 0.5) !important;
+        backdrop-filter: blur(10px) !important;
+        -webkit-backdrop-filter: blur(10px) !important;
+    }
+
+    [data-theme="light"] .hero-background::after {
+        background: rgba(255, 255, 255, 0.55) !important;
+        backdrop-filter: blur(10px) !important;
+        -webkit-backdrop-filter: blur(10px) !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-background::after {
+        background: rgba(11, 11, 12, 0.55) !important;
+        backdrop-filter: blur(12px) !important;
+        -webkit-backdrop-filter: blur(12px) !important;
+    }
+
+    [data-theme="light"] .hero-background::after {
+        background: rgba(255, 255, 255, 0.6) !important;
+        backdrop-filter: blur(12px) !important;
+        -webkit-backdrop-filter: blur(12px) !important;
+    }
+}
+
+@media (max-width: 360px) {
+    .hero-background::after {
+        background: rgba(11, 11, 12, 0.6) !important;
+        backdrop-filter: blur(14px) !important;
+        -webkit-backdrop-filter: blur(14px) !important;
+    }
+
+    [data-theme="light"] .hero-background::after {
+        background: rgba(255, 255, 255, 0.65) !important;
+        backdrop-filter: blur(14px) !important;
+        -webkit-backdrop-filter: blur(14px) !important;
+    }
+}
+
+
+/* ============================================================
+   ЛАНДШАФТНАЯ ОРИЕНТАЦИЯ
+   ============================================================ */
+
+@media (max-height: 500px) and (orientation: landscape) {
+    .hero-section {
+        min-height: 100vh;
+        height: 100vh;
+    }
+    .hero-content {
+        padding: 60px 30px 10px;
+        max-width: 55%;
+        justify-content: center;
+        align-items: flex-start;
+        text-align: left;
+        padding-top: 60px;
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+    .hero-main {
+        font-size: clamp(28px, 4vw, 42px);
+        text-align: left;
+        max-width: 100%;
+    }
+    .hero-subtitle {
+        text-align: left;
+        max-width: 100%;
+    }
+    .hero-description {
+        font-size: 14px;
+        margin: 12px 0 16px;
+        text-align: left;
+        max-width: 100%;
+        width: 100%;
+    }
+    .hero-buttons {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+    .hero-buttons .btn {
+        width: auto;
+        max-width: 100%;
+    }
+    .hero-badge img {
+        max-width: 100px;
+        margin: 0;
+    }
+    .hero-stats {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 6px;
+        padding: 10px 0;
+        margin-top: 14px;
+        max-width: 100%;
+        justify-items: start;
+        margin-left: 0;
+        margin-right: 0;
+    }
+    .stat-item {
+        padding: 6px 10px;
+        gap: 8px;
+        max-width: 100%;
+        border-radius: 6px;
+        border-right: 1px solid rgba(255, 255, 255, 0.04);
+        border-bottom: none;
+        justify-content: center;
+    }
+    .stat-item:last-child {
+        border-right: none;
+    }
+    .stat-icon {
+        font-size: 16px;
+        width: 24px;
+    }
+    .stat-value {
+        font-size: 14px;
+    }
+    .stat-label {
+        font-size: 7px;
+    }
+    .stat-text {
+        text-align: center;
+    }
+    .hero-scroll-indicator {
+        right: 20px;
+        bottom: 20px;
+        display: flex;
+    }
+    .scroll-label {
+        font-size: 8px;
+    }
+    .scroll-line {
+        height: 20px;
+    }
+    .scroll-ball {
+        width: 6px;
+        height: 6px;
+    }
+    .scroll-arrow {
+        width: 16px;
+        height: 16px;
+    }
+    .hero-background::after {
+        background: linear-gradient(90deg, rgba(11, 11, 12, 0.8) 0%, rgba(11, 11, 12, 0.3) 70%, rgba(11, 11, 12, 0.05) 100%);
+    }
+}

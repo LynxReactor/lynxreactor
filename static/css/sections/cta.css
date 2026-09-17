@@ -1,0 +1,403 @@
+/* static/css/sections/cta.css */
+
+/* ============================================================
+   CTA СЕКЦИЯ — LYNXREACTOR
+   ============================================================ */
+
+.cta-section {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    padding: 80px 0;
+    background: var(--color-primary-dark);
+    overflow-x: hidden;
+}
+
+.cta-container {
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+/* ============================================================
+   ВЕРХНИЙ БЛОК — ПО ЦЕНТРУ
+   ============================================================ */
+
+.cta-header {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 50px;
+}
+
+.cta-header .section-label {
+    display: block;
+    font-family: var(--font-sans);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--color-gold, #B8734F);
+    margin-bottom: 16px;
+}
+
+.cta-title {
+    font-family: var(--font-serif);
+    font-size: clamp(32px, 4vw, 48px);
+    color: var(--color-text-primary);
+    margin-bottom: 16px;
+    line-height: 1.1;
+}
+
+.cta-description {
+    font-size: 17px;
+    color: var(--color-text-secondary);
+    max-width: 500px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* ============================================================
+   НИЖНИЙ БЛОК — 60% ИЗОБРАЖЕНИЕ, 40% ФОРМА
+   ============================================================ */
+
+.cta-content {
+    display: grid;
+    grid-template-columns: 60% 40%;
+    gap: 40px;
+    align-items: stretch;
+}
+
+/* ---------- ИЗОБРАЖЕНИЕ 60% ---------- */
+
+.cta-image-wrapper {
+    overflow: hidden;
+    border-radius: 16px;
+    border: 1px solid var(--color-border, #E4DED5);
+    min-height: 400px;
+    background: var(--color-secondary-dark);
+}
+
+.cta-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* ---------- ФОРМА 40% ---------- */
+
+.cta-form-wrapper {
+    padding: 32px 28px;
+    background: var(--color-card-bg);
+    border-radius: 16px;
+    border: 1px solid var(--color-border, #E4DED5);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.cta-form .form-group {
+    margin-bottom: 14px;
+}
+
+.cta-form .form-label {
+    display: block;
+    font-family: var(--font-sans);
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    margin-bottom: 4px;
+    letter-spacing: 0.04em;
+}
+
+.cta-form .form-label .required {
+    color: #e74c3c;
+}
+
+.cta-form .form-control {
+    width: 100%;
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-family: var(--font-sans);
+    font-size: 14px;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+/* ============================================================
+   ТЁМНАЯ ТЕМА
+   ============================================================ */
+
+[data-theme="dark"] .cta-form .form-control {
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--color-text-primary);
+}
+
+[data-theme="dark"] .cta-form .form-control:focus {
+    border-color: var(--color-gold, #C89A5B);
+    box-shadow: 0 0 0 3px rgba(200, 154, 91, 0.12);
+}
+
+[data-theme="dark"] .cta-form select.form-control {
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.03);
+}
+
+[data-theme="dark"] .cta-form select.form-control:focus {
+    border-color: var(--color-gold, #C89A5B);
+    box-shadow: 0 0 0 3px rgba(200, 154, 91, 0.12);
+}
+
+[data-theme="dark"] .cta-form textarea.form-control {
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.03);
+}
+
+[data-theme="dark"] .cta-form textarea.form-control:focus {
+    border-color: var(--color-gold, #C89A5B);
+    box-shadow: 0 0 0 3px rgba(200, 154, 91, 0.12);
+}
+
+/* ============================================================
+   СВЕТЛАЯ ТЕМА — ВЫДЕЛЕНИЕ БОРДЕРОМ
+   ============================================================ */
+
+[data-theme="light"] .cta-form .form-control {
+    border: 1.5px solid var(--color-border, #E4DED5) !important;
+    background: var(--color-bg-input, #F7F4EE) !important;
+    color: var(--color-text-primary);
+}
+
+[data-theme="light"] .cta-form .form-control:focus {
+    border-color: var(--color-gold, #B8734F) !important;
+    box-shadow: 0 0 0 3px rgba(184, 115, 79, 0.12) !important;
+    background: var(--color-bg-input, #FCFBF8) !important;
+}
+
+[data-theme="light"] .cta-form select.form-control {
+    border: 1.5px solid var(--color-border, #E4DED5) !important;
+    background: var(--color-bg-input, #F7F4EE) !important;
+}
+
+[data-theme="light"] .cta-form select.form-control:focus {
+    border-color: var(--color-gold, #B8734F) !important;
+    box-shadow: 0 0 0 3px rgba(184, 115, 79, 0.12) !important;
+}
+
+[data-theme="light"] .cta-form textarea.form-control {
+    border: 1.5px solid var(--color-border, #E4DED5) !important;
+    background: var(--color-bg-input, #F7F4EE) !important;
+}
+
+[data-theme="light"] .cta-form textarea.form-control:focus {
+    border-color: var(--color-gold, #B8734F) !important;
+    box-shadow: 0 0 0 3px rgba(184, 115, 79, 0.12) !important;
+}
+
+/* Ошибка — красный */
+[data-theme="light"] .cta-form .form-control.error {
+    border-color: #e74c3c !important;
+    box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.12) !important;
+}
+
+/* Успех — зелёный */
+[data-theme="light"] .cta-form .form-control.success {
+    border-color: #27ae60 !important;
+    box-shadow: 0 0 0 3px rgba(39, 174, 96, 0.12) !important;
+}
+
+/* ============================================================
+   ОБЩИЕ СТИЛИ ДЛЯ FORM CONTROL
+   ============================================================ */
+
+.cta-form .form-control::placeholder {
+    color: var(--color-text-muted);
+    opacity: 0.6;
+}
+
+.cta-form .form-hint {
+    font-size: 11px;
+    color: var(--color-text-muted);
+    margin-top: 3px;
+    opacity: 0.7;
+}
+
+.cta-form .form-error {
+    font-size: 11px;
+    color: #e74c3c;
+    margin-top: 3px;
+    display: none;
+}
+
+.cta-form .form-error.show {
+    display: block;
+}
+
+.cta-form .dynamic-field {
+    animation: fadeInUp 0.3s ease;
+}
+
+.cta-form .turnstile-wrapper {
+    display: flex;
+    justify-content: center;
+    margin: 12px 0;
+}
+
+/* Select кастомный */
+.cta-form select.form-control {
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236E706C' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 14px center;
+    padding-right: 36px;
+    cursor: pointer;
+}
+
+.cta-form select.form-control option {
+    background: var(--color-card-bg);
+    color: var(--color-text-primary);
+}
+
+.cta-form .btn-block {
+    width: 100%;
+    justify-content: center;
+    padding: 12px 24px;
+    font-size: 14px;
+}
+
+.cta-form .form-note {
+    text-align: center;
+    font-size: 12px;
+    color: var(--color-text-muted);
+    margin-top: 12px;
+    opacity: 0.6;
+}
+
+/* ============================================================
+   АНИМАЦИИ
+   ============================================================ */
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ============================================================
+   АДАПТИВНОСТЬ
+   ============================================================ */
+
+@media (max-width: 1200px) {
+    .cta-content {
+        grid-template-columns: 55% 45%;
+        gap: 30px;
+    }
+}
+
+@media (max-width: 992px) {
+    .cta-section {
+        padding: 60px 0;
+    }
+    .cta-content {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+    .cta-image-wrapper {
+        min-height: 250px;
+        order: -1;
+    }
+    .cta-form-wrapper {
+        padding: 28px 24px;
+    }
+    .cta-header {
+        margin-bottom: 30px;
+    }
+    .cta-title {
+        font-size: clamp(28px, 4vw, 36px);
+    }
+    .cta-description {
+        font-size: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    .cta-section {
+        padding: 40px 0;
+    }
+    .cta-container {
+        padding: 0 16px;
+    }
+    .cta-image-wrapper {
+        min-height: 180px;
+    }
+    .cta-form-wrapper {
+        padding: 20px 16px;
+    }
+    .cta-title {
+        font-size: clamp(24px, 5vw, 30px);
+    }
+    .cta-description {
+        font-size: 14px;
+    }
+    .cta-form .form-control {
+        font-size: 13px;
+        padding: 10px 12px;
+    }
+    .cta-form .btn-block {
+        font-size: 13px;
+        padding: 10px 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .cta-image-wrapper {
+        min-height: 140px;
+    }
+    .cta-form-wrapper {
+        padding: 16px 12px;
+    }
+    .cta-form .form-control {
+        font-size: 12px;
+        padding: 8px 10px;
+    }
+    .cta-form .btn-block {
+        font-size: 12px;
+        padding: 10px 16px;
+    }
+    .cta-form .form-label {
+        font-size: 11px;
+    }
+    .cta-form .form-note {
+        font-size: 11px;
+    }
+}
+
+@media (max-height: 500px) and (orientation: landscape) {
+    .cta-section {
+        padding: 30px 0;
+    }
+    .cta-image-wrapper {
+        min-height: 150px;
+    }
+    .cta-form-wrapper {
+        padding: 16px 20px;
+    }
+    .cta-form .form-group {
+        margin-bottom: 8px;
+    }
+    .cta-form .form-control {
+        padding: 6px 10px;
+        font-size: 12px;
+    }
+    .cta-form textarea.form-control {
+        min-height: 50px;
+    }
+}

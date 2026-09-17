@@ -1,0 +1,375 @@
+/* static/css/sections/portfolio.css */
+
+/* ============================================================
+   ПОРТФОЛИО — LYNXREACTOR
+   ============================================================ */
+
+.portfolio-section {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    padding: 80px 0;
+    background: var(--color-primary-dark);
+    overflow-x: hidden;
+}
+
+.portfolio-container {
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+/* ============================================================
+   ВЕРХНИЙ БЛОК — ПО ЦЕНТРУ
+   ============================================================ */
+
+.portfolio-header {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 60px;
+}
+
+.portfolio-header .section-label {
+    display: block;
+    font-family: var(--font-sans);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--color-gold);
+    margin-bottom: 16px;
+}
+
+.portfolio-header .section-title {
+    font-family: var(--font-serif);
+    font-size: clamp(32px, 4vw, 48px);
+    color: var(--color-text-primary);
+    margin-bottom: 16px;
+    line-height: 1.1;
+}
+
+.portfolio-header .section-description {
+    font-size: 17px;
+    color: var(--color-text-secondary);
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+/* ============================================================
+   НИЖНИЙ БЛОК — 3 КОЛОНКИ
+   ============================================================ */
+
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    width: 100%;
+}
+
+.portfolio-card {
+    background: var(--color-card-bg);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: var(--transition-smooth);
+    border: 1px solid var(--color-border, #E4DED5);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-width: 0;
+}
+
+.portfolio-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--color-gold, #B8734F);
+    box-shadow: var(--shadow-md);
+}
+
+/* Ссылка на изображение */
+.portfolio-image-link {
+    display: block;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.portfolio-image {
+    aspect-ratio: 16/10;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    background: var(--color-secondary-dark);
+}
+
+.portfolio-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.portfolio-image-link:hover .portfolio-image img,
+.portfolio-card:hover .portfolio-image img {
+    transform: scale(1.04);
+}
+
+/* Плейсхолдер для изображения */
+.portfolio-image-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--color-card-bg), rgba(184, 115, 79, 0.05));
+    font-family: var(--font-serif);
+    font-size: 48px;
+    color: var(--color-gold);
+    opacity: 0.3;
+}
+
+.portfolio-content {
+    padding: 16px 20px 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.portfolio-category {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-gold, #B8734F);
+    display: block;
+    margin-bottom: 4px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.portfolio-title-link {
+    font-family: var(--font-serif);
+    font-size: 18px;
+    margin-bottom: 8px;
+    color: var(--color-text-primary);
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    line-height: 1.2;
+}
+
+.portfolio-description-full {
+    font-size: 14px;
+    color: var(--color-text-secondary);
+    line-height: 1.6;
+    margin-bottom: 14px;
+    flex: 1;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.portfolio-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--color-gold, #B8734F);
+    transition: var(--transition-smooth);
+    text-decoration: none;
+    margin-top: auto;
+    padding-top: 8px;
+    border-top: 1px solid var(--color-border, #E4DED5);
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+.portfolio-link:hover {
+    color: var(--color-gold-dark, #965A3D);
+    gap: 12px;
+}
+
+.portfolio-link .portfolio-link-icon {
+    width: 16px;
+    height: 16px;
+    stroke: currentColor;
+    transition: transform 0.3s ease;
+}
+
+.portfolio-link:hover .portfolio-link-icon {
+    transform: translate(2px, -2px);
+}
+
+.portfolio-link.disabled {
+    color: var(--color-text-secondary);
+    opacity: 0.5;
+    cursor: default;
+    margin-top: auto;
+    padding-top: 8px;
+    border-top: 1px solid var(--color-border, #E4DED5);
+}
+
+.portfolio-link.disabled:hover {
+    color: var(--color-text-secondary);
+    gap: 8px;
+}
+
+.portfolio-link.disabled .portfolio-link-icon {
+    display: none;
+}
+
+/* ============================================================
+   АДАПТИВНОСТЬ
+   ============================================================ */
+
+@media (max-width: 1200px) {
+    .portfolio-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+}
+
+@media (max-width: 992px) {
+    .portfolio-section {
+        padding: 60px 0;
+    }
+    .portfolio-header {
+        margin-bottom: 40px;
+    }
+    .portfolio-header .section-title {
+        font-size: clamp(28px, 4vw, 36px);
+    }
+}
+
+@media (max-width: 768px) {
+    .portfolio-section {
+        padding: 40px 0;
+    }
+    .portfolio-container {
+        padding: 0 16px;
+    }
+    .portfolio-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+    }
+    .portfolio-content {
+        padding: 12px 14px 14px;
+    }
+    .portfolio-title-link {
+        font-size: 16px;
+    }
+    .portfolio-description-full {
+        font-size: 13px;
+        -webkit-line-clamp: 2;
+    }
+}
+
+@media (max-width: 576px) {
+    .portfolio-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+    .portfolio-header .section-title {
+        font-size: clamp(24px, 5vw, 30px);
+    }
+    .portfolio-header .section-description {
+        font-size: 15px;
+    }
+    .portfolio-content {
+        padding: 12px 14px 14px;
+    }
+    .portfolio-image {
+        aspect-ratio: 16/9;
+    }
+}
+
+@media (max-width: 480px) {
+    .portfolio-grid {
+        gap: 12px;
+    }
+    .portfolio-content {
+        padding: 10px 12px 12px;
+    }
+    .portfolio-title-link {
+        font-size: 15px;
+    }
+    .portfolio-category {
+        font-size: 10px;
+    }
+    .portfolio-description-full {
+        font-size: 12px;
+        -webkit-line-clamp: 2;
+    }
+    .portfolio-link {
+        font-size: 12px;
+    }
+}
+
+@media (max-height: 500px) and (orientation: landscape) {
+    .portfolio-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 12px;
+    }
+    .portfolio-image {
+        aspect-ratio: 16/9;
+    }
+    .portfolio-content {
+        padding: 10px 12px 12px;
+    }
+    .portfolio-title-link {
+        font-size: 14px;
+    }
+    .portfolio-description-full {
+        font-size: 12px;
+        -webkit-line-clamp: 2;
+    }
+}
+
+/* ============================================================
+   ТЁМНАЯ ТЕМА
+   ============================================================ */
+
+[data-theme="dark"] .portfolio-card {
+    border-color: rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="dark"] .portfolio-link {
+    border-top-color: rgba(255, 255, 255, 0.06);
+}
+
+[data-theme="dark"] .portfolio-category {
+    color: var(--color-gold, #C89A5B);
+}
+
+[data-theme="dark"] .portfolio-link {
+    color: var(--color-gold, #C89A5B);
+}
+
+[data-theme="dark"] .portfolio-link:hover {
+    color: var(--color-gold-light, #D8B477);
+}
+
+/* ============================================================
+   СВЕТЛАЯ ТЕМА
+   ============================================================ */
+
+[data-theme="light"] .portfolio-card {
+    border-color: var(--color-border, #E4DED5);
+}
+
+[data-theme="light"] .portfolio-link {
+    border-top-color: var(--color-border, #E4DED5);
+}
+
+[data-theme="light"] .portfolio-category {
+    color: var(--color-gold, #B8734F);
+}
+
+[data-theme="light"] .portfolio-link {
+    color: var(--color-gold, #B8734F);
+}
+
+[data-theme="light"] .portfolio-link:hover {
+    color: var(--color-gold-dark, #965A3D);
+}

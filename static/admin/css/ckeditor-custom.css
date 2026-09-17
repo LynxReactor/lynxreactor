@@ -1,0 +1,70 @@
+/* static/admin/css/ckeditor-custom.css */
+
+/* Стили для CKEditor в админке */
+.django-ckeditor-widget {
+    width: 100% !important;
+}
+
+.django-ckeditor-widget textarea {
+    width: 100% !important;
+    min-height: 300px !important;
+}
+
+/* Для поля excerpt — меньше высота */
+.field-excerpt .django-ckeditor-widget textarea {
+    min-height: 150px !important;
+}
+
+/* Тёмная тема для редактора */
+.cke {
+    background: #1a1a1d !important;
+    border-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+.cke_top {
+    background: #141416 !important;
+    border-bottom-color: rgba(255, 255, 255, 0.06) !important;
+}
+
+.cke_bottom {
+    background: #141416 !important;
+    border-top-color: rgba(255, 255, 255, 0.06) !important;
+}
+
+.cke_toolgroup {
+    background: #1a1a1d !important;
+    border-color: rgba(255, 255, 255, 0.06) !important;
+}
+
+.cke_button {
+    color: #F5F3EF !important;
+}
+
+.cke_button:hover {
+    background: rgba(255, 255, 255, 0.05) !important;
+}
+
+/* Светлая тема */
+[data-theme="light"] .cke {
+    background: #ffffff !important;
+    border-color: #E4DED5 !important;
+}
+
+[data-theme="light"] .cke_top {
+    background: #F7F4EE !important;
+    border-bottom-color: #E4DED5 !important;
+}
+
+[data-theme="light"] .cke_bottom {
+    background: #F7F4EE !important;
+    border-top-color: #E4DED5 !important;
+}
+
+[data-theme="light"] .cke_toolgroup {
+    background: #ffffff !important;
+    border-color: #E4DED5 !important;
+}
+
+[data-theme="light"] .cke_button {
+    color: #202321 !important;
+}

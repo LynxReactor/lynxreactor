@@ -1,0 +1,168 @@
+/* static/css/core/theme.css */
+
+/* ============================================================
+   ТЕМЫ — LYNXREACTOR
+   ============================================================ */
+
+/* ============================================================
+   СВЕТЛАЯ ТЕМА (НОВАЯ ЦВЕТОВАЯ СХЕМА)
+   ============================================================ */
+
+:root,
+[data-theme="light"] {
+    /* Основные фоны */
+    --color-primary-dark: #F7F4EE;        /* Ivory / слоновая кость */
+    --color-secondary-dark: #FCFBF8;      /* Warm White */
+    --color-card-bg: #FCFBF8;             /* Warm White */
+    --color-light-bg: #F7F4EE;            /* Ivory */
+    --color-bg-input: rgba(32, 35, 33, 0.04);
+    --color-bg-overlay: rgba(247, 244, 238, 0.92);
+
+    /* Цвета текста */
+    --color-text-primary: #202321;        /* Graphite */
+    --color-text-secondary: #6E706C;      /* Warm Gray */
+    --color-text-dark: #202321;           /* Graphite */
+    --color-text-light: #FCFBF8;          /* Warm White */
+    --color-text-muted: #9A9B98;          /* Light Warm Gray */
+    --color-accent-text: #7A3D1F;
+
+    /* Цвета границ */
+    --color-border: #E4DED5;              /* Warm Gray */
+    --color-border-hover: #D5CFC6;        /* Darker Warm Gray */
+
+    /* Акценты (Copper) */
+    --color-gold: #B8734F;                /* Copper */
+    --color-gold-light: #D8AD95;          /* Copper Light */
+    --color-gold-dark: #965A3D;           /* Dark Copper */
+    --color-gold-rgba: rgba(184, 115, 79, 0.15);
+    --color-gold-rgba-light: rgba(184, 115, 79, 0.05);
+
+    /* CTA */
+    --color-cta-primary: #B8734F;         /* Copper */
+    --color-cta-primary-hover: #965A3D;   /* Dark Copper */
+
+    /* Код / Terminal */
+    --color-code-bg: #171A19;             /* Deep Graphite */
+    --color-code-text: #FCFBF8;           /* Warm White */
+
+    /* Python/Django */
+    --color-python: #3776AB;
+    --color-django: #0C4A3E;
+
+    /* Тени */
+    --shadow-sm: 0 2px 8px rgba(32, 35, 33, 0.04);
+    --shadow-md: 0 4px 24px rgba(32, 35, 33, 0.06);
+    --shadow-lg: 0 8px 40px rgba(32, 35, 33, 0.08);
+    --shadow-xl: 0 16px 64px rgba(32, 35, 33, 0.12);
+
+    /* Скроллбар */
+    --color-scrollbar-track: #F7F4EE;
+    --color-scrollbar-thumb: #D8AD95;
+    --color-selection: rgba(184, 115, 79, 0.2);
+
+    /* Дополнительные */
+    --color-input-bg: rgba(32, 35, 33, 0.03);
+    --color-input-border: #E4DED5;
+    --color-input-focus: #B8734F;
+    --color-error: #C0392B;
+    --color-success: #27AE60;
+}
+
+/* ============================================================
+   ТЁМНАЯ ТЕМА (ОСТАЁТСЯ БЕЗ ИЗМЕНЕНИЙ)
+   ============================================================ */
+
+[data-theme="dark"] {
+    --color-primary-dark: #0B0B0C;
+    --color-secondary-dark: #141416;
+    --color-card-bg: #1a1a1d;
+    --color-light-bg: #1a1a1d;
+    --color-bg-input: rgba(255, 255, 255, 0.05);
+    --color-bg-overlay: rgba(11, 11, 12, 0.95);
+
+    --color-text-primary: #F5F3EF;
+    --color-text-secondary: #A6A3A0;
+    --color-text-dark: #0B0B0C;
+    --color-text-light: #F5F3EF;
+    --color-text-muted: #6B6865;
+    --color-accent-text: #C89A5B;
+
+    --color-border: rgba(255, 255, 255, 0.06);
+    --color-border-hover: rgba(255, 255, 255, 0.12);
+
+    --color-gold: #C89A5B;
+    --color-gold-light: #D8B477;
+    --color-gold-dark: #9A6D35;
+    --color-gold-rgba: rgba(200, 154, 91, 0.25);
+    --color-gold-rgba-light: rgba(200, 154, 91, 0.08);
+
+    --color-cta-primary: #C89A5B;
+    --color-cta-primary-hover: #D8B477;
+
+    --color-code-bg: #1a1a1d;
+    --color-code-text: #F5F3EF;
+
+    --color-python: #3776AB;
+    --color-django: #0C4A3E;
+
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 24px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.5);
+    --shadow-xl: 0 16px 64px rgba(0, 0, 0, 0.6);
+
+    --color-scrollbar-track: #1a1a1d;
+    --color-scrollbar-thumb: #3a3a3d;
+    --color-selection: rgba(200, 154, 91, 0.3);
+
+    --color-input-bg: rgba(255, 255, 255, 0.03);
+    --color-input-border: rgba(255, 255, 255, 0.08);
+    --color-input-focus: #C89A5B;
+    --color-error: #E74C3C;
+    --color-success: #2ECC71;
+}
+
+/* ============================================================
+   АВТОМАТИЧЕСКОЕ ПЕРЕКЛЮЧЕНИЕ
+   ============================================================ */
+
+@media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) {
+        --color-primary-dark: #F7F4EE;
+        --color-secondary-dark: #FCFBF8;
+        --color-card-bg: #FCFBF8;
+        --color-light-bg: #F7F4EE;
+        --color-text-primary: #202321;
+        --color-text-secondary: #6E706C;
+        --color-text-dark: #202321;
+        --color-text-light: #FCFBF8;
+        --color-border: #E4DED5;
+        --color-gold: #B8734F;
+        --color-gold-light: #D8AD95;
+        --color-gold-dark: #965A3D;
+        --color-gold-rgba: rgba(184, 115, 79, 0.15);
+        --shadow-sm: 0 2px 8px rgba(32, 35, 33, 0.04);
+        --shadow-md: 0 4px 24px rgba(32, 35, 33, 0.06);
+        --shadow-lg: 0 8px 40px rgba(32, 35, 33, 0.08);
+        --shadow-xl: 0 16px 64px rgba(32, 35, 33, 0.12);
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+        --color-primary-dark: #0B0B0C;
+        --color-secondary-dark: #141416;
+        --color-card-bg: #1a1a1d;
+        --color-light-bg: #1a1a1d;
+        --color-text-primary: #F5F3EF;
+        --color-text-secondary: #A6A3A0;
+        --color-text-dark: #0B0B0C;
+        --color-text-light: #F5F3EF;
+        --color-border: rgba(255, 255, 255, 0.06);
+        --color-gold: #C89A5B;
+        --color-gold-rgba: rgba(200, 154, 91, 0.25);
+        --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+        --shadow-md: 0 4px 24px rgba(0, 0, 0, 0.4);
+        --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.5);
+        --shadow-xl: 0 16px 64px rgba(0, 0, 0, 0.6);
+    }
+}

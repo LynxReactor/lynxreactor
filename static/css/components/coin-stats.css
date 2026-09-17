@@ -1,0 +1,363 @@
+/* static/css/coin-stats.css */
+
+/* ==========================================
+   БЛОК СТАТИСТИКИ / МОНЕТЫ — ПРАВЫЙ КРАЙ HERO
+   ========================================== */
+
+.hero-stats-absolute {
+    position: absolute;
+    right: 50px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 32px;
+    background: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    padding: 20px 10px;
+    pointer-events: none;
+}
+
+.hero-stats-absolute .stat-item {
+    pointer-events: auto;
+}
+
+
+[data-theme="light"] .hero-stats-absolute,
+[data-theme="dark"] .hero-stats-absolute {
+    background: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+}
+
+/* ----- Один элемент статистики ----- */
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    opacity: 0;
+    animation: fadeInStat 0.6s ease forwards;
+    background: transparent !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+    flex-shrink: 0;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    position: relative;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.stat-item:hover {
+    transform: scale(1.1);
+}
+
+.stat-item:nth-child(1) { animation-delay: 0s; }
+.stat-item:nth-child(2) { animation-delay: 0.3s; }
+.stat-item:nth-child(3) { animation-delay: 0.6s; }
+.stat-item:nth-child(4) { animation-delay: 0.9s; }
+
+@keyframes fadeInStat {
+    0%   { opacity: 0; transform: translateX(30px); }
+    100% { opacity: 1; transform: translateX(0); }
+}
+
+
+.stat-item::after {
+    display: none;
+}
+
+.stat-icon.coin {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    transform-style: preserve-3d;
+    transition: transform 0.4s ease;
+    cursor: pointer;
+    padding: 0 !important;
+    position: relative;
+}
+
+[data-theme="light"] .stat-icon.coin {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+[data-theme="dark"] .stat-icon.coin {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+}
+
+.stat-icon.coin:hover {
+    transform: scale(1.08) rotateY(8deg);
+    box-shadow: none !important;
+}
+
+.stat-icon.coin.spin {
+    animation: spinCoin 2.6s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+.stat-item:nth-child(1) .coin { animation-delay: 0s; }
+.stat-item:nth-child(2) .coin { animation-delay: 0.6s; }
+.stat-item:nth-child(3) .coin { animation-delay: 1.2s; }
+.stat-item:nth-child(4) .coin { animation-delay: 1.8s; }
+
+@keyframes spinCoin {
+    0%   { transform: rotateY(0deg) scale(0.9); opacity: 0.5; }
+    40%  { transform: rotateY(540deg) scale(1.02); opacity: 1; }
+    70%  { transform: rotateY(900deg) scale(0.97); }
+    100% { transform: rotateY(1080deg) scale(1); opacity: 1; }
+}
+
+.coin-face {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backface-visibility: hidden;
+    overflow: hidden;
+    background: transparent !important;
+}
+
+.coin-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    border-radius: 50%;
+    filter: none !important;
+    transition: transform 0.4s ease;
+}
+
+.stat-icon.coin:hover .coin-img {
+    transform: scale(1.02);
+    filter: none !important;
+}
+
+.stat-label-side {
+    display: none !important;
+}
+
+/* ==========================================
+   АДАПТИВНОСТЬ (ДЕСКТОП)
+   ========================================== */
+
+@media (max-width: 1400px) {
+    .stat-icon.coin {
+        width: 120px;
+        height: 120px;
+        padding: 0 !important;
+    }
+    .hero-stats-absolute {
+        gap: 28px;
+        right: 30px;
+        padding: 16px 8px;
+    }
+    .hero-stats-absolute::before {
+        top: -50px;
+        bottom: -50px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .stat-icon.coin {
+        width: 105px;
+        height: 105px;
+        padding: 0 !important;
+    }
+    .hero-stats-absolute {
+        gap: 24px;
+        right: 20px;
+        padding: 14px 6px;
+    }
+    .hero-stats-absolute::before {
+        top: -40px;
+        bottom: -40px;
+    }
+}
+
+@media (max-width: 992px) {
+    .stat-icon.coin {
+        width: 90px;
+        height: 90px;
+        padding: 0 !important;
+    }
+    .hero-stats-absolute {
+        gap: 20px;
+        right: 15px;
+        padding: 12px 4px;
+    }
+    .hero-stats-absolute::before {
+        top: -35px;
+        bottom: -35px;
+        width: 2px;
+    }
+}
+
+/* ==========================================
+   МОБИЛЬНАЯ ВЕРСИЯ — МОНЕТЫ В ПОТОКЕ, БОЛЬШИЕ
+   ========================================== */
+
+@media (max-width: 768px) {
+    .hero-stats-absolute {
+        position: relative !important;
+        right: auto !important;
+        top: auto !important;
+        transform: none !important;
+        z-index: auto !important;
+        pointer-events: auto !important;
+        margin-top: 30px;
+        margin-bottom: 20px;
+        width: 100%;
+        padding: 0 !important;
+        gap: 0 !important;
+    }
+
+    .hero-stats-absolute {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px 20px;
+        padding: 20px 16px 30px !important;
+        position: relative;
+        width: 100%;
+    }
+
+    .hero-stats-absolute::before {
+        display: none !important;
+    }
+
+    .stat-item {
+        flex-direction: column;
+        align-items: center;
+        gap: 0;
+        opacity: 1 !important;
+        animation: none !important;
+        width: 100%;
+        padding: 0 !important;
+        background: transparent !important;
+        backdrop-filter: none !important;
+        border: none !important;
+        box-shadow: none !important;
+    }
+
+    .stat-icon.coin {
+        width: 75% !important;
+        max-width: 75% !important;
+        height: auto !important;
+        aspect-ratio: 1 / 1;
+        padding: 0 !important;
+        border-radius: 50%;
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        min-height: 120px;
+    }
+
+    .stat-icon.coin .coin-img {
+        width: 75%;
+        height: 75%;
+        object-fit: contain;
+        filter: none !important;
+    }
+
+    .stat-item:hover {
+        transform: none !important;
+    }
+    .stat-icon.coin:hover {
+        transform: none !important;
+    }
+    .stat-icon.coin:hover .coin-img {
+        transform: none !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-stats-absolute {
+        gap: 16px 12px;
+        padding: 16px 12px 24px !important;
+        margin-top: 20px;
+        margin-bottom: 16px;
+    }
+
+    .stat-icon.coin {
+        min-height: 90px;
+        padding: 0 !important;
+    }
+}
+
+@media (max-width: 400px) {
+    .hero-stats-absolute {
+        gap: 12px 10px;
+        padding: 12px 8px 20px !important;
+        margin-top: 16px;
+        margin-bottom: 12px;
+    }
+
+    .stat-icon.coin {
+        min-height: 70px;
+        padding: 0 !important;
+    }
+}
+
+/* ==========================================
+   ОТСТУП ДЛЯ КОНТЕНТА (на десктопе)
+   ========================================== */
+
+@media (min-width: 769px) {
+    .hero-content {
+        padding-right: 180px !important;
+    }
+}
+
+@media (min-width: 992px) {
+    .hero-content {
+        padding-right: 200px !important;
+    }
+}
+
+@media (min-width: 1200px) {
+    .hero-content {
+        padding-right: 220px !important;
+    }
+}
+
+@media (min-width: 1400px) {
+    .hero-content {
+        padding-right: 240px !important;
+    }
+}
+
+/* ==========================================
+   REDUCED MOTION
+   ========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+    .stat-item {
+        animation: none !important;
+        opacity: 1 !important;
+    }
+    .stat-icon.coin.spin {
+        animation: none !important;
+        transform: none !important;
+    }
+    .stat-icon.coin:hover {
+        transform: none !important;
+    }
+}

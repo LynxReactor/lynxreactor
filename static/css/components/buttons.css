@@ -1,0 +1,146 @@
+/* static/css/components/buttons.css */
+
+/* ============================================================
+   КНОПКИ — LYNXREACTOR (НОВАЯ ЦВЕТОВАЯ СХЕМА)
+   ============================================================ */
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 15px 28px;
+    font-family: var(--font-sans);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    border: none;
+    border-radius: var(--radius-btn);
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+.btn .arrow {
+    transition: transform 0.3s ease;
+    font-size: 14px;
+}
+
+.btn:hover .arrow {
+    transform: translateX(4px);
+}
+
+/* ============================================================
+   PRIMARY — Copper
+   ============================================================ */
+
+.btn-primary {
+    background: var(--color-cta-primary, #B8734F) !important;
+    color: var(--color-text-light, #FCFBF8) !important;
+}
+
+.btn-primary:hover {
+    background: var(--color-cta-primary-hover, #965A3D) !important;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(184, 115, 79, 0.3);
+}
+
+/* ============================================================
+   SECONDARY — Outline
+   ============================================================ */
+
+.btn-secondary {
+    background: transparent !important;
+    color: var(--color-text-primary, #202321) !important;
+    border: 1px solid var(--color-gold-rgba, rgba(184, 115, 79, 0.2)) !important;
+}
+
+.btn-secondary:hover {
+    border-color: var(--color-gold, #B8734F) !important;
+    color: var(--color-gold, #B8734F) !important;
+    transform: translateY(-2px);
+}
+
+/* ============================================================
+   LIGHT — Светлый фон
+   ============================================================ */
+
+.btn-light {
+    background: var(--color-light-bg, #F7F4EE) !important;
+    color: var(--color-text-dark, #202321) !important;
+}
+
+.btn-light:hover {
+    background: var(--color-text-primary, #202321) !important;
+    color: var(--color-text-light, #FCFBF8) !important;
+    transform: translateY(-2px);
+}
+
+/* ============================================================
+   DARK — Тёмный фон
+   ============================================================ */
+
+.btn-dark {
+    background: var(--color-text-primary, #202321) !important;
+    color: var(--color-text-light, #FCFBF8) !important;
+}
+
+.btn-dark:hover {
+    background: var(--color-secondary-dark, #FCFBF8) !important;
+    color: var(--color-text-primary, #202321) !important;
+    transform: translateY(-2px);
+}
+
+/* ============================================================
+   OUTLINE GOLD — Обводка Copper
+   ============================================================ */
+
+.btn-outline-gold {
+    background: transparent !important;
+    color: var(--color-gold, #B8734F) !important;
+    border: 1px solid var(--color-gold, #B8734F) !important;
+}
+
+.btn-outline-gold:hover {
+    background: var(--color-gold, #B8734F) !important;
+    color: var(--color-text-light, #FCFBF8) !important;
+    transform: translateY(-2px);
+}
+
+/* ============================================================
+   РАЗМЕРЫ
+   ============================================================ */
+
+.btn-sm {
+    padding: 10px 20px;
+    font-size: 12px;
+}
+
+.btn-block {
+    width: 100%;
+    justify-content: center;
+}
+
+/* ============================================================
+   АДАПТАЦИЯ ДЛЯ АНГЛИЙСКОГО
+   ============================================================ */
+
+html[lang="en"] .btn {
+    font-size: 11px;
+    padding: 10px 18px;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+}
+
+html[lang="en"] .btn .arrow {
+    font-size: 12px;
+}
+
+@media (max-width: 768px) {
+    html[lang="en"] .btn {
+        font-size: 10px;
+        padding: 8px 14px;
+        white-space: normal;
+        min-height: 40px;
+    }
+}

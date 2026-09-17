@@ -1,0 +1,29 @@
+/* static/css/components/cards.css */
+
+/* ============================================================
+   КАРТОЧКИ — LYNXREACTOR
+   ============================================================ */
+
+.card,
+.service-card,
+.portfolio-card,
+.tech-item,
+.tariff-card,
+.faq-item {
+    background: var(--color-card-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-card);
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-sm);
+}
+
+.card:hover,
+.service-card:hover,
+.portfolio-card:hover,
+.tech-item:hover,
+.tariff-card:hover,
+.faq-item:hover {
+    border-color: var(--color-gold);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+}

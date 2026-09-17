@@ -1,0 +1,31 @@
+<!-- templates/agency/maintenance.html -->
+
+{% extends 'agency/errors/error.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Технические работы" %} | LYNXREACTOR{% endblock %}
+
+{% block status %}🔧 {% trans "Технические работы" %}{% endblock %}
+
+{% block error_code %}{% trans "СКОРО" %}{% endblock %}
+
+{% block error_title %}{% trans "Сайт на обслуживании" %}{% endblock %}
+
+{% block error_description %}
+    {% if config and config.maintenance_text %}
+        {{ config.maintenance_text }}
+    {% else %}
+        {% trans "Сайт временно недоступен из-за технических работ. Приносим извинения за неудобства. Зайдите позже." %}
+    {% endif %}
+{% endblock %}
+
+{% block actions %}
+    <div style="font-size:14px;color:#A6A3A0;margin-bottom:16px;">
+        {% trans "Ориентировочное время восстановления:" %}
+        <span style="color:#C89A5B;">{% trans "в ближайшее время" %}</span>
+    </div>
+    <button onclick="location.reload()" class="btn">
+        🔄 {% trans "Проверить снова" %}
+        <span class="arrow">→</span>
+    </button>
+{% endblock %}

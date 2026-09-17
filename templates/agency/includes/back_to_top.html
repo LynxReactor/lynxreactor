@@ -1,0 +1,211 @@
+<!-- templates/agency/includes/back_to_top.html -->
+
+{% load static i18n %}
+
+<button class="back-to-top" id="backToTop" aria-label="{% trans 'Наверх' %}">
+    <span class="tooltip">{% trans "Наверх" %}</span>
+    <span class="arrow-up">↑</span>
+</button>
+
+<style>
+    /* ============================================================
+       BACK TO TOP — СТИЛИ
+       ============================================================ */
+
+    .back-to-top {
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        z-index: 999;
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+        background: var(--color-gold, #C89A5B);
+        color: var(--color-text-dark, #0B0B0C);
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 22px;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(20px);
+        transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        box-shadow: 0 4px 24px rgba(200, 154, 91, 0.3);
+        text-decoration: none;
+        font-family: var(--font-sans, 'Manrope', sans-serif);
+        user-select: none;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .back-to-top.visible {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+        animation: backToTopPulse 2s ease-in-out infinite;
+    }
+
+    .back-to-top:hover {
+        background: var(--color-gold-light, #D8B477);
+        transform: translateY(-4px) scale(1.05);
+        box-shadow: 0 8px 40px rgba(200, 154, 91, 0.4);
+        animation: none;
+    }
+
+    .back-to-top:active {
+        transform: scale(0.95);
+    }
+
+    .back-to-top .arrow-up {
+        display: inline-block;
+        transition: transform 0.3s ease;
+        line-height: 1;
+        font-weight: 700;
+    }
+
+    .back-to-top:hover .arrow-up {
+        transform: translateY(-3px);
+    }
+
+    .back-to-top .tooltip {
+        position: absolute;
+        right: calc(100% + 16px);
+        top: 50%;
+        transform: translateY(-50%);
+        background: var(--color-card-bg, #171719);
+        color: var(--color-text-primary, #F5F3EF);
+        padding: 6px 14px;
+        border-radius: 6px;
+        font-family: var(--font-sans, 'Manrope', sans-serif);
+        font-size: 12px;
+        font-weight: 500;
+        white-space: nowrap;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        pointer-events: none;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    }
+
+    [data-theme="light"] .back-to-top .tooltip {
+        background: #ffffff;
+        color: #111111;
+        border-color: rgba(0, 0, 0, 0.06);
+    }
+
+    .back-to-top .tooltip::after {
+        content: '';
+        position: absolute;
+        right: -6px;
+        top: 50%;
+        transform: translateY(-50%);
+        border: 6px solid transparent;
+        border-left-color: var(--color-card-bg, #171719);
+    }
+
+    [data-theme="light"] .back-to-top .tooltip::after {
+        border-left-color: #ffffff;
+    }
+
+    .back-to-top:hover .tooltip {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    @media (max-width: 768px) {
+        .back-to-top {
+            width: 46px;
+            height: 46px;
+            font-size: 18px;
+            bottom: 20px;
+            right: 20px;
+        }
+        .back-to-top .tooltip {
+            display: none;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .back-to-top {
+            width: 40px;
+            height: 40px;
+            font-size: 16px;
+            bottom: 16px;
+            right: 16px;
+        }
+    }
+
+    @keyframes backToTopPulse {
+        0%, 100% {
+            box-shadow: 0 4px 24px rgba(200, 154, 91, 0.3);
+        }
+        50% {
+            box-shadow: 0 4px 40px rgba(200, 154, 91, 0.5);
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .back-to-top {
+            transition: none !important;
+            animation: none !important;
+        }
+        .back-to-top:hover .arrow-up {
+            transform: none !important;
+        }
+        .back-to-top.visible {
+            animation: none !important;
+        }
+    }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    'use strict';
+
+    var backToTopBtn = document.getElementById('backToTop');
+    if (!backToTopBtn) return;
+
+    var scrollThreshold = 400;
+
+    function toggleBackToTop() {
+        var scrolled = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+        if (scrolled > scrollThreshold) {
+            backToTopBtn.classList.add('visible');
+        } else {
+            backToTopBtn.classList.remove('visible');
+        }
+    }
+
+    function scrollToTop() {
+        var start = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+        var duration = 600;
+        var startTime = performance.now();
+
+        function animateScroll(currentTime) {
+            var elapsed = currentTime - startTime;
+            var progress = Math.min(elapsed / duration, 1);
+            var eased = progress < 0.5
+                ? 4 * progress * progress * progress
+                : 1 - Math.pow(-2 * progress + 2, 3) / 2;
+            window.scrollTo(0, start * (1 - eased));
+            if (progress < 1) {
+                requestAnimationFrame(animateScroll);
+            }
+        }
+        requestAnimationFrame(animateScroll);
+    }
+
+    window.addEventListener('scroll', toggleBackToTop, { passive: true });
+    window.addEventListener('resize', toggleBackToTop, { passive: true });
+
+    backToTopBtn.addEventListener('click', function(e) {
+        e.preventDefault();
+        scrollToTop();
+    });
+
+    toggleBackToTop();
+    document.addEventListener('touchmove', toggleBackToTop, { passive: true });
+});
+</script>

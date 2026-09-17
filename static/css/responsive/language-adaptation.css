@@ -1,0 +1,489 @@
+/* static/css/language-adaptation.css */
+
+/* ============================================================
+   АДАПТАЦИЯ ДЛЯ АНГЛИЙСКОГО ЯЗЫКА
+   ============================================================ */
+
+html[lang="en"] {
+    font-size: 100%;
+}
+
+html[lang="en"] body {
+    font-size: 16px;
+}
+
+/* ============================================================
+   ЗАГОЛОВКИ
+   ============================================================ */
+
+html[lang="en"] h1,
+html[lang="en"] .hero-main {
+    font-size: clamp(38px, 5vw, 56px);
+}
+
+html[lang="en"] h2,
+html[lang="en"] .section-title {
+    font-size: clamp(32px, 4vw, 44px);
+}
+
+html[lang="en"] h3,
+html[lang="en"] .service-title,
+html[lang="en"] .tariff-name {
+    font-size: clamp(20px, 2.5vw, 28px);
+}
+
+html[lang="en"] h4 {
+    font-size: clamp(18px, 2vw, 24px);
+}
+
+/* ============================================================
+   ТЕКСТ
+   ============================================================ */
+
+html[lang="en"] p,
+html[lang="en"] .hero-description,
+html[lang="en"] .section-description {
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+html[lang="en"] .hero-subtitle {
+    font-size: 14px;
+    letter-spacing: 0.12em;
+}
+
+/* ============================================================
+   НАВИГАЦИЯ
+   ============================================================ */
+
+html[lang="en"] .nav-link {
+    font-size: 12px;
+    letter-spacing: 0.1em;
+}
+
+html[lang="en"] .logo-text {
+    font-size: 28px;
+}
+
+html[lang="en"] .logo-subtitle {
+    font-size: 9px;
+    letter-spacing: 0.2em;
+}
+
+/* ============================================================
+   КНОПКИ
+   ============================================================ */
+
+html[lang="en"] .btn {
+    font-size: 13px;
+    padding: 12px 24px;
+    letter-spacing: 0.06em;
+}
+
+html[lang="en"] .btn .arrow {
+    font-size: 14px;
+}
+
+/* ============================================================
+   УСЛУГИ (SERVICES) — АНГЛИЙСКАЯ АДАПТАЦИЯ
+   ============================================================ */
+
+html[lang="en"] .service-title {
+    font-size: 18px;
+}
+
+html[lang="en"] .service-description {
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+html[lang="en"] .service-link {
+    font-size: 13px;
+}
+
+html[lang="en"] .service-card-overlay {
+    padding: 10px 12px 8px !important;
+}
+
+html[lang="en"] .service-number {
+    font-size: 24px !important;
+    margin-bottom: 2px !important;
+}
+
+html[lang="en"] .service-title {
+    font-size: 13px !important;
+    margin-bottom: 1px !important;
+    line-height: 1.2 !important;
+}
+
+html[lang="en"] .service-description {
+    font-size: 10px !important;
+    line-height: 1.3 !important;
+    margin-bottom: 4px !important;
+}
+
+html[lang="en"] .service-more-btn {
+    font-size: 10px !important;
+}
+
+html[lang="en"] .service-card-content {
+    padding-top: 2px !important;
+}
+
+/* ============================================================
+   ТАРИФЫ
+   ============================================================ */
+
+html[lang="en"] .tariff-name {
+    font-size: 20px;
+}
+
+html[lang="en"] .tariff-subtitle {
+    font-size: 14px;
+}
+
+html[lang="en"] .tariff-description p {
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+html[lang="en"] .tariff-features li {
+    font-size: 14px;
+    padding: 4px 0;
+}
+
+html[lang="en"] .price-value {
+    font-size: 32px;
+}
+
+html[lang="en"] .price-from {
+    font-size: 14px;
+}
+
+html[lang="en"] .price-period {
+    font-size: 13px;
+}
+
+/* ============================================================
+   ПОРТФОЛИО
+   ============================================================ */
+
+html[lang="en"] .portfolio-title-link {
+    font-size: 18px;
+}
+
+html[lang="en"] .portfolio-description-full {
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+html[lang="en"] .portfolio-category {
+    font-size: 12px;
+}
+
+html[lang="en"] .portfolio-link {
+    font-size: 13px;
+}
+
+/* ============================================================
+   LANDING / BUSINESS / REFACTOR
+   ============================================================ */
+
+html[lang="en"] .landing-title,
+html[lang="en"] .business-title,
+html[lang="en"] .refactor-title {
+    font-size: clamp(28px, 3.5vw, 40px);
+}
+
+html[lang="en"] .landing-description,
+html[lang="en"] .business-description,
+html[lang="en"] .refactor-description {
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+html[lang="en"] .benefit-text {
+    font-size: 14px;
+}
+
+html[lang="en"] .benefit-item {
+    padding: 12px 16px;
+}
+
+/* ============================================================
+   FAQ
+   ============================================================ */
+
+html[lang="en"] .faq-question-text {
+    font-size: 16px;
+}
+
+html[lang="en"] .faq-answer-content {
+    font-size: 15px;
+    line-height: 1.7;
+}
+
+/* ============================================================
+   CTA
+   ============================================================ */
+
+html[lang="en"] .cta-title {
+    font-size: clamp(28px, 3.5vw, 40px);
+}
+
+html[lang="en"] .cta-badge {
+    font-size: 13px;
+}
+
+html[lang="en"] .cta-form .form-label {
+    font-size: 14px;
+}
+
+html[lang="en"] .cta-form .form-control {
+    font-size: 15px;
+}
+
+/* ============================================================
+   ХЕРО СТАТИСТИКА
+   ============================================================ */
+
+html[lang="en"] .stat-value {
+    font-size: 20px;
+}
+
+html[lang="en"] .stat-label {
+    font-size: 11px;
+    letter-spacing: 0.04em;
+}
+
+/* ============================================================
+   БЛОГ
+   ============================================================ */
+
+html[lang="en"] .blog-post-title {
+    font-size: 20px;
+}
+
+html[lang="en"] .blog-post-excerpt {
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+html[lang="en"] .blog-post-meta {
+    font-size: 13px;
+}
+
+/* ============================================================
+   ТЕХНОЛОГИИ
+   ============================================================ */
+
+html[lang="en"] .tech-name {
+    font-size: 18px;
+}
+
+html[lang="en"] .tech-description {
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+html[lang="en"] .tech-category {
+    font-size: 12px;
+}
+
+/* ============================================================
+   ФУТЕР
+   ============================================================ */
+
+html[lang="en"] .footer-title {
+    font-size: 17px;
+}
+
+html[lang="en"] .footer-links a {
+    font-size: 14px;
+}
+
+html[lang="en"] .footer-tagline {
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+/* ============================================================
+   АДАПТИВНОСТЬ
+   ============================================================ */
+
+/* Планшеты */
+@media (max-width: 992px) {
+    html[lang="en"] h1,
+    html[lang="en"] .hero-main {
+        font-size: clamp(32px, 4vw, 42px);
+    }
+
+    html[lang="en"] h2,
+    html[lang="en"] .section-title {
+        font-size: clamp(28px, 3.5vw, 36px);
+    }
+
+    html[lang="en"] .nav-link {
+        font-size: 11px;
+    }
+
+    html[lang="en"] .tariff-name {
+        font-size: 18px;
+    }
+}
+
+/* Мобильные устройства */
+@media (max-width: 768px) {
+    html[lang="en"] h1,
+    html[lang="en"] .hero-main {
+        font-size: clamp(28px, 5vw, 34px);
+    }
+
+    html[lang="en"] h2,
+    html[lang="en"] .section-title {
+        font-size: clamp(24px, 4vw, 30px);
+    }
+
+    html[lang="en"] h3,
+    html[lang="en"] .service-title {
+        font-size: 16px;
+    }
+
+    html[lang="en"] .hero-description,
+    html[lang="en"] .section-description {
+        font-size: 15px;
+    }
+
+    html[lang="en"] .nav-link {
+        font-size: 10px;
+    }
+
+    html[lang="en"] .btn {
+        font-size: 12px;
+        padding: 10px 18px;
+    }
+
+    html[lang="en"] .tariff-name {
+        font-size: 16px;
+    }
+
+    html[lang="en"] .tariff-features li {
+        font-size: 13px;
+    }
+
+    html[lang="en"] .price-value {
+        font-size: 26px;
+    }
+
+    html[lang="en"] .portfolio-title-link {
+        font-size: 16px;
+    }
+
+    html[lang="en"] .faq-question-text {
+        font-size: 15px;
+    }
+
+    html[lang="en"] .landing-title,
+    html[lang="en"] .business-title,
+    html[lang="en"] .refactor-title {
+        font-size: clamp(24px, 4vw, 30px);
+    }
+
+    html[lang="en"] .service-card-overlay {
+        padding: 8px 10px 6px !important;
+    }
+
+    html[lang="en"] .service-number {
+        font-size: 20px !important;
+        margin-bottom: 2px !important;
+    }
+
+    html[lang="en"] .service-title {
+        font-size: 12px !important;
+        margin-bottom: 1px !important;
+    }
+
+    html[lang="en"] .service-description {
+        font-size: 9px !important;
+        margin-bottom: 3px !important;
+    }
+
+    html[lang="en"] .service-more-btn {
+        font-size: 9px !important;
+    }
+}
+
+/* Маленькие телефоны */
+@media (max-width: 480px) {
+    html[lang="en"] h1,
+    html[lang="en"] .hero-main {
+        font-size: clamp(22px, 4vw, 28px);
+    }
+
+    html[lang="en"] h2,
+    html[lang="en"] .section-title {
+        font-size: clamp(20px, 3.5vw, 24px);
+    }
+
+    html[lang="en"] p,
+    html[lang="en"] .hero-description,
+    html[lang="en"] .section-description {
+        font-size: 14px;
+    }
+
+    html[lang="en"] .btn {
+        font-size: 11px;
+        padding: 8px 14px;
+    }
+
+    html[lang="en"] .nav-link {
+        font-size: 9px;
+    }
+
+    html[lang="en"] .logo-text {
+        font-size: 20px;
+    }
+
+    html[lang="en"] .logo-subtitle {
+        font-size: 7px;
+    }
+
+    html[lang="en"] .tariff-name {
+        font-size: 14px;
+    }
+
+    html[lang="en"] .price-value {
+        font-size: 22px;
+    }
+
+    html[lang="en"] .stat-value {
+        font-size: 16px;
+    }
+
+    html[lang="en"] .stat-label {
+        font-size: 9px;
+    }
+
+    html[lang="en"] .service-card-overlay {
+        padding: 6px 8px 5px !important;
+    }
+
+    html[lang="en"] .service-number {
+        font-size: 16px !important;
+        margin-bottom: 1px !important;
+    }
+
+    html[lang="en"] .service-title {
+        font-size: 11px !important;
+        margin-bottom: 1px !important;
+    }
+
+    html[lang="en"] .service-description {
+        font-size: 8px !important;
+        margin-bottom: 2px !important;
+    }
+
+    html[lang="en"] .service-more-btn {
+        font-size: 8px !important;
+    }
+}

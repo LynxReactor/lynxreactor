@@ -1,0 +1,897 @@
+<!-- templates/agency/includes/header.html -->
+
+{% load static i18n %}
+
+<header class="site-header" id="mainHeader">
+    <div class="header-container">
+
+        <!-- ЛОГОТИП -->
+        <div class="header-logo">
+            <a href="{% url 'agency:home' %}" class="logo-link{% if site_config.logo_light or site_config.logo_dark %} logo-link--image{% endif %}">
+                {% if site_config.logo_light or site_config.logo_dark %}
+                    <div class="logo-image-wrapper themed-image">
+                        {% if site_config.logo_light %}
+                            <img class="themed-img ti-light"
+                                 src="{{ site_config.logo_light.url }}"
+                                 alt="{{ site_config.site_name|default:'LYNXREACTOR' }}"
+                                 loading="eager" decoding="async">
+                        {% endif %}
+                        {% if site_config.logo_dark %}
+                            <img class="themed-img ti-dark"
+                                 src="{{ site_config.logo_dark.url }}"
+                                 alt="{{ site_config.site_name|default:'LYNXREACTOR' }}"
+                                 loading="eager" decoding="async">
+                        {% endif %}
+                    </div>
+                {% else %}
+                    <span class="logo-text">Lynx<span class="gold">Reactor</span></span>
+                    <span class="logo-subtitle">{% trans "THE ENGINE OF WEB EVOLUTION" %}</span>
+                {% endif %}
+            </a>
+        </div>
+
+        <!-- ДЕСКТОПНАЯ НАВИГАЦИЯ -->
+        <nav class="desktop-nav" aria-label="{% trans 'Main navigation' %}">
+            <ul class="nav-list">
+                <li class="nav-item"><a href="{% url 'agency:home' %}" class="nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}">{% trans "Главная" %}</a></li>
+                <li class="nav-item"><a href="{% url 'agency:home' %}#services" class="nav-link">{% trans "Процесс" %}</a></li>
+                <li class="nav-item"><a href="{% url 'agency:home' %}#tech" class="nav-link">{% trans "Технологии" %}</a></li>
+                <li class="nav-item"><a href="{% url 'agency:home' %}#landing" class="nav-link">{% trans "Услуги" %}</a></li>
+                <li class="nav-item"><a href="{% url 'agency:home' %}#portfolio" class="nav-link">{% trans "Портфолио" %}</a></li>
+                <li class="nav-item"><a href="{% url 'agency:home' %}#pricing" class="nav-link">{% trans "Тарифы" %}</a></li>
+                <li class="nav-item"><a href="{% url 'agency:home' %}#faq" class="nav-link">FAQ</a></li>
+                <li class="nav-item"><a href="{% url 'agency:contact' %}" class="nav-link {% if request.resolver_match.url_name == 'contact' %}active{% endif %}">{% trans "Контакты" %}</a></li>
+                <li class="nav-item"><a href="{% url 'agency:blog' %}" class="nav-link {% if request.resolver_match.url_name == 'blog' or request.resolver_match.url_name == 'blog_detail' or request.resolver_match.url_name == 'blog_category' %}active{% endif %}">{% trans "Полезное" %}</a></li>
+            </ul>
+        </nav>
+
+        <!-- ПРАВАЯ ЧАСТЬ -->
+        <div class="header-actions">
+            <!-- Переключатель языка -->
+            <div class="language-switcher">
+                <form action="{% url 'set_language' %}" method="post" id="lang-form">
+                    {% csrf_token %}
+                    <input name="next" type="hidden" value="{{ request.path }}">
+                    <select name="language" class="lang-select" onchange="this.form.submit()">
+                        {% get_current_language as CURRENT_LANGUAGE %}
+                        {% get_available_languages as LANGUAGES %}
+                        {% for lang_code, lang_name in LANGUAGES %}
+                            <option value="{{ lang_code }}" {% if lang_code == CURRENT_LANGUAGE %}selected{% endif %}>
+                                {{ lang_code|upper }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </form>
+            </div>
+
+            <button class="theme-toggle" id="themeToggle" aria-label="{% trans 'Toggle theme' %}">
+                <span class="theme-icon-light">☀️</span>
+                <span class="theme-icon-dark">🌙</span>
+            </button>
+
+            <button type="button" class="btn btn-primary btn-nav desktop-cta js-header-contact-btn">
+                {% trans "Обсудить проект" %}
+                <span class="arrow">→</span>
+            </button>
+
+            <!-- Бургер-меню -->
+            <button type="button" class="burger-btn" id="burgerBtn" aria-label="{% trans 'Open menu' %}" aria-expanded="false">
+                <span class="burger-line"></span>
+                <span class="burger-line"></span>
+                <span class="burger-line"></span>
+            </button>
+        </div>
+
+    </div>
+</header>
+
+<!-- ============================================
+     МОБИЛЬНОЕ МЕНЮ (OVERLAY)
+     ============================================ -->
+
+<div class="mobile-overlay" id="mobileOverlay">
+    <div class="overlay-header">
+        <a href="{% url 'agency:home' %}" class="overlay-logo">
+            {% if site_config.logo_light or site_config.logo_dark %}
+                <div class="logo-image-wrapper themed-image">
+                    {% if site_config.logo_light %}
+                        <img class="themed-img ti-light"
+                             src="{{ site_config.logo_light.url }}"
+                             alt="{{ site_config.site_name|default:'LYNXREACTOR' }}"
+                             loading="lazy" decoding="async">
+                    {% endif %}
+                    {% if site_config.logo_dark %}
+                        <img class="themed-img ti-dark"
+                             src="{{ site_config.logo_dark.url }}"
+                             alt="{{ site_config.site_name|default:'LYNXREACTOR' }}"
+                             loading="lazy" decoding="async">
+                    {% endif %}
+                </div>
+            {% else %}
+                <span class="logo-text">Lynx<span class="gold">Reactor</span></span>
+                <span class="logo-subtitle">{% trans "THE ENGINE OF WEB EVOLUTION" %}</span>
+            {% endif %}
+        </a>
+        <button type="button" class="overlay-close" id="closeOverlay" aria-label="{% trans 'Close menu' %}">
+            <span class="close-icon">✕</span>
+        </button>
+    </div>
+
+    <nav class="overlay-nav" aria-label="{% trans 'Mobile navigation' %}">
+        <ul class="overlay-nav-list">
+            <li class="overlay-nav-item"><a href="{% url 'agency:home' %}" class="overlay-nav-link {% if request.resolver_match.url_name == 'home' %}active{% endif %}">{% trans "Главная" %}</a></li>
+            <li class="overlay-nav-item"><a href="{% url 'agency:home' %}#services" class="overlay-nav-link">{% trans "Процесс" %}</a></li>
+            <li class="overlay-nav-item"><a href="{% url 'agency:home' %}#tech" class="overlay-nav-link">{% trans "Технологии" %}</a></li>
+            <li class="overlay-nav-item"><a href="{% url 'agency:home' %}#landing" class="overlay-nav-link">{% trans "Услуги" %}</a></li>
+            <li class="overlay-nav-item"><a href="{% url 'agency:home' %}#portfolio" class="overlay-nav-link">{% trans "Портфолио" %}</a></li>
+            <li class="overlay-nav-item"><a href="{% url 'agency:home' %}#pricing" class="overlay-nav-link">{% trans "Тарифы" %}</a></li>
+            <li class="overlay-nav-item"><a href="{% url 'agency:home' %}#faq" class="overlay-nav-link">FAQ</a></li>
+            <li class="overlay-nav-item"><a href="{% url 'agency:contact' %}" class="overlay-nav-link {% if request.resolver_match.url_name == 'contact' %}active{% endif %}">{% trans "Контакты" %}</a></li>
+            <li class="overlay-nav-item"><a href="{% url 'agency:blog' %}" class="overlay-nav-link {% if request.resolver_match.url_name == 'blog' or request.resolver_match.url_name == 'blog_detail' or request.resolver_match.url_name == 'blog_category' %}active{% endif %}">{% trans "Полезное" %}</a></li>
+        </ul>
+    </nav>
+
+    <div class="overlay-footer">
+        <button class="btn btn-secondary mobile-theme-toggle" id="mobileThemeToggle">
+            <span class="theme-icon-light">☀️</span>
+            <span class="theme-icon-dark">🌙</span>
+            <span class="theme-label">{% trans "Сменить тему" %}</span>
+        </button>
+
+        <button type="button" class="btn btn-primary overlay-cta" id="mobileContactBtn">
+            {% trans "Обсудить проект" %}
+            <span class="arrow">→</span>
+        </button>
+
+        <!-- УНП -->
+        <p class="overlay-legal">УНП 2691174</p>
+
+        <p class="overlay-copy">© {% now "Y" %} LynxReactor Studio</p>
+    </div>
+</div>
+
+<style>
+/* ============================================
+   SITE HEADER — LYNXREACTOR PREMIUM
+   ============================================ */
+
+.site-header {
+    background: rgba(11, 11, 12, 0.92);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    padding: 0 60px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+[data-theme="light"] .site-header {
+    background: rgba(255, 255, 255, 0.92);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+[data-theme="light"] .site-header.scrolled {
+    background: rgba(255, 255, 255, 0.98);
+    box-shadow: 0 4px 40px rgba(0, 0, 0, 0.08);
+}
+
+.site-header.scrolled {
+    background: rgba(11, 11, 12, 0.98);
+    box-shadow: 0 4px 40px rgba(0, 0, 0, 0.4);
+}
+
+.header-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    height: 100%;
+}
+
+/* ============================================
+   ЛОГОТИП
+   ============================================ */
+
+.header-logo {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    position: relative;
+    z-index: 1001;
+}
+
+.logo-link {
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    line-height: 1;
+}
+
+.logo-text {
+    font-family: var(--font-serif, 'Cormorant Garamond', serif);
+    font-size: 28px;
+    font-weight: 400;
+    color: var(--color-text-primary, #F5F3EF);
+    letter-spacing: 0.02em;
+    line-height: 1;
+}
+
+[data-theme="light"] .logo-text {
+    color: #111111;
+}
+
+.logo-text .gold {
+    color: var(--color-gold, #C89A5B);
+}
+
+.logo-subtitle {
+    font-family: var(--font-sans, 'Manrope', sans-serif);
+    font-size: 8px;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-text-secondary, #A6A3A0);
+    opacity: 0.5;
+    margin-top: 3px;
+    line-height: 1;
+}
+
+/* ============================================
+   ДЕСКТОПНАЯ НАВИГАЦИЯ
+   ============================================ */
+
+.desktop-nav {
+    display: flex !important;
+    align-items: center !important;
+    flex: 1;
+    justify-content: center;
+    height: 100%;
+    position: relative;
+    z-index: 1 !important;
+}
+
+.nav-list {
+    display: flex !important;
+    flex-direction: row !important;
+    list-style: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    gap: 32px !important;
+}
+
+.nav-item {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.nav-link {
+    font-family: var(--font-sans, 'Manrope', sans-serif);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-text-secondary, #A6A3A0);
+    text-decoration: none;
+    transition: color 0.3s ease;
+    padding: 4px 0;
+    position: relative;
+}
+
+[data-theme="light"] .nav-link {
+    color: #666666;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 1.5px;
+    background: var(--color-gold, #C89A5B);
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover {
+    color: var(--color-text-primary, #F5F3EF);
+}
+
+[data-theme="light"] .nav-link:hover {
+    color: #111111;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+.nav-link.active {
+    color: var(--color-text-primary, #F5F3EF);
+}
+
+[data-theme="light"] .nav-link.active {
+    color: #111111;
+}
+
+.nav-link.active::after {
+    width: 100%;
+}
+
+/* ============================================
+   ПЕРЕКЛЮЧАТЕЛЬ ЯЗЫКА — EN/RU
+   ============================================ */
+
+.language-switcher {
+    display: flex;
+    align-items: center;
+}
+
+.lang-select-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    padding: 2px 6px 2px 8px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+[data-theme="light"] .lang-select-wrapper {
+    border-color: rgba(0, 0, 0, 0.1);
+}
+
+.lang-select-wrapper:hover {
+    border-color: var(--color-gold, #C89A5B);
+}
+
+.lang-globe {
+    font-size: 14px;
+    line-height: 1;
+    opacity: 0.6;
+    transition: opacity 0.3s ease;
+    flex-shrink: 0;
+}
+
+.lang-select-wrapper:hover .lang-globe {
+    opacity: 1;
+}
+
+.lang-select {
+    background: transparent;
+    border: none;
+    color: var(--color-gold, #C89A5B);
+    padding: 3px 4px 3px 2px;
+    padding-right: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    font-family: var(--font-sans, 'Manrope', sans-serif);
+    transition: all 0.3s ease;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23C89A5B' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 2px center;
+    min-width: 30px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.lang-select option {
+    background: var(--color-bg-primary, #0B0B0C);
+    color: var(--color-text-primary, #F5F3EF);
+    text-transform: uppercase;
+    padding: 4px 8px;
+}
+
+[data-theme="light"] .lang-select option {
+    background: #ffffff;
+    color: #111111;
+}
+
+.lang-select option:checked,
+.lang-select option:selected {
+    background: var(--color-gold, #C89A5B);
+    color: var(--color-text-dark, #0B0B0C);
+}
+
+/* ============================================
+   ПЕРЕКЛЮЧАТЕЛЬ ТЕМЫ
+   ============================================ */
+
+.theme-toggle {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    color: var(--color-text-secondary, #A6A3A0);
+    padding: 0;
+}
+
+[data-theme="light"] .theme-toggle {
+    border-color: rgba(0, 0, 0, 0.1);
+}
+
+.theme-toggle:hover {
+    border-color: var(--color-gold, #C89A5B);
+    transform: rotate(30deg);
+}
+
+.theme-toggle .theme-icon-dark {
+    display: none;
+}
+
+[data-theme="dark"] .theme-toggle .theme-icon-light {
+    display: none;
+}
+
+[data-theme="dark"] .theme-toggle .theme-icon-dark {
+    display: inline;
+}
+
+/* ============================================
+   ПРАВАЯ ЧАСТЬ
+   ============================================ */
+
+.header-actions {
+    display: flex !important;
+    align-items: center !important;
+    gap: 16px !important;
+    flex-shrink: 0;
+    height: 100%;
+    position: relative;
+    z-index: 100 !important;
+    pointer-events: auto !important;
+}
+
+.js-header-contact-btn {
+    cursor: pointer !important;
+    pointer-events: auto !important;
+    position: relative;
+    z-index: 101 !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+}
+
+.desktop-cta {
+    padding: 10px 24px;
+    font-size: 12px;
+}
+
+/* ============================================
+   БУРГЕР-МЕНЮ
+   ============================================ */
+
+.burger-btn {
+    display: none !important;
+    flex-direction: column;
+    gap: 5px;
+    background: transparent;
+    border: none;
+    padding: 4px;
+    cursor: pointer;
+    position: relative;
+    z-index: 101 !important;
+}
+
+.burger-line {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--color-text-primary, #F5F3EF);
+    transition: all 0.3s ease;
+    border-radius: 2px;
+}
+
+[data-theme="light"] .burger-line {
+    background: #111111;
+}
+
+.burger-btn:hover .burger-line {
+    opacity: 0.6;
+}
+
+/* ============================================
+   МОБИЛЬНЫЙ ОВЕРЛЕЙ
+   ============================================ */
+
+.mobile-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 0;
+    background: rgba(11, 11, 12, 0.98);
+    backdrop-filter: blur(20px);
+    overflow: hidden;
+    transition: height 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    z-index: 2000;
+    display: flex;
+    flex-direction: column;
+}
+
+[data-theme="light"] .mobile-overlay {
+    background: rgba(255, 255, 255, 0.98);
+}
+
+.mobile-overlay.open {
+    height: 100%;
+}
+
+.overlay-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 40px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    flex-shrink: 0;
+}
+
+[data-theme="light"] .overlay-header {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.overlay-logo {
+    text-decoration: none;
+}
+
+.overlay-logo .logo-text {
+    font-size: 24px;
+}
+
+.overlay-close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    color: var(--color-text-primary, #F5F3EF);
+    opacity: 0.6;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+[data-theme="light"] .overlay-close {
+    color: #111111;
+}
+
+.overlay-close:hover {
+    opacity: 1;
+    transform: rotate(90deg);
+}
+
+.close-icon {
+    font-size: 28px !important;
+    line-height: 1;
+}
+
+.overlay-nav {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 40px;
+    overflow-y: auto;
+}
+
+.overlay-nav-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.overlay-nav-item {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.mobile-overlay.open .overlay-nav-item {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.mobile-overlay.open .overlay-nav-item:nth-child(1) { transition-delay: 0.05s; }
+.mobile-overlay.open .overlay-nav-item:nth-child(2) { transition-delay: 0.1s; }
+.mobile-overlay.open .overlay-nav-item:nth-child(3) { transition-delay: 0.15s; }
+.mobile-overlay.open .overlay-nav-item:nth-child(4) { transition-delay: 0.2s; }
+.mobile-overlay.open .overlay-nav-item:nth-child(5) { transition-delay: 0.25s; }
+.mobile-overlay.open .overlay-nav-item:nth-child(6) { transition-delay: 0.3s; }
+.mobile-overlay.open .overlay-nav-item:nth-child(7) { transition-delay: 0.35s; }
+.mobile-overlay.open .overlay-nav-item:nth-child(8) { transition-delay: 0.4s; }
+.mobile-overlay.open .overlay-nav-item:nth-child(9) { transition-delay: 0.45s; }
+
+.overlay-nav-link {
+    font-family: var(--font-serif, 'Cormorant Garamond', serif);
+    font-size: clamp(28px, 5vw, 48px);
+    font-weight: 400;
+    color: var(--color-text-primary, #F5F3EF);
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    transition: color 0.3s ease;
+}
+
+[data-theme="light"] .overlay-nav-link {
+    color: #111111;
+}
+
+.overlay-nav-link:hover {
+    color: var(--color-gold, #C89A5B);
+}
+
+.overlay-nav-link.active {
+    color: var(--color-gold, #C89A5B);
+}
+
+/* ============================================
+   ФУТЕР МОБИЛЬНОГО МЕНЮ
+   ============================================ */
+
+.overlay-footer {
+    padding: 16px 30px;
+    border-top: 1px solid rgba(255, 255, 255, 0.04);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px 14px;
+    flex-shrink: 0;
+}
+
+[data-theme="light"] .overlay-footer {
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.overlay-cta {
+    padding: 10px 24px;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.overlay-copy {
+    font-family: var(--font-sans, 'Manrope', sans-serif);
+    font-size: 11px;
+    font-weight: 300;
+    color: var(--color-text-secondary, #A6A3A0);
+    opacity: 0.4;
+    margin: 0;
+    width: 100%;
+    text-align: center;
+}
+
+    /* УНП в мобильном меню */
+    .overlay-legal {
+        font-family: var(--font-sans, 'Manrope', sans-serif);
+        font-size: 11px;
+        font-weight: 400;
+        color: var(--color-text-secondary, #A6A3A0);
+        opacity: 0.6;
+        margin: 4px 0 0;
+        width: 100%;
+        text-align: center;
+        letter-spacing: 0.04em;
+    }
+/* ============================================
+   МОБИЛЬНЫЙ ПЕРЕКЛЮЧАТЕЛЬ ТЕМЫ
+   ============================================ */
+
+.mobile-theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    color: var(--color-text-secondary, #A6A3A0);
+    cursor: pointer;
+    font-size: 13px;
+    font-family: var(--font-sans, 'Manrope', sans-serif);
+    transition: all 0.3s ease;
+}
+
+[data-theme="light"] .mobile-theme-toggle {
+    border-color: rgba(0, 0, 0, 0.1);
+    color: #666666;
+}
+
+.mobile-theme-toggle:hover {
+    border-color: var(--color-gold, #C89A5B);
+    color: var(--color-gold, #C89A5B);
+}
+
+.mobile-theme-toggle .theme-icon-dark {
+    display: none;
+}
+
+[data-theme="dark"] .mobile-theme-toggle .theme-icon-light {
+    display: none;
+}
+
+[data-theme="dark"] .mobile-theme-toggle .theme-icon-dark {
+    display: inline;
+}
+
+.mobile-theme-toggle .theme-label {
+    font-size: 12px;
+}
+
+/* ============================================
+   АДАПТИВНОСТЬ
+   ============================================ */
+
+@media screen and (max-width: 1200px) {
+    .site-header { padding: 0 40px; }
+    .nav-list { gap: 24px !important; }
+    .nav-link { font-size: 10px; }
+}
+
+@media screen and (max-width: 1024px) {
+    .site-header { padding: 0 30px; height: 70px; }
+    .logo-text { font-size: 24px; }
+    .logo-subtitle { font-size: 7px; }
+    .nav-list { gap: 18px !important; }
+    .nav-link { font-size: 9px; letter-spacing: 0.1em; }
+}
+
+@media screen and (max-width: 900px) {
+    .desktop-nav { display: none !important; }
+    .burger-btn { display: flex !important; }
+    .header-actions { gap: 12px !important; }
+    .desktop-cta { display: none !important; }
+    .site-header { padding: 0 20px; height: 64px; }
+    .logo-text { font-size: 20px; }
+    .logo-subtitle { font-size: 7px; }
+    .theme-toggle { width: 32px; height: 32px; font-size: 14px; }
+
+    /* Переключатель языка всегда виден на панели */
+    .language-switcher {
+        display: flex !important;
+    }
+
+    .lang-select {
+        color: var(--color-gold, #C89A5B) !important;
+        font-size: 10px !important;
+        font-weight: 600 !important;
+        text-transform: uppercase !important;
+        min-width: 30px !important;
+        padding-right: 22px !important;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23C89A5B' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") !important;
+        background-repeat: no-repeat !important;
+        background-position: right 4px center !important;
+        background-size: 10px 6px !important;
+        padding: 2px 20px 2px 4px !important;
+        border: none !important;
+        background-color: transparent !important;
+        -webkit-appearance: none !important;
+        appearance: none !important;
+        width: auto !important;
+        display: block !important;
+        text-align: center !important;
+    }
+
+    .lang-select option {
+        background: var(--color-bg-primary, #0B0B0C) !important;
+        color: var(--color-text-primary, #F5F3EF) !important;
+        text-transform: uppercase !important;
+        padding: 4px 8px !important;
+    }
+
+    [data-theme="light"] .lang-select option {
+        background: #ffffff !important;
+        color: #111111 !important;
+    }
+
+    .lang-select option:checked,
+    .lang-select option:selected {
+        background: var(--color-gold, #C89A5B) !important;
+        color: var(--color-text-dark, #0B0B0C) !important;
+    }
+
+    .lang-globe {
+        font-size: 12px !important;
+    }
+
+    .lang-select-wrapper {
+        padding: 2px 4px 2px 6px !important;
+        border-radius: 4px !important;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .overlay-header { padding: 16px 24px; }
+    .overlay-nav { padding: 40px 24px; }
+    .overlay-nav-list { gap: 16px; }
+    .overlay-nav-link { font-size: clamp(24px, 5vw, 32px); }
+    .overlay-footer { padding: 16px 24px; gap: 10px 14px; }
+    .overlay-cta { padding: 8px 18px; font-size: 11px; }
+    .overlay-copy { font-size: 10px; margin-top: 4px; }
+    .mobile-theme-toggle { font-size: 12px; padding: 6px 12px; }
+    .mobile-theme-toggle .theme-label { font-size: 11px; }
+}
+
+@media screen and (max-width: 480px) {
+    .site-header { padding: 0 16px; height: 56px; }
+    .logo-text { font-size: 18px; }
+    .logo-subtitle { font-size: 6px; letter-spacing: 0.15em; }
+    .header-actions { gap: 8px !important; }
+    .burger-line { width: 20px; height: 2px; }
+    .theme-toggle { width: 28px; height: 28px; font-size: 12px; }
+    .overlay-header { padding: 12px 16px; }
+    .overlay-nav { padding: 30px 16px; }
+    .overlay-nav-list { gap: 14px; }
+    .overlay-nav-link { font-size: clamp(20px, 4vw, 26px); }
+    .overlay-footer { padding: 12px 16px; flex-direction: column; align-items: center; gap: 8px; }
+    .overlay-cta { padding: 8px 16px; font-size: 10px; width: 100%; justify-content: center; }
+    .overlay-copy { font-size: 9px; }
+    .mobile-theme-toggle { font-size: 11px; padding: 5px 10px; }
+    .mobile-theme-toggle .theme-label { font-size: 10px; }
+
+    .lang-select {
+        font-size: 9px !important;
+        padding-right: 18px !important;
+        background-position: right 2px center !important;
+        min-width: 24px !important;
+        padding: 2px 18px 2px 2px !important;
+    }
+    .header-actions {
+        gap: 4px !important;
+    }
+    .lang-globe {
+        font-size: 10px !important;
+    }
+}
+
+@media screen and (max-width: 360px) {
+    .site-header { height: 48px; padding: 0 12px; }
+    .logo-text { font-size: 16px; }
+    .logo-subtitle { font-size: 5px; }
+    .burger-line { width: 18px; height: 2px; }
+    .header-actions { gap: 6px !important; }
+
+    .lang-select {
+        font-size: 8px !important;
+        padding-right: 16px !important;
+        min-width: 20px !important;
+        padding: 1px 16px 1px 2px !important;
+    }
+    .lang-globe {
+        font-size: 9px !important;
+    }
+    .overlay-footer { padding: 10px 12px; gap: 6px; }
+}
+
+/* ============================================
+   REDUCED MOTION
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+    .mobile-overlay { transition: none !important; }
+    .overlay-nav-item { transition: none !important; opacity: 1 !important; transform: none !important; }
+    .nav-link::after { transition: none !important; }
+    .theme-toggle:hover { transform: none !important; }
+}
+</style>

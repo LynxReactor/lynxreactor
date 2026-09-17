@@ -1,0 +1,354 @@
+<!-- templates/agency/includes/footer.html -->
+
+{% load static i18n %}
+
+<footer class="site-footer">
+    <div class="container footer-container">
+        <div class="footer-top">
+
+            <!-- ============================================================ -->
+            <!-- КОЛОНКА 1: Бренд + tagline -->
+            <!-- ============================================================ -->
+            <div class="footer-brand">
+                <a href="{% url 'agency:home' %}" class="logo-link{% if site_config.logo_light or site_config.logo_dark %} logo-link--image{% endif %}">
+                    {% if site_config.logo_light or site_config.logo_dark %}
+                        <div class="logo-image-wrapper themed-image">
+                            {% if site_config.logo_light %}
+                                <img class="themed-img ti-light"
+                                     src="{{ site_config.logo_light.url }}"
+                                     alt="{{ site_config.site_name|default:'LYNXREACTOR' }}"
+                                     loading="lazy" decoding="async">
+                            {% endif %}
+                            {% if site_config.logo_dark %}
+                                <img class="themed-img ti-dark"
+                                     src="{{ site_config.logo_dark.url }}"
+                                     alt="{{ site_config.site_name|default:'LYNXREACTOR' }}"
+                                     loading="lazy" decoding="async">
+                            {% endif %}
+                        </div>
+                    {% else %}
+                        <span class="logo-text">Lynx<span class="gold">Reactor</span></span>
+                        <span class="logo-subtitle">{% trans "THE ENGINE OF WEB EVOLUTION" %}</span>
+                    {% endif %}
+                </a>
+                <p class="footer-tagline">
+                    {% trans "The Engine of Web Evolution — премиальная разработка сайтов." %}<br>
+                    {% trans "Разрабатываем быстрые, безопасные и уникальные сайты на" %}<br>
+                    Python/Django/CSS/JS<br>
+                    {% trans "с технической SEO-оптимизацией и запуском под ключ." %}
+                </p>
+            </div>
+
+            <!-- ============================================================ -->
+            <!-- КОЛОНКИ 2 и 3: Навигация, Услуги, Контакты -->
+            <!-- ============================================================ -->
+            <div class="footer-columns">
+
+                <div class="footer-column">
+                    <h4 class="footer-title">{% trans "Навигация" %}</h4>
+                    <ul class="footer-links">
+                        <li><a href="{% url 'agency:home' %}">{% trans "Главная" %}</a></li>
+                        <li><a href="{% url 'agency:home' %}#services">{% trans "Процесс" %}</a></li>
+                        <li><a href="{% url 'agency:home' %}#tech">{% trans "Технологии" %}</a></li>
+                        <li><a href="{% url 'agency:home' %}#landing">{% trans "Услуги" %}</a></li>
+                        <li><a href="{% url 'agency:home' %}#portfolio">{% trans "Портфолио" %}</a></li>
+                        <li><a href="{% url 'agency:home' %}#pricing">{% trans "Тарифы" %}</a></li>
+                        <li><a href="{% url 'agency:home' %}#faq">FAQ</a></li>
+                        <li><a href="{% url 'agency:contact' %}">{% trans "Контакты" %}</a></li>
+                        <li><a href="{% url 'agency:blog' %}">{% trans "Полезное" %}</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4 class="footer-title">{% trans "Услуги" %}</h4>
+                    <ul class="footer-links">
+                        <li><a href="{% url 'agency:home' %}#pricing">{% trans "Разработка сайтов" %}</a></li>
+                        <li><a href="{% url 'agency:home' %}#landing">{% trans "Лендинги и промо-сайты" %}</a></li>
+                        <li><a href="{% url 'agency:home' %}#business">{% trans "Интернет-магазины" %}</a></li>
+                        <li><a href="{% url 'agency:home' %}#refactor">{% trans "Аудит безопасности и производительности" %}</a></li>
+                        <li><a href="{% url 'agency:home' %}#pricing">{% trans "Поддержка и развитие" %}</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4 class="footer-title">{% trans "Контакты" %}</h4>
+                    <ul class="footer-links">
+
+                        {% if contact_info.email %}
+                        <li>
+                            <a href="mailto:{{ contact_info.email }}">
+                                <i class="fas fa-envelope"></i> {{ contact_info.email }}
+                            </a>
+                        </li>
+                        {% endif %}
+
+                        {% if contact_info.telegram %}
+                        <li>
+                            <a href="{{ contact_info.telegram }}" target="_blank" rel="noopener noreferrer">
+                                <i class="fab fa-telegram-plane"></i> Telegram
+                            </a>
+                        </li>
+                        {% endif %}
+
+                        {% if contact_info.max_messenger %}
+                        <li>
+                            <a href="{{ contact_info.max_messenger }}" target="_blank" rel="noopener noreferrer">
+                                <i class="fas fa-comment-dots"></i> MAX
+                            </a>
+                        </li>
+                        {% endif %}
+
+                        {% if contact_info.whatsapp %}
+                        <li>
+                            <a href="{{ contact_info.whatsapp }}" target="_blank" rel="noopener noreferrer">
+                                <i class="fab fa-whatsapp"></i> WhatsApp
+                            </a>
+                        </li>
+                        {% endif %}
+
+                        {% if contact_info.instagram %}
+                        <li>
+                            <a href="{{ contact_info.instagram }}" target="_blank" rel="noopener noreferrer">
+                                <i class="fab fa-instagram"></i> Instagram
+                            </a>
+                        </li>
+                        {% endif %}
+
+                        {% if contact_info.github %}
+                        <li>
+                            <a href="{{ contact_info.github }}" target="_blank" rel="noopener noreferrer">
+                                <i class="fab fa-github"></i> GitHub
+                            </a>
+                        </li>
+                        {% endif %}
+
+                        {% if contact_info.linkedin %}
+                        <li>
+                            <a href="{{ contact_info.linkedin }}" target="_blank" rel="noopener noreferrer">
+                                <i class="fab fa-linkedin-in"></i> LinkedIn
+                            </a>
+                        </li>
+                        {% endif %}
+
+                        {% if contact_info.pinterest %}
+                        <li>
+                            <a href="{{ contact_info.pinterest }}" target="_blank" rel="noopener noreferrer">
+                                <i class="fab fa-pinterest-p"></i> Pinterest
+                            </a>
+                        </li>
+                        {% endif %}
+
+                    </ul>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <div class="copyright">
+                &copy; {% now "Y" %} LynxReactor. {% trans "Все права защищены." %}
+                <span style="opacity:0.6;margin-left:8px;">УНП 2691174</span>
+            </div>
+            <div class="footer-legal">
+                <a href="#">{% trans "Политика конфиденциальности" %}</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<style>
+/* ============================================================
+   FOOTER STYLES
+   ============================================================ */
+
+.site-footer {
+    background: var(--color-secondary-dark, #0B0B0C);
+    padding: 80px 0 40px;
+    border-top: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+[data-theme="light"] .site-footer {
+    background: #f5f3ef;
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.logo-link {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 12px;
+    text-decoration: none;
+    line-height: 1.2;
+}
+
+.logo-link.logo-link--image {
+    flex-direction: row;
+    align-items: center;
+}
+
+.logo-text {
+    font-family: var(--font-serif, 'Cormorant Garamond', serif);
+    font-size: 28px;
+    font-weight: 400;
+    color: var(--color-gold, #C89A5B);
+    line-height: 1;
+}
+
+.logo-text .gold {
+    color: var(--color-gold, #C89A5B);
+}
+
+.logo-subtitle {
+    font-family: var(--font-sans, 'Manrope', sans-serif);
+    font-size: 8px;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-text-secondary, #A6A3A0);
+    opacity: 0.5;
+    margin-top: 4px;
+    line-height: 1;
+}
+
+.footer-top {
+    display: grid;
+    grid-template-columns: 1.5fr 2fr;
+    gap: 60px;
+    margin-bottom: 60px;
+}
+
+.footer-tagline {
+    font-size: 14px;
+    color: var(--color-text-secondary, #A6A3A0);
+    margin-bottom: 0;
+    line-height: 1.6;
+}
+
+.footer-columns {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+}
+
+.footer-title {
+    font-family: var(--font-serif, 'Cormorant Garamond', serif);
+    font-size: 18px;
+    color: var(--color-text-primary, #F5F3EF);
+    margin-bottom: 20px;
+}
+
+[data-theme="light"] .footer-title {
+    color: #111111;
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links li {
+    margin-bottom: 12px;
+}
+
+.footer-links a {
+    color: var(--color-text-secondary, #A6A3A0);
+    font-size: 14px;
+    transition: color 0.3s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.footer-links a:hover {
+    color: var(--color-gold, #C89A5B);
+}
+
+.footer-links a i {
+    width: 18px;
+    color: var(--color-gold, #C89A5B);
+    font-size: 14px;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.footer-bottom {
+    padding-top: 32px;
+    border-top: 1px solid rgba(255, 255, 255, 0.04);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+[data-theme="light"] .footer-bottom {
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.footer-bottom .copyright {
+    font-size: 13px;
+    color: var(--color-text-secondary, #A6A3A0);
+}
+
+.footer-legal {
+    display: flex;
+    gap: 24px;
+}
+
+.footer-legal a {
+    font-size: 13px;
+    color: var(--color-text-secondary, #A6A3A0);
+    transition: color 0.3s ease;
+    text-decoration: none;
+}
+
+.footer-legal a:hover {
+    color: var(--color-gold, #C89A5B);
+}
+
+/* Лого-картинка в футере */
+.footer-brand .logo-image-wrapper {
+    position: relative;
+    display: block;
+    width: auto;
+    height: 60px;
+    max-width: 220px;
+    overflow: hidden;
+}
+
+.footer-brand .logo-image-wrapper .themed-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: left center;
+    display: block;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+html[data-theme="light"] .footer-brand .logo-image-wrapper .themed-img.ti-light { opacity: 1; }
+html[data-theme="dark"]  .footer-brand .logo-image-wrapper .themed-img.ti-dark  { opacity: 1; }
+
+@media (max-width: 992px) {
+    .footer-top { grid-template-columns: 1fr; gap: 40px; }
+    .footer-brand { text-align: center; }
+    .footer-brand .logo-link { align-items: center; }
+    .footer-brand .logo-image-wrapper .themed-img { object-position: center; }
+    .footer-columns { grid-template-columns: 1fr 1fr; gap: 32px; }
+    .footer-column { text-align: center; }
+    .footer-links a { justify-content: center; }
+}
+
+@media (max-width: 576px) {
+    .footer-columns { grid-template-columns: 1fr; gap: 24px; }
+    .footer-bottom { flex-direction: column; text-align: center; }
+    .footer-legal { flex-direction: column; gap: 4px; }
+    .logo-text { font-size: 24px; }
+    .footer-brand .logo-image-wrapper { height: 50px; max-width: 180px; }
+}
+</style>

@@ -1,0 +1,390 @@
+<!-- templates/agency/emails/base_email.html -->
+{% load static i18n %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}LYNXREACTOR{% endblock %}</title>
+    <style>
+        /* ============================================================
+           БАЗОВЫЕ СТИЛИ ДЛЯ ПИСЬМА
+           ============================================================ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Manrope', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #0B0B0C;
+            color: #F5F3EF;
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .email-wrapper {
+            max-width: 600px;
+            margin: 0 auto;
+            background: linear-gradient(180deg, #0B0B0C 0%, #141416 100%);
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(200, 154, 91, 0.08);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.8);
+        }
+
+        /* ============================================================
+           ХЕДЕР
+           ============================================================ */
+        .email-header {
+            padding: 40px 40px 20px;
+            text-align: center;
+            border-bottom: 1px solid rgba(200, 154, 91, 0.08);
+        }
+
+        .email-logo {
+            display: inline-block;
+            text-decoration: none;
+        }
+
+        .email-logo-text {
+            font-family: 'Cormorant Garamond', 'Georgia', serif;
+            font-size: 32px;
+            font-weight: 400;
+            color: #F5F3EF;
+            letter-spacing: 0.02em;
+            line-height: 1;
+        }
+
+        .email-logo-text .gold {
+            color: #C89A5B;
+        }
+
+        .email-logo-subtitle {
+            font-family: 'Manrope', 'Inter', sans-serif;
+            font-size: 9px;
+            font-weight: 400;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: #A6A3A0;
+            opacity: 0.5;
+            display: block;
+            margin-top: 4px;
+            line-height: 1;
+        }
+
+        /* ============================================================
+           ТЕЛО ПИСЬМА
+           ============================================================ */
+        .email-body {
+            padding: 40px 40px 30px;
+        }
+
+        .email-title {
+            font-family: 'Cormorant Garamond', 'Georgia', serif;
+            font-size: 28px;
+            font-weight: 400;
+            color: #F5F3EF;
+            margin-bottom: 8px;
+            line-height: 1.1;
+        }
+
+        .email-title .gold-accent {
+            color: #C89A5B;
+        }
+
+        .email-subtitle {
+            font-size: 15px;
+            color: #A6A3A0;
+            margin-bottom: 24px;
+        }
+
+        .email-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(200, 154, 91, 0.2), transparent);
+            margin: 24px 0;
+        }
+
+        .email-text {
+            font-size: 15px;
+            color: #F5F3EF;
+            line-height: 1.8;
+        }
+
+        .email-text .highlight {
+            color: #C89A5B;
+            font-weight: 500;
+        }
+
+        /* ============================================================
+           ИНФОБЛОКИ
+           ============================================================ */
+        .info-block {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 12px;
+            padding: 20px 24px;
+            margin: 16px 0;
+        }
+
+        .info-block .info-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: #C89A5B;
+            display: block;
+            margin-bottom: 4px;
+        }
+
+        .info-block .info-value {
+            font-size: 15px;
+            color: #F5F3EF;
+        }
+
+        .info-row {
+            display: flex;
+            padding: 6px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .info-row:last-child {
+            border-bottom: none;
+        }
+
+        .info-row .label {
+            width: 120px;
+            font-size: 13px;
+            color: #A6A3A0;
+            flex-shrink: 0;
+        }
+
+        .info-row .value {
+            font-size: 14px;
+            color: #F5F3EF;
+        }
+
+        /* ============================================================
+           КНОПКА
+           ============================================================ */
+        .email-btn {
+            display: inline-block;
+            padding: 12px 32px;
+            background: #C89A5B;
+            color: #0B0B0C !important;
+            text-decoration: none;
+            border-radius: 6px;
+            font-family: 'Manrope', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .email-btn:hover {
+            background: #D8B477;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(200, 154, 91, 0.3);
+        }
+
+        .email-btn .arrow {
+            display: inline-block;
+            margin-left: 6px;
+            transition: transform 0.3s ease;
+        }
+
+        .email-btn:hover .arrow {
+            transform: translateX(4px);
+        }
+
+        .email-btn-wrapper {
+            text-align: center;
+            margin: 24px 0;
+        }
+
+        /* ============================================================
+           ФУТЕР
+           ============================================================ */
+        .email-footer {
+            padding: 20px 40px 30px;
+            text-align: center;
+            border-top: 1px solid rgba(200, 154, 91, 0.06);
+        }
+
+        .email-footer-text {
+            font-size: 13px;
+            color: #A6A3A0;
+            opacity: 0.6;
+            line-height: 1.6;
+        }
+
+        .email-footer-social {
+            margin-top: 12px;
+            display: flex;
+            justify-content: center;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .email-footer-social a {
+            display: inline-block;
+            color: #A6A3A0;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 0.04em;
+            transition: color 0.3s ease;
+            padding: 4px 8px;
+            border-radius: 4px;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        .email-footer-social a:hover {
+            color: #C89A5B;
+            border-color: rgba(200, 154, 91, 0.15);
+        }
+
+        .email-footer .footer-divider {
+            width: 40px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(200, 154, 91, 0.2), transparent);
+            margin: 12px auto;
+        }
+
+        /* ============================================================
+           АДАПТИВНОСТЬ
+           ============================================================ */
+        @media (max-width: 600px) {
+            .email-wrapper {
+                border-radius: 0;
+            }
+            .email-header {
+                padding: 30px 20px 15px;
+            }
+            .email-body {
+                padding: 30px 20px 20px;
+            }
+            .email-footer {
+                padding: 15px 20px 20px;
+            }
+            .email-title {
+                font-size: 24px;
+            }
+            .info-row {
+                flex-direction: column;
+                padding: 8px 0;
+            }
+            .info-row .label {
+                width: auto;
+                font-size: 12px;
+                margin-bottom: 2px;
+            }
+            .email-btn {
+                padding: 10px 24px;
+                font-size: 13px;
+                width: 100%;
+                text-align: center;
+            }
+            .email-logo-text {
+                font-size: 26px;
+            }
+            .email-logo-subtitle {
+                font-size: 8px;
+            }
+            .email-footer-social {
+                gap: 10px;
+            }
+            .email-footer-social a {
+                font-size: 12px;
+                padding: 3px 10px;
+            }
+        }
+
+        @media (prefers-color-scheme: light) {
+            body {
+                background-color: #f5f3ef;
+            }
+            .email-wrapper {
+                background: #ffffff;
+                border-color: #e0ddd8;
+            }
+            .email-text,
+            .email-title {
+                color: #111111;
+            }
+            .email-subtitle {
+                color: #666666;
+            }
+            .info-block {
+                background: rgba(0, 0, 0, 0.02);
+                border-color: rgba(0, 0, 0, 0.06);
+            }
+            .info-row .value {
+                color: #111111;
+            }
+            .info-row .label {
+                color: #666666;
+            }
+            .email-logo-text {
+                color: #111111;
+            }
+            .email-footer-text {
+                color: #666666;
+            }
+            .email-divider {
+                background: linear-gradient(90deg, transparent, rgba(0, 0, 0, 0.1), transparent);
+            }
+            .email-footer-social a {
+                border-color: rgba(0, 0, 0, 0.06);
+            }
+            .email-footer-social a:hover {
+                border-color: rgba(200, 154, 91, 0.2);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="email-wrapper">
+
+        <!-- HEADER -->
+        <div class="email-header">
+            <a href="{{ site_url|default:'https://lynxreactor.by' }}" class="email-logo">
+                <span class="email-logo-text">Lynx<span class="gold">Reactor</span></span>
+                <span class="email-logo-subtitle">THE ENGINE OF WEB EVOLUTION</span>
+            </a>
+        </div>
+
+        <!-- BODY -->
+        <div class="email-body">
+            {% block content %}{% endblock %}
+        </div>
+
+        <!-- FOOTER -->
+        <div class="email-footer">
+            <div class="footer-divider"></div>
+            <p class="email-footer-text">
+                &copy; {% now "Y" %} <strong>LYNXREACTOR</strong><br>
+                The Engine of Web Evolution
+            </p>
+            <p class="email-footer-text" style="font-size:12px; margin-top:4px;">
+                <a href="mailto:lynxreactor@gmail.com" style="color:#C89A5B; text-decoration:none;">lynxreacto@gmail.com</a>
+            </p>
+            <div class="email-footer-social">
+                <a href="https://t.me/lynxreactor" target="_blank" rel="noopener noreferrer">
+                    ✈️ Telegram
+                </a>
+                <a href="#" target="_blank" rel="noopener noreferrer">
+                    🔷 MAX
+                </a>
+            </div>
+            <p class="email-footer-text" style="font-size:11px; margin-top:8px; opacity:0.4;">
+                Это письмо было отправлено вам, так как вы оставили заявку на сайте LYNXREACTOR.
+            </p>
+        </div>
+
+    </div>
+</body>
+</html>

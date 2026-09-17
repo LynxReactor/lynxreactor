@@ -1,0 +1,26 @@
+{% load static i18n %}
+
+<div class="service-modal-overlay" id="serviceModal">
+    <div class="service-modal-container">
+        <button class="service-modal-close" id="serviceModalClose" aria-label="{% trans 'Закрыть' %}">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <line x1="18" y1="6" x2="6" y2="18"/>
+                <line x1="6" y1="6" x2="18" y2="18"/>
+            </svg>
+        </button>
+
+        <div class="service-modal-image">
+            <img id="serviceModalImage" src="" alt="{% trans 'Услуга' %}" loading="lazy">
+        </div>
+
+        <div class="service-modal-content">
+            <div class="service-modal-header">
+                <span class="service-modal-number" id="serviceModalNumber">01</span>
+                <h2 class="service-modal-title" id="serviceModalTitle">{% trans "Название услуги" %}</h2>
+            </div>
+            <div class="service-modal-body">
+                <p class="service-modal-description" id="serviceModalDescription">{% trans "Описание" %}</p>
+            </div>
+        </div>
+    </div>
+</div>

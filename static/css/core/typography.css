@@ -1,0 +1,113 @@
+/* static/css/core/typography.css */
+
+/* ============================================================
+   ТИПОГРАФИКА — LYNXREACTOR
+   ============================================================ */
+
+/* Импорт шрифтов */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Manrope:wght@200;300;400;500;600;700;800&display=swap');
+
+/* Базовые стили */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-y: scroll;
+}
+
+body {
+    background-color: var(--color-primary-dark);
+    color: var(--color-text-primary);
+    font-family: var(--font-sans);
+    font-weight: 300;
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Выделение текста */
+::selection {
+    background: var(--color-gold);
+    color: var(--color-text-dark);
+}
+::-moz-selection {
+    background: var(--color-gold);
+    color: var(--color-text-dark);
+}
+
+/* Заголовки */
+h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: var(--color-text-primary);
+}
+
+h1 { font-size: clamp(42px, 8vw, 78px); line-height: 0.95; }
+h2 { font-size: clamp(36px, 5vw, 56px); }
+h3 { font-size: clamp(28px, 3.5vw, 40px); }
+h4 { font-size: clamp(22px, 2.5vw, 32px); }
+h5 { font-size: clamp(18px, 1.8vw, 24px); }
+h6 { font-size: clamp(16px, 1.4vw, 20px); }
+
+/* Параграфы */
+p {
+    color: var(--color-text-secondary);
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+/* Ссылки */
+a {
+    color: var(--color-gold);
+    text-decoration: none;
+    transition: var(--transition-smooth);
+}
+
+a:hover {
+    color: var(--color-gold-light);
+}
+
+/* Изображения */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Контейнер */
+.container {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+/* Золотой акцент */
+.gold-accent {
+    color: var(--color-gold);
+}
+
+/* Код */
+.code-block {
+    background: var(--color-code-bg);
+    color: var(--color-code-text);
+    border-radius: 8px;
+    padding: 16px 20px;
+    font-family: 'JetBrains Mono', 'Consolas', monospace;
+    font-size: 14px;
+    line-height: 1.6;
+    overflow-x: auto;
+}
+
+.python-accent { color: var(--color-python); }
+.django-accent { color: var(--color-django); }

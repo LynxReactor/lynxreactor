@@ -1,0 +1,183 @@
+/* static/admin/css/json-editor.css */
+
+/* ============================================================
+   JSON EDITOR STYLES
+   ============================================================ */
+
+.json-editor {
+    font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', 'Courier New', monospace;
+    font-size: 13px;
+    line-height: 1.6;
+    tab-size: 2;
+    background: #0d1117 !important;
+    color: #e6edf3 !important;
+    border: 1px solid #30363d !important;
+    border-radius: 8px !important;
+    padding: 16px !important;
+    min-height: 120px;
+    width: 100% !important;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    resize: vertical;
+}
+
+.json-editor:focus {
+    border-color: #c89a5b !important;
+    box-shadow: 0 0 0 3px rgba(200, 154, 91, 0.15) !important;
+    outline: none !important;
+}
+
+.json-editor.error {
+    border-color: #f85149 !important;
+    box-shadow: 0 0 0 3px rgba(248, 81, 73, 0.15) !important;
+}
+
+/* JSON Editor Helper */
+.json-editor-helper {
+    margin-top: 8px;
+    padding: 8px 12px;
+    font-size: 12px;
+    color: #8b949e;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.json-editor-helper .helper-title {
+    font-weight: 600;
+    color: #c89a5b;
+}
+
+.json-editor-helper code {
+    background: rgba(200, 154, 91, 0.1);
+    padding: 2px 8px;
+    border-radius: 4px;
+    color: #c89a5b;
+    font-family: 'Consolas', monospace;
+    font-size: 12px;
+}
+
+.json-editor-helper .example {
+    display: block;
+    margin-top: 4px;
+    padding: 6px 10px;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    font-family: 'Consolas', monospace;
+    font-size: 12px;
+    color: #8b949e;
+    overflow-x: auto;
+    white-space: pre-wrap;
+    word-break: break-all;
+}
+
+/* JSON Format Button */
+.json-format-btn {
+    margin-top: 8px;
+    padding: 6px 14px;
+    background: rgba(200, 154, 91, 0.1);
+    border: 1px solid rgba(200, 154, 91, 0.2);
+    border-radius: 4px;
+    color: #c89a5b;
+    cursor: pointer;
+    font-size: 12px;
+    font-family: 'Manrope', sans-serif;
+    transition: all 0.3s ease;
+}
+
+.json-format-btn:hover {
+    background: rgba(200, 154, 91, 0.2);
+    border-color: rgba(200, 154, 91, 0.4);
+}
+
+.json-format-btn:active {
+    transform: scale(0.97);
+}
+
+/* JSON Notification */
+.json-notification {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: 'Manrope', sans-serif;
+    z-index: 9999;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    transform: translateY(100px);
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    pointer-events: none;
+    max-width: 400px;
+}
+
+.json-notification.success {
+    background: #2ea043;
+    color: white;
+}
+
+.json-notification.error {
+    background: #f85149;
+    color: white;
+}
+
+.json-notification.show {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* JSON Editor Wrapper */
+.json-editor-wrapper {
+    position: relative;
+}
+
+.json-editor-wrapper .field-label {
+    display: block;
+    margin-bottom: 4px;
+    font-weight: 600;
+    color: #e6edf3;
+}
+
+/* Dark Theme for JSON Editor */
+.json-editor-dark {
+    background: #0d1117 !important;
+    color: #e6edf3 !important;
+}
+
+/* Line Numbers */
+.json-editor-with-lines {
+    padding-left: 50px !important;
+    position: relative;
+}
+
+.json-editor-with-lines::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 40px;
+    background: rgba(255, 255, 255, 0.02);
+    border-right: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .json-editor {
+        font-size: 12px;
+        padding: 12px !important;
+        min-height: 100px;
+    }
+
+    .json-editor-helper {
+        font-size: 11px;
+        padding: 6px 10px;
+    }
+
+    .json-format-btn {
+        font-size: 11px;
+        padding: 5px 12px;
+    }
+}

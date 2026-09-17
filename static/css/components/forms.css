@@ -1,0 +1,451 @@
+/* ============================================================
+   ФОРМЫ — LYNXREACTOR
+   ============================================================ */
+
+/* === SELECT === */
+select.form-control,
+select.form-select,
+select.form-input {
+    background-color: rgba(255, 255, 255, 0.05) !important;
+    color: var(--color-text-primary, #F5F3EF) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    padding: 12px 16px !important;
+    border-radius: 8px !important;
+    font-size: 15px !important;
+    font-family: var(--font-sans, 'Manrope', sans-serif) !important;
+    appearance: none !important;
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23A6A3A0' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") !important;
+    background-repeat: no-repeat !important;
+    background-position: right 16px center !important;
+    padding-right: 44px !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    width: 100% !important;
+}
+
+select.form-control:hover,
+select.form-select:hover,
+select.form-input:hover {
+    border-color: rgba(200, 154, 91, 0.3) !important;
+}
+
+select.form-control:focus,
+select.form-select:focus,
+select.form-input:focus {
+    outline: none !important;
+    border-color: var(--color-gold, #C89A5B) !important;
+    background-color: rgba(255, 255, 255, 0.08) !important;
+    box-shadow: 0 0 0 3px rgba(200, 154, 91, 0.15) !important;
+}
+
+select.form-control option,
+select.form-select option,
+select.form-input option {
+    background-color: var(--color-card-bg, #171719) !important;
+    color: var(--color-text-primary, #F5F3EF) !important;
+    padding: 10px 16px !important;
+    border: none !important;
+}
+
+select.form-control option:hover,
+select.form-select option:hover,
+select.form-input option:hover {
+    background-color: rgba(200, 154, 91, 0.1) !important;
+}
+
+/* Для Firefox */
+select.form-control:-moz-focusring,
+select.form-select:-moz-focusring,
+select.form-input:-moz-focusring {
+    color: var(--color-text-primary, #F5F3EF) !important;
+}
+
+/* Для IE/Edge */
+select.form-control::-ms-expand,
+select.form-select::-ms-expand,
+select.form-input::-ms-expand {
+    display: none !important;
+}
+
+/* === INPUT === */
+input.form-control,
+input.form-input {
+    background-color: rgba(255, 255, 255, 0.04) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 8px !important;
+    color: var(--color-text-primary, #F5F3EF) !important;
+    padding: 12px 16px !important;
+    font-size: 15px !important;
+    font-family: var(--font-sans, 'Manrope', sans-serif) !important;
+    transition: all 0.3s ease !important;
+    width: 100% !important;
+}
+
+input.form-control:focus,
+input.form-input:focus {
+    outline: none !important;
+    border-color: var(--color-gold, #C89A5B) !important;
+    background-color: rgba(255, 255, 255, 0.06) !important;
+    box-shadow: 0 0 0 3px rgba(200, 154, 91, 0.15) !important;
+}
+
+input.form-control::placeholder,
+input.form-input::placeholder {
+    color: var(--color-text-secondary, #A6A3A0) !important;
+    opacity: 0.5 !important;
+}
+
+/* === TEXTAREA === */
+textarea.form-control,
+textarea.form-textarea {
+    background-color: rgba(255, 255, 255, 0.04) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 8px !important;
+    color: var(--color-text-primary, #F5F3EF) !important;
+    padding: 12px 16px !important;
+    font-size: 15px !important;
+    font-family: var(--font-sans, 'Manrope', sans-serif) !important;
+    transition: all 0.3s ease !important;
+    width: 100% !important;
+    resize: vertical !important;
+    min-height: 80px !important;
+}
+
+textarea.form-control:focus,
+textarea.form-textarea:focus {
+    outline: none !important;
+    border-color: var(--color-gold, #C89A5B) !important;
+    background-color: rgba(255, 255, 255, 0.06) !important;
+    box-shadow: 0 0 0 3px rgba(200, 154, 91, 0.15) !important;
+}
+
+textarea.form-control::placeholder,
+textarea.form-textarea::placeholder {
+    color: var(--color-text-secondary, #A6A3A0) !important;
+    opacity: 0.5 !important;
+}
+
+/* === LABEL === */
+.form-label {
+    display: block !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    color: var(--color-text-secondary, #A6A3A0) !important;
+    margin-bottom: 6px !important;
+}
+
+.form-label .required {
+    color: #e74c3c !important;
+}
+
+/* === ERROR === */
+.form-error {
+    font-size: 12px !important;
+    color: #e74c3c !important;
+    margin-top: 4px !important;
+    display: none !important;
+}
+
+.form-error.show {
+    display: block !important;
+}
+
+/* === HINT === */
+.form-hint {
+    font-size: 12px !important;
+    color: var(--color-text-secondary, #A6A3A0) !important;
+    margin-top: 4px !important;
+    opacity: 0.7 !important;
+}
+
+/* === NOTE === */
+.form-note {
+    font-size: 13px !important;
+    color: var(--color-text-secondary, #A6A3A0) !important;
+    margin-top: 16px !important;
+    text-align: center !important;
+    opacity: 0.6 !important;
+}
+
+/* === VALIDATION STATES === */
+.form-control.success,
+.form-input.success,
+.form-textarea.success {
+    border-color: #2ecc71 !important;
+    box-shadow: 0 0 0 3px rgba(46, 204, 113, 0.15) !important;
+}
+
+.form-control.error,
+.form-input.error,
+.form-textarea.error {
+    border-color: #e74c3c !important;
+    box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.15) !important;
+}
+
+/* === DYNAMIC FIELD ANIMATION === */
+.dynamic-field {
+    animation: fadeInUp 0.3s ease !important;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+    select.form-control,
+    select.form-select,
+    select.form-input,
+    input.form-control,
+    input.form-input,
+    textarea.form-control,
+    textarea.form-textarea {
+        font-size: 14px !important;
+        padding: 10px 14px !important;
+    }
+
+    select.form-control,
+    select.form-select,
+    select.form-input {
+        padding-right: 36px !important;
+        background-position: right 12px center !important;
+    }
+}
+
+@media (max-width: 480px) {
+    select.form-control,
+    select.form-select,
+    select.form-input,
+    input.form-control,
+    input.form-input,
+    textarea.form-control,
+    textarea.form-textarea {
+        font-size: 13px !important;
+        padding: 10px 12px !important;
+    }
+
+    .form-label {
+        font-size: 13px !important;
+    }
+}
+
+/* ============================================================
+   SELECT С ИКОНКАМИ МЕССЕНДЖЕРОВ
+   ============================================================ */
+
+/* Базовые стили для select с иконками */
+select.form-select-with-icons {
+    background-color: rgba(255, 255, 255, 0.05) !important;
+    color: var(--color-text-primary, #F5F3EF) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    padding: 12px 16px !important;
+    padding-right: 44px !important;
+    border-radius: 8px !important;
+    font-size: 15px !important;
+    font-family: var(--font-sans, 'Manrope', sans-serif) !important;
+    appearance: none !important;
+    -webkit-appearance: none !important;
+    -moz-appearance: none !important;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23A6A3A0' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") !important;
+    background-repeat: no-repeat !important;
+    background-position: right 16px center !important;
+    cursor: pointer !important;
+    transition: all 0.3s ease !important;
+    width: 100% !important;
+    min-height: 52px !important;
+}
+
+select.form-select-with-icons:hover {
+    border-color: rgba(200, 154, 91, 0.3) !important;
+}
+
+select.form-select-with-icons:focus {
+    outline: none !important;
+    border-color: var(--color-gold, #C89A5B) !important;
+    background-color: rgba(255, 255, 255, 0.08) !important;
+    box-shadow: 0 0 0 3px rgba(200, 154, 91, 0.15) !important;
+}
+
+/* Стили для option с иконками */
+select.form-select-with-icons option {
+    background-color: var(--color-card-bg, #171719) !important;
+    color: var(--color-text-primary, #F5F3EF) !important;
+    padding: 12px 16px !important;
+    border: none !important;
+    font-size: 15px !important;
+    font-family: var(--font-sans, 'Manrope', sans-serif) !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+}
+
+select.form-select-with-icons option:hover {
+    background-color: rgba(200, 154, 91, 0.1) !important;
+}
+
+/* Дополнительные стили для иконок в option */
+select.form-select-with-icons option[value="email"]::before {
+    content: "📧 ";
+}
+
+select.form-select-with-icons option[value="phone"]::before {
+    content: "📱 ";
+}
+
+select.form-select-with-icons option[value="telegram"]::before {
+    content: "✈️ ";
+}
+
+select.form-select-with-icons option[value="max"]::before {
+    content: "🔷 ";
+}
+
+select.form-select-with-icons option[value="viber"]::before {
+    content: "💜 ";
+}
+
+select.form-select-with-icons option[value="whatsapp"]::before {
+    content: "💚 ";
+}
+
+/* Для Firefox */
+select.form-select-with-icons:-moz-focusring {
+    color: var(--color-text-primary, #F5F3EF) !important;
+}
+
+/* Для IE/Edge */
+select.form-select-with-icons::-ms-expand {
+    display: none !important;
+}
+
+/* ============================================================
+   АДАПТИВНОСТЬ
+   ============================================================ */
+
+@media (max-width: 768px) {
+    select.form-select-with-icons {
+        font-size: 14px !important;
+        padding: 10px 14px !important;
+        padding-right: 36px !important;
+        min-height: 48px !important;
+        background-position: right 12px center !important;
+    }
+
+    select.form-select-with-icons option {
+        font-size: 14px !important;
+        padding: 10px 14px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    select.form-select-with-icons {
+        font-size: 13px !important;
+        padding: 10px 12px !important;
+        padding-right: 32px !important;
+        min-height: 44px !important;
+        background-position: right 10px center !important;
+    }
+
+    select.form-select-with-icons option {
+        font-size: 13px !important;
+        padding: 8px 12px !important;
+    }
+}
+
+/* ============================================================
+   АДАПТАЦИЯ ФОРМ ДЛЯ АНГЛИЙСКОГО
+   ============================================================ */
+
+html[lang="en"] .form-label {
+    font-size: 12px;
+}
+
+html[lang="en"] .form-control {
+    font-size: 14px;
+}
+
+html[lang="en"] .form-hint {
+    font-size: 11px;
+}
+
+html[lang="en"] .form-note {
+    font-size: 12px;
+}
+
+@media (max-width: 768px) {
+    html[lang="en"] .form-control {
+        font-size: 13px;
+        padding: 8px 12px;
+    }
+}
+
+/* ============================================================
+   СВЕТЛАЯ ТЕМА — фон для всех полей ввода
+   ============================================================ */
+
+[data-theme="light"] input.form-control,
+[data-theme="light"] input.form-input,
+[data-theme="light"] textarea.form-control,
+[data-theme="light"] textarea.form-textarea {
+    background-color: #F7F4EE !important;
+    border: 1.5px solid #E4DED5 !important;
+    color: #202321 !important;
+    box-shadow: inset 0 1px 2px rgba(32, 35, 33, 0.03) !important;
+}
+
+[data-theme="light"] input.form-control:hover,
+[data-theme="light"] input.form-input:hover,
+[data-theme="light"] textarea.form-control:hover,
+[data-theme="light"] textarea.form-textarea:hover {
+    background-color: #FCFBF8 !important;
+    border-color: #D5CFC6 !important;
+}
+
+[data-theme="light"] input.form-control:focus,
+[data-theme="light"] input.form-input:focus,
+[data-theme="light"] textarea.form-control:focus,
+[data-theme="light"] textarea.form-textarea:focus {
+    background-color: #FFFFFF !important;
+    border-color: #B8734F !important;
+    box-shadow: 0 0 0 3px rgba(184, 115, 79, 0.12) !important;
+    outline: none !important;
+}
+
+[data-theme="light"] select.form-control,
+[data-theme="light"] select.form-select {
+    background-color: #F7F4EE !important;
+    border: 1.5px solid #E4DED5 !important;
+    color: #202321 !important;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236E706C' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") !important;
+    background-repeat: no-repeat !important;
+    background-position: right 16px center !important;
+    padding-right: 44px !important;
+}
+
+[data-theme="light"] select.form-control:focus,
+[data-theme="light"] select.form-select:focus {
+    background-color: #FFFFFF !important;
+    border-color: #B8734F !important;
+    box-shadow: 0 0 0 3px rgba(184, 115, 79, 0.12) !important;
+}
+
+[data-theme="light"] select.form-control option,
+[data-theme="light"] select.form-select option {
+    background: #FFFFFF !important;
+    color: #202321 !important;
+}
+
+[data-theme="light"] input.form-control::placeholder,
+[data-theme="light"] textarea.form-control::placeholder {
+    color: #9A9B98 !important;
+    opacity: 1 !important;
+}

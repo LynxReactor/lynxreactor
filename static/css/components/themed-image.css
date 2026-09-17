@@ -1,0 +1,56 @@
+/* static/css/components/themed-image.css */
+
+/* ============================================================
+   THEMED IMAGE — переключение картинок по теме (light/dark)
+   без перезагрузки страницы
+
+   Использование:
+   <div class="themed-image">
+       <img class="themed-img ti-light" src="light.jpg" alt="...">
+       <img class="themed-img ti-dark"  src="dark.jpg"  alt="...">
+   </div>
+
+   Переключение — через [data-theme] на <html>.
+   Язык задаётся сервером через {% if current_language == 'en' %}.
+   ============================================================ */
+
+.themed-image {
+    position: relative;
+    overflow: hidden;
+}
+
+.themed-image .themed-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+    display: block;
+}
+
+/* Активная картинка для light темы */
+html[data-theme="light"] .themed-image .themed-img.ti-light {
+    opacity: 1;
+}
+
+/* Активная картинка для dark темы */
+html[data-theme="dark"] .themed-image .themed-img.ti-dark {
+    opacity: 1;
+}
+
+/* Fallback / single / always-visible */
+.themed-image .themed-img.ti-fallback,
+.themed-image .themed-img.ti-single {
+    opacity: 1;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .themed-image .themed-img {
+        transition: none !important;
+    }
+}

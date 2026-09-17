@@ -1,0 +1,72 @@
+<!-- templates/agency/includes/hero_stats.html -->
+{% load static i18n %}
+
+<!-- Подключаем CSS и JS только один раз -->
+<script src="{% static 'js/coin-stats.js' %}" defer></script>
+
+<!-- ===== БЛОК СТАТИСТИКИ / МОНЕТЫ (ПРАВЫЙ КРАЙ HERO) ===== -->
+<div class="hero-stats-absolute" id="coinStatsContainer">
+    <!-- Монета 1: 1 месяц поддержки -->
+    <div class="stat-item coin-wrapper">
+        <div class="stat-icon coin" id="coin1">
+            <div class="coin-face">
+                <img
+                    src="{% static 'images/ru/coin-support.png' %}"
+                    alt="{% trans 'Поддержка' %}"
+                    class="coin-img"
+                    data-ru="{% static 'images/ru/coin-support.png' %}"
+                    data-en="{% static 'images/en/coin-support.png' %}"
+                    loading="lazy"
+                >
+            </div>
+        </div>
+    </div>
+
+    <!-- Монета 2: 100% индивидуальный проект -->
+    <div class="stat-item coin-wrapper">
+        <div class="stat-icon coin" id="coin2">
+            <div class="coin-face">
+                <img
+                    src="{% static 'images/ru/coin-custom.png' %}"
+                    alt="{% trans 'Индивидуальный проект' %}"
+                    class="coin-img"
+                    data-ru="{% static 'images/ru/coin-custom.png' %}"
+                    data-en="{% static 'images/en/coin-custom.png' %}"
+                    loading="lazy"
+                >
+            </div>
+        </div>
+    </div>
+
+    <!-- Монета 3: SEO под ключ -->
+    <div class="stat-item coin-wrapper">
+        <div class="stat-icon coin" id="coin3">
+            <div class="coin-face">
+                <img
+                    src="{% static 'images/ru/coin-seo.png' %}"
+                    alt="{% trans 'SEO оптимизация' %}"
+                    class="coin-img"
+                    data-ru="{% static 'images/ru/coin-seo.png' %}"
+                    data-en="{% static 'images/en/coin-seo.png' %}"
+                    loading="lazy"
+                >
+            </div>
+        </div>
+    </div>
+
+    <!-- Монета 4: Запуск под ключ -->
+    <div class="stat-item coin-wrapper">
+        <div class="stat-icon coin" id="coin4">
+            <div class="coin-face">
+                <img
+                    src="{% static 'images/ru/coin-launch.png' %}"
+                    alt="{% trans 'Запуск' %}"
+                    class="coin-img"
+                    data-ru="{% static 'images/ru/coin-launch.png' %}"
+                    data-en="{% static 'images/en/coin-launch.png' %}"
+                    loading="lazy"
+                >
+            </div>
+        </div>
+    </div>
+</div>

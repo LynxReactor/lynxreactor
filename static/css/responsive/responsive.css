@@ -1,0 +1,327 @@
+/* static/css/responsive.css */
+
+/* ============================================================
+   АДАПТАЦИЯ ДЛЯ СВЕТЛОЙ ТЕМЫ
+   ============================================================ */
+
+[data-theme="light"] .hero-stats {
+    background: transparent !important;
+}
+
+[data-theme="light"] .stat-item {
+    background: rgba(255, 255, 255, 0.85);
+    border: 1px solid var(--color-border, #E2E8F0);
+}
+
+[data-theme="light"] .service-card-overlay {
+    background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.05) 0%,
+        rgba(255, 255, 255, 0.85) 70%,
+        rgba(255, 255, 255, 0.95) 100%
+    );
+}
+
+[data-theme="light"] .service-number {
+    color: var(--color-gold, #F2C94C);
+    opacity: 0.8;
+}
+
+[data-theme="light"] .service-title {
+    color: var(--color-text-primary, #172033);
+}
+
+[data-theme="light"] .service-description {
+    color: var(--color-text-secondary, #64748B);
+}
+
+[data-theme="light"] .service-link {
+    color: var(--color-gold, #F2C94C);
+}
+
+[data-theme="light"] .service-link:hover {
+    color: var(--color-gold-dark, #D4A82E);
+}
+
+[data-theme="light"] .faq-item {
+    background: var(--color-card-bg, #FFFFFF);
+    border: 1px solid var(--color-border, #E2E8F0);
+}
+
+[data-theme="light"] .faq-item.active {
+    border-color: var(--color-gold, #F2C94C);
+}
+
+[data-theme="light"] .faq-question {
+    color: var(--color-text-primary, #172033);
+}
+
+[data-theme="light"] .faq-answer-content {
+    color: var(--color-text-secondary, #64748B);
+}
+
+[data-theme="light"] .tech-item {
+    background: var(--color-card-bg, #FFFFFF);
+    border: 1px solid var(--color-border, #E2E8F0);
+}
+
+[data-theme="light"] .tech-item:hover {
+    border-color: var(--color-gold, #F2C94C);
+}
+
+[data-theme="light"] .tech-name {
+    color: var(--color-text-primary, #172033);
+}
+
+[data-theme="light"] .tech-description {
+    color: var(--color-text-secondary, #64748B);
+}
+
+[data-theme="light"] .portfolio-card {
+    background: var(--color-card-bg, #FFFFFF);
+    border: 1px solid var(--color-border, #E2E8F0);
+}
+
+[data-theme="light"] .portfolio-card:hover {
+    border-color: var(--color-gold, #F2C94C);
+}
+
+[data-theme="light"] .portfolio-title-link {
+    color: var(--color-text-primary, #172033);
+}
+
+[data-theme="light"] .portfolio-description-full {
+    color: var(--color-text-secondary, #64748B);
+}
+
+[data-theme="light"] .portfolio-link {
+    color: var(--color-gold, #F2C94C);
+}
+
+[data-theme="light"] .portfolio-link:hover {
+    color: var(--color-gold-dark, #D4A82E);
+}
+
+[data-theme="light"] .tariff-card {
+    background: var(--color-card-bg, #FFFFFF);
+    border: 1px solid var(--color-border, #E2E8F0);
+    box-shadow: var(--shadow-sm);
+}
+
+[data-theme="light"] .tariff-card:hover {
+    border-color: var(--color-gold, #F2C94C);
+    box-shadow: var(--shadow-md);
+}
+
+[data-theme="light"] .tariff-card.popular {
+    border-color: var(--color-gold, #F2C94C);
+    box-shadow: 0 4px 24px rgba(242, 201, 76, 0.15);
+}
+
+[data-theme="light"] .tariff-price-wrapper {
+    border-top-color: var(--color-border, #E2E8F0);
+    border-bottom-color: var(--color-border, #E2E8F0);
+}
+
+[data-theme="light"] .tariff-features li {
+    color: var(--color-text-secondary, #64748B);
+}
+
+[data-theme="light"] .tariff-time {
+    background: rgba(242, 201, 76, 0.04);
+}
+
+
+/* ============================================================
+   МОБИЛЬНАЯ ВЕРСИЯ — ОДНА КАРТОЧКА В КОЛОНКЕ
+   ============================================================ */
+
+@media (max-width: 576px) {
+    /* SERVICES — одна колонка */
+    .services-grid {
+        grid-template-columns: 1fr !important;
+        gap: 12px !important;
+        padding: 0 12px !important;
+    }
+
+    .service-card {
+        aspect-ratio: 16/9 !important;
+        border-radius: 12px !important;
+        min-height: 220px;
+    }
+
+    .service-card-overlay {
+        padding: 20px 18px 18px !important;
+    }
+
+    .service-number {
+        font-size: 28px !important;
+    }
+
+    .service-title {
+        font-size: 18px !important;
+    }
+
+    .service-description {
+        font-size: 13px !important;
+        -webkit-line-clamp: 3 !important;
+    }
+
+    /* TECH — одна колонка */
+    .tech-grid {
+        grid-template-columns: 1fr !important;
+        gap: 16px !important;
+        padding: 0 16px !important;
+    }
+
+    .tech-item {
+        display: flex !important;
+        flex-direction: column !important;   /* ✅ вертикальный стек */
+        align-items: center !important;
+        text-align: center !important;
+        padding: 24px 20px 20px !important;
+        gap: 0 !important;
+        min-height: auto !important;
+        border-radius: 16px !important;
+    }
+
+    /* Иконка — сверху, по центру */
+    .tech-icon {
+        width: 64px !important;
+        height: 64px !important;
+        min-width: 64px !important;
+        margin: 0 auto 14px auto !important;
+        flex-shrink: 0 !important;
+    }
+
+    .tech-icon img {
+        width: 40px !important;
+        height: 40px !important;
+    }
+
+    .tech-icon-placeholder {
+        font-size: 24px !important;
+    }
+
+    /* Информация — по центру */
+    .tech-info {
+        width: 100% !important;
+        align-items: center !important;
+        text-align: center !important;
+        margin-bottom: 8px !important;
+    }
+
+    .tech-name {
+        font-size: 18px !important;
+        margin-bottom: 4px !important;
+        text-align: center !important;
+    }
+
+    .tech-category {
+        font-size: 11px !important;
+        margin-bottom: 6px !important;
+        text-align: center !important;
+    }
+
+    /* Badge — компактный, по центру, а не растянутая полоса */
+    .tech-badge {
+        position: static !important;
+        display: inline-block !important;
+        font-size: 9px !important;
+        padding: 3px 12px !important;
+        margin: 0 auto !important;
+        width: auto !important;
+        max-width: fit-content !important;
+        border-radius: 4px !important;
+    }
+
+    /* Описание — с отступом сверху, выравнивание по центру */
+    .tech-description {
+        font-size: 13px !important;
+        line-height: 1.55 !important;
+        margin: 8px 0 12px 0 !important;
+        text-align: center !important;
+        -webkit-line-clamp: 3 !important;
+        display: -webkit-box !important;
+        -webkit-box-orient: vertical !important;
+        overflow: hidden !important;
+        max-width: 100% !important;
+    }
+
+    /* Кнопка — на всю ширину, по центру */
+    .tech-more-btn {
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 8px !important;
+        width: 100% !important;
+        max-width: 260px !important;
+        margin: 4px auto 0 auto !important;
+        padding: 10px 18px !important;
+        font-size: 13px !important;
+        border: 1px solid var(--color-gold-rgba, rgba(200, 154, 91, 0.25)) !important;
+        border-radius: 8px !important;
+        background: rgba(200, 154, 91, 0.06) !important;
+        transition: all 0.3s ease !important;
+    }
+
+    .tech-more-btn:hover {
+        background: rgba(200, 154, 91, 0.15) !important;
+        border-color: var(--color-gold, #C89A5B) !important;
+    }
+
+    .tech-more-btn .arrow {
+        font-size: 13px !important;
+    }
+}
+
+@media (max-width: 400px) {
+    .services-grid {
+        gap: 10px !important;
+        padding: 0 8px !important;
+    }
+
+    .service-card {
+        min-height: 180px;
+    }
+
+    .service-card-overlay {
+        padding: 14px 14px 14px !important;
+    }
+
+    .service-number {
+        font-size: 22px !important;
+    }
+
+    .service-title {
+        font-size: 15px !important;
+    }
+
+    .service-description {
+        font-size: 12px !important;
+        -webkit-line-clamp: 2 !important;
+    }
+
+    .tech-grid {
+        gap: 12px !important;
+        padding: 0 8px !important;
+    }
+
+    .tech-item {
+        padding: 14px 12px !important;
+    }
+
+    .tech-icon {
+        width: 44px !important;
+        height: 44px !important;
+    }
+
+    .tech-icon img {
+        width: 26px !important;
+        height: 26px !important;
+    }
+
+    .tech-name {
+        font-size: 14px !important;
+    }
+}

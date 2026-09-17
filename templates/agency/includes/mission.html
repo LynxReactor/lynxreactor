@@ -1,0 +1,39 @@
+{% load static i18n %}
+
+{% if mission %}
+<section class="mission-section" id="mission">
+    <div class="mission-background themed-image">
+        {% if mission.background_light %}
+            <img class="themed-img ti-light"
+                 src="{{ mission.background_light.url }}"
+                 alt="{{ mission.title }}"
+                 loading="lazy" decoding="async">
+        {% endif %}
+        {% if mission.background_dark %}
+            <img class="themed-img ti-dark"
+                 src="{{ mission.background_dark.url }}"
+                 alt="{{ mission.title }}"
+                 loading="lazy" decoding="async">
+        {% endif %}
+        {% if not mission.background_light and not mission.background_dark %}
+            <img class="themed-img ti-fallback"
+                 src="{% static 'images/mission/default.jpg' %}"
+                 alt="{{ mission.title }}"
+                 loading="lazy" decoding="async">
+        {% endif %}
+    </div>
+
+    <div class="mission-content">
+        <span class="mission-label">{{ mission.subtitle|default:_("НАША МИССИЯ") }}</span>
+        <h2 class="mission-title">{{ mission.title }}</h2>
+        <div class="mission-description">{{ mission.description|safe }}</div>
+
+        {% if mission.button_text and mission.button_url %}
+        <a href="{{ mission.button_url }}" class="btn btn-primary">
+            {{ mission.button_text }}
+            <span class="arrow">→</span>
+        </a>
+        {% endif %}
+    </div>
+</section>
+{% endif %}

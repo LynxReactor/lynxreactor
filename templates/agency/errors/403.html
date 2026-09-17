@@ -1,0 +1,20 @@
+<!-- templates/agency/403.html -->
+
+{% extends 'agency/errors/error.html' %}
+{% load i18n %}
+
+{% block title %}403 — {% trans "Доступ запрещён" %} | LYNXREACTOR{% endblock %}
+
+{% block status %}403 — {% trans "Доступ запрещён" %}{% endblock %}
+
+{% block error_code %}403{% endblock %}
+
+{% block error_title %}{% trans "Доступ запрещён" %}{% endblock %}
+
+{% block error_description %}
+    {% trans "У вас нет прав для доступа к этой странице. Пожалуйста, войдите в систему или обратитесь к администратору." %}
+{% endblock %}
+
+{% block extra_head %}
+    <meta name="robots" content="noindex, nofollow">
+{% endblock %}

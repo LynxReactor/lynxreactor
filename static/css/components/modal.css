@@ -1,0 +1,890 @@
+/* ============================================================
+   МОДАЛЬНОЕ ОКНО ЗАЯВКИ — LYNXREACTOR
+   ============================================================ */
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(11, 11, 12, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+}
+
+.modal-overlay.active {
+    display: flex !important;
+}
+
+@keyframes modalFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes modalSlideUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.modal-container {
+    max-width: 680px;
+    width: 100%;
+    background: var(--color-card-bg, #171719);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+    animation: modalSlideUp 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.modal-container::-webkit-scrollbar {
+    width: 4px;
+}
+.modal-container::-webkit-scrollbar-track {
+    background: transparent;
+}
+.modal-container::-webkit-scrollbar-thumb {
+    background: var(--color-gold-dark, #9A6D35);
+    border-radius: 2px;
+}
+
+.modal-header {
+    padding: 32px 36px 24px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+.modal-title-wrapper {
+    flex: 1;
+}
+
+.modal-label {
+    font-family: var(--font-sans, 'Manrope', sans-serif);
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    color: var(--color-gold, #C89A5B);
+    display: block;
+    margin-bottom: 8px;
+}
+
+.modal-title {
+    font-family: var(--font-serif, 'Cormorant Garamond', serif);
+    font-size: clamp(24px, 3vw, 32px);
+    line-height: 1.1;
+    margin-bottom: 8px;
+    color: var(--color-text-primary, #F5F3EF);
+}
+
+.modal-title .gold-accent {
+    color: var(--color-gold, #C89A5B);
+}
+
+.modal-subtitle {
+    font-size: 15px;
+    color: var(--color-text-secondary, #A6A3A0);
+}
+
+.modal-subtitle strong {
+    color: var(--color-gold, #C89A5B);
+}
+
+.modal-close {
+    background: transparent;
+    border: none;
+    color: var(--color-text-secondary, #A6A3A0);
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-close:hover {
+    background: rgba(255, 255, 255, 0.06);
+    color: var(--color-text-primary, #F5F3EF);
+    transform: rotate(90deg);
+}
+
+.modal-close svg {
+    width: 24px;
+    height: 24px;
+}
+
+.modal-body {
+    padding: 32px 36px 24px;
+}
+
+/* ============================================================
+   ФОРМА В МОДАЛКЕ
+   ============================================================ */
+
+.modal-form .form-group {
+    margin-bottom: 16px;
+}
+
+.modal-form .form-label {
+    display: block;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--color-text-secondary, #A6A3A0);
+    margin-bottom: 4px;
+}
+
+.modal-form .form-label .required {
+    color: #e74c3c;
+}
+
+.modal-form .form-control {
+    width: 100%;
+    padding: 12px 16px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 8px;
+    color: var(--color-text-primary, #F5F3EF);
+    font-size: 15px;
+    transition: all 0.3s ease;
+    font-family: var(--font-sans, 'Manrope', sans-serif);
+}
+
+.modal-form .form-control:focus {
+    outline: none;
+    border-color: var(--color-gold, #C89A5B);
+    background: rgba(255, 255, 255, 0.06);
+    box-shadow: 0 0 0 3px rgba(200, 154, 91, 0.15);
+}
+
+.modal-form .form-control::placeholder {
+    color: var(--color-text-secondary, #A6A3A0);
+    opacity: 0.5;
+}
+
+.modal-form .form-control.error {
+    border-color: #e74c3c;
+    box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.15);
+}
+
+.modal-form .form-hint {
+    font-size: 12px;
+    color: var(--color-text-secondary, #A6A3A0);
+    margin-top: 4px;
+    opacity: 0.7;
+}
+
+.modal-form .form-error {
+    font-size: 12px;
+    color: #e74c3c;
+    margin-top: 4px;
+    display: none;
+}
+
+.modal-form .form-error.show {
+    display: block;
+}
+
+.modal-form select.form-control {
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23A6A3A0' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    padding-right: 44px;
+    cursor: pointer;
+}
+
+.modal-form select.form-control option {
+    background-color: var(--color-card-bg, #171719);
+    color: var(--color-text-primary, #F5F3EF);
+}
+
+.modal-form .btn-block {
+    width: 100%;
+    justify-content: center;
+    margin-top: 8px;
+}
+
+/* ============================================================
+   РАЗДЕЛИТЕЛЬ
+   ============================================================ */
+
+.modal-divider {
+    display: flex;
+    align-items: center;
+    margin: 28px 0 24px;
+}
+
+.modal-divider::before,
+.modal-divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.divider-text {
+    font-size: 12px;
+    color: var(--color-text-secondary, #A6A3A0);
+    padding: 0 16px;
+    opacity: 0.5;
+    white-space: nowrap;
+    font-family: var(--font-sans, 'Manrope', sans-serif);
+}
+
+/* ============================================================
+   АЛЬТЕРНАТИВНЫЕ СПОСОБЫ СВЯЗИ
+   ============================================================ */
+
+.alternative-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+.alternative-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    padding: 16px 12px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    border-radius: 12px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.alternative-item:hover {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: var(--color-gold-rgba, rgba(200, 154, 91, 0.25));
+    transform: translateY(-2px);
+}
+
+.alternative-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.alternative-icon svg {
+    width: 20px;
+    height: 20px;
+    stroke: currentColor;
+}
+
+.email-item .alternative-icon {
+    background: rgba(200, 154, 91, 0.12);
+    color: var(--color-gold, #C89A5B);
+}
+
+.telegram-item .alternative-icon {
+    background: rgba(34, 170, 220, 0.12);
+    color: #22AADC;
+}
+
+.max-item .alternative-icon {
+    background: rgba(155, 89, 182, 0.12);
+    color: #9B59B6;
+}
+
+.alternative-label {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--color-text-primary, #F5F3EF);
+    font-family: var(--font-sans, 'Manrope', sans-serif);
+}
+
+.alternative-desc {
+    font-size: 11px;
+    color: var(--color-text-secondary, #A6A3A0);
+    opacity: 0.6;
+    font-family: var(--font-sans, 'Manrope', sans-serif);
+}
+
+/* ============================================================
+   ФУТЕР МОДАЛКИ
+   ============================================================ */
+
+.modal-footer {
+    padding: 16px 36px 32px;
+    border-top: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.modal-note {
+    font-size: 13px;
+    color: var(--color-text-secondary, #A6A3A0);
+    text-align: center;
+    margin: 0;
+    opacity: 0.6;
+    font-family: var(--font-sans, 'Manrope', sans-serif);
+}
+
+/* ============================================================
+   АДАПТИВНОСТЬ МОДАЛЬНЫХ ОКОН
+   ============================================================ */
+
+@media (max-width: 992px) {
+    .modal-container {
+        max-width: 600px;
+    }
+    .modal-header {
+        padding: 28px 28px 20px;
+    }
+    .modal-body {
+        padding: 28px 28px 20px;
+    }
+    .modal-footer {
+        padding: 14px 28px 28px;
+    }
+}
+
+@media (max-width: 768px) {
+    .modal-overlay {
+        padding: 16px;
+    }
+    .modal-container {
+        max-width: 100%;
+        margin: 0 12px;
+        border-radius: 16px;
+        max-height: 95vh;
+    }
+    .modal-header {
+        padding: 24px 20px 16px;
+        flex-wrap: wrap;
+    }
+    .modal-body {
+        padding: 20px 20px 16px;
+    }
+    .modal-footer {
+        padding: 12px 20px 24px;
+    }
+    .modal-title {
+        font-size: clamp(22px, 4vw, 28px);
+    }
+    .alternative-grid {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+    .alternative-item {
+        flex-direction: row;
+        padding: 12px 16px;
+        gap: 12px;
+    }
+    .alternative-icon {
+        width: 36px;
+        height: 36px;
+    }
+    .alternative-icon svg {
+        width: 18px;
+        height: 18px;
+    }
+    .alternative-desc {
+        display: none;
+    }
+    .modal-form .form-control {
+        font-size: 14px;
+        padding: 10px 14px;
+    }
+    .modal-close {
+        width: 36px;
+        height: 36px;
+    }
+    .modal-close svg {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .modal-overlay {
+        padding: 12px;
+    }
+    .modal-container {
+        margin: 0 8px;
+        border-radius: 12px;
+        max-height: 98vh;
+    }
+    .modal-header {
+        padding: 18px 16px 12px;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 8px;
+    }
+    .modal-body {
+        padding: 16px 16px 12px;
+    }
+    .modal-footer {
+        padding: 10px 16px 16px;
+    }
+    .modal-title {
+        font-size: clamp(20px, 4vw, 26px);
+    }
+    .modal-subtitle {
+        font-size: 14px;
+    }
+    .modal-label {
+        font-size: 10px;
+    }
+    .modal-close {
+        position: absolute;
+        top: 12px;
+        right: 12px;
+        width: 32px;
+        height: 32px;
+    }
+    .modal-close svg {
+        width: 18px;
+        height: 18px;
+    }
+    .modal-form .form-control {
+        font-size: 13px;
+        padding: 10px 12px;
+    }
+    .modal-form .form-label {
+        font-size: 12px;
+    }
+    .alternative-item {
+        padding: 10px 14px;
+        gap: 10px;
+    }
+    .alternative-label {
+        font-size: 12px;
+    }
+    .alternative-icon {
+        width: 32px;
+        height: 32px;
+    }
+    .alternative-icon svg {
+        width: 16px;
+        height: 16px;
+    }
+    .modal-note {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 360px) {
+    .modal-overlay {
+        padding: 8px;
+    }
+    .modal-container {
+        margin: 0 4px;
+        border-radius: 10px;
+    }
+    .modal-header {
+        padding: 14px 12px 10px;
+    }
+    .modal-body {
+        padding: 12px 12px 10px;
+    }
+    .modal-footer {
+        padding: 8px 12px 14px;
+    }
+    .modal-title {
+        font-size: clamp(18px, 4vw, 22px);
+    }
+    .modal-subtitle {
+        font-size: 13px;
+    }
+    .modal-form .form-control {
+        font-size: 12px;
+        padding: 8px 10px;
+    }
+    .alternative-item {
+        padding: 8px 10px;
+        gap: 8px;
+    }
+    .alternative-label {
+        font-size: 11px;
+    }
+    .alternative-icon {
+        width: 28px;
+        height: 28px;
+    }
+    .alternative-icon svg {
+        width: 14px;
+        height: 14px;
+    }
+    .modal-close {
+        top: 8px;
+        right: 8px;
+        width: 28px;
+        height: 28px;
+    }
+    .modal-close svg {
+        width: 16px;
+        height: 16px;
+    }
+}
+
+/* ============================================================
+   FAQ МОДАЛЬНОЕ ОКНО
+   ============================================================ */
+
+.faq-modal-container {
+    max-width: 580px !important;
+}
+
+.faq-contact-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.faq-contact-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 20px 24px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    border-radius: 12px;
+    text-decoration: none;
+    color: var(--color-text-primary, #F5F3EF);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.faq-contact-item:hover {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: var(--color-gold-rgba, rgba(200, 154, 91, 0.25));
+    transform: translateX(4px);
+}
+
+.faq-contact-icon {
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.faq-contact-icon svg {
+    width: 24px;
+    height: 24px;
+    stroke: currentColor;
+}
+
+.email-item .faq-contact-icon {
+    background: rgba(200, 154, 91, 0.12);
+    color: var(--color-gold, #C89A5B);
+}
+
+.telegram-item .faq-contact-icon {
+    background: rgba(34, 170, 220, 0.12);
+    color: #22AADC;
+}
+
+.max-item .faq-contact-icon {
+    background: rgba(155, 89, 182, 0.12);
+    color: #9B59B6;
+}
+
+.faq-contact-content {
+    flex: 1;
+}
+
+.faq-contact-content h4 {
+    font-family: var(--font-serif, 'Cormorant Garamond', serif);
+    font-size: 18px;
+    margin-bottom: 4px;
+    color: var(--color-text-primary, #F5F3EF);
+}
+
+.faq-contact-content p {
+    font-size: 14px;
+    color: var(--color-text-secondary, #A6A3A0);
+    margin: 0;
+}
+
+.faq-contact-email,
+.faq-contact-telegram,
+.faq-contact-max {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--color-gold, #C89A5B);
+    display: block;
+    margin-top: 4px;
+}
+
+.faq-contact-arrow {
+    font-size: 20px;
+    color: var(--color-text-secondary, #A6A3A0);
+    opacity: 0.3;
+    transition: all 0.3s ease;
+    flex-shrink: 0;
+}
+
+.faq-contact-item:hover .faq-contact-arrow {
+    opacity: 1;
+    transform: translateX(4px);
+    color: var(--color-gold, #C89A5B);
+}
+
+/* Адаптивность FAQ модалки */
+@media (max-width: 768px) {
+    .faq-contact-item {
+        padding: 16px 18px;
+        gap: 14px;
+    }
+    .faq-contact-icon {
+        width: 40px;
+        height: 40px;
+        min-width: 40px;
+    }
+    .faq-contact-icon svg {
+        width: 20px;
+        height: 20px;
+    }
+    .faq-contact-content h4 {
+        font-size: 16px;
+    }
+    .faq-contact-content p {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 480px) {
+    .faq-contact-item {
+        padding: 14px 14px;
+        gap: 12px;
+        flex-wrap: wrap;
+    }
+    .faq-contact-icon {
+        width: 36px;
+        height: 36px;
+        min-width: 36px;
+    }
+    .faq-contact-icon svg {
+        width: 18px;
+        height: 18px;
+    }
+    .faq-contact-content {
+        flex: 1;
+        min-width: 120px;
+    }
+    .faq-contact-content h4 {
+        font-size: 15px;
+    }
+    .faq-contact-content p {
+        font-size: 12px;
+    }
+    .faq-contact-email,
+    .faq-contact-telegram,
+    .faq-contact-max {
+        font-size: 12px;
+    }
+}
+
+/* ============================================================
+   SERVICE MODAL — НА ВЕСЬ ЭКРАН
+   ============================================================ */
+
+.service-modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(11, 11, 12, 0.92);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    animation: modalFadeIn 0.3s ease;
+}
+
+.service-modal-overlay.active {
+    display: flex !important;
+}
+
+.service-modal-container {
+    max-width: 800px;
+    width: 100%;
+    max-height: 90vh;
+    background: var(--color-card-bg, #1a1a1d);
+    border-radius: 24px;
+    border: 1px solid var(--color-border);
+    position: relative;
+    animation: modalSlideUp 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    overflow: hidden;
+}
+
+[data-theme="light"] .service-modal-container {
+    background: #FFFFFF;
+}
+
+.service-modal-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(255, 255, 255, 0.06);
+    border: none;
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--color-text-secondary);
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.service-modal-close:hover {
+    background: rgba(255, 255, 255, 0.12);
+    color: var(--color-text-primary);
+    transform: rotate(90deg);
+}
+
+.service-modal-close svg {
+    width: 24px;
+    height: 24px;
+    stroke: currentColor;
+}
+
+[data-theme="light"] .service-modal-close {
+    background: rgba(0, 0, 0, 0.04);
+}
+
+[data-theme="light"] .service-modal-close:hover {
+    background: rgba(0, 0, 0, 0.08);
+}
+
+.service-modal-content {
+    padding: 60px 50px 50px;
+    display: flex;
+    flex-direction: column;
+    min-height: 300px;
+}
+
+.service-modal-header {
+    margin-bottom: 30px;
+}
+
+.service-modal-number {
+    font-family: var(--font-serif);
+    font-size: 48px;
+    color: var(--color-gold);
+    opacity: 0.5;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.service-modal-title {
+    font-family: var(--font-serif);
+    font-size: clamp(32px, 4vw, 44px);
+    color: var(--color-text-primary);
+    line-height: 1.1;
+    margin: 0;
+}
+
+.service-modal-body {
+    flex: 1;
+    margin-bottom: 30px;
+}
+
+.service-modal-description {
+    font-size: 17px;
+    line-height: 1.8;
+    color: var(--color-text-secondary);
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+[data-theme="light"] .service-modal-description {
+    color: var(--color-text-secondary, #4a4a4a);
+}
+
+.service-modal-footer {
+    padding-top: 24px;
+    border-top: 1px solid var(--color-border);
+}
+
+.service-modal-cta {
+    padding: 14px 36px;
+    font-size: 14px;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .service-modal-overlay {
+        padding: 16px;
+    }
+
+    .service-modal-content {
+        padding: 40px 24px 30px;
+    }
+
+    .service-modal-number {
+        font-size: 36px;
+    }
+
+    .service-modal-title {
+        font-size: clamp(24px, 5vw, 32px);
+    }
+
+    .service-modal-description {
+        font-size: 15px;
+    }
+
+    .service-modal-close {
+        top: 14px;
+        right: 14px;
+        width: 36px;
+        height: 36px;
+    }
+
+    .service-modal-close svg {
+        width: 18px;
+        height: 18px;
+    }
+}
+
+@media (max-width: 480px) {
+    .service-modal-overlay {
+        padding: 8px;
+    }
+
+    .service-modal-content {
+        padding: 30px 16px 20px;
+    }
+
+    .service-modal-number {
+        font-size: 28px;
+    }
+
+    .service-modal-title {
+        font-size: clamp(20px, 4vw, 26px);
+    }
+
+    .service-modal-description {
+        font-size: 14px;
+        line-height: 1.6;
+    }
+
+    .service-modal-cta {
+        width: 100%;
+        justify-content: center;
+    }
+}

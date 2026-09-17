@@ -1,0 +1,50 @@
+<!-- templates/agency/emails/blog_newsletter.html -->
+
+{% extends 'agency/emails/base_email.html' %}
+{% load static i18n %}
+
+{% block content %}
+
+<h1 class="email-title">📰 <span class="gold-accent">Новая статья</span> в блоге</h1>
+<p class="email-subtitle">В LYNXREACTOR вышла новая статья — читайте первыми.</p>
+
+<div class="email-divider"></div>
+
+<div class="info-block" style="border-color:rgba(200,154,91,0.15); background:rgba(200,154,91,0.02);">
+    <span class="info-label">📄 Статья</span>
+    <h2 style="font-family:'Cormorant Garamond',serif; font-size:24px; color:#F5F3EF; margin:8px 0 12px; line-height:1.2;">
+        {{ post.title }}
+    </h2>
+    {% if post.excerpt %}
+    <p style="font-size:14px; color:#A6A3A0; line-height:1.6; margin:0 0 16px;">
+        {{ post.excerpt|striptags|truncatewords:30 }}
+    </p>
+    {% endif %}
+    <p style="font-size:12px; color:#6B6865; margin:0;">
+        {{ post.published_at|date:"d.m.Y" }}
+        {% if post.category %} • {{ post.category.name }}{% endif %}
+    </p>
+</div>
+
+<div class="email-btn-wrapper">
+    <a href="{{ post_url }}" class="email-btn">
+        Читать статью
+        <span class="arrow">→</span>
+    </a>
+</div>
+
+<p class="email-text" style="font-size:14px; color:#A6A3A0; text-align:center; margin-top:24px;">
+    Спасибо, что читаете наш блог!<br>
+    <strong style="color:#C89A5B;">Команда LYNXREACTOR</strong>
+</p>
+
+<div class="email-divider"></div>
+
+<p style="font-size:11px; color:#6B6865; text-align:center; line-height:1.5; margin:0;">
+    Вы получили это письмо, потому что подписаны на обновления блога LYNXREACTOR.<br>
+    <a href="{{ unsubscribe_url }}" style="color:#A6A3A0; text-decoration:underline;">
+        Отписаться от рассылки
+    </a>
+</p>
+
+{% endblock %}

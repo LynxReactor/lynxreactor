@@ -1,0 +1,205 @@
+<!-- templates/agency/includes/default_tariffs.html -->
+{% load static i18n %}
+<!-- СТАРТ -->
+<div class="tariff-card accent-blue" data-tariff="Старт">
+    <div class="tariff-header">
+        <div class="tariff-icon-wrapper">
+            <i class="fas fa-rocket"></i>
+        </div>
+        <h3 class="tariff-name">{% trans "СТАРТ" %}</h3>
+        <div class="tariff-format">
+            <svg class="format-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                <line x1="8" y1="21" x2="16" y2="21"/>
+                <line x1="12" y1="17" x2="12" y2="21"/>
+            </svg>
+            <span>{% trans "ЛЕНДИНГ / ПОСАДОЧНАЯ СТРАНИЦА" %}</span>
+        </div>
+        <p class="tariff-subtitle">{% trans "Быстрый запуск рекламной кампании" %}</p>
+    </div>
+    <div class="tariff-price-wrapper">
+        <div class="tariff-price" data-byn="500" data-rub="15000" data-eur="150" data-usd="160">
+            <span class="price-from">{% trans "от" %}</span>
+            <span class="price-value">500</span>
+            <span class="price-symbol byn-text">Br</span>
+            <span class="price-period">/ {% trans "проект" %}</span>
+        </div>
+    </div>
+    <div class="tariff-description-wrapper">
+        <div class="tariff-description">
+            <p>{% trans "Одностраничный сайт для продвижения одной услуги, продукта или рекламной кампании. Подходит для быстрого запуска рекламы и получения заявок." %}</p>
+        </div>
+    </div>
+    <ul class="tariff-features">
+        <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> {% trans "Одностраничный сайт" %}</li>
+        <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> {% trans "Индивидуальный дизайн" %}</li>
+        <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> {% trans "Адаптивная верстка" %}</li>
+        <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> {% trans "Форма обратной связи" %}</li>
+        <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> {% trans "Базовая SEO-оптимизация" %}</li>
+        <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> {% trans "Запуск на хостинге" %}</li>
+    </ul>
+    <div class="tariff-time">
+        <svg class="clock-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <polyline points="12 6 12 12 16 14"/>
+        </svg>
+        <span>{% trans "Срок разработки" %}: {% trans "до 5 дней" %}</span>
+    </div>
+    <button class="btn btn-secondary tariff-cta open-modal" data-tariff="Старт">
+        {% trans "Выбрать тариф" %}
+        <span class="arrow">→</span>
+    </button>
+</div>
+
+<!-- БИЗНЕС -->
+<div class="tariff-card popular accent-gold" data-tariff="Бизнес">
+    <div class="tariff-badge">★ {% trans "Популярный" %}</div>
+    <div class="tariff-header">
+        <div class="tariff-icon-wrapper">
+            <i class="fas fa-store"></i>
+        </div>
+        <h3 class="tariff-name">{% trans "БИЗНЕС" %}</h3>
+        <div class="tariff-format">
+            <svg class="format-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                <line x1="8" y1="21" x2="16" y2="21"/>
+                <line x1="12" y1="17" x2="12" y2="21"/>
+            </svg>
+            <span>{% trans "КОРПОРАТИВНЫЙ САЙТ / САЙТ-КАТАЛОГ" %}</span>
+        </div>
+        <p class="tariff-subtitle">{% trans "Представьте бизнес профессионально" %}</p>
+    </div>
+    <div class="tariff-price-wrapper">
+        <div class="tariff-price" data-byn="1500" data-rub="45000" data-eur="450" data-usd="480">
+            <span class="price-from">{% trans "от" %}</span>
+            <span class="price-value">1500</span>
+            <span class="price-symbol byn-text">Br</span>
+            <span class="price-period">/ {% trans "проект" %}</span>
+        </div>
+    </div>
+    <div class="tariff-description-wrapper">
+        <div class="tariff-description">
+            <p>{% trans "Корпоративный сайт — многостраничный сайт, который знакомит с компанией, услугами и опытом. Помогает выстроить доверие, привлекать клиентов и развивать бизнес онлайн." %}</p>
+        </div>
+    </div>
+    <ul class="tariff-features">
+        <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> {% trans "Многостраничный сайт (до 10 страниц)" %}</li>
+        <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> {% trans "Уникальный дизайн" %}</li>
+        <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> {% trans "Адаптивная верстка" %}</li>
+        <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> {% trans "Каталог товаров/услуг" %}</li>
+        <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> {% trans "Админ-панель" %}</li>
+        <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> {% trans "SEO-оптимизация" %}</li>
+    </ul>
+    <div class="tariff-time">
+        <svg class="clock-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <polyline points="12 6 12 12 16 14"/>
+        </svg>
+        <span>{% trans "Срок разработки" %}: {% trans "до 14 дней" %}</span>
+    </div>
+    <button class="btn btn-primary tariff-cta open-modal" data-tariff="Бизнес">
+        {% trans "Выбрать тариф" %}
+        <span class="arrow">→</span>
+    </button>
+</div>
+
+<!-- БИЗНЕС ПЛЮС -->
+<div class="tariff-card accent-green" data-tariff="Бизнес Плюс">
+    <div class="tariff-header">
+        <div class="tariff-icon-wrapper">
+            <i class="fas fa-shopping-cart"></i>
+        </div>
+        <h3 class="tariff-name">{% trans "БИЗНЕС ПЛЮС" %}</h3>
+        <div class="tariff-format">
+            <svg class="format-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                <line x1="8" y1="21" x2="16" y2="21"/>
+                <line x1="12" y1="17" x2="12" y2="21"/>
+            </svg>
+            <span>{% trans "ИНТЕРНЕТ-МАГАЗИН" %}</span>
+        </div>
+        <p class="tariff-subtitle">{% trans "Полноценная онлайн-торговля" %}</p>
+    </div>
+    <div class="tariff-price-wrapper">
+        <div class="tariff-price" data-byn="3000" data-rub="90000" data-eur="900" data-usd="960">
+            <span class="price-from">{% trans "от" %}</span>
+            <span class="price-value">3000</span>
+            <span class="price-symbol byn-text">Br</span>
+            <span class="price-period">/ {% trans "проект" %}</span>
+        </div>
+    </div>
+    <div class="tariff-description-wrapper">
+        <div class="tariff-description">
+            <p>{% trans "Полноценная платформа для онлайн-продаж с каталогом, корзиной, оформлением заказа и оплатой." %}</p>
+        </div>
+    </div>
+    <ul class="tariff-features">
+        <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> {% trans "Интернет-магазин" %}</li>
+        <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> {% trans "Каталог с фильтрацией" %}</li>
+        <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> {% trans "Корзина и оформление заказа" %}</li>
+        <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> {% trans "Интеграция с системами оплаты" %}</li>
+        <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> {% trans "Личный кабинет покупателя" %}</li>
+        <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> {% trans "1 месяц технической поддержки" %}</li>
+    </ul>
+    <div class="tariff-time">
+        <svg class="clock-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <polyline points="12 6 12 12 16 14"/>
+        </svg>
+        <span>{% trans "Срок разработки" %}: {% trans "до 30 дней" %}</span>
+    </div>
+    <button class="btn btn-secondary tariff-cta open-modal" data-tariff="Бизнес Плюс">
+        {% trans "Выбрать тариф" %}
+        <span class="arrow">→</span>
+    </button>
+</div>
+
+<!-- ИНДИВИДУАЛЬНЫЙ -->
+<div class="tariff-card custom accent-purple" data-tariff="Индивидуальный">
+    <div class="tariff-badge custom-badge">✦ {% trans "Индивидуальный" %}</div>
+    <div class="tariff-header">
+        <div class="tariff-icon-wrapper">
+            <i class="fas fa-crown"></i>
+        </div>
+        <h3 class="tariff-name">{% trans "ИНДИВИДУАЛЬНЫЙ" %}</h3>
+        <div class="tariff-format">
+            <svg class="format-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                <line x1="8" y1="21" x2="16" y2="21"/>
+                <line x1="12" y1="17" x2="12" y2="21"/>
+            </svg>
+            <span>{% trans "ИНДИВИДУАЛЬНОЕ РЕШЕНИЕ / РЕДИЗАЙН" %}</span>
+        </div>
+        <p class="tariff-subtitle">{% trans "Проект с уникальным функционалом" %}</p>
+    </div>
+    <div class="tariff-price-wrapper">
+        <div class="tariff-price">
+            <span class="price-custom">{% trans "Индивидуально" %}</span>
+            <span class="price-sub">{% trans "от обсуждения" %}</span>
+        </div>
+    </div>
+    <div class="tariff-description-wrapper">
+        <div class="tariff-description">
+            <p>{% trans "Индивидуальное решение — это проект с нестандартной структурой, функционалом или интеграциями." %}</p>
+        </div>
+    </div>
+    <ul class="tariff-features">
+        <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> {% trans "Индивидуальный дизайн" %}</li>
+        <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> {% trans "Нестандартная структура" %}</li>
+        <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> {% trans "Сложные интеграции" %}</li>
+        <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> {% trans "Кастомная функциональность" %}</li>
+        <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> {% trans "Масштабируемое решение" %}</li>
+        <li><svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> {% trans "Бесплатная поддержка 1 месяц" %}</li>
+    </ul>
+    <div class="tariff-time">
+        <svg class="clock-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <polyline points="12 6 12 12 16 14"/>
+        </svg>
+        <span>{% trans "Срок разработки" %}: {% trans "Индивидуально" %}</span>
+    </div>
+    <button class="btn btn-primary tariff-cta open-modal" data-tariff="Индивидуальный">
+        {% trans "Обсудить проект" %}
+        <span class="arrow">→</span>
+    </button>
+</div>

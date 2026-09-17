@@ -1,0 +1,3093 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2026 THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-09-16 03:12+0300\n"
+"PO-Revision-Date: 2026-09-16 03:00+0300\n"
+"Last-Translator: Lynx Reactor <info@lynxreactor.com>\n"
+"Language-Team: English\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: .\agency\admin.py:84 .\agency\admin.py:148 .\agency\admin.py:239
+#: .\agency\admin.py:296 .\agency\admin.py:353
+msgid "Загрузите изображения для разных комбинаций темы и языка"
+msgstr "Upload images for different theme and language combinations."
+
+#: .\agency\admin.py:94 .\agency\admin.py:447
+msgid "Preview"
+msgstr "Preview"
+
+#: .\agency\admin.py:107 .\agency\admin.py:456
+msgid "No image"
+msgstr "No image"
+
+#: .\agency\admin.py:167 .\templates\agency\includes\tech_modal.html:16
+msgid "Технология"
+msgstr "Technology"
+
+#: .\agency\admin.py:168 .\templates\agency\includes\footer.html:52
+#: .\templates\agency\includes\header.html:38
+#: .\templates\agency\includes\header.html:124
+msgid "Технологии"
+msgstr "Technologies"
+
+#: .\agency\admin.py:435 .\agency\admin.py:440 .\agency\models.py:849
+#: .\agency\models.py:854 .\agency\models.py:859 .\agency\models.py:864
+msgid "Если пусто — используется SEO раздела «Портфолио»"
+msgstr "If empty, the SEO settings from the “Portfolio” section will be used."
+
+#: .\agency\admin.py:605
+msgid "Блок \"О нас\" отображается после Hero секции"
+msgstr "The “About” block is displayed after the Hero section."
+
+#: .\agency\admin.py:618
+msgid "Используется, если ни одно из 4 изображений выше не задано"
+msgstr "Used if none of the 4 images above is set"
+
+#: .\agency\admin.py:651
+msgid "Выберите: Font Awesome иконку или загрузите PNG изображение"
+msgstr "Choose a Font Awesome icon or upload a PNG image."
+
+#: .\agency\admin.py:657 .\agency\admin.py:662 .\agency\admin.py:718
+#: .\agency\admin.py:723 .\agency\models.py:1399 .\agency\models.py:1404
+#: .\agency\models.py:1409 .\agency\models.py:1414 .\agency\models.py:1531
+#: .\agency\models.py:1536 .\agency\models.py:1541 .\agency\models.py:1546
+msgid "Если пусто — используется SEO раздела «Блог»"
+msgstr "If empty, the SEO settings from the “Blog” section will be used."
+
+#: .\agency\admin.py:667 .\agency\models.py:381 .\agency\models.py:416
+#: .\agency\models.py:545 .\agency\models.py:580 .\agency\models.py:713
+#: .\agency\models.py:742 .\agency\models.py:980 .\agency\models.py:1381
+msgid "Icon"
+msgstr "Icon"
+
+#: .\agency\admin.py:708
+msgid ""
+"Excerpt — краткое описание для списка блога. Content — полный текст статьи."
+msgstr ""
+"Excerpt — a short description for the blog list. Content — the full article "
+"text."
+
+#: .\agency\admin.py:791
+msgid "Загрузите фоновые изображения для светлой и тёмной темы"
+msgstr "Upload background images for light and dark themes"
+
+#: .\agency\admin.py:811
+msgid "Логотипы для разных тем и favicon сайта"
+msgstr "Logos for different themes and the site favicon"
+
+#: .\agency\admin.py:817
+msgid "Используется как fallback, если у страницы нет SEO"
+msgstr "Used as a fallback if the page has no SEO settings."
+
+#: .\agency\admin.py:859
+msgid ""
+"«Активные» страницы: Главная, Контакты, Блог. «Зарезервированные» "
+"(Портфолио, О нас, Услуги, Тарифы) — секции на других страницах. Их SEO пока "
+"не выводится, но готово к использованию, когда появятся отдельные URL."
+msgstr ""
+"“Active” pages: Home, Contacts, and Blog. “Reserved” pages (Portfolio, "
+"About, Services, and Pricing) are sections on other pages. Their SEO is not "
+"currently displayed but is ready to use when dedicated URLs are added."
+
+#: .\agency\admin.py:868
+msgid ""
+"Если оставить поля пустыми — будут использованы значения по умолчанию из "
+"<code>agency/seo_defaults.py</code>"
+msgstr ""
+"If left empty, the default values from <code>agency/seo_defaults.py</code> "
+"will be used."
+
+#: .\agency\admin.py:876
+msgid "Если поля пусты — будет использован русский вариант или fallback"
+msgstr ""
+"If the fields are empty, the Russian version or the fallback will be used."
+
+#: .\agency\admin.py:882
+msgid "Если пусто — используется SEO Title/Description страницы"
+msgstr "If empty, the page’s SEO Title/Description will be used."
+
+#: .\agency\admin.py:907 .\agency\models.py:1892
+msgid "Страница"
+msgstr "Page"
+
+#: .\agency\admin.py:911
+msgid "Статус использования"
+msgstr "Usage status"
+
+#: .\agency\admin.py:922
+msgid "Информация"
+msgstr "Information"
+
+#: .\agency\admin.py:948
+msgid "Title (RU)"
+msgstr "Title (RU)"
+
+#: .\agency\admin.py:959
+msgid "Title (EN)"
+msgstr "Title (EN)"
+
+#: .\agency\apps.py:13
+msgid "Agency"
+msgstr "Agency"
+
+#: .\agency\forms.py:16
+msgid "Verification"
+msgstr "Verification"
+
+#: .\agency\forms.py:25
+msgid "Select primary contact method"
+msgstr "Select primary contact method"
+
+#: .\agency\forms.py:34
+msgid "Enter contact details"
+msgstr "Enter contact details"
+
+#: .\agency\forms.py:36 .\agency\models.py:1681
+msgid "Contact details"
+msgstr "Contact details"
+
+#: .\agency\forms.py:42 .\agency\forms.py:181
+msgid "Select tariff"
+msgstr "Select tariff"
+
+#: .\agency\forms.py:47
+msgid "Interested tariff"
+msgstr "Interested tariff"
+
+#: .\agency\forms.py:57 .\agency\forms.py:75
+msgid "Your name"
+msgstr "Your name"
+
+#: .\agency\forms.py:69
+msgid "Describe your project..."
+msgstr "Describe your project..."
+
+#: .\agency\forms.py:77
+msgid "Describe your project"
+msgstr "Describe your project"
+
+#: .\agency\forms.py:80
+msgid "Enter your full name"
+msgstr "Enter your full name"
+
+#: .\agency\forms.py:81
+msgid "We will send a response to this email"
+msgstr "We will send a response to this email"
+
+#: .\agency\forms.py:82
+msgid "Describe your project in detail"
+msgstr "Describe your project in detail"
+
+#: .\agency\forms.py:104 .\agency\views.py:611
+msgid "Please select a contact method"
+msgstr "Please select a contact method"
+
+#: .\agency\forms.py:107 .\agency\views.py:613
+msgid "Please enter contact details"
+msgstr "Please enter contact details"
+
+#: .\agency\forms.py:113
+msgid "Please enter a valid phone number (minimum 10 digits)"
+msgstr "Please enter a valid phone number (minimum 10 digits)"
+
+#: .\agency\forms.py:118 .\agency\views.py:609 .\agency\views.py:708
+msgid "Please enter a valid email address"
+msgstr "Please enter a valid email address"
+
+#: .\agency\forms.py:125
+msgid "Please enter your name"
+msgstr "Please enter your name"
+
+#: .\agency\forms.py:127
+msgid "Name must be at least 2 characters long"
+msgstr "Name must be at least 2 characters long"
+
+#: .\agency\forms.py:134 .\agency\forms.py:258 .\agency\views.py:607
+#: .\agency\views.py:702
+msgid "Please enter your email"
+msgstr "Please enter your email"
+
+#: .\agency\forms.py:141
+msgid "Please describe your project"
+msgstr "Please describe your project"
+
+#: .\agency\forms.py:143
+msgid "Project description must be at least 10 characters long"
+msgstr "Project description must be at least 10 characters long"
+
+#: .\agency\forms.py:197
+msgid "Search articles..."
+msgstr "Search articles..."
+
+#: .\agency\forms.py:198
+msgid "Search"
+msgstr "Search"
+
+#: .\agency\forms.py:205
+msgid "All categories"
+msgstr "All categories"
+
+#: .\agency\forms.py:241
+msgid "Your email"
+msgstr "Your email"
+
+#: .\agency\forms.py:245 .\agency\models.py:1225 .\agency\models.py:1671
+#: .\agency\models.py:1675 .\agency\models.py:2041
+#: .\templates\agency\contact.html:1118
+msgid "Email"
+msgstr "Email"
+
+#: .\agency\models.py:20 .\agency\models.py:1693 .\agency\models.py:2070
+msgid "Date created"
+msgstr "Date created"
+
+#: .\agency\models.py:21 .\agency\models.py:1694 .\agency\models.py:2071
+msgid "Date updated"
+msgstr "Date updated"
+
+#: .\agency\models.py:22 .\agency\models.py:105 .\agency\models.py:2042
+msgid "Active"
+msgstr "Active"
+
+#: .\agency\models.py:23
+msgid "Order"
+msgstr "Order"
+
+#: .\agency\models.py:40 .\agency\models.py:1817
+msgid "Home"
+msgstr "Home"
+
+#: .\agency\models.py:41 .\agency\models.py:1222 .\agency\models.py:1818
+msgid "Contacts"
+msgstr "Contacts"
+
+#: .\agency\models.py:42 .\agency\models.py:1819
+msgid "Blog"
+msgstr "Blog"
+
+#: .\agency\models.py:47 .\agency\models.py:1826
+msgid "Page"
+msgstr "Page"
+
+#: .\agency\models.py:49 .\agency\models.py:162 .\agency\models.py:1078
+#: .\agency\models.py:1476 .\agency\models.py:1828
+msgid "Title"
+msgstr "Title"
+
+#: .\agency\models.py:50 .\agency\models.py:145 .\agency\models.py:229
+#: .\agency\models.py:948 .\agency\models.py:1044 .\agency\models.py:1158
+#: .\agency\models.py:1829
+msgid "Subtitle"
+msgstr "Subtitle"
+
+#: .\agency\models.py:51 .\agency\models.py:146 .\agency\models.py:163
+#: .\agency\models.py:230 .\agency\models.py:268 .\agency\models.py:951
+#: .\agency\models.py:1045 .\agency\models.py:1080 .\agency\models.py:1159
+#: .\agency\models.py:1378 .\agency\models.py:1830
+msgid "Description"
+msgstr "Description"
+
+#: .\agency\models.py:56
+msgid "Hero Image Light + RU"
+msgstr "Hero Image Light + RU"
+
+#: .\agency\models.py:60
+msgid "Hero Image Light + EN"
+msgstr "Hero Image Light + EN"
+
+#: .\agency\models.py:64
+msgid "Hero Image Dark + RU"
+msgstr "Hero Image Dark + RU"
+
+#: .\agency\models.py:68
+msgid "Hero Image Dark + EN"
+msgstr "Hero Image Dark + EN"
+
+#: .\agency\models.py:94 .\agency\models.py:1098 .\agency\models.py:1848
+msgid "Button text"
+msgstr "Button text"
+
+#: .\agency\models.py:95 .\agency\models.py:338 .\agency\models.py:502
+#: .\agency\models.py:670 .\agency\models.py:1099 .\agency\models.py:1849
+msgid "Button URL"
+msgstr "Button URL"
+
+#: .\agency\models.py:98
+msgid "Secondary button text"
+msgstr "Secondary button text"
+
+#: .\agency\models.py:102
+msgid "Secondary button URL"
+msgstr "Secondary button URL"
+
+#: .\agency\models.py:108
+msgid "Hero Section"
+msgstr "Hero Section"
+
+#: .\agency\models.py:109
+msgid "Hero Sections"
+msgstr "Hero Sections"
+
+#: .\agency\models.py:144 .\agency\models.py:228 .\agency\models.py:1043
+#: .\agency\models.py:1157
+msgid "Section Title"
+msgstr "Section Title"
+
+#: .\agency\models.py:149 .\agency\models.py:159
+msgid "Services Section"
+msgstr "Services Section"
+
+#: .\agency\models.py:150
+msgid "Services Sections"
+msgstr "Services Sections"
+
+#: .\agency\models.py:161
+msgid "Number"
+msgstr "Number"
+
+#: .\agency\models.py:166
+msgid "Icon (CSS class)"
+msgstr "Icon (CSS class)"
+
+#: .\agency\models.py:171 .\agency\models.py:307 .\agency\models.py:471
+#: .\agency\models.py:639
+msgid "Image Light + RU"
+msgstr "Image Light + RU"
+
+#: .\agency\models.py:175 .\agency\models.py:310 .\agency\models.py:474
+#: .\agency\models.py:642
+msgid "Image Light + EN"
+msgstr "Image Light + EN"
+
+#: .\agency\models.py:179 .\agency\models.py:313 .\agency\models.py:477
+#: .\agency\models.py:645
+msgid "Image Dark + RU"
+msgstr "Image Dark + RU"
+
+#: .\agency\models.py:183 .\agency\models.py:316 .\agency\models.py:480
+#: .\agency\models.py:648
+msgid "Image Dark + EN"
+msgstr "Image Dark + EN"
+
+#: .\agency\models.py:203 .\agency\models.py:269
+msgid "URL"
+msgstr "URL"
+
+#: .\agency\models.py:206
+msgid "Service Item"
+msgstr "Service Item"
+
+#: .\agency\models.py:207
+msgid "Service Items"
+msgstr "Service Items"
+
+#: .\agency\models.py:233 .\agency\models.py:251
+msgid "Tech Section"
+msgstr "Tech Section"
+
+#: .\agency\models.py:234
+msgid "Tech Sections"
+msgstr "Tech Sections"
+
+#: .\agency\models.py:242
+msgid "Backend"
+msgstr "Backend"
+
+#: .\agency\models.py:243
+msgid "Frontend"
+msgstr "Frontend"
+
+#: .\agency\models.py:244
+msgid "Database"
+msgstr "Database"
+
+#: .\agency\models.py:245
+msgid "DevOps"
+msgstr "DevOps"
+
+#: .\agency\models.py:246
+msgid "Other"
+msgstr "Other"
+
+#: .\agency\models.py:253 .\agency\models.py:1376 .\agency\models.py:1674
+msgid "Name"
+msgstr "Name"
+
+#: .\agency\models.py:256 .\agency\models.py:1062 .\agency\models.py:1474
+msgid "Category"
+msgstr "Category"
+
+#: .\agency\models.py:258
+msgid "Primary tech"
+msgstr "Primary tech"
+
+#: .\agency\models.py:261
+msgid "Logo"
+msgstr "Logo"
+
+#: .\agency\models.py:272
+msgid "Tech Item"
+msgstr "Tech Item"
+
+#: .\agency\models.py:273
+msgid "Tech Items"
+msgstr "Tech Items"
+
+#: .\agency\models.py:285 .\agency\models.py:451 .\agency\models.py:615
+msgid "Label RU"
+msgstr "Label RU"
+
+#: .\agency\models.py:286 .\agency\models.py:452 .\agency\models.py:616
+msgid "Label EN"
+msgstr "Label EN"
+
+#: .\agency\models.py:289 .\agency\models.py:382 .\agency\models.py:417
+#: .\agency\models.py:454 .\agency\models.py:546 .\agency\models.py:581
+#: .\agency\models.py:620 .\agency\models.py:743 .\agency\models.py:779
+#: .\agency\models.py:816
+msgid "Title RU"
+msgstr "Title RU"
+
+#: .\agency\models.py:293 .\agency\models.py:383 .\agency\models.py:418
+#: .\agency\models.py:457 .\agency\models.py:547 .\agency\models.py:582
+#: .\agency\models.py:625 .\agency\models.py:744 .\agency\models.py:780
+#: .\agency\models.py:817
+msgid "Title EN"
+msgstr "Title EN"
+
+#: .\agency\models.py:298 .\agency\models.py:384 .\agency\models.py:419
+#: .\agency\models.py:462 .\agency\models.py:548 .\agency\models.py:583
+#: .\agency\models.py:630 .\agency\models.py:745 .\agency\models.py:781
+#: .\agency\models.py:838
+msgid "Description RU"
+msgstr "Description RU"
+
+#: .\agency\models.py:303 .\agency\models.py:385 .\agency\models.py:420
+#: .\agency\models.py:467 .\agency\models.py:549 .\agency\models.py:584
+#: .\agency\models.py:635 .\agency\models.py:746 .\agency\models.py:782
+#: .\agency\models.py:839
+msgid "Description EN"
+msgstr "Description EN"
+
+#: .\agency\models.py:336 .\agency\models.py:500 .\agency\models.py:668
+msgid "Button text RU"
+msgstr "Button text RU"
+
+#: .\agency\models.py:337 .\agency\models.py:501 .\agency\models.py:669
+msgid "Button text EN"
+msgstr "Button text EN"
+
+#: .\agency\models.py:341 .\agency\models.py:379 .\agency\models.py:414
+msgid "Landing Section"
+msgstr "Landing Section"
+
+#: .\agency\models.py:342
+msgid "Landing Sections"
+msgstr "Landing Sections"
+
+#: .\agency\models.py:388
+msgid "Landing Feature"
+msgstr "Landing Feature"
+
+#: .\agency\models.py:389
+msgid "Landing Features"
+msgstr "Landing Features"
+
+#: .\agency\models.py:423
+msgid "Landing Detail"
+msgstr "Landing Detail"
+
+#: .\agency\models.py:424
+msgid "Landing Details"
+msgstr "Landing Details"
+
+#: .\agency\models.py:505 .\agency\models.py:543 .\agency\models.py:578
+msgid "Business Section"
+msgstr "Business Section"
+
+#: .\agency\models.py:506
+msgid "Business Sections"
+msgstr "Business Sections"
+
+#: .\agency\models.py:552
+msgid "Business Feature"
+msgstr "Business Feature"
+
+#: .\agency\models.py:553
+msgid "Business Features"
+msgstr "Business Features"
+
+#: .\agency\models.py:587
+msgid "Business Detail"
+msgstr "Business Detail"
+
+#: .\agency\models.py:588
+msgid "Business Details"
+msgstr "Business Details"
+
+#: .\agency\models.py:673 .\agency\models.py:711 .\agency\models.py:740
+msgid "Refactor Section"
+msgstr "Refactor Section"
+
+#: .\agency\models.py:674
+msgid "Refactor Sections"
+msgstr "Refactor Sections"
+
+#: .\agency\models.py:714
+msgid "Text RU"
+msgstr "Text RU"
+
+#: .\agency\models.py:715
+msgid "Text EN"
+msgstr "Text EN"
+
+#: .\agency\models.py:718
+msgid "Refactor Feature"
+msgstr "Refactor Feature"
+
+#: .\agency\models.py:719
+msgid "Refactor Features"
+msgstr "Refactor Features"
+
+#: .\agency\models.py:749
+msgid "Refactor Detail"
+msgstr "Refactor Detail"
+
+#: .\agency\models.py:750
+msgid "Refactor Details"
+msgstr "Refactor Details"
+
+#: .\agency\models.py:777
+msgid "Subtitle RU"
+msgstr "Subtitle RU"
+
+#: .\agency\models.py:778
+msgid "Subtitle EN"
+msgstr "Subtitle EN"
+
+#: .\agency\models.py:785 .\agency\models.py:814
+msgid "Portfolio Section"
+msgstr "Portfolio Section"
+
+#: .\agency\models.py:786
+msgid "Portfolio Sections"
+msgstr "Portfolio Sections"
+
+#: .\agency\models.py:818 .\agency\models.py:939 .\agency\models.py:1377
+#: .\agency\models.py:1477
+msgid "URL slug"
+msgstr "URL slug"
+
+#: .\agency\models.py:819
+msgid "Category RU"
+msgstr "Category RU"
+
+#: .\agency\models.py:820
+msgid "Category EN"
+msgstr "Category EN"
+
+#: .\agency\models.py:823
+msgid "Main image Light Theme"
+msgstr "Main image Light Theme"
+
+#: .\agency\models.py:826
+msgid "Main image Dark Theme"
+msgstr "Main image Dark Theme"
+
+#: .\agency\models.py:840
+msgid "Client"
+msgstr "Client"
+
+#: .\agency\models.py:841 .\agency\models.py:1199
+msgid "Project URL"
+msgstr "Project URL"
+
+#: .\agency\models.py:842
+msgid "Technologies"
+msgstr "Technologies"
+
+#: .\agency\models.py:843 .\agency\models.py:1200
+msgid "Featured"
+msgstr "Featured"
+
+#: .\agency\models.py:848 .\agency\models.py:1398 .\agency\models.py:1530
+#: .\agency\models.py:1899
+msgid "SEO Title (RU)"
+msgstr "SEO Title (RU)"
+
+#: .\agency\models.py:853 .\agency\models.py:1403 .\agency\models.py:1535
+#: .\agency\models.py:1916
+msgid "SEO Title (EN)"
+msgstr "SEO Title (EN)"
+
+#: .\agency\models.py:858 .\agency\models.py:1408 .\agency\models.py:1540
+#: .\agency\models.py:1904
+msgid "SEO Description (RU)"
+msgstr "SEO Description (RU)"
+
+#: .\agency\models.py:863 .\agency\models.py:1413 .\agency\models.py:1545
+#: .\agency\models.py:1921
+msgid "SEO Description (EN)"
+msgstr "SEO Description (EN)"
+
+#: .\agency\models.py:868
+msgid "Portfolio Item"
+msgstr "Portfolio Item"
+
+#: .\agency\models.py:869
+msgid "Portfolio Items"
+msgstr "Portfolio Items"
+
+#: .\agency\models.py:938
+msgid "Tariff name"
+msgstr "Tariff name"
+
+#: .\agency\models.py:943
+msgid "Site format"
+msgstr "Site format"
+
+#: .\agency\models.py:944
+msgid "For example: LANDING / LANDING PAGE"
+msgstr "For example: LANDING / LANDING PAGE"
+
+#: .\agency\models.py:949
+msgid "Brief description of the tariff (1-2 sentences)"
+msgstr "Brief description of the tariff (1-2 sentences)"
+
+#: .\agency\models.py:953
+msgid "Price (BYN)"
+msgstr "Price (BYN)"
+
+#: .\agency\models.py:954
+msgid "Price (RUB)"
+msgstr "Price (RUB)"
+
+#: .\agency\models.py:955
+msgid "Price (EUR)"
+msgstr "Price (EUR)"
+
+#: .\agency\models.py:956
+msgid "Price (USD)"
+msgstr "Price (USD)"
+
+#: .\agency\models.py:959
+msgid "Individual"
+msgstr "Individual"
+
+#: .\agency\models.py:960
+msgid "Development time (RU)"
+msgstr "Development time (RU)"
+
+#: .\agency\models.py:964
+msgid "Development time (EN)"
+msgstr "Development time (EN)"
+
+#: .\agency\models.py:965
+msgid "Leave empty to use the Russian version"
+msgstr "Leave empty to use the Russian version"
+
+#: .\agency\models.py:971
+msgid "Tariff features"
+msgstr "Tariff features"
+
+#: .\agency\models.py:972
+msgid "{\"ru\": [\"Особенность 1\"], \"en\": [\"Feature 1\"]}"
+msgstr "{\"ru\": [\"Особенность 1\"], \"en\": [\"Feature 1\"]}"
+
+#: .\agency\models.py:975
+msgid "Popular tariff"
+msgstr "Popular tariff"
+
+#: .\agency\models.py:976
+msgid "Custom tariff"
+msgstr "Custom tariff"
+
+#: .\agency\models.py:981
+msgid "Font Awesome icon, e.g.: fa-rocket, fa-store, fa-crown"
+msgstr "Font Awesome icon, e.g.: fa-rocket, fa-store, fa-crown"
+
+#: .\agency\models.py:985
+msgid "Accent color"
+msgstr "Accent color"
+
+#: .\agency\models.py:986
+msgid "gold, blue, green, purple, orange, red"
+msgstr "gold, blue, green, purple, orange, red"
+
+#: .\agency\models.py:990 .\agency\models.py:1684
+msgid "Tariff"
+msgstr "Tariff"
+
+#: .\agency\models.py:991
+msgid "Tariffs"
+msgstr "Tariffs"
+
+#: .\agency\models.py:1048 .\agency\models.py:1058
+msgid "FAQ Section"
+msgstr "FAQ Section"
+
+#: .\agency\models.py:1049
+msgid "FAQ Sections"
+msgstr "FAQ Sections"
+
+#: .\agency\models.py:1060
+msgid "Question"
+msgstr "Question"
+
+#: .\agency\models.py:1061
+msgid "Answer"
+msgstr "Answer"
+
+#: .\agency\models.py:1065
+msgid "FAQ Item"
+msgstr "FAQ Item"
+
+#: .\agency\models.py:1066
+msgid "FAQ Items"
+msgstr "FAQ Items"
+
+#: .\agency\models.py:1079
+msgid "Badge"
+msgstr "Badge"
+
+#: .\agency\models.py:1083 .\agency\models.py:1480
+msgid "Image Light Theme"
+msgstr "Image Light Theme"
+
+#: .\agency\models.py:1086 .\agency\models.py:1483
+msgid "Image Dark Theme"
+msgstr "Image Dark Theme"
+
+#: .\agency\models.py:1098
+msgid "Submit request"
+msgstr "Submit request"
+
+#: .\agency\models.py:1100
+msgid "Note"
+msgstr "Note"
+
+#: .\agency\models.py:1103
+msgid "CTA Section"
+msgstr "CTA Section"
+
+#: .\agency\models.py:1104
+msgid "CTA Sections"
+msgstr "CTA Sections"
+
+#: .\agency\models.py:1162 .\agency\models.py:1172
+msgid "Reviews Section"
+msgstr "Reviews Section"
+
+#: .\agency\models.py:1163
+msgid "Reviews Sections"
+msgstr "Reviews Sections"
+
+#: .\agency\models.py:1174
+msgid "Client name"
+msgstr "Client name"
+
+#: .\agency\models.py:1175
+msgid "Position"
+msgstr "Position"
+
+#: .\agency\models.py:1176
+msgid "Company"
+msgstr "Company"
+
+#: .\agency\models.py:1179
+msgid "Client photo Light Theme"
+msgstr "Client photo Light Theme"
+
+#: .\agency\models.py:1182
+msgid "Client photo Dark Theme"
+msgstr "Client photo Dark Theme"
+
+#: .\agency\models.py:1194
+msgid "Review text"
+msgstr "Review text"
+
+#: .\agency\models.py:1197
+msgid "Rating"
+msgstr "Rating"
+
+#: .\agency\models.py:1203
+msgid "Review"
+msgstr "Review"
+
+#: .\agency\models.py:1204
+msgid "Reviews"
+msgstr "Reviews"
+
+#: .\agency\models.py:1222
+msgid "Page Title"
+msgstr "Page Title"
+
+#: .\agency\models.py:1224 .\agency\models.py:1667 .\agency\models.py:1676
+msgid "Phone"
+msgstr "Phone"
+
+#: .\agency\models.py:1226
+msgid "Address"
+msgstr "Address"
+
+#: .\agency\models.py:1228 .\agency\models.py:1668
+msgid "Telegram"
+msgstr "Telegram"
+
+#: .\agency\models.py:1229
+msgid "MAX"
+msgstr "MAX"
+
+#: .\agency\models.py:1230 .\agency\models.py:1669
+msgid "WhatsApp"
+msgstr "WhatsApp"
+
+#: .\agency\models.py:1231
+msgid "LinkedIn"
+msgstr "LinkedIn"
+
+#: .\agency\models.py:1232
+msgid "Pinterest"
+msgstr "Pinterest"
+
+#: .\agency\models.py:1233
+msgid "Instagram"
+msgstr "Instagram"
+
+#: .\agency\models.py:1234
+msgid "YouTube"
+msgstr "YouTube"
+
+#: .\agency\models.py:1235
+msgid "GitHub"
+msgstr "GitHub"
+
+#: .\agency\models.py:1243
+msgid "About Label"
+msgstr "About Label"
+
+#: .\agency\models.py:1244
+msgid "Маленькая надпись над заголовком (RU)"
+msgstr "Small label above the title (RU)"
+
+#: .\agency\models.py:1248
+msgid "About Label (EN)"
+msgstr "About Label (EN)"
+
+#: .\agency\models.py:1249
+msgid "Маленькая надпись над заголовком (EN)"
+msgstr "Small label above the title (EN)"
+
+#: .\agency\models.py:1254
+msgid "About Title"
+msgstr "About Title"
+
+#: .\agency\models.py:1258
+msgid "About Subtitle"
+msgstr "About Subtitle"
+
+#: .\agency\models.py:1259
+msgid "Краткое описание под заголовком"
+msgstr "Short description below the heading"
+
+#: .\agency\models.py:1264
+msgid "About Text"
+msgstr "About Text"
+
+#: .\agency\models.py:1271
+msgid "About Image (fallback)"
+msgstr "About Image (fallback)"
+
+#: .\agency\models.py:1277
+msgid "About Image Light + RU"
+msgstr "About Image Light + RU"
+
+#: .\agency\models.py:1281
+msgid "About Image Light + EN"
+msgstr "About Image Light + EN"
+
+#: .\agency\models.py:1285
+msgid "About Image Dark + RU"
+msgstr "About Image Dark + RU"
+
+#: .\agency\models.py:1289
+msgid "About Image Dark + EN"
+msgstr "About Image Dark + EN"
+
+#: .\agency\models.py:1322 .\agency\models.py:1323
+msgid "Contact Page"
+msgstr "Contact Page"
+
+#: .\agency\models.py:1382
+msgid ""
+"Font Awesome icon class, e.g. \"fa-code\", \"fa-python\", \"fa-database\""
+msgstr ""
+"Font Awesome icon class, e.g. \"fa-code\", \"fa-python\", \"fa-database\""
+
+#: .\agency\models.py:1387
+msgid "Icon PNG"
+msgstr "Icon PNG"
+
+#: .\agency\models.py:1388
+msgid "Загрузите PNG иконку для категории (рекомендуемый размер: 64x64px)"
+msgstr "Upload a PNG icon for the category (recommended size: 64x64px)"
+
+#: .\agency\models.py:1418
+msgid "Blog Category"
+msgstr "Blog Category"
+
+#: .\agency\models.py:1419
+msgid "Blog Categories"
+msgstr "Blog Categories"
+
+#: .\agency\models.py:1496
+msgid "Excerpt"
+msgstr "Excerpt"
+
+#: .\agency\models.py:1497
+msgid "Краткое описание поста, отображается в списке блога"
+msgstr "Short description of the post, displayed in the blog list"
+
+#: .\agency\models.py:1501
+msgid "Content"
+msgstr "Content"
+
+#: .\agency\models.py:1502
+msgid "Полное содержание поста"
+msgstr "Full post content"
+
+#: .\agency\models.py:1506
+msgid "Author"
+msgstr "Author"
+
+#: .\agency\models.py:1510
+msgid "PDF File"
+msgstr "PDF File"
+
+#: .\agency\models.py:1511
+msgid "Загрузите PDF файл для скачивания (опционально)"
+msgstr "Upload a PDF file for download (optional)"
+
+#: .\agency\models.py:1514
+msgid "Likes"
+msgstr "Likes"
+
+#: .\agency\models.py:1514
+msgid "Number of likes"
+msgstr "Number of likes"
+
+#: .\agency\models.py:1515
+msgid "Dislikes"
+msgstr "Dislikes"
+
+#: .\agency\models.py:1515
+msgid "Number of dislikes"
+msgstr "Number of dislikes"
+
+#: .\agency\models.py:1517
+msgid "Published at"
+msgstr "Published at"
+
+#: .\agency\models.py:1518
+msgid "Published"
+msgstr "Published"
+
+#: .\agency\models.py:1520
+msgid "Tags"
+msgstr "Tags"
+
+#: .\agency\models.py:1520
+msgid "[\"tag1\", \"tag2\"]"
+msgstr "[\"tag1\", \"tag2\"]"
+
+#: .\agency\models.py:1523
+msgid "Views count"
+msgstr "Views count"
+
+#: .\agency\models.py:1524
+msgid "Number of times this post has been viewed"
+msgstr "Number of times this post has been viewed"
+
+#: .\agency\models.py:1550
+msgid "Blog Post"
+msgstr "Blog Post"
+
+#: .\agency\models.py:1551
+msgid "Blog Posts"
+msgstr "Blog Posts"
+
+#: .\agency\models.py:1626
+msgid "Like"
+msgstr "Like"
+
+#: .\agency\models.py:1626
+msgid "Dislike"
+msgstr "Dislike"
+
+#: .\agency\models.py:1630
+msgid "Post"
+msgstr "Post"
+
+#: .\agency\models.py:1632
+msgid "Vote type"
+msgstr "Vote type"
+
+#: .\agency\models.py:1633 .\agency\models.py:1696 .\agency\models.py:2048
+msgid "IP address"
+msgstr "IP address"
+
+#: .\agency\models.py:1634 .\agency\models.py:1695 .\agency\models.py:2049
+msgid "User Agent"
+msgstr "User Agent"
+
+#: .\agency\models.py:1635
+msgid "Created at"
+msgstr "Created at"
+
+#: .\agency\models.py:1638
+msgid "Blog Post Vote"
+msgstr "Blog Post Vote"
+
+#: .\agency\models.py:1639
+msgid "Blog Post Votes"
+msgstr "Blog Post Votes"
+
+#: .\agency\models.py:1661
+msgid "New"
+msgstr "New"
+
+#: .\agency\models.py:1662
+msgid "In progress"
+msgstr "In progress"
+
+#: .\agency\models.py:1663
+msgid "Completed"
+msgstr "Completed"
+
+#: .\agency\models.py:1664
+msgid "Rejected"
+msgstr "Rejected"
+
+#: .\agency\models.py:1670
+msgid "Viber"
+msgstr "Viber"
+
+#: .\agency\models.py:1679
+msgid "Contact method"
+msgstr "Contact method"
+
+#: .\agency\models.py:1686 .\agency\models.py:1797
+msgid "Message"
+msgstr "Message"
+
+#: .\agency\models.py:1688
+msgid "Turnstile token"
+msgstr "Turnstile token"
+
+#: .\agency\models.py:1691
+msgid "Status"
+msgstr "Status"
+
+#: .\agency\models.py:1697
+msgid "Referrer"
+msgstr "Referrer"
+
+#: .\agency\models.py:1703
+msgid "Language"
+msgstr "Language"
+
+#: .\agency\models.py:1704
+#| msgid "Когда последний раз отправляли рассылку"
+msgid "Язык, на котором клиент отправил заявку"
+msgstr "Язык, на котором клиент отправил заявку"
+
+#: .\agency\models.py:1708
+msgid "Contact Request"
+msgstr "Contact Request"
+
+#: .\agency\models.py:1709
+msgid "Contact Requests"
+msgstr "Contact Requests"
+
+#: .\agency\models.py:1725
+msgid "Site name"
+msgstr "Site name"
+
+#: .\agency\models.py:1728
+msgid "The Engine of Web Evolution — premium Python/Django web development"
+msgstr "The Engine of Web Evolution — premium Python/Django web development"
+
+#: .\agency\models.py:1729
+msgid "Site description"
+msgstr "Site description"
+
+#: .\agency\models.py:1733
+msgid "Logo Light Theme"
+msgstr "Logo Light Theme"
+
+#: .\agency\models.py:1736
+msgid "Logo Dark Theme"
+msgstr "Logo Dark Theme"
+
+#: .\agency\models.py:1740
+msgid "Favicon"
+msgstr "Favicon"
+
+#: .\agency\models.py:1749
+msgid "OG Image"
+msgstr "OG Image"
+
+#: .\agency\models.py:1750
+msgid "Global Open Graph image (1200x630 recommended)"
+msgstr "Global Open Graph image (1200x630 recommended)"
+
+#: .\agency\models.py:1758
+msgid "Default SEO Title"
+msgstr "Default SEO Title"
+
+#: .\agency\models.py:1761
+msgid "Default SEO Description"
+msgstr "Default SEO Description"
+
+#: .\agency\models.py:1764
+msgid "Maintenance mode"
+msgstr "Maintenance mode"
+
+#: .\agency\models.py:1765
+msgid "Maintenance text"
+msgstr "Maintenance text"
+
+#: .\agency\models.py:1768 .\agency\models.py:1769
+msgid "Site Configuration"
+msgstr "Site Configuration"
+
+#: .\agency\models.py:1794
+msgid "Log Type"
+msgstr "Log Type"
+
+#: .\agency\models.py:1796
+msgid "Chat ID"
+msgstr "Chat ID"
+
+#: .\agency\models.py:1798
+msgid "Is Sent"
+msgstr "Is Sent"
+
+#: .\agency\models.py:1799
+msgid "Error"
+msgstr "Error"
+
+#: .\agency\models.py:1800
+msgid "Created At"
+msgstr "Created At"
+
+#: .\agency\models.py:1803
+msgid "Telegram Log"
+msgstr "Telegram Log"
+
+#: .\agency\models.py:1804
+msgid "Telegram Logs"
+msgstr "Telegram Logs"
+
+#: .\agency\models.py:1820
+msgid "Blog Detail (article page)"
+msgstr "Blog Detail (article page)"
+
+#: .\agency\models.py:1821
+msgid "Portfolio"
+msgstr "Portfolio"
+
+#: .\agency\models.py:1822
+msgid "About"
+msgstr "About"
+
+#: .\agency\models.py:1833
+msgid "Background Light Theme"
+msgstr "Background Light Theme"
+
+#: .\agency\models.py:1836
+msgid "Background Dark Theme"
+msgstr "Background Dark Theme"
+
+#: .\agency\models.py:1852
+msgid "Mission"
+msgstr "Mission"
+
+#: .\agency\models.py:1853
+msgid "Missions"
+msgstr "Missions"
+
+#: .\agency\models.py:1872 .\templates\agency\includes\footer.html:50
+#: .\templates\agency\includes\header.html:36
+#: .\templates\agency\includes\header.html:122
+msgid "Главная"
+msgstr "Home"
+
+#: .\agency\models.py:1873 .\templates\agency\contact.html:901
+#: .\templates\agency\contact.html:907 .\templates\agency\contact.html:913
+#: .\templates\agency\contact.html:920 .\templates\agency\contact.html:926
+#: .\templates\agency\contact.html:932 .\templates\agency\contact.html:939
+#: .\templates\agency\includes\footer.html:57
+#: .\templates\agency\includes\footer.html:74
+#: .\templates\agency\includes\header.html:43
+#: .\templates\agency\includes\header.html:129
+msgid "Контакты"
+msgstr "Contacts"
+
+#: .\agency\models.py:1874
+msgid "Блог"
+msgstr "Blog"
+
+#: .\agency\models.py:1884
+msgid "Портфолио (секция главной)"
+msgstr "Portfolio (home section)"
+
+#: .\agency\models.py:1885
+msgid "О нас (секция на /contact/)"
+msgstr "About (section on /contact/)"
+
+#: .\agency\models.py:1886
+msgid "Услуги (секция главной)"
+msgstr "Services (home section)"
+
+#: .\agency\models.py:1887
+msgid "Тарифы (секция главной)"
+msgstr "Pricing (home section)"
+
+#: .\agency\models.py:1893
+msgid "Уникальный идентификатор страницы"
+msgstr "Unique page identifier"
+
+#: .\agency\models.py:1900 .\agency\models.py:1917
+msgid "Рекомендуемая длина: 50–60 символов"
+msgstr "Recommended length: 50–60 characters"
+
+#: .\agency\models.py:1905 .\agency\models.py:1922
+msgid "Рекомендуемая длина: 150–160 символов"
+msgstr "Recommended length: 150–160 characters"
+
+#: .\agency\models.py:1909
+msgid "SEO Keywords (RU)"
+msgstr "SEO Keywords (RU)"
+
+#: .\agency\models.py:1910
+msgid "Ключевые слова через запятую. Ориентировано на Яндекс."
+msgstr "Comma-separated keywords. Optimized for Yandex."
+
+#: .\agency\models.py:1926
+msgid "SEO Keywords (EN)"
+msgstr "SEO Keywords (EN)"
+
+#: .\agency\models.py:1927
+msgid "Ключевые слова через запятую"
+msgstr "Comma-separated keywords"
+
+#: .\agency\models.py:1933
+msgid "OG Title (RU)"
+msgstr "OG Title (RU)"
+
+#: .\agency\models.py:1934 .\agency\models.py:1939
+msgid "Если пусто — используется SEO Title"
+msgstr "If empty — the SEO Title is used"
+
+#: .\agency\models.py:1938
+msgid "OG Title (EN)"
+msgstr "OG Title (EN)"
+
+#: .\agency\models.py:1943
+msgid "OG Description (RU)"
+msgstr "OG Description (RU)"
+
+#: .\agency\models.py:1944 .\agency\models.py:1949
+msgid "Если пусто — используется SEO Description"
+msgstr "If empty — the SEO Description is used"
+
+#: .\agency\models.py:1948
+msgid "OG Description (EN)"
+msgstr "OG Description (EN)"
+
+#: .\agency\models.py:1952
+msgid "Активно"
+msgstr "Active"
+
+#: .\agency\models.py:1953
+msgid "Дата создания"
+msgstr "Date created"
+
+#: .\agency\models.py:1954
+msgid "Дата обновления"
+msgstr "Date updated"
+
+#: .\agency\models.py:1957 .\agency\models.py:1958
+msgid "SEO страницы"
+msgstr "Page SEO"
+
+#: .\agency\models.py:2045
+msgid "Source"
+msgstr "Source"
+
+#: .\agency\models.py:2046
+msgid "Откуда пришла подписка (blog_detail, blog_list_sidebar, footer)"
+msgstr ""
+"Where the subscription came from (blog_detail, blog_list_sidebar, footer)"
+
+#: .\agency\models.py:2054
+msgid "Unsubscribe token"
+msgstr "Unsubscribe token"
+
+#: .\agency\models.py:2055
+msgid "Используется в ссылке для отписки"
+msgstr "Used in the unsubscribe link"
+
+#: .\agency\models.py:2061
+msgid "Last emailed at"
+msgstr "Last emailed at"
+
+#: .\agency\models.py:2062
+msgid "Когда последний раз отправляли рассылку"
+msgstr "When the last newsletter was sent"
+
+#: .\agency\models.py:2066
+msgid "Unsubscribed at"
+msgstr "Unsubscribed at"
+
+#: .\agency\models.py:2067
+msgid "Когда подписчик отписался"
+msgstr "When the subscriber unsubscribed"
+
+#: .\agency\models.py:2074
+msgid "Subscriber"
+msgstr "Subscriber"
+
+#: .\agency\models.py:2075
+msgid "Subscribers"
+msgstr "Subscribers"
+
+#: .\agency\services\email.py:58
+#| msgid "Ваша заявка получена"
+msgid "Ваша заявка на сайте LYNXREACTOR"
+msgstr "Your request on LYNXREACTOR"
+
+#: .\agency\views.py:565
+msgid "Please complete the captcha verification"
+msgstr "Please complete the captcha verification"
+
+#: .\agency\views.py:580
+msgid "Captcha verification failed. Please try again."
+msgstr "Captcha verification failed. Please try again."
+
+#: .\agency\views.py:582
+msgid "Captcha verification timed out. Please try again."
+msgstr "Captcha verification timed out. Please try again."
+
+#: .\agency\views.py:584
+msgid "Invalid captcha response. Please refresh the page and try again."
+msgstr "Invalid captcha response. Please refresh the page and try again."
+
+#: .\agency\views.py:587
+msgid "Service configuration error. Please contact support."
+msgstr "Service configuration error. Please contact support."
+
+#: .\agency\views.py:593 .\agency\views.py:599
+msgid ""
+"Verification service is temporarily unavailable. Please try again later."
+msgstr ""
+"Verification service is temporarily unavailable. Please try again later."
+
+#: .\agency\views.py:605
+msgid "Please enter a valid name (minimum 2 characters)"
+msgstr "Please enter a valid name (minimum 2 characters)"
+
+#: .\agency\views.py:615
+msgid "Please describe your project (minimum 10 characters)"
+msgstr "Please describe your project (minimum 10 characters)"
+
+#: .\agency\views.py:652
+msgid "Your message has been sent successfully! We will contact you shortly."
+msgstr "Your message has been sent successfully! We will contact you shortly."
+
+#: .\agency\views.py:656 .\agency\views.py:754
+msgid "Invalid request format"
+msgstr "Invalid request format"
+
+#: .\agency\views.py:661 .\agency\views.py:758
+msgid "An internal error occurred. Please try again later."
+msgstr "An internal error occurred. Please try again later."
+
+#: .\agency\views.py:739
+msgid "You have been re-subscribed. Thank you!"
+msgstr "You have been re-subscribed. Thank you!"
+
+#: .\agency\views.py:743
+msgid "You are already subscribed."
+msgstr "You are already subscribed."
+
+#: .\agency\views.py:750
+msgid "Thank you for subscribing!"
+msgstr "Thank you for subscribing!"
+
+#: .\lynxreactor\settings\base.py:201
+msgid "Russian"
+msgstr "Russian"
+
+#: .\lynxreactor\settings\base.py:202
+msgid "English"
+msgstr "English"
+
+#: .\templates\agency\blog_detail.html:1050
+msgid "Автор"
+msgstr "Author"
+
+#: .\templates\agency\blog_detail.html:1058
+#: .\templates\agency\blog_list.html:1117
+msgid "мин чтения"
+msgstr "min read"
+
+#: .\templates\agency\blog_detail.html:1095
+msgid "Скачать PDF"
+msgstr "Download PDF"
+
+#: .\templates\agency\blog_detail.html:1103
+msgid "Скачать"
+msgstr "Download"
+
+#: .\templates\agency\blog_detail.html:1113
+msgid "Полезная статья?"
+msgstr "Was this article helpful?"
+
+#: .\templates\agency\blog_detail.html:1118
+#: .\templates\agency\blog_list.html:1129
+msgid "Нравится"
+msgstr "Like"
+
+#: .\templates\agency\blog_detail.html:1126
+#: .\templates\agency\blog_list.html:1137
+msgid "Не нравится"
+msgstr "Dislike"
+
+#: .\templates\agency\blog_detail.html:1140
+#: .\templates\agency\blog_list.html:1248
+msgid "Подпишитесь на обновления"
+msgstr "Subscribe to updates"
+
+#: .\templates\agency\blog_detail.html:1148
+#: .\templates\agency\blog_list.html:1263
+msgid "Ваш email"
+msgstr "Your email"
+
+#: .\templates\agency\blog_detail.html:1151
+#: .\templates\agency\blog_detail.html:1152
+#: .\templates\agency\blog_list.html:1267
+msgid "Подписаться"
+msgstr "Subscribe"
+
+#: .\templates\agency\blog_detail.html:1158
+msgid "Никакого спама. Только новые статьи."
+msgstr "No spam. Only new articles."
+
+#: .\templates\agency\blog_detail.html:1196
+msgid "Похожие статьи"
+msgstr "Related articles"
+
+#: .\templates\agency\blog_list.html:963 .\templates\agency\blog_list.html:969
+#: .\templates\agency\blog_list.html:975 .\templates\agency\blog_list.html:982
+#: .\templates\agency\blog_list.html:988 .\templates\agency\blog_list.html:994
+#: .\templates\agency\blog_list.html:1001
+msgid "Блог о веб-разработке"
+msgstr "Web Development Blog"
+
+#: .\templates\agency\blog_list.html:1013
+msgid "ПОЛЕЗНЫЕ МАТЕРИАЛЫ"
+msgstr "USEFUL RESOURCES"
+
+#: .\templates\agency\blog_list.html:1015
+msgid "Блог о веб-разработке, сайтах и"
+msgstr "Blog about web development, websites and"
+
+#: .\templates\agency\blog_list.html:1018
+msgid ""
+"Статьи о разработке сайтов, веб-приложениях, SEO, аналитике, "
+"производительности, безопасности и современных технологиях веб-разработки."
+msgstr ""
+"Articles on website development, web applications, SEO, analytics, "
+"performance, security, and modern web technologies."
+
+#: .\templates\agency\blog_list.html:1022
+msgid "Читать статьи"
+msgstr "Read articles"
+
+#: .\templates\agency\blog_list.html:1048
+msgid "Категории"
+msgstr "Categories"
+
+#: .\templates\agency\blog_list.html:1051
+msgid "Все"
+msgstr "All"
+
+#: .\templates\agency\blog_list.html:1076
+msgid "Всего"
+msgstr "Total"
+
+#: .\templates\agency\blog_list.html:1076
+msgid "статей"
+msgstr "articles"
+
+#: .\templates\agency\blog_list.html:1143
+msgid "Читать статью"
+msgstr "Read article"
+
+#: .\templates\agency\blog_list.html:1153
+msgid "Статей пока нет"
+msgstr "No articles yet"
+
+#: .\templates\agency\blog_list.html:1154
+msgid "Скоро здесь появятся полезные материалы."
+msgstr "Useful materials will appear here soon."
+
+#: .\templates\agency\blog_list.html:1206
+msgid "Популярные статьи"
+msgstr "Popular articles"
+
+#: .\templates\agency\blog_list.html:1235
+msgid "просмотров"
+msgstr "views"
+
+#: .\templates\agency\blog_list.html:1240
+msgid "Нет популярных статей"
+msgstr "No popular articles yet"
+
+#: .\templates\agency\blog_list.html:1250
+msgid "Получайте новые статьи на почту. Никакого спама."
+msgstr "Get new articles in your inbox. No spam."
+
+#: .\templates\agency\contact.html:951
+msgid "СВЯЖИТЕСЬ С НАМИ"
+msgstr "GET IN TOUCH"
+
+#: .\templates\agency\contact.html:953
+msgid "Мы всегда на связи"
+msgstr "We're always in touch"
+
+#: .\templates\agency\contact.html:956
+msgid ""
+"Оставьте заявку или свяжитесь с нами удобным способом — мы ответим на все "
+"вопросы и поможем реализовать ваш проект."
+msgstr ""
+"Leave a request or contact us in any convenient way — we'll answer all your "
+"questions and help bring your project to life."
+
+#: .\templates\agency\contact.html:961 .\templates\agency\errors\error.html:293
+#: .\templates\agency\unsubscribe.html:53
+msgid "На главную"
+msgstr "Go to Homepage"
+
+#: .\templates\agency\contact.html:965 .\templates\agency\unsubscribe.html:49
+msgid "Читать блог"
+msgstr "Read the Blog"
+
+#: .\templates\agency\contact.html:1011 .\templates\agency\contact.html:1037
+msgid "О нас"
+msgstr "About Us"
+
+#: .\templates\agency\contact.html:1051
+msgid "О студии LYNXREACTOR"
+msgstr "About LYNXREACTOR Studio"
+
+#: .\templates\agency\contact.html:1058
+msgid ""
+"Мы — команда разработчиков, которая создаёт современные сайты на Python и "
+"Django."
+msgstr ""
+"We are a team of developers building modern websites with Python and Django."
+
+#: .\templates\agency\contact.html:1066
+msgid "КАЧЕСТВО"
+msgstr "QUALITY"
+
+#: .\templates\agency\contact.html:1067
+msgid "Стремимся к совершенству"
+msgstr "Striving for excellence"
+
+#: .\templates\agency\contact.html:1072
+msgid "КОМАНДА"
+msgstr "TEAM"
+
+#: .\templates\agency\contact.html:1073
+msgid "Профессионалы, которым можно доверять"
+msgstr "Professionals you can trust"
+
+#: .\templates\agency\contact.html:1078 .\templates\agency\home.html:356
+msgid "ТЕХНОЛОГИИ"
+msgstr "TECHNOLOGIES"
+
+#: .\templates\agency\contact.html:1079
+msgid "Используем современные инструменты"
+msgstr "We use modern tools"
+
+#: .\templates\agency\contact.html:1084
+msgid "РЕЗУЛЬТАТ"
+msgstr "RESULT"
+
+#: .\templates\agency\contact.html:1085
+msgid "Решения, которые приносят реальную пользу"
+msgstr "Solutions that bring real value"
+
+#: .\templates\agency\contact.html:1096
+msgid "БОЛЬШЕ, ЧЕМ ПРОСТО РАЗРАБОТКА"
+msgstr "MORE THAN JUST DEVELOPMENT"
+
+#: .\templates\agency\contact.html:1126
+msgid "Социальные сети"
+msgstr "Social Media"
+
+#: .\templates\agency\contact.html:1158 .\templates\agency\unsubscribe.html:22
+#: .\templates\agency\unsubscribe.html:34
+msgid "Адрес"
+msgstr "Address"
+
+#: .\templates\agency\contact.html:1170
+msgid "Карта расположения"
+msgstr "Location"
+
+#: .\templates\agency\contact.html:1179 .\templates\agency\contact.html:1240
+msgid "Отправить сообщение"
+msgstr "Send Message"
+
+#: .\templates\agency\contact.html:1180
+#: .\templates\agency\includes\contact_modal.html:11
+msgid "Заполните форму и мы свяжемся с вами в ближайшее время"
+msgstr "Fill out the form and we’ll get back to you shortly."
+
+#: .\templates\agency\contact.html:1186 .\templates\agency\home.html:1237
+#: .\templates\agency\includes\contact_form.html:15
+#: .\templates\agency\includes\contact_modal.html:26
+msgid "Ваше имя"
+msgstr "Your name"
+
+#: .\templates\agency\contact.html:1187 .\templates\agency\home.html:1238
+#: .\templates\agency\includes\contact_form.html:16
+#: .\templates\agency\includes\contact_modal.html:27
+msgid "Введите ваше имя"
+msgstr "Enter your name"
+
+#: .\templates\agency\contact.html:1194 .\templates\agency\home.html:1245
+#: .\templates\agency\includes\contact_form.html:24
+#: .\templates\agency\includes\contact_modal.html:34
+msgid "На случай, если выбранный способ связи будет недоступен"
+msgstr "In case your preferred contact method is unavailable"
+
+#: .\templates\agency\contact.html:1199 .\templates\agency\home.html:1250
+#: .\templates\agency\includes\contact_form.html:30
+#: .\templates\agency\includes\contact_modal.html:39
+msgid "Выберите основной способ связи"
+msgstr "Select your primary contact method"
+
+#: .\templates\agency\contact.html:1201 .\templates\agency\home.html:1252
+#: .\templates\agency\includes\contact_form.html:32
+#: .\templates\agency\includes\contact_form.html:173
+#: .\templates\agency\includes\contact_modal.html:41
+msgid "Выберите способ связи"
+msgstr "Select a contact method"
+
+#: .\templates\agency\contact.html:1202
+#: .\templates\agency\emails\client_confirmation.html:30
+#: .\templates\agency\home.html:1253
+#: .\templates\agency\includes\contact_form.html:33
+#: .\templates\agency\includes\contact_modal.html:42
+msgid "Телефон"
+msgstr "Phone"
+
+#: .\templates\agency\contact.html:1212
+#: .\templates\agency\emails\client_confirmation.html:40
+#: .\templates\agency\home.html:1263
+#: .\templates\agency\includes\contact_form.html:44
+#: .\templates\agency\includes\contact_modal.html:52
+#: .\templates\agency\includes\i18n_strings.html:33
+msgid "Контактные данные"
+msgstr "Contact details"
+
+#: .\templates\agency\contact.html:1213 .\templates\agency\home.html:1264
+#: .\templates\agency\includes\contact_form.html:45
+#: .\templates\agency\includes\contact_form.html:183
+#: .\templates\agency\includes\contact_modal.html:53
+msgid "Введите контактные данные"
+msgstr "Enter your contact details"
+
+#: .\templates\agency\contact.html:1219 .\templates\agency\home.html:1270
+#: .\templates\agency\includes\contact_form.html:52
+#: .\templates\agency\includes\contact_modal.html:59
+msgid "Интересующий тариф"
+msgstr "Preferred plan"
+
+#: .\templates\agency\contact.html:1221 .\templates\agency\home.html:1272
+#: .\templates\agency\includes\contact_form.html:54
+#: .\templates\agency\includes\contact_modal.html:61
+msgid "Выберите тариф"
+msgstr "Select a plan"
+
+#: .\templates\agency\contact.html:1223 .\templates\agency\home.html:1037
+#: .\templates\agency\home.html:1274
+#: .\templates\agency\includes\contact_form.html:56
+#: .\templates\agency\includes\contact_modal.html:63
+#: .\templates\agency\includes\default_tariffs.html:159
+msgid "Индивидуальный"
+msgstr "Custom"
+
+#: .\templates\agency\contact.html:1229 .\templates\agency\home.html:1280
+#: .\templates\agency\includes\contact_form.html:63
+#: .\templates\agency\includes\contact_modal.html:69
+msgid "Опишите ваш проект"
+msgstr "Describe your project"
+
+#: .\templates\agency\contact.html:1230 .\templates\agency\home.html:1281
+#: .\templates\agency\includes\contact_form.html:64
+#: .\templates\agency\includes\contact_modal.html:70
+msgid "Расскажите о вашем проекте..."
+msgstr "Tell us about your project..."
+
+#: .\templates\agency\contact.html:1244
+msgid "Мы ответим в течение рабочего дня"
+msgstr "We'll get back to you within one business day"
+
+#: .\templates\agency\emails\client_confirmation.html:8
+msgid "Здравствуйте"
+msgstr "Hello"
+
+#: .\templates\agency\emails\client_confirmation.html:9
+msgid "Благодарим за вашу заявку. Мы получили её и уже начали обработку."
+msgstr ""
+"Thank you for your request. We have received it and started processing."
+
+#: .\templates\agency\emails\client_confirmation.html:14
+#| msgid "Мы свяжемся с вами в ближайшее время и обсудим все детали проекта"
+msgid ""
+"Мы свяжемся с вами в ближайшее время для обсуждения всех деталей проекта. "
+"Наш менеджер подготовит для вас индивидуальное предложение."
+msgstr "We’ll contact you shortly to discuss all the project details."
+
+#: .\templates\agency\emails\client_confirmation.html:18
+#| msgid "Введите ваше имя"
+msgid "Детали вашей заявки"
+msgstr "Your request details"
+
+#: .\templates\agency\emails\client_confirmation.html:21
+#: .\templates\agency\includes\i18n_strings.html:30
+msgid "Имя"
+msgstr "Name"
+
+#: .\templates\agency\emails\client_confirmation.html:36
+#: .\templates\agency\includes\i18n_strings.html:32
+msgid "Способ связи"
+msgstr "Contact method"
+
+#: .\templates\agency\emails\client_confirmation.html:46
+#| msgid "Выбрать тариф"
+msgid "Выбранный тариф"
+msgstr "Selected plan"
+
+#: .\templates\agency\emails\client_confirmation.html:53
+#: .\templates\agency\home.html:964
+#: .\templates\agency\includes\i18n_strings.html:34
+msgid "Описание проекта"
+msgstr "Project description"
+
+#: .\templates\agency\emails\client_confirmation.html:62
+msgid "Если у вас возникнут вопросы, вы всегда можете связаться с нами:"
+msgstr "If you have any questions, you can always contact us:"
+
+#: .\templates\agency\emails\client_confirmation.html:67
+#| msgid "Написать письмо"
+msgid "Ответить на письмо"
+msgstr "Reply to email"
+
+#: .\templates\agency\emails\client_confirmation.html:73
+msgid "С уважением"
+msgstr "Best regards"
+
+#: .\templates\agency\emails\client_confirmation.html:74
+#| msgid "О студии LYNXREACTOR"
+msgid "Команда LYNXREACTOR"
+msgstr "LYNXREACTOR Team"
+
+#: .\templates\agency\errors\400.html:6 .\templates\agency\errors\400.html:8
+#: .\templates\agency\errors\400.html:12
+msgid "Некорректный запрос"
+msgstr "Bad Request"
+
+#: .\templates\agency\errors\400.html:15
+msgid ""
+"Сервер не может обработать ваш запрос из-за синтаксической ошибки. "
+"Пожалуйста, проверьте введённые данные."
+msgstr ""
+"The server cannot process your request due to a syntax error. Please check "
+"the data you entered."
+
+#: .\templates\agency\errors\403.html:6 .\templates\agency\errors\403.html:8
+#: .\templates\agency\errors\403.html:12
+msgid "Доступ запрещён"
+msgstr "Access Denied"
+
+#: .\templates\agency\errors\403.html:15
+msgid ""
+"У вас нет прав для доступа к этой странице. Пожалуйста, войдите в систему "
+"или обратитесь к администратору."
+msgstr ""
+"You don't have permission to access this page. Please log in or contact the "
+"administrator."
+
+#: .\templates\agency\errors\404.html:6 .\templates\agency\errors\404.html:8
+#: .\templates\agency\errors\404.html:12
+msgid "Страница не найдена"
+msgstr "Page Not Found"
+
+#: .\templates\agency\errors\404.html:15
+msgid ""
+"Извините, запрошенная страница не существует или была перемещена. Проверьте "
+"правильность URL или вернитесь на главную."
+msgstr ""
+"Sorry, the page you requested doesn't exist or has been moved. Please check "
+"the URL or return to the homepage."
+
+#: .\templates\agency\errors\500.html:6
+msgid "Ошибка сервера"
+msgstr "Server Error"
+
+#: .\templates\agency\errors\500.html:8
+msgid "Внутренняя ошибка сервера"
+msgstr "Internal Server Error"
+
+#: .\templates\agency\errors\500.html:12
+msgid "Что-то пошло не так"
+msgstr "Something went wrong"
+
+#: .\templates\agency\errors\500.html:15
+msgid ""
+"На сервере произошла ошибка. Мы уже работаем над её устранением. Пожалуйста, "
+"попробуйте позже."
+msgstr ""
+"An error occurred on the server. We're already working on it. Please try "
+"again later."
+
+#: .\templates\agency\errors\error.html:275
+msgid "Ошибка"
+msgstr "Error"
+
+#: .\templates\agency\errors\error.html:297
+msgid "Вернуться назад"
+msgstr "Go back"
+
+#: .\templates\agency\home.html:27 .\templates\agency\home.html:33
+#: .\templates\agency\home.html:46 .\templates\agency\home.html:52
+msgid "Разработка сайта под ключ"
+msgstr "Turnkey Website Development"
+
+#: .\templates\agency\home.html:39 .\templates\agency\home.html:58
+#: .\templates\agency\home.html:65
+msgid "Разработка сайта под ключ на Python и Django"
+msgstr "Turnkey Website Development with Python and Django"
+
+#: .\templates\agency\home.html:75
+msgid "Сайты, которые повышают статус вашего бизнеса"
+msgstr "Websites That Elevate Your Business"
+
+#: .\templates\agency\home.html:76
+msgid "Разработка сайтов под ключ на Python и Django"
+msgstr "Turnkey Website Development with Python and Django"
+
+#: .\templates\agency\home.html:79
+msgid ""
+"Разрабатываем быстрые, безопасные и уникальные сайты на Python/Django/CSS/JS "
+"с технической SEO-оптимизацией и запуском под ключ."
+msgstr ""
+"We build fast, secure, custom websites using Python, Django, CSS, and "
+"JavaScript, with technical SEO optimization and end-to-end launch support."
+
+#: .\templates\agency\home.html:83 .\templates\agency\home.html:1115
+#: .\templates\agency\includes\default_tariffs.html:202
+#: .\templates\agency\includes\header.html:73
+#: .\templates\agency\includes\header.html:142
+msgid "Обсудить проект"
+msgstr "Discuss Your Project"
+
+#: .\templates\agency\home.html:87
+msgid "Смотреть кейсы"
+msgstr "View Our Work"
+
+#: .\templates\agency\home.html:114
+msgid "ЧТО МЫ ДЕЛАЕМ"
+msgstr "WHAT WE DO"
+
+#: .\templates\agency\home.html:115
+msgid "Полный цикл разработки и запуска"
+msgstr "End-to-End Development & Launch"
+
+#: .\templates\agency\home.html:176 .\templates\agency\home.html:201
+#: .\templates\agency\home.html:221 .\templates\agency\home.html:241
+#: .\templates\agency\home.html:261 .\templates\agency\home.html:281
+#: .\templates\agency\home.html:301 .\templates\agency\home.html:321
+#: .\templates\agency\home.html:341
+msgid "Подробнее"
+msgstr "Learn More"
+
+#: .\templates\agency\home.html:187 .\templates\agency\home.html:193
+#: .\templates\agency\home.html:199
+msgid "Индивидуальная разработка"
+msgstr "Custom Development"
+
+#: .\templates\agency\home.html:188 .\templates\agency\home.html:200
+msgid "Пишем чистый код на Python/Django без шаблонных CMS"
+msgstr ""
+"We write clean Python/Django code without template-based CMS platforms."
+
+#: .\templates\agency\home.html:207 .\templates\agency\home.html:213
+#: .\templates\agency\home.html:219 .\templates\agency\home.html:485
+msgid "Адаптивный дизайн"
+msgstr "Responsive Design"
+
+#: .\templates\agency\home.html:208 .\templates\agency\home.html:220
+msgid "Идеально выглядит на всех устройствах. Светлая и тёмная тема"
+msgstr "Looks great on every device. Light and dark themes included."
+
+#: .\templates\agency\home.html:227 .\templates\agency\home.html:233
+#: .\templates\agency\home.html:239
+msgid "Формы и логика"
+msgstr "Forms & Logic"
+
+#: .\templates\agency\home.html:228 .\templates\agency\home.html:240
+msgid "Формы обратной связи, отправка email, бизнес-логика и интеграции"
+msgstr "Contact forms, email delivery, business logic, and integrations"
+
+#: .\templates\agency\home.html:247 .\templates\agency\home.html:253
+#: .\templates\agency\home.html:259
+#: .\templates\agency\includes\default_tariffs.html:90
+msgid "Админ-панель"
+msgstr "Admin Panel"
+
+#: .\templates\agency\home.html:248 .\templates\agency\home.html:260
+msgid "Удобное управление контентом без знаний кода"
+msgstr "Easy content management with no coding required."
+
+#: .\templates\agency\home.html:267 .\templates\agency\home.html:273
+#: .\templates\agency\home.html:279
+msgid "Настройка и запуск"
+msgstr "Setup & Launch"
+
+#: .\templates\agency\home.html:268 .\templates\agency\home.html:280
+msgid "VPS, домен, SSL-сертификат и корпоративная почта"
+msgstr "VPS, Domain, SSL & Corporate Email"
+
+#: .\templates\agency\home.html:287 .\templates\agency\home.html:293
+#: .\templates\agency\home.html:299
+#: .\templates\agency\includes\default_tariffs.html:91
+msgid "SEO-оптимизация"
+msgstr "SEO Optimization"
+
+#: .\templates\agency\home.html:288 .\templates\agency\home.html:300
+msgid "Техническое SEO, мета-теги, sitemap.xml, robots.txt"
+msgstr "Technical SEO, meta tags, sitemap.xml, and robots.txt"
+
+#: .\templates\agency\home.html:307 .\templates\agency\home.html:313
+#: .\templates\agency\home.html:319
+msgid "Регистрация в поисковиках"
+msgstr "Search Engine Submission"
+
+#: .\templates\agency\home.html:308 .\templates\agency\home.html:320
+msgid "Google Search Console, Bing Webmaster Tools и другие"
+msgstr "Google Search Console, Bing Webmaster Tools & more"
+
+#: .\templates\agency\home.html:327 .\templates\agency\home.html:333
+#: .\templates\agency\home.html:339 .\templates\agency\includes\footer.html:69
+msgid "Поддержка и развитие"
+msgstr "Support & Development"
+
+#: .\templates\agency\home.html:328 .\templates\agency\home.html:340
+msgid "1 месяц поддержки бесплатно и помощь в развитии проекта"
+msgstr ""
+"1 month of free support and assistance with ongoing project development."
+
+#: .\templates\agency\home.html:357
+msgid "Современный"
+msgstr "Modern"
+
+#: .\templates\agency\home.html:357
+msgid "стек"
+msgstr "tech"
+
+#: .\templates\agency\home.html:357
+msgid "технологий"
+msgstr "stack"
+
+#: .\templates\agency\home.html:359
+msgid ""
+"Используем проверенные инструменты для создания надёжных и масштабируемых "
+"решений."
+msgstr "We use proven tools to build reliable and scalable solutions."
+
+#: .\templates\agency\home.html:371 .\templates\agency\home.html:386
+#: .\templates\agency\home.html:407 .\templates\agency\home.html:419
+#: .\templates\agency\includes\tech_modal.html:31
+msgid "Основной"
+msgstr "Primary"
+
+#: .\templates\agency\home.html:374
+msgid "Нажмите для подробностей"
+msgstr "Click for details"
+
+#: .\templates\agency\home.html:393 .\templates\agency\home.html:410
+#: .\templates\agency\home.html:422 .\templates\agency\home.html:433
+#: .\templates\agency\home.html:444
+msgid "Узнать больше"
+msgstr "Learn More"
+
+#: .\templates\agency\home.html:409
+msgid ""
+"Современный язык программирования для веб-разработки, анализа данных и "
+"машинного обучения."
+msgstr ""
+"A modern programming language for web development, data analysis, and "
+"machine learning."
+
+#: .\templates\agency\home.html:421
+msgid ""
+"Мощный фреймворк для создания надёжных и масштабируемых веб-приложений на "
+"Python."
+msgstr ""
+"A powerful framework for building reliable and scalable web applications "
+"with Python."
+
+#: .\templates\agency\home.html:432
+msgid ""
+"Язык программирования для создания интерактивных и динамичных "
+"пользовательских интерфейсов."
+msgstr ""
+"A programming language for building interactive and dynamic user interfaces."
+
+#: .\templates\agency\home.html:443
+msgid ""
+"Современные стили для создания адаптивных и визуально привлекательных "
+"интерфейсов."
+msgstr ""
+"Modern styles for creating responsive and visually appealing interfaces."
+
+#: .\templates\agency\home.html:458
+msgid "ЛЕНДИНГИ"
+msgstr "LANDING PAGES"
+
+#: .\templates\agency\home.html:460
+msgid "Разработка продающих лендингов под ключ"
+msgstr "Turnkey Landing Page Development"
+
+#: .\templates\agency\home.html:463
+msgid ""
+"Создаём стильные одностраничные сайты, которые фокусируют внимание, вызывают "
+"доверие и превращают посетителей в клиентов."
+msgstr ""
+"We build stylish single‑page websites that capture attention, build trust, "
+"and turn visitors into customers."
+
+#: .\templates\agency\home.html:465
+msgid "Лендинг"
+msgstr "Landing Page"
+
+#: .\templates\agency\home.html:465
+#: .\templates\agency\includes\default_tariffs.html:9
+msgid "СТАРТ"
+msgstr "START"
+
+#: .\templates\agency\home.html:466
+msgid "Заказать лендинг"
+msgstr "Order a Landing Page"
+
+#: .\templates\agency\home.html:481
+msgid "Фокус на продажах"
+msgstr "Sales‑Focused"
+
+#: .\templates\agency\home.html:489
+msgid "Быстрая загрузка"
+msgstr "Fast Loading"
+
+#: .\templates\agency\home.html:493
+msgid "Конверсия в клиентов"
+msgstr "Lead Conversion"
+
+#: .\templates\agency\home.html:518 .\templates\agency\home.html:537
+#: .\templates\agency\home.html:544
+msgid "Разработка продающего лендинга"
+msgstr "High‑Converting Landing Page Development"
+
+#: .\templates\agency\home.html:565
+msgid "Анализ целевой аудитории"
+msgstr "Target Audience Analysis"
+
+#: .\templates\agency\home.html:566
+msgid "Глубокое исследование вашей ЦА для создания релевантного контента"
+msgstr "In-depth target audience research to create relevant content."
+
+#: .\templates\agency\home.html:572
+#: .\templates\agency\includes\default_tariffs.html:87
+msgid "Уникальный дизайн"
+msgstr "Unique Design"
+
+#: .\templates\agency\home.html:573
+msgid "Разработка дизайна с нуля, отражающего индивидуальность вашего бренда"
+msgstr "Custom Design from Scratch — Reflecting Your Brand's Identity"
+
+#: .\templates\agency\home.html:579
+msgid "Чистый код"
+msgstr "Clean Code"
+
+#: .\templates\agency\home.html:580
+msgid "Написание чистого, оптимизированного кода на Python/Django"
+msgstr "Clean, optimized Python/Django code"
+
+#: .\templates\agency\home.html:586
+msgid "Быстрый запуск"
+msgstr "Fast Launch"
+
+#: .\templates\agency\home.html:587
+msgid "Оптимизация скорости загрузки и быстрый вывод на рынок"
+msgstr "Load speed optimization and faster time to market."
+
+#: .\templates\agency\home.html:593 .\templates\agency\home.html:758
+msgid "Аналитика"
+msgstr "Analytics"
+
+#: .\templates\agency\home.html:594
+msgid "Настройка систем аналитики для отслеживания эффективности"
+msgstr "Analytics setup to track performance."
+
+#: .\templates\agency\home.html:600
+#: .\templates\agency\includes\hero_stats.html:15
+msgid "Поддержка"
+msgstr "Support"
+
+#: .\templates\agency\home.html:601
+msgid "Техническая поддержка и помощь в развитии проекта"
+msgstr "Technical support and assistance with ongoing project development."
+
+#: .\templates\agency\home.html:616
+msgid "ИНТЕРНЕТ-МАГАЗИНЫ"
+msgstr "E‑COMMERCE"
+
+#: .\templates\agency\home.html:618
+msgid "Сайт для бизнеса, который продаёт"
+msgstr "A Business Website That Converts"
+
+#: .\templates\agency\home.html:621
+msgid ""
+"Создаём интернет-магазины и корпоративные сайты с продуманной структурой, "
+"удобной админ-панелью и полной интеграцией с системами оплаты."
+msgstr ""
+"We build online stores and corporate websites with a well-structured layout, "
+"an intuitive admin dashboard, and full payment system integration."
+
+#: .\templates\agency\home.html:623 .\templates\agency\home.html:639
+#: .\templates\agency\includes\default_tariffs.html:137
+msgid "Интернет-магазин"
+msgstr "Online Store"
+
+#: .\templates\agency\home.html:623
+#: .\templates\agency\includes\default_tariffs.html:61
+msgid "БИЗНЕС"
+msgstr "BUSINESS"
+
+#: .\templates\agency\home.html:624
+msgid "Заказать сайт"
+msgstr "Order a Website"
+
+#: .\templates\agency\home.html:643
+msgid "Оплата онлайн"
+msgstr "Online Payments"
+
+#: .\templates\agency\home.html:647
+msgid "Доставка и логистика"
+msgstr "Delivery & Logistics"
+
+#: .\templates\agency\home.html:651
+msgid "Аналитика продаж"
+msgstr "Sales Analytics"
+
+#: .\templates\agency\home.html:676 .\templates\agency\home.html:695
+#: .\templates\agency\home.html:702
+msgid "Разработка интернет-магазина и корпоративного сайта"
+msgstr "E‑Commerce & Corporate Website Development"
+
+#: .\templates\agency\home.html:723
+msgid "Каталог товаров"
+msgstr "Product Catalog"
+
+#: .\templates\agency\home.html:724
+msgid "Удобная структура каталога с фильтрацией и поиском"
+msgstr "Well‑Structured Catalog with Filtering & Search"
+
+#: .\templates\agency\home.html:730
+msgid "Корзина и заказы"
+msgstr "Cart & Orders"
+
+#: .\templates\agency\home.html:731
+msgid "Полноценная корзина с системой оформления заказов"
+msgstr "Full-featured shopping cart with checkout."
+
+#: .\templates\agency\home.html:737
+msgid "Оплата"
+msgstr "Payment"
+
+#: .\templates\agency\home.html:738
+msgid "Интеграция с платёжными системами"
+msgstr "Payment system integration"
+
+#: .\templates\agency\home.html:744
+msgid "Доставка"
+msgstr "Delivery"
+
+#: .\templates\agency\home.html:745
+msgid "Расчёт стоимости доставки и отслеживание статуса"
+msgstr "Shipping cost calculation and status tracking."
+
+#: .\templates\agency\home.html:751
+msgid "Личный кабинет"
+msgstr "Personal Account"
+
+#: .\templates\agency\home.html:752
+msgid "История заказов, избранное, управление профилем"
+msgstr "Order history, wishlist, and profile management."
+
+#: .\templates\agency\home.html:759
+msgid "Отчёты по продажам, популярным товарам и клиентам"
+msgstr "Reports on sales, best-selling products, and customers."
+
+#: .\templates\agency\home.html:774
+msgid "РЕФАКТОРИНГ И АУДИТ"
+msgstr "REFACTORING & AUDIT"
+
+#: .\templates\agency\home.html:776
+msgid "Аудит безопасности и производительности вашего Django-проекта"
+msgstr "Security and Performance Audit for Your Django Project"
+
+#: .\templates\agency\home.html:779
+msgid ""
+"Проводим глубокий аудит кода, архитектуры и безопасности. Выявляем узкие "
+"места, исправляем ошибки и оптимизируем производительность."
+msgstr ""
+"We conduct a deep audit of code, architecture, and security. We identify "
+"bottlenecks, fix errors, and optimize performance."
+
+#: .\templates\agency\home.html:781
+msgid "Аудит"
+msgstr "Audit"
+
+#: .\templates\agency\home.html:781
+#: .\templates\agency\includes\default_tariffs.html:164
+msgid "ИНДИВИДУАЛЬНЫЙ"
+msgstr "CUSTOM"
+
+#: .\templates\agency\home.html:782
+msgid "Заказать аудит"
+msgstr "Request an Audit"
+
+#: .\templates\agency\home.html:797
+msgid "Безопасность"
+msgstr "Security"
+
+#: .\templates\agency\home.html:801 .\templates\agency\home.html:895
+msgid "Производительность"
+msgstr "Performance"
+
+#: .\templates\agency\home.html:805
+msgid "Качество кода"
+msgstr "Code Quality"
+
+#: .\templates\agency\home.html:809 .\templates\agency\home.html:902
+msgid "Оптимизация БД"
+msgstr "Database Optimization"
+
+#: .\templates\agency\home.html:834 .\templates\agency\home.html:853
+#: .\templates\agency\home.html:860
+msgid "Рефакторинг и аудит кода Django-проекта"
+msgstr "Refactoring & Code Audit for Your Django Project"
+
+#: .\templates\agency\home.html:881
+msgid "Аудит кода"
+msgstr "Code Audit"
+
+#: .\templates\agency\home.html:882
+msgid "Проверка качества кода, поиск уязвимостей и узких мест"
+msgstr ""
+"Code quality review, vulnerability assessment, and bottleneck detection."
+
+#: .\templates\agency\home.html:888
+msgid "Аудит безопасности"
+msgstr "Security Audit"
+
+#: .\templates\agency\home.html:889
+msgid "Проверка на уязвимости и рекомендации по улучшению"
+msgstr "Vulnerability assessment & improvement recommendations"
+
+#: .\templates\agency\home.html:896
+msgid "Анализ скорости работы и оптимизация запросов"
+msgstr "Performance Analysis & Query Optimization"
+
+#: .\templates\agency\home.html:903
+msgid "Анализ структуры БД и оптимизация запросов"
+msgstr "Database structure analysis and query optimization."
+
+#: .\templates\agency\home.html:909
+msgid "Рефакторинг"
+msgstr "Refactoring"
+
+#: .\templates\agency\home.html:910
+msgid "Улучшение архитектуры и качества кода"
+msgstr "Architecture and code quality improvements."
+
+#: .\templates\agency\home.html:916
+msgid "Отчёт"
+msgstr "Report"
+
+#: .\templates\agency\home.html:917
+msgid "Подробный отчёт с рекомендациями и планом действий"
+msgstr "Detailed report with recommendations and an action plan."
+
+#: .\templates\agency\home.html:932
+msgid "НАШИ РАБОТЫ"
+msgstr "OUR WORK"
+
+#: .\templates\agency\home.html:933
+msgid "Сайты, которыми мы гордимся"
+msgstr "Websites We're Proud Of"
+
+#: .\templates\agency\home.html:934
+msgid "Смотрите наши проекты и кейсы"
+msgstr "Browse our projects and case studies"
+
+#: .\templates\agency\home.html:967
+msgid "Смотреть проект"
+msgstr "View Project"
+
+#: .\templates\agency\home.html:975
+msgid "Скоро"
+msgstr "Coming Soon"
+
+#: .\templates\agency\home.html:982
+msgid "Проекты скоро появятся"
+msgstr "Projects coming soon"
+
+#: .\templates\agency\home.html:997
+msgid "СТОИМОСТЬ УСЛУГ"
+msgstr "PRICING"
+
+#: .\templates\agency\home.html:998
+msgid "Выберите подходящий"
+msgstr "Choose the right"
+
+#: .\templates\agency\home.html:998
+msgid "тариф"
+msgstr "plan"
+
+#: .\templates\agency\home.html:1000
+msgid "Гибкие условия для любого бюджета. Все тарифы включают запуск под ключ."
+msgstr "Flexible options for any budget. All plans include turnkey launch."
+
+#: .\templates\agency\home.html:1034
+#: .\templates\agency\includes\default_tariffs.html:56
+msgid "Популярный"
+msgstr "Popular"
+
+#: .\templates\agency\home.html:1051
+msgid "Индивидуальный формат"
+msgstr "Custom Plan"
+
+#: .\templates\agency\home.html:1063
+#: .\templates\agency\includes\default_tariffs.html:177
+#: .\templates\agency\includes\default_tariffs.html:199
+msgid "Индивидуально"
+msgstr "Custom"
+
+#: .\templates\agency\home.html:1064
+#: .\templates\agency\includes\default_tariffs.html:178
+msgid "от обсуждения"
+msgstr "from consultation"
+
+#: .\templates\agency\home.html:1066
+#: .\templates\agency\includes\default_tariffs.html:22
+#: .\templates\agency\includes\default_tariffs.html:74
+#: .\templates\agency\includes\default_tariffs.html:125
+msgid "от"
+msgstr "from"
+
+#: .\templates\agency\home.html:1069
+#: .\templates\agency\includes\default_tariffs.html:25
+#: .\templates\agency\includes\default_tariffs.html:77
+#: .\templates\agency\includes\default_tariffs.html:128
+msgid "проект"
+msgstr "project"
+
+#: .\templates\agency\home.html:1096
+msgid "Индивидуальный подход"
+msgstr "Tailored Approach"
+
+#: .\templates\agency\home.html:1107
+#: .\templates\agency\includes\default_tariffs.html:46
+#: .\templates\agency\includes\default_tariffs.html:98
+#: .\templates\agency\includes\default_tariffs.html:149
+#: .\templates\agency\includes\default_tariffs.html:199
+msgid "Срок разработки"
+msgstr "Development Timeline"
+
+#: .\templates\agency\home.html:1117
+#: .\templates\agency\includes\default_tariffs.html:49
+#: .\templates\agency\includes\default_tariffs.html:101
+#: .\templates\agency\includes\default_tariffs.html:152
+msgid "Выбрать тариф"
+msgstr "Choose a Plan"
+
+#: .\templates\agency\home.html:1137
+msgid "ЧАСТО ЗАДАВАЕМЫЕ ВОПРОСЫ"
+msgstr "FREQUENTLY ASKED QUESTIONS"
+
+#: .\templates\agency\home.html:1138
+msgid "Ответы на важные"
+msgstr "Answers to important"
+
+#: .\templates\agency\home.html:1138
+msgid "вопросы"
+msgstr "questions"
+
+#: .\templates\agency\home.html:1140
+msgid ""
+"Мы собрали самые частые вопросы, чтобы вы могли быстро получить нужную "
+"информацию."
+msgstr ""
+"We've gathered the most common questions so you can quickly find the "
+"information you need."
+
+#: .\templates\agency\home.html:1179
+msgid "Не нашли ответ на интересующий Вас вопрос,"
+msgstr "Didn't find the answer to your question?"
+
+#: .\templates\agency\home.html:1180
+msgid "задайте его нам и мы с удовольствием ответим!"
+msgstr "Ask us — we'll be happy to help!"
+
+#: .\templates\agency\home.html:1183
+msgid "Задать вопрос"
+msgstr "Ask a Question"
+
+#: .\templates\agency\home.html:1198
+msgid "ГОТОВЫ ОБСУДИТЬ ПРОЕКТ?"
+msgstr "READY TO DISCUSS YOUR PROJECT?"
+
+#: .\templates\agency\home.html:1199
+msgid "Давайте создадим ваш будущий сайт"
+msgstr "Let's Build Your Future Website"
+
+#: .\templates\agency\home.html:1200
+msgid ""
+"Заполните форму и мы свяжемся с вами в ближайшее время для обсуждения "
+"деталей проекта."
+msgstr ""
+"Fill out the form and we’ll get back to you shortly to discuss your project."
+
+#: .\templates\agency\home.html:1221 .\templates\agency\home.html:1227
+msgid "Связаться с LYNXREACTOR для разработки сайта"
+msgstr "Contact LYNXREACTOR for Website Development"
+
+#: .\templates\agency\includes\back_to_top.html:5
+#: .\templates\agency\includes\back_to_top.html:6
+msgid "Наверх"
+msgstr "Back to Top"
+
+#: .\templates\agency\includes\contact_form.html:76
+#: .\templates\agency\includes\contact_modal.html:82
+msgid "Отправить заявку"
+msgstr "Submit Request"
+
+#: .\templates\agency\includes\contact_form.html:80
+msgid "Мы свяжемся с вами в ближайшее время"
+msgstr "We'll get back to you shortly"
+
+#: .\templates\agency\includes\contact_form.html:99
+#: .\templates\agency\includes\contact_form.html:110
+#: .\templates\agency\includes\contact_form.html:115
+#: .\templates\agency\includes\i18n_strings.html:7
+#: .\templates\agency\includes\i18n_strings.html:16
+#: .\templates\agency\includes\i18n_strings.html:20
+msgid "Номер телефона"
+msgstr "Phone number"
+
+#: .\templates\agency\includes\contact_form.html:101
+#: .\templates\agency\includes\i18n_strings.html:9
+msgid "Введите номер телефона с кодом страны"
+msgstr "Enter your phone number, including the country code."
+
+#: .\templates\agency\includes\contact_form.html:105
+msgid "или номер телефона"
+msgstr "or phone number"
+
+#: .\templates\agency\includes\contact_form.html:106
+#: .\templates\agency\includes\i18n_strings.html:13
+msgid "Введите ваш Telegram (@username или номер)"
+msgstr "Enter your Telegram (@username or phone number)."
+
+#: .\templates\agency\includes\contact_form.html:111
+#: .\templates\agency\includes\i18n_strings.html:17
+msgid "Введите номер телефона для WhatsApp"
+msgstr "Enter your WhatsApp phone number."
+
+#: .\templates\agency\includes\contact_form.html:116
+#: .\templates\agency\includes\i18n_strings.html:21
+msgid "Введите номер телефона для Viber"
+msgstr "Enter your Viber phone number."
+
+#: .\templates\agency\includes\contact_form.html:121
+#: .\templates\agency\includes\i18n_strings.html:25
+msgid "Введите ваш email"
+msgstr "Enter your email"
+
+#: .\templates\agency\includes\contact_modal.html:9
+msgid "ОСТАВЬТЕ ЗАЯВКУ"
+msgstr "SUBMIT A REQUEST"
+
+#: .\templates\agency\includes\contact_modal.html:10
+msgid "Обсудите ваш проект"
+msgstr "Discuss your project"
+
+#: .\templates\agency\includes\contact_modal.html:10
+msgid "с нами"
+msgstr "with us"
+
+#: .\templates\agency\includes\contact_modal.html:88
+msgid "или свяжитесь с нами напрямую"
+msgstr "or contact us directly"
+
+#: .\templates\agency\includes\contact_modal.html:101
+#: .\templates\agency\includes\faq_modal.html:32
+msgid "Написать письмо"
+msgstr "Send an email"
+
+#: .\templates\agency\includes\contact_modal.html:102
+msgid "Ответим в течение дня"
+msgstr "We'll reply within a day"
+
+#: .\templates\agency\includes\contact_modal.html:116
+#: .\templates\agency\includes\faq_modal.html:49
+msgid "Написать в Telegram"
+msgstr "Message on Telegram"
+
+#: .\templates\agency\includes\contact_modal.html:117
+msgid "Быстрый ответ 24/7"
+msgstr "Fast responses 24/7"
+
+#: .\templates\agency\includes\contact_modal.html:124
+msgid "Мы свяжемся с вами в ближайшее время и обсудим все детали проекта"
+msgstr "We’ll contact you shortly to discuss all the project details."
+
+#: .\templates\agency\includes\default_tariffs.html:16
+msgid "ЛЕНДИНГ / ПОСАДОЧНАЯ СТРАНИЦА"
+msgstr "LANDING PAGE"
+
+#: .\templates\agency\includes\default_tariffs.html:18
+msgid "Быстрый запуск рекламной кампании"
+msgstr "Fast Advertising Campaign Launch"
+
+#: .\templates\agency\includes\default_tariffs.html:30
+msgid ""
+"Одностраничный сайт для продвижения одной услуги, продукта или рекламной "
+"кампании. Подходит для быстрого запуска рекламы и получения заявок."
+msgstr ""
+"A single‑page website built to promote one service, product, or campaign. "
+"Designed for speed — launch your ads fast and start collecting leads right "
+"away."
+
+#: .\templates\agency\includes\default_tariffs.html:34
+msgid "Одностраничный сайт"
+msgstr "Single‑Page Website"
+
+#: .\templates\agency\includes\default_tariffs.html:35
+#: .\templates\agency\includes\default_tariffs.html:187
+msgid "Индивидуальный дизайн"
+msgstr "Custom Design"
+
+#: .\templates\agency\includes\default_tariffs.html:36
+#: .\templates\agency\includes\default_tariffs.html:88
+msgid "Адаптивная верстка"
+msgstr "Responsive Layout"
+
+#: .\templates\agency\includes\default_tariffs.html:37
+msgid "Форма обратной связи"
+msgstr "Contact Form"
+
+#: .\templates\agency\includes\default_tariffs.html:38
+msgid "Базовая SEO-оптимизация"
+msgstr "Basic SEO Optimization"
+
+#: .\templates\agency\includes\default_tariffs.html:39
+msgid "Запуск на хостинге"
+msgstr "Hosting Deployment"
+
+#: .\templates\agency\includes\default_tariffs.html:46
+msgid "до 5 дней"
+msgstr "up to 5 days"
+
+#: .\templates\agency\includes\default_tariffs.html:68
+msgid "КОРПОРАТИВНЫЙ САЙТ / САЙТ-КАТАЛОГ"
+msgstr "CORPORATE WEBSITE / CATALOG WEBSITE"
+
+#: .\templates\agency\includes\default_tariffs.html:70
+msgid "Представьте бизнес профессионально"
+msgstr "Present Your Business Professionally"
+
+#: .\templates\agency\includes\default_tariffs.html:82
+msgid ""
+"Корпоративный сайт — многостраничный сайт, который знакомит с компанией, "
+"услугами и опытом. Помогает выстроить доверие, привлекать клиентов и "
+"развивать бизнес онлайн."
+msgstr ""
+"A corporate website is a multi‑page site that introduces your company, "
+"services, and experience. It helps build trust, attract clients, and grow "
+"your business online."
+
+#: .\templates\agency\includes\default_tariffs.html:86
+msgid "Многостраничный сайт (до 10 страниц)"
+msgstr "Multi‑Page Website (Up to 10 Pages)"
+
+#: .\templates\agency\includes\default_tariffs.html:89
+msgid "Каталог товаров/услуг"
+msgstr "Product/Service Catalog"
+
+#: .\templates\agency\includes\default_tariffs.html:98
+msgid "до 14 дней"
+msgstr "up to 14 days"
+
+#: .\templates\agency\includes\default_tariffs.html:112
+msgid "БИЗНЕС ПЛЮС"
+msgstr "BUSINESS PLUS"
+
+#: .\templates\agency\includes\default_tariffs.html:119
+msgid "ИНТЕРНЕТ-МАГАЗИН"
+msgstr "ONLINE STORE"
+
+#: .\templates\agency\includes\default_tariffs.html:121
+msgid "Полноценная онлайн-торговля"
+msgstr "Full-Scale E-Commerce"
+
+#: .\templates\agency\includes\default_tariffs.html:133
+msgid ""
+"Полноценная платформа для онлайн-продаж с каталогом, корзиной, оформлением "
+"заказа и оплатой."
+msgstr ""
+"A complete online sales platform featuring a product catalog, shopping cart, "
+"checkout, and payment integration."
+
+#: .\templates\agency\includes\default_tariffs.html:138
+msgid "Каталог с фильтрацией"
+msgstr "Filterable Product Catalog"
+
+#: .\templates\agency\includes\default_tariffs.html:139
+msgid "Корзина и оформление заказа"
+msgstr "Shopping Cart & Checkout"
+
+#: .\templates\agency\includes\default_tariffs.html:140
+msgid "Интеграция с системами оплаты"
+msgstr "Payment System Integration"
+
+#: .\templates\agency\includes\default_tariffs.html:141
+msgid "Личный кабинет покупателя"
+msgstr "Customer Account"
+
+#: .\templates\agency\includes\default_tariffs.html:142
+msgid "1 месяц технической поддержки"
+msgstr "1 Month of Technical Support"
+
+#: .\templates\agency\includes\default_tariffs.html:149
+msgid "до 30 дней"
+msgstr "up to 30 days"
+
+#: .\templates\agency\includes\default_tariffs.html:171
+msgid "ИНДИВИДУАЛЬНОЕ РЕШЕНИЕ / РЕДИЗАЙН"
+msgstr "CUSTOM SOLUTION / REDESIGN"
+
+#: .\templates\agency\includes\default_tariffs.html:173
+msgid "Проект с уникальным функционалом"
+msgstr "Project with Custom Functionality"
+
+#: .\templates\agency\includes\default_tariffs.html:183
+msgid ""
+"Индивидуальное решение — это проект с нестандартной структурой, функционалом "
+"или интеграциями."
+msgstr ""
+"A custom solution is a project with a unique structure, functionality, or "
+"integrations."
+
+#: .\templates\agency\includes\default_tariffs.html:188
+msgid "Нестандартная структура"
+msgstr "Custom Site Architecture"
+
+#: .\templates\agency\includes\default_tariffs.html:189
+msgid "Сложные интеграции"
+msgstr "Complex Integrations"
+
+#: .\templates\agency\includes\default_tariffs.html:190
+msgid "Кастомная функциональность"
+msgstr "Custom Functionality"
+
+#: .\templates\agency\includes\default_tariffs.html:191
+msgid "Масштабируемое решение"
+msgstr "Scalable Solution"
+
+#: .\templates\agency\includes\default_tariffs.html:192
+msgid "Бесплатная поддержка 1 месяц"
+msgstr "1 Month of Free Support"
+
+#: .\templates\agency\includes\faq_modal.html:9
+msgid "ЗАДАТЬ ВОПРОС"
+msgstr "ASK A QUESTION"
+
+#: .\templates\agency\includes\faq_modal.html:10
+msgid "Остались"
+msgstr "Still have"
+
+#: .\templates\agency\includes\faq_modal.html:10
+msgid "вопросы?"
+msgstr "questions?"
+
+#: .\templates\agency\includes\faq_modal.html:11
+msgid "Свяжитесь с нами удобным способом, и мы ответим на все ваши вопросы"
+msgstr "Contact us in any convenient way, and we’ll answer all your questions."
+
+#: .\templates\agency\includes\faq_modal.html:33
+msgid "Задайте вопрос по email, и мы ответим в течение рабочего дня"
+msgstr ""
+"Send us your question by email, and we’ll reply within one business day."
+
+#: .\templates\agency\includes\faq_modal.html:50
+msgid "Быстрый ответ в мессенджере. Мы на связи 24/7"
+msgstr "Fast responses via messenger. We’re available 24/7."
+
+#: .\templates\agency\includes\faq_modal.html:69
+msgid "Мы ответим на все ваши вопросы в ближайшее время"
+msgstr "We’ll answer all your questions shortly."
+
+#: .\templates\agency\includes\footer.html:31
+#: .\templates\agency\includes\header.html:28
+#: .\templates\agency\includes\header.html:112
+msgid "THE ENGINE OF WEB EVOLUTION"
+msgstr "THE ENGINE OF WEB EVOLUTION"
+
+#: .\templates\agency\includes\footer.html:35
+msgid "The Engine of Web Evolution — премиальная разработка сайтов."
+msgstr "The Engine of Web Evolution — premium website development."
+
+#: .\templates\agency\includes\footer.html:36
+msgid "Разрабатываем быстрые, безопасные и уникальные сайты на"
+msgstr "We build fast, secure, custom websites using"
+
+#: .\templates\agency\includes\footer.html:38
+msgid "с технической SEO-оптимизацией и запуском под ключ."
+msgstr "with technical SEO optimization and end-to-end launch support."
+
+#: .\templates\agency\includes\footer.html:48
+msgid "Навигация"
+msgstr "Navigation"
+
+#: .\templates\agency\includes\footer.html:51
+#: .\templates\agency\includes\header.html:37
+#: .\templates\agency\includes\header.html:123
+msgid "Процесс"
+msgstr "Process"
+
+#: .\templates\agency\includes\footer.html:53
+#: .\templates\agency\includes\footer.html:63
+#: .\templates\agency\includes\header.html:39
+#: .\templates\agency\includes\header.html:125
+msgid "Услуги"
+msgstr "Services"
+
+#: .\templates\agency\includes\footer.html:54
+#: .\templates\agency\includes\header.html:40
+#: .\templates\agency\includes\header.html:126
+msgid "Портфолио"
+msgstr "Portfolio"
+
+#: .\templates\agency\includes\footer.html:55
+#: .\templates\agency\includes\header.html:41
+#: .\templates\agency\includes\header.html:127
+msgid "Тарифы"
+msgstr "Pricing"
+
+#: .\templates\agency\includes\footer.html:58
+#: .\templates\agency\includes\header.html:44
+#: .\templates\agency\includes\header.html:130
+msgid "Полезное"
+msgstr "Resources"
+
+#: .\templates\agency\includes\footer.html:65
+msgid "Разработка сайтов"
+msgstr "Website Development"
+
+#: .\templates\agency\includes\footer.html:66
+msgid "Лендинги и промо-сайты"
+msgstr "Landing Pages & Promotional Sites"
+
+#: .\templates\agency\includes\footer.html:67
+msgid "Интернет-магазины"
+msgstr "Online Stores"
+
+#: .\templates\agency\includes\footer.html:68
+msgid "Аудит безопасности и производительности"
+msgstr "Security & Performance Audits"
+
+#: .\templates\agency\includes\footer.html:150
+msgid "Все права защищены."
+msgstr "All rights reserved."
+
+#: .\templates\agency\includes\footer.html:154
+msgid "Политика конфиденциальности"
+msgstr "Privacy Policy"
+
+#: .\templates\agency\includes\header.html:34
+msgid "Main navigation"
+msgstr "Main navigation"
+
+#: .\templates\agency\includes\header.html:67
+msgid "Toggle theme"
+msgstr "Toggle theme"
+
+#: .\templates\agency\includes\header.html:78
+msgid "Open menu"
+msgstr "Open menu"
+
+#: .\templates\agency\includes\header.html:115
+msgid "Close menu"
+msgstr "Close menu"
+
+#: .\templates\agency\includes\header.html:120
+msgid "Mobile navigation"
+msgstr "Mobile navigation"
+
+#: .\templates\agency\includes\header.html:138
+#: .\templates\agency\includes\i18n_strings.html:73
+msgid "Сменить тему"
+msgstr "Change theme"
+
+#: .\templates\agency\includes\hero_stats.html:31
+msgid "Индивидуальный проект"
+msgstr "Custom Project"
+
+#: .\templates\agency\includes\hero_stats.html:47
+msgid "SEO оптимизация"
+msgstr "SEO Optimization"
+
+#: .\templates\agency\includes\hero_stats.html:63
+msgid "Запуск"
+msgstr "Launch"
+
+#: .\templates\agency\includes\i18n_strings.html:12
+msgid "@username или номер телефона"
+msgstr "@username or phone number"
+
+#: .\templates\agency\includes\i18n_strings.html:39
+msgid "Заполните поля"
+msgstr "Fill in the fields"
+
+#: .\templates\agency\includes\i18n_strings.html:40
+msgid "Отправка..."
+msgstr "Sending..."
+
+#: .\templates\agency\includes\i18n_strings.html:41
+msgid "Отправить"
+msgstr "Send"
+
+#: .\templates\agency\includes\i18n_strings.html:42
+msgid "Ошибка отправки"
+msgstr "Send error"
+
+#: .\templates\agency\includes\i18n_strings.html:43
+msgid "Произошла ошибка. Попробуйте позже."
+msgstr "An error occurred. Please try again later."
+
+#: .\templates\agency\includes\i18n_strings.html:44
+msgid "Заявка успешно отправлена!"
+msgstr "Request sent successfully!"
+
+#: .\templates\agency\includes\i18n_strings.html:45
+msgid "Ошибки в форме"
+msgstr "Errors in the form"
+
+#: .\templates\agency\includes\i18n_strings.html:50
+msgid "Ошибка голосования. Попробуйте позже."
+msgstr "Voting error. Please try again later."
+
+#: .\templates\agency\includes\i18n_strings.html:51
+msgid "Спасибо за голос!"
+msgstr "Thanks for your vote!"
+
+#: .\templates\agency\includes\i18n_strings.html:52
+msgid "Голос отменён"
+msgstr "Vote removed"
+
+#: .\templates\agency\includes\i18n_strings.html:53
+msgid "Голос изменён"
+msgstr "Vote changed"
+
+#: .\templates\agency\includes\i18n_strings.html:54
+msgid "Готово"
+msgstr "Done"
+
+#: .\templates\agency\includes\i18n_strings.html:59
+msgid "Пожалуйста, введите email"
+msgstr "Please enter your email"
+
+#: .\templates\agency\includes\i18n_strings.html:60
+msgid "Введите корректный email"
+msgstr "Please enter a valid email"
+
+#: .\templates\agency\includes\i18n_strings.html:61
+msgid "Спасибо за подписку!"
+msgstr "Thank you for subscribing!"
+
+#: .\templates\agency\includes\i18n_strings.html:62
+msgid "Ошибка подписки"
+msgstr "Subscription error"
+
+#: .\templates\agency\includes\i18n_strings.html:63
+msgid "Ошибка соединения. Попробуйте позже."
+msgstr "Connection error. Please try again later."
+
+#: .\templates\agency\includes\i18n_strings.html:68
+msgid "Ошибка соединения"
+msgstr "Connection error"
+
+#: .\templates\agency\includes\mission.html:27
+msgid "НАША МИССИЯ"
+msgstr "OUR MISSION"
+
+#: .\templates\agency\includes\service_modal.html:5
+msgid "Закрыть"
+msgstr "Close"
+
+#: .\templates\agency\includes\service_modal.html:13
+msgid "Услуга"
+msgstr "Service"
+
+#: .\templates\agency\includes\service_modal.html:19
+msgid "Название услуги"
+msgstr "Service name"
+
+#: .\templates\agency\includes\service_modal.html:22
+msgid "Описание"
+msgstr "Description"
+
+#: .\templates\agency\includes\tech_modal.html:17
+msgid "Категория"
+msgstr "Category"
+
+#: .\templates\agency\includes\tech_modal.html:19
+msgid "Close"
+msgstr "Close"
+
+#: .\templates\agency\includes\tech_modal.html:28
+msgid "Описание технологии"
+msgstr "Technology description"
+
+#: .\templates\agency\maintenance.html:6 .\templates\agency\maintenance.html:8
+msgid "Технические работы"
+msgstr "Maintenance"
+
+#: .\templates\agency\maintenance.html:10
+msgid "СКОРО"
+msgstr "COMING SOON"
+
+#: .\templates\agency\maintenance.html:12
+msgid "Сайт на обслуживании"
+msgstr "Site Under Maintenance"
+
+#: .\templates\agency\maintenance.html:18
+msgid ""
+"Сайт временно недоступен из-за технических работ. Приносим извинения за "
+"неудобства. Зайдите позже."
+msgstr ""
+"The site is temporarily unavailable due to maintenance. We apologize for the "
+"inconvenience. Please check back later."
+
+#: .\templates\agency\maintenance.html:24
+msgid "Ориентировочное время восстановления:"
+msgstr "Estimated recovery time:"
+
+#: .\templates\agency\maintenance.html:25
+msgid "в ближайшее время"
+msgstr "shortly"
+
+#: .\templates\agency\maintenance.html:28
+msgid "Проверить снова"
+msgstr "Check again"
+
+#: .\templates\agency\thanks.html:6
+msgid "Спасибо!"
+msgstr "Thank you!"
+
+#: .\templates\agency\thanks.html:8
+msgid "Успешно отправлено"
+msgstr "Sent Successfully"
+
+#: .\templates\agency\thanks.html:10
+msgid "СПАСИБО"
+msgstr "THANK YOU"
+
+#: .\templates\agency\thanks.html:12
+msgid "Ваша заявка получена"
+msgstr "Your request has been received"
+
+#: .\templates\agency\thanks.html:15
+msgid ""
+"Спасибо, что обратились к нам! Мы свяжемся с вами в ближайшее время для "
+"обсуждения проекта."
+msgstr ""
+"Thank you for reaching out! We'll get back to you shortly to discuss your "
+"project."
+
+#: .\templates\agency\thanks.html:20
+msgid "Вернуться на главную"
+msgstr "Return to Homepage"
+
+#: .\templates\agency\unsubscribe.html:20
+msgid "Вы отписаны"
+msgstr "You have been unsubscribed"
+
+#: .\templates\agency\unsubscribe.html:22
+msgid "больше не будет получать наши рассылки."
+msgstr "will no longer receive our newsletters."
+
+#: .\templates\agency\unsubscribe.html:25
+msgid ""
+"Если это произошло по ошибке — просто подпишитесь заново на странице блога."
+msgstr "If this happened by mistake — just re-subscribe on the blog page."
+
+#: .\templates\agency\unsubscribe.html:32
+msgid "Вы уже отписаны"
+msgstr "You are already unsubscribed"
+
+#: .\templates\agency\unsubscribe.html:34
+msgid "уже не получает наши рассылки."
+msgstr "no longer receives our newsletters."
+
+#: .\templates\agency\unsubscribe.html:41
+msgid "Ссылка недействительна"
+msgstr "Invalid link"
+
+#: .\templates\agency\unsubscribe.html:43
+msgid ""
+"Эта ссылка для отписки недействительна или устарела. Возможно, вы уже "
+"отписаны."
+msgstr ""
+"This unsubscribe link is invalid or expired. You may already be unsubscribed."

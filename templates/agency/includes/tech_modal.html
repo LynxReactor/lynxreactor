@@ -1,0 +1,35 @@
+<!-- templates/agency/includes/tech_modal.html -->
+
+{% load static i18n %}
+
+<!-- ============================================================
+     TECH MODAL
+     ============================================================ -->
+
+<div class="tech-modal-overlay" id="techModal">
+    <div class="tech-modal-container">
+        <div class="tech-modal-header">
+            <div class="tech-modal-icon" id="techModalIcon">
+                <span class="tech-icon-placeholder">?</span>
+            </div>
+            <div class="tech-modal-title-wrapper">
+                <h3 class="tech-modal-title" id="techModalTitle">{% trans "Технология" %}</h3>
+                <span class="tech-modal-category" id="techModalCategory">{% trans "Категория" %}</span>
+            </div>
+            <button class="tech-modal-close" id="techModalClose" aria-label="{% trans 'Close' %}">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"/>
+                    <line x1="6" y1="6" x2="18" y2="18"/>
+                </svg>
+            </button>
+        </div>
+        <div class="tech-modal-body">
+            <p class="tech-modal-description" id="techModalDescription">
+                {% trans "Описание технологии" %}
+            </p>
+            <div class="tech-modal-footer">
+                <span class="tech-modal-badge" id="techModalBadge">{% trans "Основной" %}</span>
+            </div>
+        </div>
+    </div>
+</div>

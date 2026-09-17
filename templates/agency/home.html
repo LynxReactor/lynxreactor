@@ -1,0 +1,1310 @@
+<!-- templates/agency/home.html -->
+
+{% extends 'agency/base.html' %}
+{% load static i18n %}
+
+{% block extra_css %}
+<style>
+    .gold-accent {
+        color: var(--color-gold, #C89A5B);
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+
+<!-- ============================================================
+     HERO SECTION
+     ============================================================ -->
+
+<section class="hero-section" id="home" aria-labelledby="hero-title">
+    <div class="hero-background themed-image">
+        {% if hero %}
+            {% if current_language == 'en' %}
+                {% if hero.hero_image_light_en %}
+                    <img class="themed-img ti-light"
+                         src="{{ hero.hero_image_light_en.url }}"
+                         alt="{{ hero.title|default:_('Разработка сайта под ключ') }}"
+                         loading="eager" fetchpriority="high" decoding="async">
+                {% endif %}
+                {% if hero.hero_image_dark_en %}
+                    <img class="themed-img ti-dark"
+                         src="{{ hero.hero_image_dark_en.url }}"
+                         alt="{{ hero.title|default:_('Разработка сайта под ключ') }}"
+                         loading="lazy" decoding="async">
+                {% endif %}
+                {% if not hero.hero_image_light_en and not hero.hero_image_dark_en %}
+                    <img class="themed-img ti-fallback"
+                         src="{% static 'images/hero/hero-architecture.jpg' %}"
+                         alt="{% trans 'Разработка сайта под ключ на Python и Django' %}"
+                         loading="eager" fetchpriority="high" decoding="async">
+                {% endif %}
+            {% else %}
+                {% if hero.hero_image_light_ru %}
+                    <img class="themed-img ti-light"
+                         src="{{ hero.hero_image_light_ru.url }}"
+                         alt="{{ hero.title|default:_('Разработка сайта под ключ') }}"
+                         loading="eager" fetchpriority="high" decoding="async">
+                {% endif %}
+                {% if hero.hero_image_dark_ru %}
+                    <img class="themed-img ti-dark"
+                         src="{{ hero.hero_image_dark_ru.url }}"
+                         alt="{{ hero.title|default:_('Разработка сайта под ключ') }}"
+                         loading="lazy" decoding="async">
+                {% endif %}
+                {% if not hero.hero_image_light_ru and not hero.hero_image_dark_ru %}
+                    <img class="themed-img ti-fallback"
+                         src="{% static 'images/hero/hero-architecture.jpg' %}"
+                         alt="{% trans 'Разработка сайта под ключ на Python и Django' %}"
+                         loading="eager" fetchpriority="high" decoding="async">
+                {% endif %}
+            {% endif %}
+        {% else %}
+            <img class="themed-img ti-fallback"
+                 src="{% static 'images/hero/hero-architecture.jpg' %}"
+                 alt="{% trans 'Разработка сайта под ключ на Python и Django' %}"
+                 loading="eager" fetchpriority="high" decoding="async">
+        {% endif %}
+    </div>
+
+    <div class="hero-content">
+        <div class="hero-badge">
+            <img src="{% static 'images/linxreactor.png' %}" alt="LYNXREACTOR" loading="lazy">
+        </div>
+        <h1 class="hero-title" id="hero-title">
+            <span class="hero-subtitle">{{ hero.subtitle|default:_("Сайты, которые повышают статус вашего бизнеса") }}</span>
+            <span class="hero-main">{{ hero.title|default:_("Разработка сайтов под ключ на Python и Django") }}</span>
+        </h1>
+        <p class="hero-description">
+            {{ hero.description|default:_("Разрабатываем быстрые, безопасные и уникальные сайты на Python/Django/CSS/JS с технической SEO-оптимизацией и запуском под ключ.") }}
+        </p>
+        <div class="hero-buttons">
+            <button class="btn btn-primary hero-cta-btn" id="heroContactBtn">
+                {{ hero.cta_text|default:_("Обсудить проект") }}
+                <span class="arrow">→</span>
+            </button>
+            <a href="{{ hero.secondary_cta_url|default:'#portfolio' }}" class="btn btn-secondary">
+                {{ hero.secondary_cta_text|default:_("Смотреть кейсы") }}
+                <span class="arrow">→</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- СКРОЛЛ ИНДИКАТОР -->
+    <div class="hero-scroll-indicator">
+        <span class="scroll-label">SCROLL</span>
+        <div class="scroll-line">
+            <div class="scroll-ball"></div>
+        </div>
+        <svg class="scroll-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 5v14M5 12l7 7 7-7"/>
+        </svg>
+    </div>
+
+    <!-- БЛОК СТАТИСТИКИ / МОНЕТЫ -->
+    {% include "agency/includes/hero_stats.html" %}
+</section>
+
+<!-- ============================================================
+     SERVICES SECTION
+     ============================================================ -->
+
+<section class="services-section" id="services">
+    <div class="services-header">
+        <span class="section-label">{% trans "ЧТО МЫ ДЕЛАЕМ" %}</span>
+        <h2 class="section-title">{% trans "Полный цикл разработки и запуска" %}</h2>
+    </div>
+
+    <div class="services-grid">
+        {% if services %}
+            {% for service in services %}
+                <div class="service-card"
+<div class="service-card"
+     data-service-id="{{ service.id }}"
+     data-service-number="{{ service.number|stringformat:'02d' }}"
+     data-service-title="{{ service.title }}"
+     data-service-description="{{ service.description }}"
+     data-service-image-light="{% if current_language == 'en' %}{% if service.image_light_en %}{{ service.image_light_en.url }}{% endif %}
+     {% else %}{% if service.image_light_ru %}{{ service.image_light_ru.url }}{% endif %}{% endif %}"
+     data-service-image-dark="{% if current_language == 'en' %}{% if service.image_dark_en %}{{ service.image_dark_en.url }}{% endif %}
+     {% else %}{% if service.image_dark_ru %}{{ service.image_dark_ru.url }}{% endif %}{% endif %}">
+                    {# ФОНОВОЕ ИЗОБРАЖЕНИЕ — 4 варианта #}
+                    <div class="service-card-bg themed-image">
+                        {% if current_language == 'en' %}
+                            {% if service.image_light_en %}
+                                <img class="themed-img ti-light"
+                                     src="{{ service.image_light_en.url }}"
+                                     alt="{{ service.title }}"
+                                     loading="lazy" decoding="async">
+                            {% endif %}
+                            {% if service.image_dark_en %}
+                                <img class="themed-img ti-dark"
+                                     src="{{ service.image_dark_en.url }}"
+                                     alt="{{ service.title }}"
+                                     loading="lazy" decoding="async">
+                            {% endif %}
+                            {% if not service.image_light_en and not service.image_dark_en %}
+                                <img class="themed-img ti-fallback"
+                                     src="{% static 'images/services/service-default.jpg' %}"
+                                     alt="{{ service.title }}"
+                                     loading="lazy" decoding="async">
+                            {% endif %}
+                        {% else %}
+                            {% if service.image_light_ru %}
+                                <img class="themed-img ti-light"
+                                     src="{{ service.image_light_ru.url }}"
+                                     alt="{{ service.title }}"
+                                     loading="lazy" decoding="async">
+                            {% endif %}
+                            {% if service.image_dark_ru %}
+                                <img class="themed-img ti-dark"
+                                     src="{{ service.image_dark_ru.url }}"
+                                     alt="{{ service.title }}"
+                                     loading="lazy" decoding="async">
+                            {% endif %}
+                            {% if not service.image_light_ru and not service.image_dark_ru %}
+                                <img class="themed-img ti-fallback"
+                                     src="{% static 'images/services/service-default.jpg' %}"
+                                     alt="{{ service.title }}"
+                                     loading="lazy" decoding="async">
+                            {% endif %}
+                        {% endif %}
+                    </div>
+
+                    <div class="service-card-overlay">
+                        <div class="service-card-content">
+                            <div class="service-number">{{ service.number|stringformat:"02d" }}</div>
+                            <h3 class="service-title">{{ service.title }}</h3>
+                            <button type="button" class="service-more-btn" data-service-id="{{ service.id }}">
+                                {% trans "Подробнее" %}
+                                <span class="arrow">→</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            {# Default services #}
+            <div class="service-card"
+                 data-service-number="01"
+                 data-service-title="{% trans 'Индивидуальная разработка' %}"
+                 data-service-description="{% trans 'Пишем чистый код на Python/Django без шаблонных CMS' %}"
+                 data-service-image="{% static 'images/services/service-default.jpg' %}">
+                <div class="service-card-bg themed-image">
+                    <img class="themed-img ti-fallback"
+                         src="{% static 'images/services/service-default.jpg' %}"
+                         alt="{% trans 'Индивидуальная разработка' %}"
+                         loading="lazy" decoding="async">
+                </div>
+                <div class="service-card-overlay">
+                    <div class="service-card-content">
+                        <div class="service-number">01</div>
+                        <h3 class="service-title">{% trans "Индивидуальная разработка" %}</h3>
+                        <p class="service-description">{% trans "Пишем чистый код на Python/Django без шаблонных CMS" %}</p>
+                        <button type="button" class="service-more-btn">{% trans "Подробнее" %} <span class="arrow">→</span></button>
+                    </div>
+                </div>
+            </div>
+            <div class="service-card"
+                 data-service-number="02"
+                 data-service-title="{% trans 'Адаптивный дизайн' %}"
+                 data-service-description="{% trans 'Идеально выглядит на всех устройствах. Светлая и тёмная тема' %}"
+                 data-service-image="{% static 'images/services/service-default.jpg' %}">
+                <div class="service-card-bg themed-image">
+                    <img class="themed-img ti-fallback"
+                         src="{% static 'images/services/service-default.jpg' %}"
+                         alt="{% trans 'Адаптивный дизайн' %}"
+                         loading="lazy" decoding="async">
+                </div>
+                <div class="service-card-overlay">
+                    <div class="service-card-content">
+                        <div class="service-number">02</div>
+                        <h3 class="service-title">{% trans "Адаптивный дизайн" %}</h3>
+                        <p class="service-description">{% trans "Идеально выглядит на всех устройствах. Светлая и тёмная тема" %}</p>
+                        <button type="button" class="service-more-btn">{% trans "Подробнее" %} <span class="arrow">→</span></button>
+                    </div>
+                </div>
+            </div>
+            <div class="service-card"
+                 data-service-number="03"
+                 data-service-title="{% trans 'Формы и логика' %}"
+                 data-service-description="{% trans 'Формы обратной связи, отправка email, бизнес-логика и интеграции' %}"
+                 data-service-image="{% static 'images/services/service-default.jpg' %}">
+                <div class="service-card-bg themed-image">
+                    <img class="themed-img ti-fallback"
+                         src="{% static 'images/services/service-default.jpg' %}"
+                         alt="{% trans 'Формы и логика' %}"
+                         loading="lazy" decoding="async">
+                </div>
+                <div class="service-card-overlay">
+                    <div class="service-card-content">
+                        <div class="service-number">03</div>
+                        <h3 class="service-title">{% trans "Формы и логика" %}</h3>
+                        <p class="service-description">{% trans "Формы обратной связи, отправка email, бизнес-логика и интеграции" %}</p>
+                        <button type="button" class="service-more-btn">{% trans "Подробнее" %} <span class="arrow">→</span></button>
+                    </div>
+                </div>
+            </div>
+            <div class="service-card"
+                 data-service-number="04"
+                 data-service-title="{% trans 'Админ-панель' %}"
+                 data-service-description="{% trans 'Удобное управление контентом без знаний кода' %}"
+                 data-service-image="{% static 'images/services/service-default.jpg' %}">
+                <div class="service-card-bg themed-image">
+                    <img class="themed-img ti-fallback"
+                         src="{% static 'images/services/service-default.jpg' %}"
+                         alt="{% trans 'Админ-панель' %}"
+                         loading="lazy" decoding="async">
+                </div>
+                <div class="service-card-overlay">
+                    <div class="service-card-content">
+                        <div class="service-number">04</div>
+                        <h3 class="service-title">{% trans "Админ-панель" %}</h3>
+                        <p class="service-description">{% trans "Удобное управление контентом без знаний кода" %}</p>
+                        <button type="button" class="service-more-btn">{% trans "Подробнее" %} <span class="arrow">→</span></button>
+                    </div>
+                </div>
+            </div>
+            <div class="service-card"
+                 data-service-number="05"
+                 data-service-title="{% trans 'Настройка и запуск' %}"
+                 data-service-description="{% trans 'VPS, домен, SSL-сертификат и корпоративная почта' %}"
+                 data-service-image="{% static 'images/services/service-default.jpg' %}">
+                <div class="service-card-bg themed-image">
+                    <img class="themed-img ti-fallback"
+                         src="{% static 'images/services/service-default.jpg' %}"
+                         alt="{% trans 'Настройка и запуск' %}"
+                         loading="lazy" decoding="async">
+                </div>
+                <div class="service-card-overlay">
+                    <div class="service-card-content">
+                        <div class="service-number">05</div>
+                        <h3 class="service-title">{% trans "Настройка и запуск" %}</h3>
+                        <p class="service-description">{% trans "VPS, домен, SSL-сертификат и корпоративная почта" %}</p>
+                        <button type="button" class="service-more-btn">{% trans "Подробнее" %} <span class="arrow">→</span></button>
+                    </div>
+                </div>
+            </div>
+            <div class="service-card"
+                 data-service-number="06"
+                 data-service-title="{% trans 'SEO-оптимизация' %}"
+                 data-service-description="{% trans 'Техническое SEO, мета-теги, sitemap.xml, robots.txt' %}"
+                 data-service-image="{% static 'images/services/service-default.jpg' %}">
+                <div class="service-card-bg themed-image">
+                    <img class="themed-img ti-fallback"
+                         src="{% static 'images/services/service-default.jpg' %}"
+                         alt="{% trans 'SEO-оптимизация' %}"
+                         loading="lazy" decoding="async">
+                </div>
+                <div class="service-card-overlay">
+                    <div class="service-card-content">
+                        <div class="service-number">06</div>
+                        <h3 class="service-title">{% trans "SEO-оптимизация" %}</h3>
+                        <p class="service-description">{% trans "Техническое SEO, мета-теги, sitemap.xml, robots.txt" %}</p>
+                        <button type="button" class="service-more-btn">{% trans "Подробнее" %} <span class="arrow">→</span></button>
+                    </div>
+                </div>
+            </div>
+            <div class="service-card"
+                 data-service-number="07"
+                 data-service-title="{% trans 'Регистрация в поисковиках' %}"
+                 data-service-description="{% trans 'Google Search Console, Bing Webmaster Tools и другие' %}"
+                 data-service-image="{% static 'images/services/service-default.jpg' %}">
+                <div class="service-card-bg themed-image">
+                    <img class="themed-img ti-fallback"
+                         src="{% static 'images/services/service-default.jpg' %}"
+                         alt="{% trans 'Регистрация в поисковиках' %}"
+                         loading="lazy" decoding="async">
+                </div>
+                <div class="service-card-overlay">
+                    <div class="service-card-content">
+                        <div class="service-number">07</div>
+                        <h3 class="service-title">{% trans "Регистрация в поисковиках" %}</h3>
+                        <p class="service-description">{% trans "Google Search Console, Bing Webmaster Tools и другие" %}</p>
+                        <button type="button" class="service-more-btn">{% trans "Подробнее" %} <span class="arrow">→</span></button>
+                    </div>
+                </div>
+            </div>
+            <div class="service-card"
+                 data-service-number="08"
+                 data-service-title="{% trans 'Поддержка и развитие' %}"
+                 data-service-description="{% trans '1 месяц поддержки бесплатно и помощь в развитии проекта' %}"
+                 data-service-image="{% static 'images/services/service-default.jpg' %}">
+                <div class="service-card-bg themed-image">
+                    <img class="themed-img ti-fallback"
+                         src="{% static 'images/services/service-default.jpg' %}"
+                         alt="{% trans 'Поддержка и развитие' %}"
+                         loading="lazy" decoding="async">
+                </div>
+                <div class="service-card-overlay">
+                    <div class="service-card-content">
+                        <div class="service-number">08</div>
+                        <h3 class="service-title">{% trans "Поддержка и развитие" %}</h3>
+                        <p class="service-description">{% trans "1 месяц поддержки бесплатно и помощь в развитии проекта" %}</p>
+                        <button type="button" class="service-more-btn">{% trans "Подробнее" %} <span class="arrow">→</span></button>
+                    </div>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+</section>
+
+<!-- ============================================================
+     TECHNOLOGIES SECTION
+     ============================================================ -->
+
+<section class="tech-section" id="tech">
+    <div class="tech-container">
+        <div class="section-header tech-header">
+            <span class="section-label">{% trans "ТЕХНОЛОГИИ" %}</span>
+            <h2 class="section-title">{% trans "Современный" %} <span class="gold-accent">{% trans "стек" %}</span> {% trans "технологий" %}</h2>
+            <p class="section-description">
+                {% trans "Используем проверенные инструменты для создания надёжных и масштабируемых решений." %}
+            </p>
+        </div>
+
+        <div class="tech-grid">
+            {% if technologies %}
+                {% for tech in technologies %}
+                <div class="tech-item"
+                     data-tech-id="{{ tech.id }}"
+                     data-tech-name="{{ tech.name }}"
+                     data-tech-description="{{ tech.description }}"
+                     data-tech-category="{{ tech.get_category_display }}"
+                     data-tech-badge="{% if tech.is_primary %}{% trans 'Основной' %}{% endif %}"
+                     data-tech-icon="{% if tech.logo %}{{ tech.logo.url }}{% endif %}">
+
+                    <div class="tech-icon" role="button" tabindex="0" aria-label="{% trans 'Нажмите для подробностей' %}">
+                        {% if tech.logo %}
+                            <img src="{{ tech.logo.url }}" alt="{{ tech.name }}" loading="lazy">
+                        {% else %}
+                            <span class="tech-icon-placeholder">{{ tech.name|first }}</span>
+                        {% endif %}
+                    </div>
+
+                    <div class="tech-info">
+                        <h4 class="tech-name">{{ tech.name }}</h4>
+                        <span class="tech-category">{{ tech.get_category_display }}</span>
+                        {% if tech.is_primary %}
+                            <span class="tech-badge">{% trans "Основной" %}</span>
+                        {% endif %}
+                    </div>
+
+                    <p class="tech-description">{{ tech.description }}</p>
+
+                    <button type="button" class="tech-more-btn" data-tech-id="{{ tech.id }}">
+                        {% trans "Узнать больше" %}
+                        <span class="arrow">→</span>
+                    </button>
+                </div>
+                {% endfor %}
+            {% else %}
+                <!-- Default technologies -->
+                <div class="tech-item">
+                    <div class="tech-icon" role="button" tabindex="0">
+                        <span class="tech-icon-placeholder">P</span>
+                    </div>
+                    <div class="tech-info">
+                        <h4 class="tech-name">Python</h4>
+                        <span class="tech-category">Backend</span>
+                        <span class="tech-badge">{% trans "Основной" %}</span>
+                    </div>
+                    <p class="tech-description">{% trans "Современный язык программирования для веб-разработки, анализа данных и машинного обучения." %}</p>
+                    <button type="button" class="tech-more-btn">{% trans "Узнать больше" %} <span class="arrow">→</span></button>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon" role="button" tabindex="0">
+                        <span class="tech-icon-placeholder">D</span>
+                    </div>
+                    <div class="tech-info">
+                        <h4 class="tech-name">Django</h4>
+                        <span class="tech-category">Backend</span>
+                        <span class="tech-badge">{% trans "Основной" %}</span>
+                    </div>
+                    <p class="tech-description">{% trans "Мощный фреймворк для создания надёжных и масштабируемых веб-приложений на Python." %}</p>
+                    <button type="button" class="tech-more-btn">{% trans "Узнать больше" %} <span class="arrow">→</span></button>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon" role="button" tabindex="0">
+                        <span class="tech-icon-placeholder">JS</span>
+                    </div>
+                    <div class="tech-info">
+                        <h4 class="tech-name">JavaScript</h4>
+                        <span class="tech-category">Frontend</span>
+                    </div>
+                    <p class="tech-description">{% trans "Язык программирования для создания интерактивных и динамичных пользовательских интерфейсов." %}</p>
+                    <button type="button" class="tech-more-btn">{% trans "Узнать больше" %} <span class="arrow">→</span></button>
+                </div>
+                <div class="tech-item">
+                    <div class="tech-icon" role="button" tabindex="0">
+                        <span class="tech-icon-placeholder">CSS</span>
+                    </div>
+                    <div class="tech-info">
+                        <h4 class="tech-name">CSS3</h4>
+                        <span class="tech-category">Frontend</span>
+                    </div>
+                    <p class="tech-description">{% trans "Современные стили для создания адаптивных и визуально привлекательных интерфейсов." %}</p>
+                    <button type="button" class="tech-more-btn">{% trans "Узнать больше" %} <span class="arrow">→</span></button>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     LANDING SECTION
+     ============================================================ -->
+
+<section class="landing-section" id="landing">
+    <div class="landing-top">
+        <div class="landing-top-left">
+            <span class="section-label">{{ landing.get_label|default:_("ЛЕНДИНГИ") }}</span>
+            <h2 class="landing-title">
+                {{ landing.get_title|default:_("Разработка продающих лендингов под ключ") }}
+            </h2>
+            <p class="landing-description">
+                {{ landing.get_description|default:_("Создаём стильные одностраничные сайты, которые фокусируют внимание, вызывают доверие и превращают посетителей в клиентов.") }}
+            </p>
+            <button class="btn btn-primary js-open-contact-modal" data-service="{% trans 'Лендинг' %}" data-tariff="{% trans 'СТАРТ' %}">
+                {{ landing.get_cta_text|default:_("Заказать лендинг") }}
+                <span class="arrow">→</span>
+            </button>
+        </div>
+
+        <div class="landing-top-center">
+            <div class="landing-benefits">
+                {% for feature in landing_features %}
+                <div class="benefit-item">
+                    <div class="benefit-icon"><i class="fas {{ feature.icon|default:'fa-check' }}"></i></div>
+                    <div class="benefit-text">{{ feature.get_title }}</div>
+                </div>
+                {% empty %}
+                <div class="benefit-item">
+                    <div class="benefit-icon"><i class="fas fa-bullseye"></i></div>
+                    <div class="benefit-text">{% trans "Фокус на продажах" %}</div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon"><i class="fas fa-mobile-alt"></i></div>
+                    <div class="benefit-text">{% trans "Адаптивный дизайн" %}</div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon"><i class="fas fa-bolt"></i></div>
+                    <div class="benefit-text">{% trans "Быстрая загрузка" %}</div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon"><i class="fas fa-users"></i></div>
+                    <div class="benefit-text">{% trans "Конверсия в клиентов" %}</div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="landing-top-right">
+            <div class="landing-image-wrapper themed-image">
+                {% if landing %}
+                    {% if current_language == 'en' %}
+                        {% if landing.image_light_en %}
+                            <img class="themed-img ti-light"
+                                 src="{{ landing.image_light_en.url }}"
+                                 alt="{{ landing.get_title }}"
+                                 loading="lazy" decoding="async">
+                        {% endif %}
+                        {% if landing.image_dark_en %}
+                            <img class="themed-img ti-dark"
+                                 src="{{ landing.image_dark_en.url }}"
+                                 alt="{{ landing.get_title }}"
+                                 loading="lazy" decoding="async">
+                        {% endif %}
+                        {% if not landing.image_light_en and not landing.image_dark_en %}
+                            <img class="themed-img ti-fallback"
+                                 src="{% static 'images/landing/landing-image.jpg' %}"
+                                 alt="{% trans 'Разработка продающего лендинга' %}"
+                                 loading="lazy" decoding="async">
+                        {% endif %}
+                    {% else %}
+                        {% if landing.image_light_ru %}
+                            <img class="themed-img ti-light"
+                                 src="{{ landing.image_light_ru.url }}"
+                                 alt="{{ landing.get_title }}"
+                                 loading="lazy" decoding="async">
+                        {% endif %}
+                        {% if landing.image_dark_ru %}
+                            <img class="themed-img ti-dark"
+                                 src="{{ landing.image_dark_ru.url }}"
+                                 alt="{{ landing.get_title }}"
+                                 loading="lazy" decoding="async">
+                        {% endif %}
+                        {% if not landing.image_light_ru and not landing.image_dark_ru %}
+                            <img class="themed-img ti-fallback"
+                                 src="{% static 'images/landing/landing-image.jpg' %}"
+                                 alt="{% trans 'Разработка продающего лендинга' %}"
+                                 loading="lazy" decoding="async">
+                        {% endif %}
+                    {% endif %}
+                {% else %}
+                    <img class="themed-img ti-fallback"
+                         src="{% static 'images/landing/landing-image.jpg' %}"
+                         alt="{% trans 'Разработка продающего лендинга' %}"
+                         loading="lazy" decoding="async">
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div class="landing-bottom">
+        <div class="landing-details-grid">
+            {% for detail in landing_details %}
+            <div class="detail-item">
+                <div class="detail-icon"><i class="fas {{ detail.icon|default:'fa-search' }}"></i></div>
+                <div class="detail-content">
+                    <h4>{{ detail.get_title }}</h4>
+                    <p>{{ detail.get_description }}</p>
+                </div>
+            </div>
+            {% empty %}
+            <div class="detail-item">
+                <div class="detail-icon"><i class="fas fa-search"></i></div>
+                <div class="detail-content">
+                    <h4>{% trans "Анализ целевой аудитории" %}</h4>
+                    <p>{% trans "Глубокое исследование вашей ЦА для создания релевантного контента" %}</p>
+                </div>
+            </div>
+            <div class="detail-item">
+                <div class="detail-icon"><i class="fas fa-pencil-ruler"></i></div>
+                <div class="detail-content">
+                    <h4>{% trans "Уникальный дизайн" %}</h4>
+                    <p>{% trans "Разработка дизайна с нуля, отражающего индивидуальность вашего бренда" %}</p>
+                </div>
+            </div>
+            <div class="detail-item">
+                <div class="detail-icon"><i class="fas fa-code"></i></div>
+                <div class="detail-content">
+                    <h4>{% trans "Чистый код" %}</h4>
+                    <p>{% trans "Написание чистого, оптимизированного кода на Python/Django" %}</p>
+                </div>
+            </div>
+            <div class="detail-item">
+                <div class="detail-icon"><i class="fas fa-rocket"></i></div>
+                <div class="detail-content">
+                    <h4>{% trans "Быстрый запуск" %}</h4>
+                    <p>{% trans "Оптимизация скорости загрузки и быстрый вывод на рынок" %}</p>
+                </div>
+            </div>
+            <div class="detail-item">
+                <div class="detail-icon"><i class="fas fa-chart-line"></i></div>
+                <div class="detail-content">
+                    <h4>{% trans "Аналитика" %}</h4>
+                    <p>{% trans "Настройка систем аналитики для отслеживания эффективности" %}</p>
+                </div>
+            </div>
+            <div class="detail-item">
+                <div class="detail-icon"><i class="fas fa-headset"></i></div>
+                <div class="detail-content">
+                    <h4>{% trans "Поддержка" %}</h4>
+                    <p>{% trans "Техническая поддержка и помощь в развитии проекта" %}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     BUSINESS SECTION
+     ============================================================ -->
+
+<section class="business-section" id="business">
+    <div class="business-top">
+        <div class="business-top-left">
+            <span class="section-label">{{ business.get_label|default:_("ИНТЕРНЕТ-МАГАЗИНЫ") }}</span>
+            <h2 class="business-title">
+                {{ business.get_title|default:_("Сайт для бизнеса, который продаёт") }}
+            </h2>
+            <p class="business-description">
+                {{ business.get_description|default:_("Создаём интернет-магазины и корпоративные сайты с продуманной структурой, удобной админ-панелью и полной интеграцией с системами оплаты.") }}
+            </p>
+            <button class="btn btn-primary js-open-contact-modal" data-service="{% trans 'Интернет-магазин' %}" data-tariff="{% trans 'БИЗНЕС' %}">
+                {{ business.get_cta_text|default:_("Заказать сайт") }}
+                <span class="arrow">→</span>
+            </button>
+        </div>
+
+        <div class="business-top-center">
+            <div class="business-benefits">
+                {% for feature in business_features %}
+                <div class="benefit-item">
+                    <div class="benefit-icon"><i class="fas {{ feature.icon|default:'fa-check' }}"></i></div>
+                    <div class="benefit-text">{{ feature.get_title }}</div>
+                </div>
+                {% empty %}
+                <div class="benefit-item">
+                    <div class="benefit-icon"><i class="fas fa-shopping-cart"></i></div>
+                    <div class="benefit-text">{% trans "Интернет-магазин" %}</div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon"><i class="fas fa-credit-card"></i></div>
+                    <div class="benefit-text">{% trans "Оплата онлайн" %}</div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon"><i class="fas fa-truck"></i></div>
+                    <div class="benefit-text">{% trans "Доставка и логистика" %}</div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon"><i class="fas fa-chart-pie"></i></div>
+                    <div class="benefit-text">{% trans "Аналитика продаж" %}</div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="business-top-right">
+            <div class="business-image-wrapper themed-image">
+                {% if business %}
+                    {% if current_language == 'en' %}
+                        {% if business.image_light_en %}
+                            <img class="themed-img ti-light"
+                                 src="{{ business.image_light_en.url }}"
+                                 alt="{{ business.get_title }}"
+                                 loading="lazy" decoding="async">
+                        {% endif %}
+                        {% if business.image_dark_en %}
+                            <img class="themed-img ti-dark"
+                                 src="{{ business.image_dark_en.url }}"
+                                 alt="{{ business.get_title }}"
+                                 loading="lazy" decoding="async">
+                        {% endif %}
+                        {% if not business.image_light_en and not business.image_dark_en %}
+                            <img class="themed-img ti-fallback"
+                                 src="{% static 'images/business/business-image.jpg' %}"
+                                 alt="{% trans 'Разработка интернет-магазина и корпоративного сайта' %}"
+                                 loading="lazy" decoding="async">
+                        {% endif %}
+                    {% else %}
+                        {% if business.image_light_ru %}
+                            <img class="themed-img ti-light"
+                                 src="{{ business.image_light_ru.url }}"
+                                 alt="{{ business.get_title }}"
+                                 loading="lazy" decoding="async">
+                        {% endif %}
+                        {% if business.image_dark_ru %}
+                            <img class="themed-img ti-dark"
+                                 src="{{ business.image_dark_ru.url }}"
+                                 alt="{{ business.get_title }}"
+                                 loading="lazy" decoding="async">
+                        {% endif %}
+                        {% if not business.image_light_ru and not business.image_dark_ru %}
+                            <img class="themed-img ti-fallback"
+                                 src="{% static 'images/business/business-image.jpg' %}"
+                                 alt="{% trans 'Разработка интернет-магазина и корпоративного сайта' %}"
+                                 loading="lazy" decoding="async">
+                        {% endif %}
+                    {% endif %}
+                {% else %}
+                    <img class="themed-img ti-fallback"
+                         src="{% static 'images/business/business-image.jpg' %}"
+                         alt="{% trans 'Разработка интернет-магазина и корпоративного сайта' %}"
+                         loading="lazy" decoding="async">
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div class="business-bottom">
+        <div class="business-details-grid">
+            {% for detail in business_details %}
+            <div class="detail-item">
+                <div class="detail-icon"><i class="fas {{ detail.icon|default:'fa-search' }}"></i></div>
+                <div class="detail-content">
+                    <h4>{{ detail.get_title }}</h4>
+                    <p>{{ detail.get_description }}</p>
+                </div>
+            </div>
+            {% empty %}
+            <div class="detail-item">
+                <div class="detail-icon"><i class="fas fa-store"></i></div>
+                <div class="detail-content">
+                    <h4>{% trans "Каталог товаров" %}</h4>
+                    <p>{% trans "Удобная структура каталога с фильтрацией и поиском" %}</p>
+                </div>
+            </div>
+            <div class="detail-item">
+                <div class="detail-icon"><i class="fas fa-shopping-bag"></i></div>
+                <div class="detail-content">
+                    <h4>{% trans "Корзина и заказы" %}</h4>
+                    <p>{% trans "Полноценная корзина с системой оформления заказов" %}</p>
+                </div>
+            </div>
+            <div class="detail-item">
+                <div class="detail-icon"><i class="fas fa-credit-card"></i></div>
+                <div class="detail-content">
+                    <h4>{% trans "Оплата" %}</h4>
+                    <p>{% trans "Интеграция с платёжными системами" %}</p>
+                </div>
+            </div>
+            <div class="detail-item">
+                <div class="detail-icon"><i class="fas fa-truck"></i></div>
+                <div class="detail-content">
+                    <h4>{% trans "Доставка" %}</h4>
+                    <p>{% trans "Расчёт стоимости доставки и отслеживание статуса" %}</p>
+                </div>
+            </div>
+            <div class="detail-item">
+                <div class="detail-icon"><i class="fas fa-user-cog"></i></div>
+                <div class="detail-content">
+                    <h4>{% trans "Личный кабинет" %}</h4>
+                    <p>{% trans "История заказов, избранное, управление профилем" %}</p>
+                </div>
+            </div>
+            <div class="detail-item">
+                <div class="detail-icon"><i class="fas fa-chart-pie"></i></div>
+                <div class="detail-content">
+                    <h4>{% trans "Аналитика" %}</h4>
+                    <p>{% trans "Отчёты по продажам, популярным товарам и клиентам" %}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     REFACTOR SECTION
+     ============================================================ -->
+
+<section class="refactor-section" id="refactor">
+    <div class="refactor-top">
+        <div class="refactor-top-left">
+            <span class="section-label">{{ refactor.get_label|default:_("РЕФАКТОРИНГ И АУДИТ") }}</span>
+            <h2 class="refactor-title">
+                {{ refactor.get_title|default:_("Аудит безопасности и производительности вашего Django-проекта") }}
+            </h2>
+            <p class="refactor-description">
+                {{ refactor.get_description|default:_("Проводим глубокий аудит кода, архитектуры и безопасности. Выявляем узкие места, исправляем ошибки и оптимизируем производительность.") }}
+            </p>
+            <button class="btn btn-primary js-open-contact-modal" data-service="{% trans 'Аудит' %}" data-tariff="{% trans 'ИНДИВИДУАЛЬНЫЙ' %}">
+                {{ refactor.get_cta_text|default:_("Заказать аудит") }}
+                <span class="arrow">→</span>
+            </button>
+        </div>
+
+        <div class="refactor-top-center">
+            <div class="refactor-benefits">
+                {% for feature in refactor_features %}
+                <div class="benefit-item">
+                    <div class="benefit-icon"><i class="fas {{ feature.icon|default:'fa-shield-alt' }}"></i></div>
+                    <div class="benefit-text">{{ feature.get_text }}</div>
+                </div>
+                {% empty %}
+                <div class="benefit-item">
+                    <div class="benefit-icon"><i class="fas fa-shield-alt"></i></div>
+                    <div class="benefit-text">{% trans "Безопасность" %}</div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon"><i class="fas fa-tachometer-alt"></i></div>
+                    <div class="benefit-text">{% trans "Производительность" %}</div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon"><i class="fas fa-code"></i></div>
+                    <div class="benefit-text">{% trans "Качество кода" %}</div>
+                </div>
+                <div class="benefit-item">
+                    <div class="benefit-icon"><i class="fas fa-database"></i></div>
+                    <div class="benefit-text">{% trans "Оптимизация БД" %}</div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="refactor-top-right">
+            <div class="refactor-image-wrapper themed-image">
+                {% if refactor %}
+                    {% if current_language == 'en' %}
+                        {% if refactor.image_light_en %}
+                            <img class="themed-img ti-light"
+                                 src="{{ refactor.image_light_en.url }}"
+                                 alt="{{ refactor.get_title }}"
+                                 loading="lazy" decoding="async">
+                        {% endif %}
+                        {% if refactor.image_dark_en %}
+                            <img class="themed-img ti-dark"
+                                 src="{{ refactor.image_dark_en.url }}"
+                                 alt="{{ refactor.get_title }}"
+                                 loading="lazy" decoding="async">
+                        {% endif %}
+                        {% if not refactor.image_light_en and not refactor.image_dark_en %}
+                            <img class="themed-img ti-fallback"
+                                 src="{% static 'images/refactor/refactor-image.jpg' %}"
+                                 alt="{% trans 'Рефакторинг и аудит кода Django-проекта' %}"
+                                 loading="lazy" decoding="async">
+                        {% endif %}
+                    {% else %}
+                        {% if refactor.image_light_ru %}
+                            <img class="themed-img ti-light"
+                                 src="{{ refactor.image_light_ru.url }}"
+                                 alt="{{ refactor.get_title }}"
+                                 loading="lazy" decoding="async">
+                        {% endif %}
+                        {% if refactor.image_dark_ru %}
+                            <img class="themed-img ti-dark"
+                                 src="{{ refactor.image_dark_ru.url }}"
+                                 alt="{{ refactor.get_title }}"
+                                 loading="lazy" decoding="async">
+                        {% endif %}
+                        {% if not refactor.image_light_ru and not refactor.image_dark_ru %}
+                            <img class="themed-img ti-fallback"
+                                 src="{% static 'images/refactor/refactor-image.jpg' %}"
+                                 alt="{% trans 'Рефакторинг и аудит кода Django-проекта' %}"
+                                 loading="lazy" decoding="async">
+                        {% endif %}
+                    {% endif %}
+                {% else %}
+                    <img class="themed-img ti-fallback"
+                         src="{% static 'images/refactor/refactor-image.jpg' %}"
+                         alt="{% trans 'Рефакторинг и аудит кода Django-проекта' %}"
+                         loading="lazy" decoding="async">
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <div class="refactor-bottom">
+        <div class="refactor-details-grid">
+            {% for detail in refactor_details %}
+            <div class="detail-item">
+                <div class="detail-icon"><i class="fas {{ detail.icon|default:'fa-search' }}"></i></div>
+                <div class="detail-content">
+                    <h4>{{ detail.get_title }}</h4>
+                    <p>{{ detail.get_description }}</p>
+                </div>
+            </div>
+            {% empty %}
+            <div class="detail-item">
+                <div class="detail-icon"><i class="fas fa-search"></i></div>
+                <div class="detail-content">
+                    <h4>{% trans "Аудит кода" %}</h4>
+                    <p>{% trans "Проверка качества кода, поиск уязвимостей и узких мест" %}</p>
+                </div>
+            </div>
+            <div class="detail-item">
+                <div class="detail-icon"><i class="fas fa-shield-alt"></i></div>
+                <div class="detail-content">
+                    <h4>{% trans "Аудит безопасности" %}</h4>
+                    <p>{% trans "Проверка на уязвимости и рекомендации по улучшению" %}</p>
+                </div>
+            </div>
+            <div class="detail-item">
+                <div class="detail-icon"><i class="fas fa-tachometer-alt"></i></div>
+                <div class="detail-content">
+                    <h4>{% trans "Производительность" %}</h4>
+                    <p>{% trans "Анализ скорости работы и оптимизация запросов" %}</p>
+                </div>
+            </div>
+            <div class="detail-item">
+                <div class="detail-icon"><i class="fas fa-database"></i></div>
+                <div class="detail-content">
+                    <h4>{% trans "Оптимизация БД" %}</h4>
+                    <p>{% trans "Анализ структуры БД и оптимизация запросов" %}</p>
+                </div>
+            </div>
+            <div class="detail-item">
+                <div class="detail-icon"><i class="fas fa-code-branch"></i></div>
+                <div class="detail-content">
+                    <h4>{% trans "Рефакторинг" %}</h4>
+                    <p>{% trans "Улучшение архитектуры и качества кода" %}</p>
+                </div>
+            </div>
+            <div class="detail-item">
+                <div class="detail-icon"><i class="fas fa-file-alt"></i></div>
+                <div class="detail-content">
+                    <h4>{% trans "Отчёт" %}</h4>
+                    <p>{% trans "Подробный отчёт с рекомендациями и планом действий" %}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     PORTFOLIO SECTION
+     ============================================================ -->
+
+<section class="portfolio-section" id="portfolio">
+    <div class="portfolio-container">
+        <div class="portfolio-header">
+            <span class="section-label">{{ portfolio_section.get_subtitle|default:_("НАШИ РАБОТЫ") }}</span>
+            <h2 class="section-title">{{ portfolio_section.get_title|default:_("Сайты, которыми мы гордимся") }}</h2>
+            <p class="section-description">{{ portfolio_section.get_description|default:_("Смотрите наши проекты и кейсы") }}</p>
+        </div>
+
+        <div class="portfolio-grid">
+            {% for item in portfolio_items %}
+            <div class="portfolio-card">
+                <a href="{{ item.project_url|default:'#' }}" target="_blank" rel="noopener noreferrer" class="portfolio-image-link">
+                    <div class="portfolio-image themed-image">
+                        {% if item.main_image_light %}
+                            <img class="themed-img ti-light"
+                                 src="{{ item.main_image_light.url }}"
+                                 alt="{{ item.get_title }}"
+                                 loading="lazy" decoding="async">
+                        {% endif %}
+                        {% if item.main_image_dark %}
+                            <img class="themed-img ti-dark"
+                                 src="{{ item.main_image_dark.url }}"
+                                 alt="{{ item.get_title }}"
+                                 loading="lazy" decoding="async">
+                        {% endif %}
+                        {% if not item.main_image_light and not item.main_image_dark %}
+                            <div class="portfolio-image-placeholder">
+                                <span>{{ item.get_title|first }}</span>
+                            </div>
+                        {% endif %}
+                    </div>
+                </a>
+                <div class="portfolio-content">
+                    <span class="portfolio-category">{{ item.get_category }}</span>
+                    <h4 class="portfolio-title-link">{{ item.get_title }}</h4>
+                    <p class="portfolio-description-full">{{ item.get_description|default:_("Описание проекта") }}</p>
+                    {% if item.project_url %}
+                    <a href="{{ item.project_url }}" target="_blank" rel="noopener noreferrer" class="portfolio-link">
+                        {% trans "Смотреть проект" %}
+                        <svg class="portfolio-link-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                            <polyline points="15 3 21 3 21 9"/>
+                            <line x1="10" y1="14" x2="21" y2="3"/>
+                        </svg>
+                    </a>
+                    {% else %}
+                    <span class="portfolio-link disabled">{% trans "Скоро" %}</span>
+                    {% endif %}
+                </div>
+            </div>
+            {% empty %}
+            <div class="portfolio-card">
+                <div class="portfolio-image" style="background: var(--color-card-bg); min-height: 200px; display: flex; align-items: center; justify-content: center; color: var(--color-text-secondary);">
+                    <span>{% trans "Проекты скоро появятся" %}</span>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     TARIFFS SECTION
+     ============================================================ -->
+
+<section class="tariffs-section" id="pricing">
+    <div class="tariffs-container-full">
+        <div class="section-header tariffs-header">
+            <span class="section-label">{% trans "СТОИМОСТЬ УСЛУГ" %}</span>
+            <h2 class="section-title">{% trans "Выберите подходящий" %} <span class="gold-accent">{% trans "тариф" %}</span></h2>
+            <p class="section-description">
+                {% trans "Гибкие условия для любого бюджета. Все тарифы включают запуск под ключ." %}
+            </p>
+
+            <div class="currency-switcher">
+                <button class="currency-btn active" data-currency="byn">
+                    <span class="currency-icon nbrb-icon nbrb-icon-byn"></span>
+                    <span class="currency-label">BYN</span>
+                </button>
+                <button class="currency-btn" data-currency="rub">
+                    <span class="currency-icon">₽</span>
+                    <span class="currency-label">RUB</span>
+                </button>
+                <button class="currency-btn" data-currency="eur">
+                    <span class="currency-icon">€</span>
+                    <span class="currency-label">EUR</span>
+                </button>
+                <button class="currency-btn" data-currency="usd">
+                    <span class="currency-icon">$</span>
+                    <span class="currency-label">USD</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="tariffs-grid-full">
+            {% if tariffs %}
+                {% for tariff in tariffs %}
+                <div class="tariff-card
+                    {% if tariff.is_popular %}popular{% endif %}
+                    {% if tariff.is_custom %}custom{% endif %}
+                    accent-{{ tariff.accent_color|default:'gold' }}"
+                    data-tariff="{{ tariff.name }}"
+                    data-tariff-id="{{ tariff.id }}">
+
+                    {% if tariff.is_popular %}
+                    <div class="tariff-badge">★ {% trans "Популярный" %}</div>
+                    {% endif %}
+                    {% if tariff.is_custom %}
+                    <div class="tariff-badge custom-badge">✦ {% trans "Индивидуальный" %}</div>
+                    {% endif %}
+
+                    <div class="tariff-header">
+                        <div class="tariff-icon-wrapper">
+                            <i class="fas {{ tariff.icon|default:'fa-rocket' }}"></i>
+                        </div>
+                        <h3 class="tariff-name">{{ tariff.name }}</h3>
+                        <div class="tariff-format">
+                            <svg class="format-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"/>
+                                <line x1="8" y1="21" x2="16" y2="21"/>
+                                <line x1="12" y1="17" x2="12" y2="21"/>
+                            </svg>
+                            <span>{{ tariff.site_format|default:_("Индивидуальный формат") }}</span>
+                        </div>
+                        <p class="tariff-subtitle">{{ tariff.subtitle|default:"" }}</p>
+                    </div>
+
+                    <div class="tariff-price-wrapper">
+                        <div class="tariff-price"
+                             data-byn="{{ tariff.price_byn|default:'0' }}"
+                             data-rub="{{ tariff.price_rub|default:'0' }}"
+                             data-eur="{{ tariff.price_eur|default:'0' }}"
+                             data-usd="{{ tariff.price_usd|default:'0' }}">
+                            {% if tariff.is_custom or not tariff.price_byn %}
+                                <span class="price-custom">{% trans "Индивидуально" %}</span>
+                                <span class="price-sub">{% trans "от обсуждения" %}</span>
+                            {% else %}
+                                <span class="price-from">{% trans "от" %}</span>
+                                <span class="price-value">{{ tariff.price_byn|floatformat:0 }}</span>
+                                <span class="price-symbol byn-text">Br</span>
+                                <span class="price-period">/ {% trans "проект" %}</span>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    <div class="tariff-description-wrapper">
+                        <div class="tariff-description">
+                            <p>{{ tariff.description }}</p>
+                        </div>
+                    </div>
+
+                    <ul class="tariff-features">
+                        {% with features_list=tariff.get_features %}
+                            {% if features_list %}
+                                {% for feature in features_list %}
+                                    <li>
+                                        <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                            <polyline points="20 6 9 17 4 12"/>
+                                        </svg>
+                                        {{ feature }}
+                                    </li>
+                                {% endfor %}
+                            {% else %}
+                                <li>
+                                    <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <polyline points="20 6 9 17 4 12"/>
+                                    </svg>
+                                    {% trans "Индивидуальный подход" %}
+                                </li>
+                            {% endif %}
+                        {% endwith %}
+                    </ul>
+
+                    <div class="tariff-time">
+                        <svg class="clock-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10"/>
+                            <polyline points="12 6 12 12 16 14"/>
+                        </svg>
+                        <span>{% trans "Срок разработки" %}: {{ tariff.get_development_time }}</span>
+                    </div>
+
+                    <button class="btn tariff-cta open-modal
+                        {% if tariff.is_popular or tariff.is_custom %}btn-primary{% else %}btn-secondary{% endif %}"
+                        data-tariff="{{ tariff.name }}"
+                        data-tariff-id="{{ tariff.id }}">
+                        {% if tariff.is_custom %}
+                        {% trans "Обсудить проект" %}
+                        {% else %}
+                        {% trans "Выбрать тариф" %}
+                        {% endif %}
+                        <span class="arrow">→</span>
+                    </button>
+                </div>
+                {% endfor %}
+            {% else %}
+                {% include 'agency/includes/default_tariffs.html' %}
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     FAQ SECTION
+     ============================================================ -->
+
+<section class="faq-section" id="faq">
+    <div class="faq-container">
+        <div class="faq-header">
+            <span class="section-label">{% trans "ЧАСТО ЗАДАВАЕМЫЕ ВОПРОСЫ" %}</span>
+            <h2 class="section-title">{% trans "Ответы на важные" %} <span class="gold-accent">{% trans "вопросы" %}</span></h2>
+            <p class="section-description">
+                {% trans "Мы собрали самые частые вопросы, чтобы вы могли быстро получить нужную информацию." %}
+            </p>
+        </div>
+
+        <div class="faq-grid">
+            {% if faqs %}
+                {% for faq in faqs %}
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span class="faq-icon">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"/>
+                                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                                <line x1="12" y1="17" x2="12.01" y2="17"/>
+                            </svg>
+                        </span>
+                        <span class="faq-question-text">{{ faq.question }}</span>
+                        <span class="faq-toggle">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="6 9 12 15 18 9"/>
+                            </svg>
+                        </span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-content">
+                            {{ faq.answer|linebreaks }}
+                            {% if faq.category %}
+                            <span class="faq-category">{{ faq.category }}</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            {% endif %}
+        </div>
+
+        <div class="faq-cta">
+            <div class="faq-cta-content">
+                <p class="faq-cta-text">
+                    {% trans "Не нашли ответ на интересующий Вас вопрос," %}<br>
+                    {% trans "задайте его нам и мы с удовольствием ответим!" %}
+                </p>
+                <button class="btn btn-primary faq-cta-btn" id="faqCtaBtn">
+                    {% trans "Задать вопрос" %}
+                    <span class="arrow">→</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
+     CTA SECTION
+     ============================================================ -->
+
+<section class="cta-section" id="contact">
+    <div class="cta-container">
+        <div class="cta-header">
+            <span class="section-label">{{ cta.get_badge|default:_("ГОТОВЫ ОБСУДИТЬ ПРОЕКТ?") }}</span>
+            <h2 class="cta-title">{{ cta.get_title|default:_("Давайте создадим ваш будущий сайт") }}</h2>
+            <p class="cta-description">{{ cta.get_description|default:_("Заполните форму и мы свяжемся с вами в ближайшее время для обсуждения деталей проекта.") }}</p>
+        </div>
+
+        <div class="cta-content">
+            <div class="cta-image-wrapper themed-image">
+                {% if cta %}
+                    {% if cta.image_light %}
+                        <img class="themed-img ti-light"
+                             src="{{ cta.image_light.url }}"
+                             alt="{{ cta.get_title }}"
+                             loading="lazy" decoding="async">
+                    {% endif %}
+                    {% if cta.image_dark %}
+                        <img class="themed-img ti-dark"
+                             src="{{ cta.image_dark.url }}"
+                             alt="{{ cta.get_title }}"
+                             loading="lazy" decoding="async">
+                    {% endif %}
+                    {% if not cta.image_light and not cta.image_dark %}
+                        <img class="themed-img ti-fallback"
+                             src="{% static 'images/cta/cta-image.jpg' %}"
+                             alt="{% trans 'Связаться с LYNXREACTOR для разработки сайта' %}"
+                             loading="lazy" decoding="async">
+                    {% endif %}
+                {% else %}
+                    <img class="themed-img ti-fallback"
+                         src="{% static 'images/cta/cta-image.jpg' %}"
+                         alt="{% trans 'Связаться с LYNXREACTOR для разработки сайта' %}"
+                         loading="lazy" decoding="async">
+                {% endif %}
+            </div>
+
+            <div class="cta-form-wrapper">
+                <form class="cta-form" method="post" action="{% url 'agency:ajax_contact' %}" id="ctaForm">
+                    {% csrf_token %}
+
+                    <div class="form-group">
+                        <label for="ctaUserName" class="form-label">{% trans "Ваше имя" %} <span class="required">*</span></label>
+                        <input type="text" name="name" id="ctaUserName" class="form-control" placeholder="{% trans 'Введите ваше имя' %}" required>
+                        <div class="form-error" id="ctaNameError"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ctaUserEmail" class="form-label">Email <span class="required">*</span></label>
+                        <input type="email" name="email" id="ctaUserEmail" class="form-control" placeholder="example@mail.com" required>
+                        <div class="form-hint">{% trans "На случай, если выбранный способ связи будет недоступен" %}</div>
+                        <div class="form-error" id="ctaEmailError"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ctaContactMethod" class="form-label">{% trans "Выберите основной способ связи" %} <span class="required">*</span></label>
+                        <select name="contact_method" id="ctaContactMethod" class="form-control" required>
+                            <option value="">{% trans "Выберите способ связи" %}</option>
+                            <option value="phone">📱 {% trans "Телефон" %}</option>
+                            <option value="telegram">✈️ Telegram</option>
+                            <option value="whatsapp">💚 WhatsApp</option>
+                            <option value="viber">💜 Viber</option>
+                            <option value="email">📧 Email</option>
+                        </select>
+                        <div class="form-error" id="ctaMethodError"></div>
+                    </div>
+
+                    <div class="form-group dynamic-field" id="ctaContactValueGroup" style="display: none;">
+                        <label for="ctaContactValue" class="form-label" id="ctaContactValueLabel">{% trans "Контактные данные" %} <span class="required">*</span></label>
+                        <input type="text" name="contact_value" id="ctaContactValue" class="form-control" placeholder="{% trans 'Введите контактные данные' %}">
+                        <div class="form-hint" id="ctaContactValueHint"></div>
+                        <div class="form-error" id="ctaContactValueError"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ctaTariffSelect" class="form-label">{% trans "Интересующий тариф" %}</label>
+                        <select name="tariff" id="ctaTariffSelect" class="form-control">
+                            <option value="">{% trans "Выберите тариф" %}</option>
+                            {% for tariff in tariffs %}
+                            <option value="{{ tariff.id }}">{{ tariff.name }} — {{ tariff.site_format|default:_("Индивидуальный") }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ctaProjectDescription" class="form-label">{% trans "Опишите ваш проект" %} <span class="required">*</span></label>
+                        <textarea name="message" id="ctaProjectDescription" class="form-control" rows="3" placeholder="{% trans 'Расскажите о вашем проекте...' %}" required></textarea>
+                        <div class="form-error" id="ctaMessageError"></div>
+                    </div>
+
+                    <div class="form-group turnstile-wrapper">
+                        <div class="cf-turnstile" data-sitekey="{{ cf_turnstile_site_key }}" data-theme="{{ current_theme|default:'light' }}"
+                             data-language="{% if current_language == 'en' %}en{% else %}ru{% endif %}"></div>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-block">
+                        {{ cta.get_button_text|default:"Отправить заявку" }}
+                        <span class="arrow">→</span>
+                    </button>
+                    <p class="form-note">{{ cta.get_note|default:"Ответим в течение рабочего дня" }}</p>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+{# ============================================================ #}
+{# MISSION SECTION                                              #}
+{# ============================================================ #}
+
+{% include 'agency/includes/mission.html' %}
+
+{% endblock %}
