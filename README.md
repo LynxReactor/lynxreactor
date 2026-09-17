@@ -133,7 +133,6 @@ python manage_project.py coverage      # с покрытием
 
 =======
 **96 тестов** — покрывают:
->>>>>>> Stashed changes
 
 - AJAX contact (валидация, rate limit, tariff)
 - CSRF (contact, vote, subscribe)
@@ -148,7 +147,6 @@ python manage_project.py coverage      # с покрытием
 - Admin smoke tests
 - Contact notifications / Celery / transaction.on_commit
 - PDF validation
->>>>>>> Stashed changes
 
 ---
 
@@ -256,4 +254,4 @@ python manage.py compilemessages
 ---
 
 **Made with ❤️ by LynxReactor Studio**
->>>>>>> Stashed changes
+
