@@ -46,6 +46,7 @@ urlpatterns = [
     # ============================================================
     path('admin/', admin.site.urls),
     path('admin/logout/', LogoutView.as_view(), name='admin_logout'),
+    path('ckeditor/', include('ckeditor_uploader.urls')),
 
     # ============================================================
     # LANGUAGE
