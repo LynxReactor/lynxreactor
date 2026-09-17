@@ -10,7 +10,7 @@
 
 | Компонент | Технология |
 |-----------|-----------|
-| **Backend** | Python 3.12, Django 4.2.30 |
+| **Backend** | Python 3.12, Django 5.2.17 |
 | **Database** | PostgreSQL (prod) / SQLite (dev) |
 | **Cache / Broker** | Redis |
 | **Task Queue** | Celery + Celery Beat |
