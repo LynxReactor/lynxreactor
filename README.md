@@ -53,7 +53,7 @@
 - 📮 IndexNow — интеграция с Bing / Yandex
 
 ### Надёжность
-- ⚡ Celery retry с backoff для email / Telegram
+- ⚡ Celery retry с backoff для временных ошибок email; ошибки Telegram не блокируют уведомление
 - 🔒 CSRF-защита (тесты с enforce_csrf_checks=True)
 - 🛡️ Rate limiting — 5 заявок/час, 3 подписки/час, 20 голосов/час
 - 🗓️ Отложенная публикация — published_at в будущем
@@ -130,7 +130,11 @@ python manage_project.py test_fast     # только упавшие
 python manage_project.py coverage      # с покрытием
 ```
 
+<<<<<<< Updated upstream
 **80 тестов** — покрывают:
+=======
+**96 тестов** — покрывают:
+>>>>>>> Stashed changes
 
 - AJAX contact (валидация, rate limit, tariff)
 - CSRF (contact, vote, subscribe)
@@ -140,6 +144,12 @@ python manage_project.py coverage      # с покрытием
 - Scheduled posts (публикация в будущем)
 - Subscribe + unsubscribe
 - Базовые вьюхи (home, contact, blog)
+<<<<<<< Updated upstream
+=======
+- Admin smoke tests
+- Contact notifications / Celery / transaction.on_commit
+- PDF validation
+>>>>>>> Stashed changes
 
 ---
 
@@ -151,7 +161,7 @@ lynxreactor/
 │   ├── migrations/
 │   ├── services/              # Email, Telegram, IndexNow
 │   ├── management/commands/   # CLI-команды
-│   ├── tests/                 # pytest-тесты (80)
+│   ├── tests/                 # # pytest-тесты (96)
 │   ├── admin.py
 │   ├── models.py
 │   ├── signals.py
@@ -246,4 +256,8 @@ python manage.py compilemessages
 
 ---
 
+<<<<<<< Updated upstream
 **Made with ❤️ by LynxReactor Studio**
+=======
+**Made with ❤️ by LynxReactor Studio**
+>>>>>>> Stashed changes
