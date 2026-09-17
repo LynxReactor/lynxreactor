@@ -103,46 +103,49 @@ python manage.py compilemessages
 
 # 8. Запуск
 python manage.py runserver
+```
 
-Открыть:
+**Открыть:**
+- Сайт: http://127.0.0.1:8000/
+- Админка: http://127.0.0.1:8000/admin/
 
-Сайт: http://127.0.0.1:8000/
+### Альтернатива — `manage_project.py`
 
-Админка: http://127.0.0.1:8000/admin/
-
-Альтернатива — manage_project.py
-bash
+```bash
 python manage_project.py setup       # полная настройка
 python manage_project.py dev         # запуск dev
 python manage_project.py test        # тесты
 python manage_project.py check_i18n  # аудит переводов
-Полный список: python manage_project.py --help.
+```
 
-🧪 Тесты
-bash
+Полный список: `python manage_project.py --help`.
+
+---
+
+## 🧪 Тесты
+
+```bash
 python manage_project.py test          # все тесты
 python manage_project.py test_fast     # только упавшие
 python manage_project.py coverage      # с покрытием
-80 тестов — покрывают:
+```
 
-AJAX contact (валидация, rate limit, tariff)
+**80 тестов** — покрывают:
 
-CSRF (contact, vote, subscribe)
+- AJAX contact (валидация, rate limit, tariff)
+- CSRF (contact, vote, subscribe)
+- Turnstile (success / failure / timeout / connection error / disabled)
+- Blog vote (like / dislike / change / remove)
+- Newsletter
+- Scheduled posts (публикация в будущем)
+- Subscribe + unsubscribe
+- Базовые вьюхи (home, contact, blog)
 
-Turnstile (success / failure / timeout / connection error / disabled)
+---
 
-Blog vote (like / dislike / change / remove)
+## 📁 Структура
 
-Newsletter
-
-Scheduled posts (публикация в будущем)
-
-Subscribe + unsubscribe
-
-Базовые вьюхи (home, contact, blog)
-
-📁 Структура
-text
+```
 lynxreactor/
 ├── agency/                    # Основное приложение
 │   ├── migrations/
@@ -174,72 +177,73 @@ lynxreactor/
 ├── requirements-dev.txt
 ├── pytest.ini
 └── .env.example
-🔐 Безопасность
-CSRF: все AJAX-endpoint'ы защищены (enforce_csrf_checks=True в тестах)
+```
 
-Turnstile: Cloudflare Turnstile на всех публичных формах
+---
 
-Rate limit: формы, голосования, подписки
+## 🔐 Безопасность
 
-PDF-валидация: extension + %PDF- signature
+- **CSRF:** все AJAX-endpoint'ы защищены (enforce_csrf_checks=True в тестах)
+- **Turnstile:** Cloudflare Turnstile на всех публичных формах
+- **Rate limit:** формы, голосования, подписки
+- **PDF-валидация:** extension + %PDF- signature
+- **Секреты:** только в .env — в git не попадают
+- **Production:** check --deploy, HSTS, secure cookies
 
-Секреты: только в .env — в git не попадают
+⚠️ Перед деплоем — [Django deployment checklist](https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/).
 
-Production: check --deploy, HSTS, secure cookies
+---
 
-⚠️ Перед деплоем — Django deployment checklist.
+## 🌍 Двуязычность
 
-🌍 Двуязычность
-Структура:
+**Структура:**
+- `locale/ru/` — русские переводы
+- `locale/en/` — английские переводы
+- `.po` — исходники
+- `.mo` — скомпилированные
 
-locale/ru/ — русские переводы
+**Workflow:**
 
-locale/en/ — английские переводы
-
-.po — исходники
-
-.mo — скомпилированные
-
-Workflow:
-
-bash
+```bash
 python manage.py makemessages -l ru -l en
 python scripts/i18n/translate_po.py --dry-run
 python scripts/i18n/check_po.py
 python manage.py compilemessages
-🚀 Production deployment
-.env.prod — секреты (SECRET_KEY, ALLOWED_HOSTS, DB, Redis, Email, Turnstile, Telegram)
+```
 
-DJANGO_SETTINGS_MODULE=lynxreactor.settings.prod
+---
 
-PostgreSQL — DB_ENGINE=django.db.backends.postgresql
+## 🚀 Production deployment
 
-Redis — REDIS_URL=redis://localhost:6379/0
+1. **`.env.prod`** — секреты (SECRET_KEY, ALLOWED_HOSTS, DB, Redis, Email, Turnstile, Telegram)
+2. **`DJANGO_SETTINGS_MODULE=lynxreactor.settings.prod`**
+3. **PostgreSQL** — `DB_ENGINE=django.db.backends.postgresql`
+4. **Redis** — `REDIS_URL=redis://localhost:6379/0`
+5. **`python manage.py collectstatic`**
+6. **`python manage.py migrate`**
+7. **`python manage.py compilemessages`**
+8. **Gunicorn** — `gunicorn lynxreactor.wsgi:application`
+9. **Nginx** — прокси + static/media + X-Forwarded-For
+10. **Celery worker** — `celery -A lynxreactor worker -l info`
+11. **Celery beat** — `celery -A lynxreactor beat -l info`
+12. **`python manage.py check --deploy`**
 
-python manage.py collectstatic
+---
 
-python manage.py migrate
+## 📝 Лицензия
 
-python manage.py compilemessages
+**Proprietary.** Все права защищены.
 
-Gunicorn — gunicorn lynxreactor.wsgi:application
+Использование, копирование, распространение или модификация без письменного разрешения **LYNXREACTOR** запрещены.
 
-Nginx — прокси + static/media + X-Forwarded-For
+См. `LICENSE`.
 
-Celery worker — celery -A lynxreactor worker -l info
+---
 
-Celery beat — celery -A lynxreactor beat -l info
+## 👥 Авторы
 
-python manage.py check --deploy
+**LynxReactor** — [lynxreactor.by](https://lynxreactor.by)
 
-📝 Лицензия
-Proprietary. Все права защищены.
+---
 
-Использование, копирование, распространение или модификация без письменного разрешения LYNXREACTOR запрещены.
-
-См. LICENSE.
-
-👥 Авторы
-LynxReactor — lynxreactor.by
-
-Made with ❤️ by LynxReactor Studio
+**Made with ❤️ by LynxReactor Studio**
