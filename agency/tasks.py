@@ -5,28 +5,75 @@ from django.conf import settings
 from django.core.cache import cache
 import logging
 
+from smtplib import (
+    SMTPException,
+    SMTPServerDisconnected,
+    SMTPConnectError,
+    SMTPSenderRefused,
+    SMTPRecipientsRefused,
+    SMTPAuthenticationError,
+    SMTPNotSupportedError,
+)
+
+import requests
+
 logger = logging.getLogger(__name__)
 
 
-@shared_task
-def send_contact_notification_task(contact_id):
-    """Отправка всех уведомлений о новой заявке."""
+@shared_task(
+    bind=True,
+    autoretry_for=(
+        # --- Email: только временные SMTP-ошибки ---
+        SMTPServerDisconnected,   # разрыв соединения
+        SMTPConnectError,         # не удалось установить соединение
+        SMTPSenderRefused,        # 4xx (greylisting, rate limit)
+        SMTPException,            # fallback для прочих SMTP-ошибок
+
+        # --- Telegram (requests) ---
+        requests.exceptions.ConnectionError,
+        requests.exceptions.Timeout,
+
+        # --- Встроенный Python Timeout ---
+        TimeoutError,
+    ),
+    # --- Постоянные SMTP-ошибки: retry бессмысленен ---
+    dont_autoretry_for=(
+        SMTPAuthenticationError,   # неверный логин/пароль
+        SMTPRecipientsRefused,     # битый адрес получателя
+        SMTPNotSupportedError,     # команда не поддерживается
+    ),
+    retry_backoff=True,        # ~1 → 2 → 4 мин (Celery сам считает)
+    retry_backoff_max=600,     # потолок — 10 минут
+    retry_jitter=True,         # случайный разброс
+    retry_kwargs={'max_retries': 3},
+)
+def send_contact_notification_task(self, contact_id):
+    """
+    Отправка всех уведомлений о новой заявке.
+
+    Retry-стратегия:
+      - временные ошибки (SMTP timeout, connection, 4xx) → retry до 3 раз с backoff
+      - постоянные ошибки (битый адрес, auth, not supported) → падаем без retry
+      - Telegram — вторично, не поднимает исключение (см. services/email.py)
+
+    send_contact_notifications() raise'ит исключение при провале
+    критичных каналов (client/admin email).
+    """
     from .models import ContactRequest
     from .services.email import send_contact_notifications
 
     try:
         contact = ContactRequest.objects.get(id=contact_id)
-        results = send_contact_notifications(contact)
-
-        logger.info(f"✅ Уведомления для заявки #{contact_id}: {results}")
-        return f"Уведомления отправлены для заявки #{contact_id}: {results}"
-
     except ContactRequest.DoesNotExist:
-        logger.error(f"❌ Заявка #{contact_id} не найдена")
+        logger.error("ContactRequest #%s not found", contact_id)
         return f"Заявка #{contact_id} не найдена"
-    except Exception as e:
-        logger.exception(f"❌ Ошибка в send_contact_notification_task: {e}")
-        raise
+
+    # send_contact_notifications может бросить SMTPException —
+    # Celery поймает через autoretry_for и сделает retry.
+    results = send_contact_notifications(contact)
+
+    logger.info("Notifications sent for contact #%s: %s", contact_id, results)
+    return f"Уведомления отправлены для заявки #{contact_id}: {results}"
 
 
 @shared_task

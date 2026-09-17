@@ -12,9 +12,24 @@ from django.utils import timezone
 from ..models import SiteConfiguration, ContactPage
 from django.utils.translation import gettext as _, override
 import logging
+from smtplib import SMTPException
 
 # Логгер
 logger = logging.getLogger(__name__)
+
+
+class ContactNotificationError(SMTPException):
+    """
+    Критичный канал доставки не сработал (client/admin email).
+
+    Наследуемся от SMTPException, чтобы попасть в autoretry_for
+    в send_contact_notification_task.
+
+    Используется как fallback, когда send_client_confirmation /
+    send_admin_notification вернули False, но не бросили исключение
+    (например, сработал внутренний except в send_*).
+    """
+    pass
 
 
 def send_client_confirmation(contact, site_url=None):
@@ -60,20 +75,26 @@ def send_client_confirmation(contact, site_url=None):
         subject = _("Ваша заявка на сайте LYNXREACTOR")
 
     try:
-        logger.info(f'📧 Sending client confirmation email to {contact.email} (lang={lang})...')
+        logger.info(f'📧 Sending client confirmation email to {contact.email}...')
         result = send_mail(
-            subject,
-            plain_content,
-            settings.DEFAULT_FROM_EMAIL,
-            [contact.email],
-            html_message=html_content,
-            fail_silently=False,
+            subject, plain_content, settings.DEFAULT_FROM_EMAIL,
+            [contact.email], html_message=html_content, fail_silently=False,
         )
         logger.info(f'✅ Client confirmation email sent to {contact.email}, result: {result}')
         return True
 
+    except SMTPException:
+        # Пробрасываем SMTP-ошибки наверх — Celery через autoretry_for
+        # / dont_autoretry_for решит, ретраить или нет.
+        # SMTPConnectError  → retry
+        # SMTPRecipientsRefused → НЕ retry (в dont_autoretry_for)
+        logger.exception(f'❌ SMTP error sending client email to {contact.email}')
+        raise
+
     except Exception as e:
-        logger.exception(f'❌ Failed to send client confirmation email to {contact.email}: {e}')
+        # Неожиданные ошибки (шаблон, кодировка) — превращаем в False,
+        # send_contact_notifications обернёт в ContactNotificationError → retry
+        logger.exception(f'❌ Non-SMTP error sending client confirmation email: {e}')
         return False
 
 
@@ -128,31 +149,35 @@ def send_admin_notification(contact, admin_email=None, site_url=None):
     try:
         logger.info(f'📧 Sending admin notification to {admin_email}...')
         result = send_mail(
-            subject,
-            plain_content,
-            settings.DEFAULT_FROM_EMAIL,
-            [admin_email],
-            html_message=html_content,
-            fail_silently=False,
+            subject, plain_content, settings.DEFAULT_FROM_EMAIL,
+            [admin_email], html_message=html_content, fail_silently=False,
         )
         logger.info(f'✅ Admin notification email sent to {admin_email}, result: {result}')
         return True
 
+    except SMTPException:
+        logger.exception(f'❌ SMTP error sending admin email to {admin_email}')
+        raise
+
     except Exception as e:
-        logger.exception(f'❌ Failed to send admin notification email to {admin_email}: {e}')
+        logger.exception(f'❌ Non-SMTP error sending admin notification email: {e}')
         return False
 
 
 def send_contact_notifications(contact):
     """
-    Отправка всех уведомлений о новой заявке:
-    1. Письмо клиенту
-    2. Письмо администратору
-    3. Telegram уведомление (если настроен)
+    Отправка всех уведомлений о новой заявке.
+
+    Критичные каналы (client/admin email) — при провале raise'ят
+    исключение, чтобы Celery сделал retry (см. tasks.py).
+
+    Telegram — вторичный канал: ошибки логируются, но не поднимают
+    исключение. Заявка уже в БД, email доставлены — терять задачу
+    из-за недоступного Telegram нельзя.
     """
-    logger.info(f"🔵🔵🔵 send_contact_notifications called for request #{contact.id}")
-    logger.info(f"   contact.email: {contact.email}")
-    logger.info(f"   settings.CONTACT_FORM_EMAIL: {settings.CONTACT_FORM_EMAIL}")
+    logger.info("send_contact_notifications for request #%s", contact.id)
+    logger.info("  contact.email: %s", contact.email)
+    logger.info("  settings.CONTACT_FORM_EMAIL: %s", settings.CONTACT_FORM_EMAIL)
 
     results = {
         'client_email': False,
@@ -160,39 +185,67 @@ def send_contact_notifications(contact):
         'telegram': False,
     }
 
-    # 1. Письмо клиенту
+    client_error = None
+    admin_error = None
+
+    # --- 1. Письмо клиенту (критично, если contact.email задан) ---
     if contact.email:
-        logger.info(f'📧 Sending client email: {contact.email}')
+        logger.info('Sending client email: %s', contact.email)
         try:
             results['client_email'] = send_client_confirmation(contact)
-            logger.info(f'  Result: {results["client_email"]}')
+            if not results['client_email']:
+                client_error = ContactNotificationError(
+                    f'Client email failed for contact #{contact.id}'
+                )
+        except SMTPException as e:
+            client_error = e
+            logger.exception('Client email SMTP error for contact #%s', contact.id)
         except Exception as e:
-            logger.exception(f'  ❌ Error sending client email: {e}')
+            client_error = e
+            logger.exception('Client email unexpected error for contact #%s', contact.id)
     else:
-        logger.warning('⚠️ Client email not provided')
+        logger.warning('Client email not provided — skipping client notification')
 
-    # 2. Письмо администратору
+    # --- 2. Письмо администратору (критично) ---
     admin_email = getattr(settings, 'CONTACT_FORM_EMAIL', 'lynxreacto@gmail.com')
-    logger.info(f'📧 Sending admin email: {admin_email}')
+    logger.info('Sending admin email: %s', admin_email)
     try:
         results['admin_email'] = send_admin_notification(contact)
-        logger.info(f'  Result: {results["admin_email"]}')
+        if not results['admin_email']:
+            admin_error = ContactNotificationError(
+                f'Admin email failed for contact #{contact.id}'
+            )
+    except SMTPException as e:
+        admin_error = e
+        logger.exception('Admin email SMTP error for contact #%s', contact.id)
     except Exception as e:
-        logger.exception(f'  ❌ Error sending admin email: {e}')
+        admin_error = e
+        logger.exception('Admin email unexpected error for contact #%s', contact.id)
 
-    # 3. Telegram уведомление
+    # --- 3. Telegram (вторично, НЕ raise) ---
     try:
         from .telegram import telegram_service
         if settings.TELEGRAM_NOTIFICATIONS_ENABLED:
-            logger.info('📱 Sending Telegram notification')
+            logger.info('Sending Telegram notification')
             results['telegram'] = telegram_service.send_contact_notification(contact)
-            logger.info(f'  Result: {results["telegram"]}')
         else:
-            logger.info('📱 Telegram notifications disabled')
+            logger.info('Telegram notifications disabled')
     except Exception as e:
-        logger.exception(f'❌ Telegram error: {e}')
+        logger.exception('Telegram error (non-critical, task continues): %s', e)
 
-    logger.info(f'✅ FINAL RESULTS: {results}')
+    # --- Итог ---
+    logger.info('Contact #%s notification results: %s', contact.id, results)
+
+    # Raise исходного исключения — Celery через autoretry_for
+    # поймёт, что нужно сделать retry (для временных ошибок).
+    # Постоянные ошибки (SMTPRecipientsRefused и т.п.) в dont_autoretry_for,
+    # поэтому задача упадёт без retry.
+    if client_error is not None:
+        raise client_error
+
+    if admin_error is not None:
+        raise admin_error
+
     return results
 
 

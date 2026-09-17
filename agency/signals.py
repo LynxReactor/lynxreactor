@@ -35,23 +35,23 @@ from .tasks import send_contact_notification_task, clear_cache_task
 logger = logging.getLogger(__name__)
 
 
-# ============================================================
-# CONTACT REQUEST SIGNALS
-# ============================================================
-
 @receiver(post_save, sender=ContactRequest)
 def notify_on_contact_request(sender, instance, created, **kwargs):
-    """
-    Отправка уведомлений при создании новой заявки.
-    ЕДИНСТВЕННЫЙ источник уведомлений.
-    """
     if not created:
         return
 
-    logger.info(f"📨 Новая заявка #{instance.id} от {instance.name}")
+    logger.info("New contact request #%s created", instance.id)
 
-    # Всегда .delay() — при CELERY_TASK_ALWAYS_EAGER=True выполнится синхронно
-    send_contact_notification_task.delay(instance.id)
+    # Захватываем pk в локальную переменную — instance может стать
+    # невалидным, если транзакция откатится или объект удалят.
+    contact_id = instance.pk
+
+    # Задача ставится ТОЛЬКО после commit транзакции.
+    # В autocommit-режиме (обычный POST) — срабатывает сразу.
+    # Внутри transaction.atomic() — после выхода из блока.
+    transaction.on_commit(
+        lambda: send_contact_notification_task.delay(contact_id)
+    )
 
 
 # ============================================================
