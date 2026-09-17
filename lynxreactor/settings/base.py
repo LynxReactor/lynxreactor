@@ -121,6 +121,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'imagekit',
     'ckeditor',
+    'ckeditor_uploader',
     'django_cf_turnstile',
 
     # Local
@@ -423,38 +424,39 @@ JAZZMIN_SETTINGS = {
     "default_icon_children": "fas fa-circle",
     "related_modal_active": True,
     "use_google_fonts_cdn": True,
-    "show_ui_builder": True,
+    "show_ui_builder": False,
 }
 
 JAZZMIN_UI_TWEAKS = {
-    "navbar_small_text": False,
-    "footer_small_text": False,
-    "body_small_text": False,
-    "brand_small_text": False,
-    "brand_colour": "navbar-dark",
-    "accent": "accent-teal",
-    "navbar": "navbar-dark navbar-success",
-    "no_navbar_border": False,
+    # Тема (Bootswatch). Для тёмной админки — "darkly" или "slate"
+    "theme": "flatly",
+    # Режим темы: light / dark / auto (заменяет удалённый dark_mode_theme)
+    "default_theme_mode": "auto",
+    # Тема-переключатель в navbar (новая опция 3.x)
+    "show_theme_chooser": True,
+
+    # Структурные настройки (Bootstrap 5)
     "navbar_fixed": True,
-    "layout_boxed": False,
-    "footer_fixed": False,
     "sidebar_fixed": True,
-    "sidebar": "sidebar-dark-success",
-    "sidebar_nav_small_text": False,
-    "sidebar_disable_expand": False,
-    "sidebar_nav_child_indent": False,
-    "sidebar_nav_compact_style": False,
-    "sidebar_nav_flat_style": False,
-    "theme": "default",
-    "dark_mode_theme": "darkly",
+    "sidebar_nav_flat_style": True,
+    "sidebar_nav_child_indent": True,
+    "related_modal_active": True,
+
+    # Размеры текста (можно убрать — дефолт ок)
+    "navbar_small_text": True,
+    "footer_small_text": True,
+    "body_small_text": True,
+    "brand_small_text": True,
+
+    # Кнопки (Bootstrap 5 классы — оставляем как есть, они валидны)
     "button_classes": {
         "primary": "btn-primary",
         "secondary": "btn-secondary",
         "info": "btn-info",
         "warning": "btn-warning",
         "danger": "btn-danger",
-        "success": "btn-success"
-    }
+        "success": "btn-success",
+    },
 }
 
 

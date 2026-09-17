@@ -7,7 +7,7 @@ from django.core.validators import MinValueValidator, MaxValueValidator, FileExt
 from django.utils.text import slugify
 from imagekit.models import ImageSpecField
 from imagekit.processors import ResizeToFit, ResizeToFill
-from ckeditor.fields import RichTextField
+from ckeditor_uploader.fields import RichTextUploadingField
 from .validators import (
     validate_features,
     validate_technologies,
@@ -155,7 +155,7 @@ class ServicesSection(BaseModel):
         verbose_name_plural = _("Services Sections")
 
     def __str__(self):
-        return self.title
+        return str(self.title) if self.title else 'Services Section'
 
 
 class ServiceItem(BaseModel):
@@ -213,7 +213,8 @@ class ServiceItem(BaseModel):
         ordering = ['order', 'number']
 
     def __str__(self):
-        return f"{self.number}. {self.title}"
+        title = str(self.title) if self.title else 'Service'
+        return f"{self.number}. {title}"
 
     def get_image_for_theme_lang(self, theme='light', language='ru'):
         field_name = f"image_{theme}_{language}"
@@ -239,7 +240,7 @@ class TechSection(BaseModel):
         verbose_name_plural = _("Tech Sections")
 
     def __str__(self):
-        return self.title
+        return str(self.title) if self.title else 'Tech Section'
 
 
 class TechItem(BaseModel):
@@ -279,7 +280,7 @@ class TechItem(BaseModel):
         ordering = ['order']
 
     def __str__(self):
-        return self.name
+        return str(self.name) if self.name else 'Tech Item'
 
 
 # ============================================================
@@ -1010,7 +1011,7 @@ class Tariff(BaseModel):
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return self.name
+        return str(self.name) if self.name else 'Tariff'
 
     def get_price_display(self, currency='byn'):
         price_map = {'byn': self.price_byn, 'rub': self.price_rub, 'eur': self.price_eur, 'usd': self.price_usd}
@@ -1054,7 +1055,7 @@ class FAQSection(BaseModel):
         verbose_name_plural = _("FAQ Sections")
 
     def __str__(self):
-        return self.title
+        return str(self.title) if self.title else 'FAQ Section'
 
 
 class FAQItem(BaseModel):
@@ -1072,7 +1073,7 @@ class FAQItem(BaseModel):
         ordering = ['order']
 
     def __str__(self):
-        return self.question[:50]
+        return str(self.question)[:50] if self.question else 'FAQ Item'
 
 
 # ============================================================
@@ -1109,7 +1110,7 @@ class CTASection(BaseModel):
         verbose_name_plural = _("CTA Sections")
 
     def __str__(self):
-        return self.title
+        return str(self.title) if self.title else 'CTA Section'
 
     def get_image_for_theme(self, theme='light'):
         if theme == 'dark' and self.image_dark:
@@ -1168,7 +1169,7 @@ class ReviewsSection(BaseModel):
         verbose_name_plural = _("Reviews Sections")
 
     def __str__(self):
-        return self.title
+        return str(self.title) if self.title else 'Reviews Section'
 
 
 class Review(BaseModel):
@@ -1210,7 +1211,8 @@ class Review(BaseModel):
         ordering = ['-created_at']
 
     def __str__(self):
-        return f"{self.client_name} - {self.rating}★"
+        name = str(self.client_name) if self.client_name else 'Anonymous'
+        return f"{name} - {self.rating}★"
 
     def get_photo_for_theme(self, theme='light'):
         if theme == 'dark' and self.client_photo_dark:
@@ -1264,7 +1266,7 @@ class ContactPage(models.Model):
         help_text=_("Краткое описание под заголовком"),
     )
 
-    about_text = RichTextField(
+    about_text = RichTextUploadingField(
         blank=True, default='',
         verbose_name=_("About Text"),
         config_name='basic'
@@ -1328,7 +1330,7 @@ class ContactPage(models.Model):
         verbose_name_plural = _("Contact Page")
 
     def __str__(self):
-        return self.title
+        return str(self.title) if self.title else 'Contact Page'
 
     # ============================================================
     # ХЕЛПЕРЫ ДЛЯ ABOUT SECTION
@@ -1430,7 +1432,7 @@ class BlogCategory(BaseModel):
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return self.name
+        return str(self.name) if self.name else 'Blog Category'
 
     def get_icon_html(self):
         if self.icon_png:
@@ -1497,12 +1499,12 @@ class BlogPost(BaseModel):
         format='WEBP', options={'quality': 85}
     )
 
-    excerpt = RichTextField(
+    excerpt = RichTextUploadingField(
         verbose_name=_("Excerpt"),
         help_text=_("Краткое описание поста, отображается в списке блога"),
         config_name='basic'
     )
-    content = RichTextField(
+    content = RichTextUploadingField(
         verbose_name=_("Content"),
         help_text=_("Полное содержание поста"),
         config_name='default'
@@ -1574,7 +1576,7 @@ class BlogPost(BaseModel):
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return self.title
+        return str(self.title) if self.title else 'Blog Post'
 
     def get_absolute_url(self):
         return reverse('agency:blog_detail', kwargs={'slug': self.slug})
@@ -1862,7 +1864,7 @@ class Mission(BaseModel):
     )
     title = models.CharField(max_length=200, verbose_name=_("Title"))
     subtitle = models.CharField(max_length=300, blank=True, default='', verbose_name=_("Subtitle"))
-    description = RichTextField(blank=True, default='', verbose_name=_("Description"), config_name='basic')
+    description = RichTextUploadingField(blank=True, default='', verbose_name=_("Description"), config_name='basic')
 
     background_light = models.ImageField(
         upload_to='mission/light/', blank=True, null=True, verbose_name=_("Background Light Theme")
@@ -1888,7 +1890,8 @@ class Mission(BaseModel):
         verbose_name_plural = _("Missions")
 
     def __str__(self):
-        return f"{self.get_page_display()} — {self.title}"
+        title = str(self.title) if self.title else 'Mission'
+        return f"{self.get_page_display()} — {title}"
 
 
 # ============================================================
