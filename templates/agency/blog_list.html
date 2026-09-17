@@ -1046,13 +1046,18 @@
         <!-- КАТЕГОРИИ -->
         <div class="blog-categories-bar">
             <span class="categories-label">{% trans "Категории" %}:</span>
-            <a href="{% url 'agency:blog' %}" class="category-chip {% if not request.GET.category %}active{% endif %}">
+
+            {# «Все» — активно на /blog/ без категории #}
+            <a href="{% url 'agency:blog' %}"
+               class="category-chip {% if not current_category %}active{% endif %}">
                 <span class="chip-icon"><i class="fas fa-th-list"></i></span>
                 {% trans "Все" %}
                 <span class="chip-count">{{ paginator.count }}</span>
             </a>
+
             {% for cat in categories %}
-            <a href="{% url 'agency:blog_category' cat.slug %}" class="category-chip {% if request.GET.category == cat.slug %}active{% endif %}">
+            <a href="{% url 'agency:blog_category' cat.slug %}"
+               class="category-chip {% if current_category and current_category.id == cat.id %}active{% endif %}">
                 <span class="chip-icon">
                     {% if cat.icon_png %}
                         <img src="{{ cat.icon_png.url }}" alt="{{ cat.name }}">

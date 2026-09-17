@@ -743,7 +743,7 @@ class BlogPostAdmin(TranslationAdmin):
 
 @admin.register(ContactRequest)
 class ContactRequestAdmin(BaseAdmin):
-    list_display = ['name', 'email', 'phone', 'status', 'created_at']
+    list_display = ['name', 'email', 'phone', 'contact_method', 'contact_value', 'status', 'created_at']
     list_filter = ['status', 'created_at', 'contact_method']
     search_fields = ['name', 'email', 'phone', 'message']
     readonly_fields = ['created_at', 'updated_at', 'user_agent', 'ip_address', 'referer']
@@ -763,6 +763,13 @@ class ContactRequestAdmin(BaseAdmin):
 
     fieldsets = (
         ('Клиент', {'fields': ('name', 'email', 'phone')}),
+        ('Способ связи', {
+            'fields': ('contact_method', 'contact_value'),
+            'description': _(
+                'Контактные данные клиента (телефон, Telegram, WhatsApp, Viber, email). '
+                'Для способа «Телефон» значение дублируется в поле «Phone» выше.'
+            ),
+        }),
         ('Сообщение', {'fields': ('message',)}),
         ('Статус', {'fields': ('status',)}),
         ('Системная информация', {

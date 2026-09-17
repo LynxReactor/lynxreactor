@@ -347,7 +347,8 @@ class BlogCategoryView(
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['current_category'] = self.category
-        context['hero'] = None
+        # Fallback на Hero для страницы блога — тот же объект, что и на /blog/
+        context['hero'] = HeroSection.objects.filter(page='blog', is_active=True).first()
 
         context['canonical_url'] = self.request.build_absolute_uri(
             reverse('agency:blog_category', kwargs={'slug': self.category.slug})
@@ -863,6 +864,7 @@ def robots_txt(request):
         "# Service sections",
         "Disallow: /admin/",
         "Disallow: /api/",
+        "Disallow: /ckeditor/",
         "",
         "# Service pages",
         "Disallow: /unsubscribe/",
