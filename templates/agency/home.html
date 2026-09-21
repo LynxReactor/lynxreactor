@@ -111,8 +111,15 @@
 
 <section class="services-section" id="services">
     <div class="services-header">
-        <span class="section-label">{% trans "ЧТО МЫ ДЕЛАЕМ" %}</span>
-        <h2 class="section-title">{% trans "Полный цикл разработки и запуска" %}</h2>
+        <span class="section-label">
+            {% if services_section.subtitle %}{{ services_section.subtitle }}{% else %}{% trans "ЧТО МЫ ДЕЛАЕМ" %}{% endif %}
+        </span>
+        <h2 class="section-title">
+            {% if services_section.title %}{{ services_section.title }}{% else %}{% trans "Полный цикл разработки и запуска" %}{% endif %}
+        </h2>
+        {% if services_section.description %}
+        <p class="section-description">{{ services_section.description }}</p>
+        {% endif %}
     </div>
 
     <div class="services-grid">
@@ -356,10 +363,14 @@
 <section class="tech-section" id="tech">
     <div class="tech-container">
         <div class="section-header tech-header">
-            <span class="section-label">{% trans "ТЕХНОЛОГИИ" %}</span>
-            <h2 class="section-title">{% trans "Современный" %} <span class="gold-accent">{% trans "стек" %}</span> {% trans "технологий" %}</h2>
+            <span class="section-label">
+                {% if tech_section.subtitle %}{{ tech_section.subtitle }}{% else %}{% trans "ТЕХНОЛОГИИ" %}{% endif %}
+            </span>
+            <h2 class="section-title">
+                {% if tech_section.title %}{{ tech_section.title }}{% else %}{% trans "Современный стек технологий" %}{% endif %}
+            </h2>
             <p class="section-description">
-                {% trans "Используем проверенные инструменты для создания надёжных и масштабируемых решений." %}
+                {% if tech_section.description %}{{ tech_section.description }}{% else %}{% trans "Используем проверенные инструменты для создания надёжных и масштабируемых решений." %}{% endif %}
             </p>
         </div>
 
@@ -1137,10 +1148,14 @@
 <section class="faq-section" id="faq">
     <div class="faq-container">
         <div class="faq-header">
-            <span class="section-label">{% trans "ЧАСТО ЗАДАВАЕМЫЕ ВОПРОСЫ" %}</span>
-            <h2 class="section-title">{% trans "Ответы на важные" %} <span class="gold-accent">{% trans "вопросы" %}</span></h2>
+            <span class="section-label">
+                {% if faq_section.subtitle %}{{ faq_section.subtitle }}{% else %}{% trans "ЧАСТО ЗАДАВАЕМЫЕ ВОПРОСЫ" %}{% endif %}
+            </span>
+            <h2 class="section-title">
+                {% if faq_section.title %}{{ faq_section.title }}{% else %}{% trans "Ответы на важные вопросы" %}{% endif %}
+            </h2>
             <p class="section-description">
-                {% trans "Мы собрали самые частые вопросы, чтобы вы могли быстро получить нужную информацию." %}
+                {% if faq_section.description %}{{ faq_section.description }}{% else %}{% trans "Мы собрали самые частые вопросы, чтобы вы могли быстро получить нужную информацию." %}{% endif %}
             </p>
         </div>
 
