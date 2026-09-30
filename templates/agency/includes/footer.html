@@ -28,7 +28,7 @@
                         </div>
                     {% else %}
                         <span class="logo-text">Lynx<span class="gold">Reactor</span></span>
-                        <span class="logo-subtitle">{% trans "THE ENGINE OF WEB EVOLUTION" %}</span>
+                        <span class="logo-subtitle">THE ENGINE OF WEB EVOLUTION</span>
                     {% endif %}
                 </a>
                 <p class="footer-tagline">
@@ -60,85 +60,171 @@
                 </div>
 
                 <div class="footer-column">
-                    <h4 class="footer-title">{% trans "Услуги" %}</h4>
-                    <ul class="footer-links">
-                        <li><a href="{% url 'agency:home' %}#pricing">{% trans "Разработка сайтов" %}</a></li>
-                        <li><a href="{% url 'agency:home' %}#landing">{% trans "Лендинги и промо-сайты" %}</a></li>
-                        <li><a href="{% url 'agency:home' %}#business">{% trans "Интернет-магазины" %}</a></li>
-                        <li><a href="{% url 'agency:home' %}#refactor">{% trans "Аудит безопасности и производительности" %}</a></li>
-                        <li><a href="{% url 'agency:home' %}#pricing">{% trans "Поддержка и развитие" %}</a></li>
+                    <h4 class="footer-title">
+                        {% if current_language == 'en' %}Payment{% else %}Оплата{% endif %}
+                    </h4>
+                    <ul class="footer-links footer-payment-links">
+                        <li>
+                            <a href="{% url 'agency:contact' %}#payment-info">
+                                <i class="fas fa-credit-card"></i>
+                                {% if current_language == 'en' %}Payment Methods{% else %}Способы оплаты{% endif %}
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'agency:contact' %}#payment-info">
+                                <i class="fas fa-shield-alt"></i>
+                                {% if current_language == 'en' %}Payment Security{% else %}Безопасность платежей{% endif %}
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{% url 'agency:contact' %}#payment-info">
+                                <i class="fas fa-undo"></i>
+                                {% if current_language == 'en' %}Cancellation & Refunds{% else %}Отмена и возврат{% endif %}
+                            </a>
+                        </li>
+                        <li class="footer-payment-note">
+                            {% if current_language == 'en' %}
+                                Payment by bank card via the WebPay system
+                            {% else %}
+                                Оплата банковской картой через систему WebPay
+                            {% endif %}
+                        </li>
+                        <li>
+                            <a href="https://www.webpay.by" target="_blank" rel="noopener noreferrer" class="footer-payment-webpay">
+                                <i class="fas fa-external-link-alt"></i>
+                                www.webpay.by
+                            </a>
+                        </li>
                     </ul>
+
+                    <div class="footer-payment-logos">
+                        <img src="{% static 'images/payments/webpay.png' %}" alt="WebPay" loading="lazy">
+                        <img src="{% static 'images/payments/mtbank.png' %}" alt="МТБанк" loading="lazy">
+                        <img src="{% static 'images/payments/visa.png' %}" alt="Visa" loading="lazy">
+                        <img src="{% static 'images/payments/mastercard.png' %}" alt="Mastercard" loading="lazy">
+                        <img src="{% static 'images/payments/belkart.png' %}" alt="БЕЛКАРТ" loading="lazy">
+                        <img src="{% static 'images/payments/mir.png' %}" alt="МИР" loading="lazy">
+                    </div>
                 </div>
 
                 <div class="footer-column">
-                    <h4 class="footer-title">{% trans "Контакты" %}</h4>
-                    <ul class="footer-links">
+                    <h4 class="footer-title">
+                        {% if current_language == 'en' %}Contacts{% else %}Контакты{% endif %}
+                    </h4>
 
+                    <ul class="footer-links footer-contacts">
+                        {# --- Телефон --- #}
+                        {% if contact_info.phone %}
+                        <li>
+                            <a href="tel:{{ contact_info.phone|cut:' '|cut:'('|cut:')'|cut:'-' }}">
+                                <i class="fas fa-phone"></i>
+                                {{ contact_info.phone }}
+                            </a>
+                        </li>
+                        {% else %}
+                        <li>
+                            <a href="tel:+375447359840">
+                                <i class="fas fa-phone"></i>
+                                +375 (44) 735-98-40
+                            </a>
+                        </li>
+                        {% endif %}
+
+                        {# --- Email --- #}
                         {% if contact_info.email %}
                         <li>
                             <a href="mailto:{{ contact_info.email }}">
-                                <i class="fas fa-envelope"></i> {{ contact_info.email }}
+                                <i class="fas fa-envelope"></i>
+                                {{ contact_info.email }}
                             </a>
                         </li>
                         {% endif %}
 
+                        {# --- Адрес --- #}
+                        <li class="footer-address">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>
+                                {% if current_language == 'en' %}
+                                    Republic of Belarus, Gomel,<br>Mazurova st., 125a, office 34
+                                {% else %}
+                                    Республика Беларусь, г. Гомель,<br>ул. Мазурова, д. 125а, офис 34
+                                {% endif %}
+                            </span>
+                        </li>
+
+                        {# --- Режим работы --- #}
+                        <li class="footer-hours">
+                            <i class="fas fa-clock"></i>
+                            <span>
+                                {% if current_language == 'en' %}
+                                    Mon–Fri: 09:00–20:00
+                                {% else %}
+                                    Пн–Пт: 09:00–20:00
+                                {% endif %}
+                            </span>
+                        </li>
+
+                        {# --- УНП --- #}
+                        <li class="footer-unp">
+                            <i class="fas fa-id-card"></i>
+                            <span>
+                                {% if current_language == 'en' %}UNP{% else %}УНП{% endif %}: 2691174
+                            </span>
+                        </li>
+                    </ul>
+
+                    {# ============================================================ #}
+                    {# ИКОНКИ СОЦИАЛЬНЫХ СЕТЕЙ И МЕССЕНДЖЕРОВ                     #}
+                    {# ============================================================ #}
+                    <div class="footer-socials">
                         {% if contact_info.telegram %}
-                        <li>
-                            <a href="{{ contact_info.telegram }}" target="_blank" rel="noopener noreferrer">
-                                <i class="fab fa-telegram-plane"></i> Telegram
-                            </a>
-                        </li>
-                        {% endif %}
-
-                        {% if contact_info.max_messenger %}
-                        <li>
-                            <a href="{{ contact_info.max_messenger }}" target="_blank" rel="noopener noreferrer">
-                                <i class="fas fa-comment-dots"></i> MAX
-                            </a>
-                        </li>
+                        <a href="{{ contact_info.telegram }}" target="_blank" rel="noopener noreferrer" aria-label="Telegram" title="Telegram">
+                            <i class="fab fa-telegram-plane"></i>
+                        </a>
                         {% endif %}
 
                         {% if contact_info.whatsapp %}
-                        <li>
-                            <a href="{{ contact_info.whatsapp }}" target="_blank" rel="noopener noreferrer">
-                                <i class="fab fa-whatsapp"></i> WhatsApp
-                            </a>
-                        </li>
+                        <a href="{{ contact_info.whatsapp }}" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" title="WhatsApp">
+                            <i class="fab fa-whatsapp"></i>
+                        </a>
+                        {% endif %}
+
+                        {% if contact_info.max_messenger %}
+                        <a href="{{ contact_info.max_messenger }}" target="_blank" rel="noopener noreferrer" aria-label="MAX" title="MAX">
+                            <i class="fas fa-comment-dots"></i>
+                        </a>
                         {% endif %}
 
                         {% if contact_info.instagram %}
-                        <li>
-                            <a href="{{ contact_info.instagram }}" target="_blank" rel="noopener noreferrer">
-                                <i class="fab fa-instagram"></i> Instagram
-                            </a>
-                        </li>
+                        <a href="{{ contact_info.instagram }}" target="_blank" rel="noopener noreferrer" aria-label="Instagram" title="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        {% endif %}
+
+                        {% if contact_info.youtube %}
+                        <a href="{{ contact_info.youtube }}" target="_blank" rel="noopener noreferrer" aria-label="YouTube" title="YouTube">
+                            <i class="fab fa-youtube"></i>
+                        </a>
                         {% endif %}
 
                         {% if contact_info.github %}
-                        <li>
-                            <a href="{{ contact_info.github }}" target="_blank" rel="noopener noreferrer">
-                                <i class="fab fa-github"></i> GitHub
-                            </a>
-                        </li>
+                        <a href="{{ contact_info.github }}" target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
                         {% endif %}
 
                         {% if contact_info.linkedin %}
-                        <li>
-                            <a href="{{ contact_info.linkedin }}" target="_blank" rel="noopener noreferrer">
-                                <i class="fab fa-linkedin-in"></i> LinkedIn
-                            </a>
-                        </li>
+                        <a href="{{ contact_info.linkedin }}" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
                         {% endif %}
 
                         {% if contact_info.pinterest %}
-                        <li>
-                            <a href="{{ contact_info.pinterest }}" target="_blank" rel="noopener noreferrer">
-                                <i class="fab fa-pinterest-p"></i> Pinterest
-                            </a>
-                        </li>
+                        <a href="{{ contact_info.pinterest }}" target="_blank" rel="noopener noreferrer" aria-label="Pinterest" title="Pinterest">
+                            <i class="fab fa-pinterest-p"></i>
+                        </a>
                         {% endif %}
-
-                    </ul>
+                    </div>
                 </div>
 
             </div>

@@ -290,3 +290,203 @@ html[data-theme="dark"] .footer-brand .logo-image-wrapper .themed-img.ti-dark {
         max-width: 180px;
     }
 }
+/* ============================================================
+   FOOTER — БЛОК ОПЛАТЫ
+   ============================================================ */
+
+.footer-payment-links {
+    margin-bottom: 16px;
+}
+
+.footer-payment-links li a {
+    align-items: center;
+}
+
+.footer-payment-note {
+    font-size: 12px;
+    color: var(--color-text-muted, #A6A3A0);
+    opacity: 0.7;
+    line-height: 1.5;
+    margin-top: 10px;
+    margin-bottom: 6px;
+    padding-top: 8px;
+    border-top: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+[data-theme="light"] .footer-payment-note {
+    border-top-color: rgba(0, 0, 0, 0.06);
+}
+
+.footer-payment-webpay {
+    color: var(--color-gold, #C89A5B) !important;
+    font-weight: 500;
+}
+
+.footer-payment-webpay:hover {
+    color: var(--color-gold-light, #D8B477) !important;
+}
+
+/* ---------- Логотипы платёжных систем в футере ---------- */
+
+.footer-payment-logos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.04);
+    align-items: center;
+}
+
+[data-theme="light"] .footer-payment-logos {
+    border-top-color: rgba(0, 0, 0, 0.06);
+}
+
+.footer-payment-logos img {
+    height: 24px;
+    width: auto;
+    max-width: 60px;
+    object-fit: contain;
+    opacity: 0.75;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    border-radius: 3px;
+}
+
+.footer-payment-logos img:hover {
+    opacity: 1;
+    transform: translateY(-2px);
+}
+
+/* На мобильных — центрируем */
+@media (max-width: 992px) {
+    .footer-payment-logos {
+        justify-content: center;
+    }
+    .footer-payment-note {
+        text-align: center;
+    }
+}
+
+@media (max-width: 576px) {
+    .footer-payment-logos img {
+        height: 20px;
+    }
+}
+
+/* ============================================================
+   FOOTER — КОНТАКТЫ (адрес, телефон, УНП, режим работы)
+   ============================================================ */
+
+.footer-contacts {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.footer-contacts li {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 14px;
+    color: var(--color-text-secondary, #A6A3A0);
+    line-height: 1.5;
+    margin-bottom: 0;
+}
+
+.footer-contacts li i {
+    width: 18px;
+    color: var(--color-gold, #C89A5B);
+    font-size: 14px;
+    text-align: center;
+    flex-shrink: 0;
+    margin-top: 3px;
+}
+
+.footer-contacts li a {
+    color: var(--color-text-secondary, #A6A3A0);
+    text-decoration: none;
+    transition: color 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.footer-contacts li a:hover {
+    color: var(--color-gold, #C89A5B);
+}
+
+.footer-contacts li a i {
+    margin-top: 0;
+}
+
+/* Специальные классы для адреса / часов / УНП */
+.footer-address span,
+.footer-hours span,
+.footer-unp span {
+    color: var(--color-text-secondary, #A6A3A0);
+}
+
+/* ============================================================
+   FOOTER — ИКОНКИ СОЦСЕТЕЙ
+   ============================================================ */
+
+.footer-socials {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 8px;
+}
+
+.footer-socials a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    border: 1px solid rgba(200, 154, 91, 0.2);
+    color: var(--color-text-secondary, #A6A3A0);
+    font-size: 16px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.footer-socials a:hover {
+    background: rgba(200, 154, 91, 0.1);
+    border-color: var(--color-gold, #C89A5B);
+    color: var(--color-gold, #C89A5B);
+    transform: translateY(-3px);
+}
+
+[data-theme="light"] .footer-socials a {
+    border-color: rgba(184, 115, 79, 0.2);
+}
+
+[data-theme="light"] .footer-socials a:hover {
+    background: rgba(184, 115, 79, 0.08);
+    border-color: var(--color-gold, #B8734F);
+    color: var(--color-gold, #B8734F);
+}
+
+/* Мобильные — центрируем */
+@media (max-width: 992px) {
+    .footer-socials {
+        justify-content: center;
+    }
+    .footer-contacts li {
+        justify-content: center;
+        text-align: center;
+    }
+}
+
+@media (max-width: 576px) {
+    .footer-socials a {
+        width: 34px;
+        height: 34px;
+        font-size: 14px;
+    }
+    .footer-contacts li {
+        font-size: 13px;
+    }
+}
