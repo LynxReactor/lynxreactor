@@ -1250,6 +1250,75 @@
 </section>
 
 <!-- ============================================================
+     ОПЛАТА, ОТМЕНА ЗАКАЗА И ВОЗВРАТ (требование WebPay)
+     ============================================================ -->
+
+<section class="legal-payment-section" id="payment-info">
+    <div class="legal-payment-container">
+        <h2 class="legal-payment-title">
+            {% if current_language == 'en' %}Payment, Cancellation & Refunds{% else %}Оплата, отмена заказа и возврат средств{% endif %}
+        </h2>
+
+        <div class="legal-payment-grid">
+
+            <div class="legal-payment-block legal-payment-block--full">
+                <h3>{% if current_language == 'en' %}Payment Method{% else %}Способ оплаты{% endif %}</h3>
+                <p class="legal-payment-text">
+                    {% if current_language == 'en' %}
+                        Payment for services is made by bank card via the <strong>WEBPAY</strong> system —
+                        <a href="https://www.webpay.by" target="_blank" rel="noopener noreferrer">www.webpay.by</a>.
+                    {% else %}
+                        Оплата услуг производится банковской платёжной картой через систему
+                        <strong>WEBPAY</strong> —
+                        <a href="https://www.webpay.by" target="_blank" rel="noopener noreferrer">www.webpay.by</a>.
+                    {% endif %}
+                </p>
+                <div class="payment-logos">
+                    <img src="{% static 'images/payments/webpay.png' %}" alt="WebPay" loading="lazy">
+                    <img src="{% static 'images/payments/mtbank.png' %}" alt="МТБанк" loading="lazy">
+                    <img src="{% static 'images/payments/visa.png' %}" alt="Visa" loading="lazy">
+                    <img src="{% static 'images/payments/mastercard.png' %}" alt="Mastercard" loading="lazy">
+                    <img src="{% static 'images/payments/belkart.png' %}" alt="БЕЛКАРТ" loading="lazy">
+                    <img src="{% static 'images/payments/mir.png' %}" alt="МИР" loading="lazy">
+                </div>
+            </div>
+
+            <div class="legal-payment-block legal-payment-block--full">
+                <h3>{% if current_language == 'en' %}Payment Security{% else %}Безопасность оплаты{% endif %}</h3>
+                <p class="legal-payment-text">
+                    {% if current_language == 'en' %}
+                        The secure WEBPAY server establishes an encrypted connection via the TLS secure protocol and confidentially accepts the client's payment card data (card number, cardholder name, expiry date, and CVC/CVC2 security code).
+                    {% else %}
+                        Безопасный сервер WEBPAY устанавливает шифрованное соединение по защищенному протоколу TLS и конфиденциально принимает от клиента данные его платёжной карты (номер карты, имя держателя, дату окончания действия, и контрольный номер банковской карточке CVC/CVC2).
+                    {% endif %}
+                </p>
+                <p class="legal-payment-text">
+                    {% if current_language == 'en' %}
+                        After making a payment with a bank card, you must keep the received card receipts (payment confirmations) for reconciliation with your card account statement (to confirm completed transactions in case of disputes). If you did not receive the order (the service was not provided), please contact our support service by phone <a href="tel:+375447359840">+375 (44) 735-98-40</a> or email <a href="mailto:lynxreacto@gmail.com">lynxreacto@gmail.com</a>. Our managers will advise you. When paying by bank card, refunds are made to the card from which the payment was made.
+                    {% else %}
+                        После совершения оплаты с использованием банковской карты необходимо сохранять полученные карт-чеки (подтверждения об оплате) для сверки с выпиской из карт-счёта (с целью подтверждения совершённых операций в случае возникновения спорных ситуаций).
+                        В случае, если Вы не получили заказ (не оказана услуга), Вам необходимо обратиться в службу технической поддержки по телефону <a href="tel:+375447359840">+375 (44) 735-98-40</a> или e-mail <a href="mailto:lynxreacto@gmail.com">lynxreacto@gmail.com</a>. Менеджеры Вас проконсультируют.
+                        При оплате банковской платежной картой возврат денежных средств осуществляется на карточку, с которой была произведена оплата.
+                    {% endif %}
+                </p>
+            </div>
+
+            <div class="legal-payment-block legal-payment-block--full">
+                <h3>{% if current_language == 'en' %}Cancellation & Refunds{% else %}Отмена заказа и возврат средств{% endif %}</h3>
+                <p class="legal-payment-text">
+                    {% if current_language == 'en' %}
+                        The client has the right to cancel the order (refuse the service) <strong>before the work begins</strong> — in this case, a full refund is made. If cancellation occurs <strong>after the work has started</strong>, the refund is made minus the costs actually incurred by the contractor. To cancel, please send a written request to <a href="mailto:lynxreacto@gmail.com">lynxreacto@gmail.com</a>. Refunds are made within 14 calendar days from receipt of the request to the card from which the payment was made.
+                    {% else %}
+                        Заказчик вправе отказаться от исполнения договора оказания услуг <strong>до начала выполнения работ</strong> — в этом случае возврат денежных средств осуществляется в полном объёме. Если отказ происходит <strong>после начала работ</strong>, возврат осуществляется за вычетом фактически понесённых исполнителем расходов. Для отмены необходимо направить письменный запрос на <a href="mailto:lynxreacto@gmail.com">lynxreacto@gmail.com</a>. Возврат денежных средств осуществляется в течение 14 календарных дней с момента получения запроса на карточку, с которой была произведена оплата.
+                    {% endif %}
+                </p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<!-- ============================================================
      МИССИЯ
      ============================================================ -->
 
