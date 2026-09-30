@@ -103,7 +103,7 @@
 
 .footer-columns {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 1fr 1fr 1.4fr;   /* ← «Контакты» шире */
     gap: 40px;
 }
 
