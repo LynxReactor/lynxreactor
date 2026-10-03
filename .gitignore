@@ -136,3 +136,10 @@ desktop.ini
 *.seed
 *.pid.lock
 .cache/
+
+# ============================================================
+# Celery Beat (runtime state)
+# ============================================================
+celerybeat-schedule
+celerybeat-schedule.*
+celerybeat.pid
