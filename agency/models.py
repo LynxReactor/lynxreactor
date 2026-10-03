@@ -1067,13 +1067,85 @@ class FAQItem(BaseModel):
     answer = models.TextField(verbose_name=_("Answer"))
     category = models.CharField(max_length=100, blank=True, default='', verbose_name=_("Category"))
 
+    # Перелинковка — ссылка на статью блога или внешний URL
+    related_post = models.ForeignKey(
+        'BlogPost',
+        on_delete=models.SET_NULL,
+        null=True, blank=True,
+        related_name='faq_items',
+        verbose_name=_("Related blog post"),
+        help_text=_("Выберите статью блога для перелинковки"),
+    )
+    related_url = models.URLField(
+        blank=True, default='',
+        verbose_name=_("External URL"),
+        help_text=_("Или укажите внешнюю ссылку, если не выбрана статья"),
+    )
+    related_label_ru = models.CharField(
+        max_length=200, blank=True, default='',
+        verbose_name=_("Link label (RU)"),
+        help_text=_("Текст ссылки (RU). Если пусто — «Читать подробнее»"),
+    )
+    related_label_en = models.CharField(
+        max_length=200, blank=True, default='',
+        verbose_name=_("Link label (EN)"),
+        help_text=_("Link label (EN). If empty — 'Read more'"),
+    )
+
     class Meta:
         verbose_name = _("FAQ Item")
         verbose_name_plural = _("FAQ Items")
         ordering = ['order']
 
     def __str__(self):
-        return str(self.question)[:50] if self.question else 'FAQ Item'
+        return self.question[:50]
+
+    # ============================================================
+    # МЕТОДЫ ДЛЯ ПЕРЕЛИНКОВКИ
+    # ============================================================
+
+    def get_related_link(self):
+        """
+        Возвращает кортеж (url, is_external).
+
+        Приоритет:
+          1. related_post — если статья существует, опубликована и активна
+          2. related_url — если задана внешняя ссылка
+          3. (None, False) — если ничего нет
+        """
+        if self.related_post and self.related_post.is_published and self.related_post.is_active:
+            try:
+                return self.related_post.get_absolute_url(), False
+            except Exception:
+                pass
+        if self.related_url:
+            return self.related_url, True
+        return None, False
+
+    def get_related_url(self):
+        """Только URL (для шаблона)."""
+        url, _ = self.get_related_link()
+        return url
+
+    def is_related_external(self):
+        """True если ссылка внешняя (для target='_blank')."""
+        _, is_external = self.get_related_link()
+        return is_external
+
+    def get_related_label(self, lang=None):
+        """
+        Текст ссылки с учётом языка и fallback:
+          - EN: related_label_en → related_label_ru → 'Read more'
+          - RU: related_label_ru → 'Читать подробнее'
+        """
+        if lang is None:
+            from django.utils.translation import get_language
+            lang = get_language() or 'ru'
+        lang = lang.split('-')[0]
+
+        if lang == 'en':
+            return self.related_label_en or self.related_label_ru or 'Read more'
+        return self.related_label_ru or 'Читать подробнее'
 
 
 # ============================================================
@@ -1512,10 +1584,19 @@ class BlogPost(BaseModel):
 
     author = models.CharField(max_length=100, default='LYNXREACTOR', verbose_name=_("Author"))
 
-    pdf_file = models.FileField(
-        upload_to='blog/pdfs/', blank=True, null=True,
-        verbose_name=_("PDF File"),
-        help_text=_('Загрузите PDF файл для скачивания (опционально)'),
+    pdf_file_ru = models.FileField(
+        upload_to='blog/pdfs/ru/', blank=True, null=True,
+        verbose_name=_("PDF File (RU)"),
+        help_text=_('Загрузите PDF файл для скачивания (RU версия)'),
+        validators=[
+            FileExtensionValidator(allowed_extensions=['pdf']),
+            validate_pdf_file,
+        ],
+    )
+    pdf_file_en = models.FileField(
+        upload_to='blog/pdfs/en/', blank=True, null=True,
+        verbose_name=_("PDF File (EN)"),
+        help_text=_('Upload PDF file for download (EN version)'),
         validators=[
             FileExtensionValidator(allowed_extensions=['pdf']),
             validate_pdf_file,
@@ -1641,6 +1722,23 @@ class BlogPost(BaseModel):
             if value_ru.strip():
                 return value_ru.strip()
         return ''
+
+    def get_pdf_file(self, lang=None):
+        """
+        Возвращает актуальный PDF для языка.
+
+        Fallback:
+          - lang='en' → pdf_file_en или pdf_file_ru (если EN пусто)
+          - lang='ru' → pdf_file_ru
+        """
+        if lang is None:
+            from django.utils.translation import get_language
+            lang = get_language() or 'ru'
+        lang = lang.split('-')[0]
+
+        if lang == 'en' and self.pdf_file_en:
+            return self.pdf_file_en
+        return self.pdf_file_ru
 
     def get_seo_description(self, lang=None):
         lang = self._get_lang(lang)

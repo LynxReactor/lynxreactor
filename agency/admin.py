@@ -520,10 +520,35 @@ class FAQSectionAdmin(BaseTranslationAdmin):
 
 @admin.register(FAQItem)
 class FAQItemAdmin(BaseTranslationAdmin):
-    list_display = ['question', 'category', 'order', 'is_active']
-    list_filter = ['category', 'is_active']
+    list_display = ['question', 'category', 'get_related_link_display', 'order', 'is_active']
+    list_filter = ['category', 'is_active', 'related_post']
     search_fields = ['question', 'answer']
     list_editable = ['is_active', 'order']
+    autocomplete_fields = ['related_post']
+
+    fieldsets = (
+        ('Основное', {
+            'fields': ('section', 'question', 'answer', 'category'),
+        }),
+        ('Перелинковка', {
+            'fields': ('related_post', 'related_url', 'related_label_ru', 'related_label_en'),
+            'description': _(
+                'Ссылка появится под ответом FAQ. Приоритет: статья блога → внешний URL. '
+                'Если оба пусты — ссылки не будет.'
+            ),
+        }),
+        ('Статус', {
+            'fields': ('order', 'is_active'),
+        }),
+    )
+
+    @admin.display(description=_('Ссылка'))
+    def get_related_link_display(self, obj):
+        url, is_external = obj.get_related_link()
+        if url:
+            icon = '🌐' if is_external else '📄'
+            return format_html('{} <a href="{}" target="_blank">{}</a>', icon, url, url[:40])
+        return '—'
 
 
 # ============================================================
@@ -709,7 +734,11 @@ class BlogPostAdmin(TranslationAdmin):
                              'Content — полный текст статьи.'),
         }),
         ('Изображения', {'fields': ('image_light', 'image_dark'), 'classes': ('collapse',)}),
-        ('PDF материал', {'fields': ('pdf_file',), 'classes': ('collapse',)}),
+        ('PDF материал', {
+            'fields': ('pdf_file_ru', 'pdf_file_en'),
+            'classes': ('collapse',),
+            'description': _('PDF для скачивания — отдельно для RU и EN версий статьи'),
+        }),
         ('Публикация', {'fields': ('published_at', 'is_published')}),
         # SEO с суффиксами _ru/_en
         ('SEO — Русский', {

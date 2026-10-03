@@ -136,7 +136,10 @@ class IndexView(
         faq_section = FAQSection.objects.filter(is_active=True).first()
         context['faq_section'] = faq_section
         context['faqs'] = (
-            FAQItem.objects.filter(section=faq_section, is_active=True).order_by('order')
+            FAQItem.objects
+            .filter(section=faq_section, is_active=True)
+            .select_related('related_post')
+            .order_by('order')
             if faq_section else []
         )
 

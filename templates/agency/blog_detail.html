@@ -1120,7 +1120,7 @@
             {{ post.content|safe }}
         </article>
 
-        {% if post.pdf_file %}
+        {% if post.get_pdf_file %}
         <div class="blog-download-block">
             <div class="download-block-inner">
                 <div class="download-icon">
@@ -1129,11 +1129,11 @@
                 <div class="download-info">
                     <h4>{% trans "Скачать PDF" %}</h4>
                     <div class="download-meta">
-                        <span class="file-size">{{ post.pdf_file.size|filesizeformat }}</span>
-                        <span class="file-date">{{ post.updated_at|date:"d.m.Y" }}</span>
+                        <span class="file-size">{{ post.get_pdf_file.size|filesizeformat }}</span>
+                        <span class="file-date">{{ post.updated_at|date:"d.M.Y" }}</span>
                     </div>
                 </div>
-                <a href="{{ post.pdf_file.url }}" download class="btn btn-primary download-btn">
+                <a href="{{ post.get_pdf_file.url }}" download class="btn btn-primary download-btn">
                     <i class="fas fa-download"></i>
                     {% trans "Скачать" %}
                     <span class="arrow">→</span>

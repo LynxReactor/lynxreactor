@@ -193,6 +193,65 @@
 }
 
 /* ============================================================
+   FAQ — ССЫЛКА НА СТАТЬЮ
+   ============================================================ */
+
+.faq-related-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 12px;
+    padding: 8px 16px;
+    background: var(--color-gold-rgba, rgba(200, 154, 91, 0.1));
+    border: 1px solid rgba(200, 154, 91, 0.25);
+    border-radius: 8px;
+    color: var(--color-gold, #C89A5B);
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-family: var(--font-sans);
+}
+
+.faq-related-link:hover {
+    background: rgba(200, 154, 91, 0.18);
+    border-color: var(--color-gold, #C89A5B);
+    transform: translateX(4px);
+    color: var(--color-gold-light, #D8B477);
+}
+
+.faq-related-link .faq-related-icon {
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+.faq-related-link .faq-related-text {
+    line-height: 1;
+}
+
+.faq-related-link .faq-related-arrow {
+    transition: transform 0.3s ease;
+    font-size: 14px;
+}
+
+.faq-related-link:hover .faq-related-arrow {
+    transform: translateX(4px);
+}
+
+[data-theme="light"] .faq-related-link {
+    background: rgba(184, 115, 79, 0.08);
+    border-color: rgba(184, 115, 79, 0.25);
+    color: var(--color-gold, #B8734F);
+}
+
+[data-theme="light"] .faq-related-link:hover {
+    background: rgba(184, 115, 79, 0.15);
+    border-color: var(--color-gold, #B8734F);
+    color: var(--color-gold-dark, #965A3D);
+}
+
+
+/* ============================================================
    ⭐ СПЕЦИАЛЬНО ДЛЯ 1920x1200 (16:10)
    ============================================================ */
 
@@ -317,6 +376,10 @@
         font-size: 13px;
         width: 100%;
         justify-content: center;
+    }
+        .faq-related-link {
+        font-size: 13px;
+        padding: 6px 12px;
     }
 }
 

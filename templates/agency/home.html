@@ -1181,6 +1181,26 @@
                     <div class="faq-answer">
                         <div class="faq-answer-content">
                             {{ faq.answer|linebreaks }}
+
+                            {# === ПЕРЕЛИНКОВКА НА СТАТЬЮ === #}
+                            {% with related_url=faq.get_related_url %}
+                                {% if related_url %}
+                                <a href="{{ related_url }}"
+                                   class="faq-related-link"
+                                   {% if faq.is_related_external %}target="_blank" rel="noopener noreferrer"{% endif %}>
+                                    <span class="faq-related-icon">
+                                        {% if faq.is_related_external %}
+                                            <i class="fas fa-external-link-alt"></i>
+                                        {% else %}
+                                            <i class="fas fa-book-open"></i>
+                                        {% endif %}
+                                    </span>
+                                    <span class="faq-related-text">{{ faq.get_related_label }}</span>
+                                    <span class="faq-related-arrow">→</span>
+                                </a>
+                                {% endif %}
+                            {% endwith %}
+
                             {% if faq.category %}
                             <span class="faq-category">{{ faq.category }}</span>
                             {% endif %}
