@@ -23,9 +23,15 @@
 }
 
 .tech-header {
-    max-width: 700px;
+    max-width: var(--section-header-width, 900px);
     margin: 0 auto 60px;
     text-align: center;
+}
+
+.tech-header .section-description {
+    max-width: var(--section-description-width, 800px);
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .tech-header .section-title {
