@@ -56,43 +56,42 @@ def _is_trusted_proxy(ip):
 
 def get_client_ip(request) -> str:
     """
-    Получить IP клиента с учётом доверенных прокси.
+    Получить IP клиента.
 
-    Логика:
-      1. Если REMOTE_ADDR — доверенный прокси, читаем X-Forwarded-For.
-      2. Идём по X-Forwarded-For СПРАВА НАЛЕВО, пропуская доверенные IP.
-      3. Возвращаем первый НЕдоверенный IP — это реальный клиент.
-      4. Если все доверенные — возвращаем самый правый (ближайший к нам).
-      5. Если REMOTE_ADDR не доверенный — используем его (заголовки игнорируем).
-
-    Это защищает от подмены X-Forwarded-For клиентом:
-      - клиент может добавить свой IP В НАЧАЛО заголовка,
-      - но наш nginx ДОБАВИТ реальный $remote_addr В КОНЕЦ,
-      - поэтому правые IP — доверенные, левые — могут быть фейком.
+    Порядок приоритета:
+      1. HTTP_CF_CONNECTING_IP — если за Cloudflare
+      2. HTTP_X_REAL_IP — Nginx (сам ставит $remote_addr)
+      3. HTTP_X_FORWARDED_FOR — последний недоверенный (справа налево)
+      4. REMOTE_ADDR — fallback
     """
-    remote_addr = request.META.get('REMOTE_ADDR', '') or '0.0.0.0'
+    # 1. Cloudflare
+    cf_ip = (request.META.get('HTTP_CF_CONNECTING_IP') or '').strip()
+    if cf_ip:
+        return cf_ip
 
-    # Не через прокси — доверяем только REMOTE_ADDR
-    if not _is_trusted_proxy(remote_addr):
+    # 2. X-Real-IP — Nginx
+    x_real_ip = (request.META.get('HTTP_X_REAL_IP') or '').strip()
+    if x_real_ip:
+        return x_real_ip
+
+    # 3. X-Forwarded-For
+    xff = (request.META.get('HTTP_X_FORWARDED_FOR') or '').strip()
+    if xff:
+        ips = [ip.strip() for ip in xff.split(',') if ip.strip()]
+        # Справа налево — ищем первый недоверенный
+        for ip in reversed(ips):
+            if not _is_trusted_proxy(ip):
+                return ip
+        if ips:
+            return ips[0]
+
+    # 4. REMOTE_ADDR
+    remote_addr = (request.META.get('REMOTE_ADDR') or '').strip()
+    if remote_addr and remote_addr not in ('0.0.0.0', '::1', '127.0.0.1'):
         return remote_addr
 
-    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR', '')
-    if not x_forwarded_for:
-        return remote_addr
-
-    # Собираем все IP из XFF (слева направо)
-    ips = [ip.strip() for ip in x_forwarded_for.split(',') if ip.strip()]
-
-    if not ips:
-        return remote_addr
-
-    # Идём СПРАВА НАЛЕВО, пропуская доверенные
-    for ip in reversed(ips):
-        if not _is_trusted_proxy(ip):
-            return ip
-
-    # Все IP доверенные — возвращаем самый правый
-    return ips[-1]
+    # 5. Fallback
+    return '0.0.0.0'
 
 
 # ============================================================

@@ -776,6 +776,9 @@
         border-radius: 12px;
         overflow: hidden;
         transition: all 0.3s ease;
+        display: block;
+        text-decoration: none;
+        color: inherit;
     }
 
     .related-card:hover {
@@ -814,15 +817,10 @@
         color: var(--color-text-primary);
         margin-bottom: 4px;
         line-height: 1.2;
-    }
-
-    .related-card .related-content h4 a {
-        color: var(--color-text-primary);
-        text-decoration: none;
         transition: color 0.3s ease;
     }
 
-    .related-card .related-content h4 a:hover {
+    .related-card:hover .related-content h4 {
         color: var(--color-gold);
     }
 
@@ -1233,7 +1231,7 @@
             <h3 class="related-title">{% trans "Похожие статьи" %}</h3>
             <div class="related-grid">
                 {% for related in related_posts %}
-                <div class="related-card">
+                <a href="{% url 'agency:blog_detail' related.slug %}" class="related-card">
                     <div class="related-image themed-image">
                         {% if related.image_light %}
                             <img class="themed-img ti-light"
@@ -1255,10 +1253,10 @@
                         {% endif %}
                     </div>
                     <div class="related-content">
-                        <h4><a href="{% url 'agency:blog_detail' related.slug %}">{{ related.title }}</a></h4>
+                        <h4>{{ related.title }}</h4>
                         <span class="related-date">{{ related.published_at|date:"d.M.Y" }}</span>
                     </div>
-                </div>
+                </a>
                 {% endfor %}
             </div>
         </div>
