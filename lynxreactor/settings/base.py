@@ -412,7 +412,7 @@ JAZZMIN_SETTINGS = {
     "custom_links": {
 
         # ---------- ЗАЯВКИ И ОПЛАТА ----------
-        "orders": [
+        "Заявки и оплата": [
             {
                 "name": "Заявки / Заказы",
                 "url": "admin:agency_contactrequest_changelist",
@@ -428,7 +428,7 @@ JAZZMIN_SETTINGS = {
         ],
 
         # ---------- КОНТЕНТ ГЛАВНОЙ ----------
-        "content": [
+        "Контент главной": [
             {
                 "name": "Hero секции",
                 "url": "admin:agency_herosection_changelist",
@@ -436,25 +436,25 @@ JAZZMIN_SETTINGS = {
                 "permissions": ["agency.view_herosection"],
             },
             {
-                "name": "Услуги (разделы)",
+                "name": "Услуги — разделы",
                 "url": "admin:agency_servicessection_changelist",
                 "icon": "fas fa-cogs",
                 "permissions": ["agency.view_servicessection"],
             },
             {
-                "name": "Услуги (элементы)",
+                "name": "Услуги — элементы",
                 "url": "admin:agency_serviceitem_changelist",
                 "icon": "fas fa-cog",
                 "permissions": ["agency.view_serviceitem"],
             },
             {
-                "name": "Технологии (разделы)",
+                "name": "Технологии — разделы",
                 "url": "admin:agency_techsection_changelist",
                 "icon": "fas fa-microchip",
                 "permissions": ["agency.view_techsection"],
             },
             {
-                "name": "Технологии (элементы)",
+                "name": "Технологии — элементы",
                 "url": "admin:agency_techitem_changelist",
                 "icon": "fas fa-code",
                 "permissions": ["agency.view_techitem"],
@@ -478,13 +478,13 @@ JAZZMIN_SETTINGS = {
                 "permissions": ["agency.view_refactorsection"],
             },
             {
-                "name": "Портфолио (раздел)",
+                "name": "Портфолио — раздел",
                 "url": "admin:agency_portfoliosection_changelist",
                 "icon": "fas fa-images",
                 "permissions": ["agency.view_portfoliosection"],
             },
             {
-                "name": "Портфолио (проекты)",
+                "name": "Портфолио — проекты",
                 "url": "admin:agency_portfolioitem_changelist",
                 "icon": "fas fa-folder-open",
                 "permissions": ["agency.view_portfolioitem"],
@@ -498,7 +498,7 @@ JAZZMIN_SETTINGS = {
         ],
 
         # ---------- БЛОГ ----------
-        "blog": [
+        "Блог": [
             {
                 "name": "Посты",
                 "url": "admin:agency_blogpost_changelist",
@@ -520,7 +520,7 @@ JAZZMIN_SETTINGS = {
         ],
 
         # ---------- ЦЕНЫ И FAQ ----------
-        "pricing": [
+        "Цены и FAQ": [
             {
                 "name": "Тарифы",
                 "url": "admin:agency_tariff_changelist",
@@ -528,13 +528,13 @@ JAZZMIN_SETTINGS = {
                 "permissions": ["agency.view_tariff"],
             },
             {
-                "name": "FAQ (разделы)",
+                "name": "FAQ — разделы",
                 "url": "admin:agency_faqsection_changelist",
                 "icon": "fas fa-question-circle",
                 "permissions": ["agency.view_faqsection"],
             },
             {
-                "name": "FAQ (вопросы)",
+                "name": "FAQ — вопросы",
                 "url": "admin:agency_faqitem_changelist",
                 "icon": "fas fa-question",
                 "permissions": ["agency.view_faqitem"],
@@ -546,7 +546,7 @@ JAZZMIN_SETTINGS = {
                 "permissions": ["agency.view_ctasection"],
             },
             {
-                "name": "Отзывы (раздел)",
+                "name": "Отзывы — раздел",
                 "url": "admin:agency_reviewssection_changelist",
                 "icon": "fas fa-star",
                 "permissions": ["agency.view_reviewssection"],
@@ -560,7 +560,7 @@ JAZZMIN_SETTINGS = {
         ],
 
         # ---------- SEO И НАСТРОЙКИ ----------
-        "seo": [
+        "SEO и настройки": [
             {
                 "name": "SEO страниц",
                 "url": "admin:agency_pageseo_changelist",
@@ -582,7 +582,7 @@ JAZZMIN_SETTINGS = {
         ],
 
         # ---------- ПОЛЬЗОВАТЕЛИ ----------
-        "users": [
+        "Пользователи": [
             {
                 "name": "Пользователи",
                 "url": "admin:auth_user_changelist",
