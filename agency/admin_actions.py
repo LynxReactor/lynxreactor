@@ -316,3 +316,39 @@ def send_newsletter(modeladmin, request, queryset):
         )
 
 send_newsletter.short_description = "📨 Отправить рассылку о выбранных постах"
+
+
+# ============================================================
+# ОПЛАТА WEBPAY
+# ============================================================
+
+def mark_as_invoiced(modeladmin, request, queryset):
+    """Отметить: ссылка на оплату отправлена."""
+    from django.utils import timezone
+    count = queryset.update(
+        payment_status='invoiced',
+        invoiced_at=timezone.now(),
+    )
+    modeladmin.message_user(request, f'📧 Отмечено {count} заявок как «Отправлена ссылка»')
+
+mark_as_invoiced.short_description = "📧 Ссылка на оплату отправлена"
+
+
+def mark_as_paid(modeladmin, request, queryset):
+    """Отметить: оплата получена."""
+    from django.utils import timezone
+    count = queryset.update(
+        payment_status='paid',
+        paid_at=timezone.now(),
+    )
+    modeladmin.message_user(request, f'✅ Отмечено {count} заявок как «Оплачено»')
+
+mark_as_paid.short_description = "✅ Оплата получена"
+
+
+def mark_as_refunded(modeladmin, request, queryset):
+    """Отметить: возврат средств."""
+    count = queryset.update(payment_status='refunded')
+    modeladmin.message_user(request, f'↩️ Отмечено {count} заявок как «Возврат»')
+
+mark_as_refunded.short_description = "↩️ Возврат средств"

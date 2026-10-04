@@ -43,6 +43,9 @@ from .admin_actions import (
     publish_selected,
     unpublish_selected,
     send_newsletter,
+    mark_as_invoiced,
+    mark_as_paid,
+    mark_as_refunded,
 )
 
 # ============================================================
@@ -772,26 +775,41 @@ class BlogPostAdmin(TranslationAdmin):
 
 @admin.register(ContactRequest)
 class ContactRequestAdmin(BaseAdmin):
-    list_display = ['name', 'email', 'phone', 'contact_method', 'contact_value', 'status', 'created_at']
-    list_filter = ['status', 'created_at', 'contact_method']
-    search_fields = ['name', 'email', 'phone', 'message']
-    readonly_fields = ['created_at', 'updated_at', 'user_agent', 'ip_address', 'referer']
-    list_editable = ['status']
+    list_display = [
+        'name', 'email', 'tariff', 'contract_amount_byn',
+        'payment_status', 'status', 'created_at',
+    ]
+    list_filter = ['status', 'payment_status', 'tariff', 'contact_method', 'created_at']
+    search_fields = ['name', 'email', 'phone', 'message'],
+    readonly_fields = [
+        'created_at', 'updated_at', 'user_agent', 'ip_address', 'referer',
+        'invoiced_at', 'paid_at',  # ← оплата — read-only (обновляются через actions)
+    ]
+    list_editable = ['status', 'payment_status']
     date_hierarchy = 'created_at'
 
     actions = [
+        # Статусы заявки
         mark_as_new,
         mark_as_in_progress,
         mark_as_completed,
         mark_as_rejected,
+        # Оплата
+        mark_as_invoiced,
+        mark_as_paid,
+        mark_as_refunded,
+        # Экспорт
         export_selected_as_csv,
         export_selected_as_json,
+        # Уведомления
         send_test_email,
         send_to_telegram,
     ]
 
     fieldsets = (
-        ('Клиент', {'fields': ('name', 'email', 'phone')}),
+        ('Клиент', {
+            'fields': ('name', 'email', 'phone'),
+        }),
         ('Способ связи', {
             'fields': ('contact_method', 'contact_value'),
             'description': _(
@@ -799,12 +817,28 @@ class ContactRequestAdmin(BaseAdmin):
                 'Для способа «Телефон» значение дублируется в поле «Phone» выше.'
             ),
         }),
-        ('Сообщение', {'fields': ('message',)}),
-        ('Статус', {'fields': ('status',)}),
+        ('Заявка', {
+            'fields': ('message', 'tariff', 'status'),
+        }),
+        ('Оплата WebPay', {
+            'fields': (
+                'contract_amount_byn',
+                'webpay_payment_url',
+                'payment_status',
+                'invoiced_at',
+                'paid_at',
+            ),
+            'description': _(
+                'Итоговая сумма по договору + ссылка на оплату из ЛК WebPay. '
+                'Заполняется менеджером после согласования ТЗ. '
+                'Статус можно быстро изменить через Actions.'
+            ),
+        }),
         ('Системная информация', {
             'fields': (
-                'turnstile_verified',
-                'created_at', 'updated_at', 'user_agent', 'ip_address', 'referer',
+                'turnstile_verified', 'language',
+                'created_at', 'updated_at',
+                'user_agent', 'ip_address', 'referer',
             ),
             'classes': ('collapse',),
         }),

@@ -356,99 +356,326 @@ TRUSTED_PROXIES = [
     ).split(',') if p.strip()
 ]
 
+
 # ============================================================
 # JAZZMIN
 # ============================================================
 
 JAZZMIN_SETTINGS = {
+    # ============================================================
+    # ОСНОВНОЕ
+    # ============================================================
     "site_title": "LYNXREACTOR Admin",
     "site_header": "LYNXREACTOR",
     "site_brand": "LYNXREACTOR",
     "welcome_sign": "Welcome to LYNXREACTOR Admin Panel",
     "copyright": "LYNXREACTOR",
-    "search_model": ["auth.User", "auth.Group"],
+
+    "search_model": ["agency.BlogPost", "agency.ContactRequest", "auth.User"],
+
+    # ============================================================
+    # ВЕРХНЕЕ МЕНЮ
+    # ============================================================
     "topmenu_links": [
-        {"name": "Home", "url": "admin:index", "permissions": ["auth.view_user"]},
-        {"name": "Site", "url": "/", "new_window": True},
-        {"name": "Contact Requests", "url": "admin:agency_contactrequest_changelist"},
+        {"name": "Главная", "url": "admin:index"},
+        {"name": "Сайт", "url": "/", "new_window": True},
+        {"name": "Заявки", "model": "agency.contactrequest"},
+        {"name": "Блог", "model": "agency.blogpost"},
+        {"name": "Тарифы", "model": "agency.tariff"},
     ],
+
+    # ============================================================
+    # САЙДБАР
+    # ============================================================
     "show_sidebar": True,
     "navigation_expanded": True,
-    "order_with_respect_to": [
-        "agency",
-        "agency.HeroSection",
-        "agency.ServicesSection",
-        "agency.LandingSection",
-        "agency.BusinessSection",
-        "agency.RefactorSection",
-        "agency.PortfolioSection",
-        "agency.Tariff",
-        "agency.FAQSection",
-        "agency.CTASection",
-        "agency.ReviewsSection",
-        "agency.ContactPage",
-        "agency.BlogCategory",
-        "agency.BlogPost",
-        "agency.ContactRequest",
-        "agency.SiteConfiguration",
-        "agency.PageSEO",
+
+    # ============================================================
+    # СКРЫТЬ СТАНДАРТНЫЕ БЛОКИ — используем custom_links
+    # ============================================================
+    "hide_apps": ["agency", "auth"],
+    "hide_models": [
+        # Inline-модели — редактируются внутри секций
+        "agency.LandingFeature",
+        "agency.LandingDetail",
+        "agency.BusinessFeature",
+        "agency.BusinessDetail",
+        "agency.RefactorFeature",
+        "agency.RefactorDetail",
+        # Голоса блога — генерируются автоматически
+        "agency.BlogPostVote",
     ],
+
+    # ============================================================
+    # ЛОГИЧЕСКИЕ ГРУППЫ МОДЕЛЕЙ
+    # ============================================================
+    "custom_links": {
+
+        # ---------- ЗАЯВКИ И ОПЛАТА ----------
+        "orders": [
+            {
+                "name": "Заявки / Заказы",
+                "url": "admin:agency_contactrequest_changelist",
+                "icon": "fas fa-shopping-cart",
+                "permissions": ["agency.view_contactrequest"],
+            },
+            {
+                "name": "Страница «Контакты»",
+                "url": "admin:agency_contactpage_changelist",
+                "icon": "fas fa-address-card",
+                "permissions": ["agency.view_contactpage"],
+            },
+        ],
+
+        # ---------- КОНТЕНТ ГЛАВНОЙ ----------
+        "content": [
+            {
+                "name": "Hero секции",
+                "url": "admin:agency_herosection_changelist",
+                "icon": "fas fa-image",
+                "permissions": ["agency.view_herosection"],
+            },
+            {
+                "name": "Услуги (разделы)",
+                "url": "admin:agency_servicessection_changelist",
+                "icon": "fas fa-cogs",
+                "permissions": ["agency.view_servicessection"],
+            },
+            {
+                "name": "Услуги (элементы)",
+                "url": "admin:agency_serviceitem_changelist",
+                "icon": "fas fa-cog",
+                "permissions": ["agency.view_serviceitem"],
+            },
+            {
+                "name": "Технологии (разделы)",
+                "url": "admin:agency_techsection_changelist",
+                "icon": "fas fa-microchip",
+                "permissions": ["agency.view_techsection"],
+            },
+            {
+                "name": "Технологии (элементы)",
+                "url": "admin:agency_techitem_changelist",
+                "icon": "fas fa-code",
+                "permissions": ["agency.view_techitem"],
+            },
+            {
+                "name": "Лендинги",
+                "url": "admin:agency_landingsection_changelist",
+                "icon": "fas fa-rocket",
+                "permissions": ["agency.view_landingsection"],
+            },
+            {
+                "name": "Сайты для бизнеса",
+                "url": "admin:agency_businesssection_changelist",
+                "icon": "fas fa-store",
+                "permissions": ["agency.view_businesssection"],
+            },
+            {
+                "name": "Рефакторинг и аудит",
+                "url": "admin:agency_refactorsection_changelist",
+                "icon": "fas fa-sync-alt",
+                "permissions": ["agency.view_refactorsection"],
+            },
+            {
+                "name": "Портфолио (раздел)",
+                "url": "admin:agency_portfoliosection_changelist",
+                "icon": "fas fa-images",
+                "permissions": ["agency.view_portfoliosection"],
+            },
+            {
+                "name": "Портфолио (проекты)",
+                "url": "admin:agency_portfolioitem_changelist",
+                "icon": "fas fa-folder-open",
+                "permissions": ["agency.view_portfolioitem"],
+            },
+            {
+                "name": "Миссия",
+                "url": "admin:agency_mission_changelist",
+                "icon": "fas fa-bullseye",
+                "permissions": ["agency.view_mission"],
+            },
+        ],
+
+        # ---------- БЛОГ ----------
+        "blog": [
+            {
+                "name": "Посты",
+                "url": "admin:agency_blogpost_changelist",
+                "icon": "fas fa-blog",
+                "permissions": ["agency.view_blogpost"],
+            },
+            {
+                "name": "Категории",
+                "url": "admin:agency_blogcategory_changelist",
+                "icon": "fas fa-folder",
+                "permissions": ["agency.view_blogcategory"],
+            },
+            {
+                "name": "Подписчики",
+                "url": "admin:agency_subscriber_changelist",
+                "icon": "fas fa-users",
+                "permissions": ["agency.view_subscriber"],
+            },
+        ],
+
+        # ---------- ЦЕНЫ И FAQ ----------
+        "pricing": [
+            {
+                "name": "Тарифы",
+                "url": "admin:agency_tariff_changelist",
+                "icon": "fas fa-tag",
+                "permissions": ["agency.view_tariff"],
+            },
+            {
+                "name": "FAQ (разделы)",
+                "url": "admin:agency_faqsection_changelist",
+                "icon": "fas fa-question-circle",
+                "permissions": ["agency.view_faqsection"],
+            },
+            {
+                "name": "FAQ (вопросы)",
+                "url": "admin:agency_faqitem_changelist",
+                "icon": "fas fa-question",
+                "permissions": ["agency.view_faqitem"],
+            },
+            {
+                "name": "CTA секция",
+                "url": "admin:agency_ctasection_changelist",
+                "icon": "fas fa-bullhorn",
+                "permissions": ["agency.view_ctasection"],
+            },
+            {
+                "name": "Отзывы (раздел)",
+                "url": "admin:agency_reviewssection_changelist",
+                "icon": "fas fa-star",
+                "permissions": ["agency.view_reviewssection"],
+            },
+            {
+                "name": "Отзывы",
+                "url": "admin:agency_review_changelist",
+                "icon": "fas fa-comment",
+                "permissions": ["agency.view_review"],
+            },
+        ],
+
+        # ---------- SEO И НАСТРОЙКИ ----------
+        "seo": [
+            {
+                "name": "SEO страниц",
+                "url": "admin:agency_pageseo_changelist",
+                "icon": "fas fa-search",
+                "permissions": ["agency.view_pageseo"],
+            },
+            {
+                "name": "Настройки сайта",
+                "url": "admin:agency_siteconfiguration_changelist",
+                "icon": "fas fa-cog",
+                "permissions": ["agency.view_siteconfiguration"],
+            },
+            {
+                "name": "Telegram логи",
+                "url": "admin:agency_telegramlog_changelist",
+                "icon": "fas fa-paper-plane",
+                "permissions": ["agency.view_telegramlog"],
+            },
+        ],
+
+        # ---------- ПОЛЬЗОВАТЕЛИ ----------
+        "users": [
+            {
+                "name": "Пользователи",
+                "url": "admin:auth_user_changelist",
+                "icon": "fas fa-user",
+                "permissions": ["auth.view_user"],
+            },
+            {
+                "name": "Группы",
+                "url": "admin:auth_group_changelist",
+                "icon": "fas fa-users",
+                "permissions": ["auth.view_group"],
+            },
+        ],
+    },
+
+    # ============================================================
+    # ИКОНКИ
+    # ============================================================
     "icons": {
         "agency.HeroSection": "fas fa-image",
         "agency.ServicesSection": "fas fa-cogs",
         "agency.ServiceItem": "fas fa-cog",
         "agency.TechSection": "fas fa-microchip",
         "agency.TechItem": "fas fa-code",
-        "agency.LandingSection": "fas fa-landmark",
+        "agency.LandingSection": "fas fa-rocket",
         "agency.BusinessSection": "fas fa-store",
         "agency.RefactorSection": "fas fa-sync-alt",
         "agency.PortfolioSection": "fas fa-images",
         "agency.PortfolioItem": "fas fa-folder-open",
+        "agency.Mission": "fas fa-bullseye",
         "agency.Tariff": "fas fa-tag",
         "agency.FAQSection": "fas fa-question-circle",
         "agency.FAQItem": "fas fa-question",
         "agency.CTASection": "fas fa-bullhorn",
         "agency.ReviewsSection": "fas fa-star",
-        "agency.Review": "fas fa-star",
+        "agency.Review": "fas fa-comment",
         "agency.ContactPage": "fas fa-address-card",
-        "agency.ContactRequest": "fas fa-envelope",
+        "agency.ContactRequest": "fas fa-shopping-cart",
+        "agency.Subscriber": "fas fa-users",
         "agency.BlogCategory": "fas fa-folder",
         "agency.BlogPost": "fas fa-blog",
-        "agency.SiteConfiguration": "fas fa-cog",
         "agency.PageSEO": "fas fa-search",
+        "agency.SiteConfiguration": "fas fa-cog",
+        "agency.TelegramLog": "fas fa-paper-plane",
         "auth": "fas fa-users-cog",
         "auth.User": "fas fa-user",
         "auth.Group": "fas fa-users",
     },
+
     "default_icon_parents": "fas fa-chevron-circle-right",
     "default_icon_children": "fas fa-circle",
     "related_modal_active": True,
     "use_google_fonts_cdn": True,
     "show_ui_builder": False,
+    "changeform_format": "horizontal_tabs",
+    "changeform_format_overrides": {
+        "auth.user": "collapsible",
+        "auth.group": "vertical_tabs",
+    },
 }
 
+
+# ============================================================
+# JAZZMIN UI TWEAKS
+# ============================================================
+
 JAZZMIN_UI_TWEAKS = {
-    # Тема (Bootswatch). Для тёмной админки — "darkly" или "slate"
+    "navbar_small_text": False,
+    "footer_small_text": False,
+    "body_small_text": False,
+    "brand_small_text": False,
+
+    "brand_colour": "navbar-dark",
+    "accent": "accent-warning",
+    "navbar": "navbar-dark navbar-success",
+    "no_navbar_border": False,
+
+    "navbar_fixed": True,
+    "layout_boxed": False,
+    "footer_fixed": False,
+    "sidebar_fixed": True,
+
+    "sidebar": "sidebar-dark-success",
+    "sidebar_nav_small_text": False,
+    "sidebar_disable_expand": False,
+    "sidebar_nav_child_indent": False,
+    "sidebar_nav_compact_style": False,
+    "sidebar_nav_flat_style": True,
+
     "theme": "flatly",
-    # Режим темы: light / dark / auto (заменяет удалённый dark_mode_theme)
     "default_theme_mode": "auto",
-    # Тема-переключатель в navbar (новая опция 3.x)
     "show_theme_chooser": True,
 
-    # Структурные настройки (Bootstrap 5)
-    "navbar_fixed": True,
-    "sidebar_fixed": True,
-    "sidebar_nav_flat_style": True,
-    "sidebar_nav_child_indent": True,
-    "related_modal_active": True,
-
-    # Размеры текста (можно убрать — дефолт ок)
-    "navbar_small_text": True,
-    "footer_small_text": True,
-    "body_small_text": True,
-    "brand_small_text": True,
-
-    # Кнопки (Bootstrap 5 классы — оставляем как есть, они валидны)
     "button_classes": {
         "primary": "btn-primary",
         "secondary": "btn-secondary",
@@ -459,6 +686,53 @@ JAZZMIN_UI_TWEAKS = {
     },
 }
 
+
+# ============================================================
+# JAZZMIN UI TWEAKS
+# ============================================================
+
+JAZZMIN_UI_TWEAKS = {
+    # Текст
+    "navbar_small_text": False,
+    "footer_small_text": False,
+    "body_small_text": False,
+    "brand_small_text": False,
+
+    # Цвета
+    "brand_colour": "navbar-dark",
+    "accent": "accent-warning",
+    "navbar": "navbar-dark navbar-success",
+    "no_navbar_border": False,
+
+    # Раскладка
+    "navbar_fixed": True,
+    "layout_boxed": False,
+    "footer_fixed": False,
+    "sidebar_fixed": True,
+
+    # Сайдбар
+    "sidebar": "sidebar-dark-success",
+    "sidebar_nav_small_text": False,
+    "sidebar_disable_expand": False,
+    "sidebar_nav_child_indent": False,
+    "sidebar_nav_compact_style": False,
+    "sidebar_nav_flat_style": True,
+
+    # Тема
+    "theme": "flatly",
+    "default_theme_mode": "auto",
+    "show_theme_chooser": True,
+
+    # Кнопки
+    "button_classes": {
+        "primary": "btn-primary",
+        "secondary": "btn-secondary",
+        "info": "btn-info",
+        "warning": "btn-warning",
+        "danger": "btn-danger",
+        "success": "btn-success",
+    },
+}
 
 # ============================================================
 # CKEDITOR

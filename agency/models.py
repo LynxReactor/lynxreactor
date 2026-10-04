@@ -1839,6 +1839,42 @@ class ContactRequest(models.Model):
         help_text=_("Язык, на котором клиент отправил заявку"),
     )
 
+    # ============================================================
+    # ОПЛАТА (WebPay)
+    # ============================================================
+    contract_amount_byn = models.DecimalField(
+        max_digits=10, decimal_places=2,
+        null=True, blank=True,
+        verbose_name=_("Contract amount (BYN)"),
+        help_text=_("Итоговая сумма по договору. Заполняется менеджером."),
+    )
+    webpay_payment_url = models.URLField(
+        max_length=500, blank=True, default='',
+        verbose_name=_("WebPay payment URL"),
+        help_text=_("Ссылка на оплату из ЛК WebPay."),
+    )
+    payment_status = models.CharField(
+        max_length=20,
+        choices=[
+            ('not_invoiced', _('Not invoiced')),
+            ('invoiced', _('Invoiced')),
+            ('paid', _('Paid')),
+            ('refunded', _('Refunded')),
+        ],
+        default='not_invoiced',
+        verbose_name=_("Payment status"),
+    )
+    invoiced_at = models.DateTimeField(
+        blank=True, null=True,
+        verbose_name=_("Invoiced at"),
+        help_text=_("Когда отправлена ссылка на оплату"),
+    )
+    paid_at = models.DateTimeField(
+        blank=True, null=True,
+        verbose_name=_("Paid at"),
+        help_text=_("Когда оплата получена"),
+    )
+
     class Meta:
         verbose_name = _("Contact Request")
         verbose_name_plural = _("Contact Requests")
@@ -1846,6 +1882,7 @@ class ContactRequest(models.Model):
         indexes = [
             models.Index(fields=['-created_at'], name='contact_created_idx'),
             models.Index(fields=['status', '-created_at'], name='contact_status_idx'),
+            models.Index(fields=['payment_status', '-created_at'], name='contact_payment_idx'),
         ]
 
     def __str__(self):
