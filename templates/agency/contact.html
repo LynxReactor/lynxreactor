@@ -1159,7 +1159,7 @@
                 <div class="contact-info-card">
                     <div class="icon"><i class="fas fa-map-marker-alt"></i></div>
                     <h4>{% trans "Адрес" %}</h4>
-                    <p>{{ contact_page.address|default:'Республика Беларусь, г. Гомель, ул. Мазурова, д.125а, офис 34' }}</p>
+                    <p>{{ contact_page.address|default:'Республика Беларусь, г. Гомель, ул. Мазурова, д.125а/34' }}</p>
                 </div>
 
                 <!-- Карта — под адресом -->
@@ -1281,12 +1281,15 @@
                 </p>
 
                 <div class="payment-logos">
-                    <img src="{% static 'images/payments/webpay.png' %}" alt="WebPay" loading="lazy">
+                    <img src="{% static 'images/payments/webpay.svg' %}" alt="WebPay" loading="lazy">
                     <img src="{% static 'images/payments/mtbank.png' %}" alt="МТБанк" loading="lazy">
-                    <img src="{% static 'images/payments/visa.png' %}" alt="Visa" loading="lazy">
-                    <img src="{% static 'images/payments/mastercard.png' %}" alt="Mastercard" loading="lazy">
-                    <img src="{% static 'images/payments/belkart.png' %}" alt="БЕЛКАРТ" loading="lazy">
-                    <img src="{% static 'images/payments/mir.png' %}" alt="МИР" loading="lazy">
+                    <img src="{% static 'images/payments/belkart.svg' %}" alt="БЕЛКАРТ" loading="lazy">
+                    <img src="{% static 'images/payments/belkart-internet-password.svg' %}" alt="БЕЛКАРТ Интернет-пароль" loading="lazy">
+                    <img src="{% static 'images/payments/erip.svg' %}" alt="ЕРИП" loading="lazy">
+                    <img src="{% static 'images/payments/visa.svg' %}" alt="Visa" loading="lazy">
+                    <img src="{% static 'images/payments/visa-secure.svg' %}" alt="Visa Secure" loading="lazy">
+                    <img src="{% static 'images/payments/mastercard.svg' %}" alt="Mastercard" loading="lazy">
+                    <img src="{% static 'images/payments/mastercard-securecode.svg' %}" alt="Mastercard SecureCode" loading="lazy">
                 </div>
             </div>
 

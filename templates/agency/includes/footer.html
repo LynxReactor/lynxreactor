@@ -98,12 +98,15 @@
                     </ul>
 
                     <div class="footer-payment-logos">
-                        <img src="{% static 'images/payments/webpay.png' %}" alt="WebPay" loading="lazy">
+                        <img src="{% static 'images/payments/webpay.svg' %}" alt="WebPay" loading="lazy">
                         <img src="{% static 'images/payments/mtbank.png' %}" alt="МТБанк" loading="lazy">
-                        <img src="{% static 'images/payments/visa.png' %}" alt="Visa" loading="lazy">
-                        <img src="{% static 'images/payments/mastercard.png' %}" alt="Mastercard" loading="lazy">
-                        <img src="{% static 'images/payments/belkart.png' %}" alt="БЕЛКАРТ" loading="lazy">
-                        <img src="{% static 'images/payments/mir.png' %}" alt="МИР" loading="lazy">
+                        <img src="{% static 'images/payments/belkart.svg' %}" alt="БЕЛКАРТ" loading="lazy">
+                        <img src="{% static 'images/payments/belkart-internet-password.svg' %}" alt="БЕЛКАРТ Интернет-пароль" loading="lazy">
+                        <img src="{% static 'images/payments/erip.svg' %}" alt="ЕРИП" loading="lazy">
+                        <img src="{% static 'images/payments/visa.svg' %}" alt="Visa" loading="lazy">
+                        <img src="{% static 'images/payments/visa-secure.svg' %}" alt="Visa Secure" loading="lazy">
+                        <img src="{% static 'images/payments/mastercard.svg' %}" alt="Mastercard" loading="lazy">
+                        <img src="{% static 'images/payments/mastercard-securecode.svg' %}" alt="Mastercard SecureCode" loading="lazy">
                     </div>
                 </div>
 
@@ -147,7 +150,7 @@
                                 {% if current_language == 'en' %}
                                     Republic of Belarus, Gomel,<br>Mazurova st., 125a, office 34
                                 {% else %}
-                                    Республика Беларусь, г. Гомель,<br>ул. Мазурова, д. 125а, офис 34
+                                    Республика Беларусь, г. Гомель,<br>ул. Мазурова, д. 125а/34
                                 {% endif %}
                             </span>
                         </li>
@@ -168,7 +171,11 @@
                         <li class="footer-unp">
                             <i class="fas fa-id-card"></i>
                             <span>
-                                {% if current_language == 'en' %}UNP{% else %}УНП{% endif %}: 2691174
+                                {% if current_language == 'en' %}
+                                    Elistratov A.A.<br>UNP: EB2691174
+                                {% else %}
+                                    Елистратов А.А.<br>УНП: EB2691174
+                                {% endif %}
                             </span>
                         </li>
                     </ul>
@@ -232,9 +239,9 @@
         </div>
 
         <div class="footer-bottom">
-            <div class="copyright">
+             <div class="copyright">
                 &copy; {% now "Y" %} LynxReactor. {% trans "Все права защищены." %}
-                <span style="opacity:0.6;margin-left:8px;">УНП 2691174</span>
+                <span style="opacity:0.6;margin-left:8px;">УНП EB2691174</span>
             </div>
             <div class="footer-legal">
                 <a href="#">{% trans "Политика конфиденциальности" %}</a>

@@ -345,11 +345,17 @@ html[data-theme="dark"] .footer-brand .logo-image-wrapper .themed-img.ti-dark {
 .footer-payment-logos img {
     height: 24px;
     width: auto;
-    max-width: 60px;
+    max-width: 80px;   /* ← чуть больше */
     object-fit: contain;
-    opacity: 0.75;
+    opacity: 0.85;
     transition: opacity 0.3s ease, transform 0.3s ease;
     border-radius: 3px;
+}
+
+/* Для маленьких логотипов (круги Mastercard, текст Visa) — можно ограничить */
+.footer-payment-logos img[alt="Visa"],
+.footer-payment-logos img[alt="Mastercard"] {
+    max-width: 50px;
 }
 
 .footer-payment-logos img:hover {

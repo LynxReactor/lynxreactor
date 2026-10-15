@@ -122,12 +122,14 @@
 
 .payment-logos img {
     height: 32px;
+    max-width: 100px;   /* ← вместо 60px или без ограничения */
     width: auto;
-    max-width: 100%;
     object-fit: contain;
-    border-radius: 4px;
-    transition: transform 0.3s ease, opacity 0.3s ease;
-    opacity: 0.9;
+}
+
+.payment-logos img[alt="Visa"],
+.payment-logos img[alt="Mastercard"] {
+    max-width: 60px;
 }
 
 .payment-logos img:hover {
