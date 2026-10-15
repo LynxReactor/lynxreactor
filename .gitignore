@@ -82,6 +82,8 @@ id_ed25519*
 *.asc
 *secret*
 *password*
+!static/images/payments/*.svg
+!static/images/payments/*.png
 *credentials*
 *.token
 
