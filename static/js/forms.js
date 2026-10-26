@@ -155,6 +155,11 @@
             const result = await response.json();
 
             if (result.success) {
+                // Яндекс.Метрика: успешная заявка (только после ответа Django)
+                if (typeof window.ym === 'function') {
+                    window.ym(111857203, 'reachGoal', 'request_success');
+                }
+
                 notify('success', '✅ ' + (result.message || t('form_success', 'Заявка успешно отправлена!')));
                 form.reset();
 
